@@ -1,0 +1,109 @@
+#################################################################
+## GENERIC LIGHTING AUTOMATIONS
+#################################################################
+#
+#################################################################
+# Flux Light Strip Change Color on Input Select
+#################################################################
+- id: flux_lights_select_color
+  alias: Flux LEDs Select Color
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: input_select.led_color
+  condition:
+  - condition: state
+    entity_id: input_boolean.enable_sandbox
+    state: 'on'
+  action:
+    service: light.turn_on
+    data_template:
+      entity_id: light.flux_led_strip
+#      brightness: '{{ states.input_number.led_strip_brightness.state|int }}'
+      rgb_color: [ "{{ trigger.to_state.state.split(',')[1]|int }}", "{{ trigger.to_state.state.split(',')[2]|int }}", "{{ trigger.to_state.state.split(',')[3]|int }}" ]
+#      rgb_color: [255,0,255]
+#
+#################################################################
+# Flux Light Strip Change Brightness on Input Number
+#################################################################
+- id: flux_lights_select_brightness
+  alias: Flux LEDs Select Brightness
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: input_number.led_strip_brightness
+  condition:
+  - condition: state
+    entity_id: input_boolean.enable_sandbox
+    state: 'on'
+  action:
+    service: light.turn_on
+    data_template:
+      entity_id: light.flux_led_strip
+      brightness: '{{ trigger.to_state.state|int }}'
+#      rgb_color: [ "{{ input_select.led_color.state.split(',')[1]|int }}", "{{ input_select.led_color.state.split(',')[2]|int }}", "{{ input_select.led_color.state.split(',')[3]|int }}" ]
+#      rgb_color: [255,0,255]
+#
+#################################################################
+# Flux Light Strip
+#################################################################
+#- id: flux_light_strip_test
+#  alias: flux_light_strip_test
+#  initial_state: true
+#  trigger:
+#    platform: time
+#    seconds: '/15'
+#  condition:
+#  - condition: state
+#    entity_id: input_boolean.enable_sandbox
+#    state: 'on'
+#  action:
+#    service: light.turn_on
+#    data:
+#      entity_id: light.flux_led_strip
+#      effect: random
+#
+#    data_template:
+#      entity_id: light.flux_led_strip
+#      brightness: 128
+#      color_name: >-
+#        {% if is_state("sensor.dark_sky_icon", "snow") %}
+#          orange
+#        {% elif is_state("sensor.dark_sky_icon", "partly-cloud-day") %}
+#          yellow
+#        {% elif is_state("sensor.dark_sky_icon", "rain") %}
+#          blue
+#        {% else %}
+#          white
+#        {% endif %}
+#
+# brightness: 128
+# hs_color: 300.469,100
+# rgb_color: 255,0,253
+# xy_color: 0.388,0.156
+# white_value: 0
+#
+#################################################################
+# Color Testing - via Scene
+#################################################################
+#- id: color_testing
+#  alias: Color Testing
+#  initial_state: true
+#  trigger:
+#  - platform: state
+#    entity_id: input_boolean.trigger_sandbox
+#    to: 'on'
+#  condition:
+#  - condition: state
+#    entity_id: input_boolean.enable_sandbox
+#    state: 'on'
+#  action:
+##  - service: scene.turn_on
+##    entity_id: scene.test_scene
+#  - service: script.turn_on
+#    entity_id: script.blink_lights_tv
+##    entity_id: script.test_lighting_script
+#  - service: input_boolean.turn_off
+#  - delay: 0:00:02
+#    entity_id: input_boolean.trigger_sandbox
+#

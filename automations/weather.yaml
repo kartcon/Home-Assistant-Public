@@ -1,0 +1,208 @@
+#################################################################
+# WEATHER RELATED AUTOMATIONS
+#################################################################
+#
+#################################################################
+# Its Raining
+#################################################################
+- id: its_raining
+  alias: Its Raining
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: input_select.current_condition
+    to: 'Rainy'
+  condition: []
+  action:
+  - service: script.turn_on
+    entity_id: script.its_raining
+#
+#################################################################
+# Its Gloomy
+#################################################################
+- id: its_gloomy
+  alias: Its Gloomy
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: input_select.current_condition
+    to: 'Rainy'
+    for: '00:01:00'
+#  - platform: time_pattern
+#    minutes: '/15'
+#    seconds: 0
+  condition:
+  - condition: state
+    entity_id: input_select.current_condition
+    state: 'Rainy'
+  - condition: numeric_state
+    entity_id: sensor.kit_light_sensor_227
+    below: 60
+  - condition: time
+    after: '08:00:00'
+    before: '16:00:00'
+  action:
+  - service: script.turn_on
+    entity_id: script.its_gloomy_raining
+#
+#################################################################
+# WEATHER CONDITION AUTOMATIONS
+#################################################################
+#
+#################################################################
+# Condition Its Sunny - Day
+#################################################################
+- id: condition_its_sunny
+  alias: Condition Its Sunny
+  initial_state: true
+  trigger:
+  - platform: homeassistant
+    event: start
+  - platform: state
+    entity_id: sensor.dark_sky_icon
+  condition:
+  - condition: state
+    entity_id: sensor.dark_sky_icon
+    state: 'clear-day'
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.current_condition
+      option: Sunny
+#
+#################################################################
+# Condition Its Clear - Night
+#################################################################
+- id: condition_its_clear
+  alias: Condition Its Clear
+  initial_state: true
+  trigger:
+  - platform: homeassistant
+    event: start
+  - platform: state
+    entity_id: sensor.dark_sky_icon
+  condition:
+  - condition: state
+    entity_id: sensor.dark_sky_icon
+    state: 'clear-night'
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.current_condition
+      option: Clear
+#
+#################################################################
+# Condition Its Cloudy
+#################################################################
+- id: condition_its_cloudy
+  alias: Condition Its Cloudy
+  initial_state: true
+  trigger:
+  - platform: homeassistant
+    event: start
+  - platform: state
+    entity_id: sensor.dark_sky_icon
+  condition:
+    condition: or
+    conditions:
+    - condition: state
+      entity_id: sensor.dark_sky_icon
+      state: 'partly-cloudy-day'
+    - condition: state
+      entity_id: sensor.dark_sky_icon
+      state: 'partly-cloudy-night'
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.current_condition
+      option: Cloudy
+#
+#################################################################
+# Condition Its Raining
+#################################################################
+- id: condition_its_raining
+  alias: Condition Its Raining
+  initial_state: true
+  trigger:
+  - platform: homeassistant
+    event: start
+  - platform: state
+    entity_id: binary_sensor.its_raining
+    to: 'on'
+    for:
+      minutes: 1
+      seconds: 0
+#  - platform: state
+#    entity_id: sensor.pws_weather
+#    to: 'rain'
+#    for:
+#      minutes: 1
+#      seconds: 0
+#  - platform: state
+#    entity_id: sensor.pws_weather
+#    to: 'thunderstorm'
+#    for:
+#      minutes: 0
+#      seconds: 30
+#  - platform: state
+#    entity_id: sensor.dark_sky_icon
+#    to: 'rain'
+  condition:
+  - condition: numeric_state
+    entity_id: sensor.bayesian_rain
+    above: 0.75
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.current_condition
+      option: Rainy
+#  - service: script.turn_on
+#    entity_id: script.its_raining
+#
+#################################################################
+# Condition Its Foggy
+#################################################################
+- id: condition_its_foggy
+  alias: Condition Its Foggy
+  initial_state: true
+  trigger:
+  - platform: homeassistant
+    event: start
+  - platform: state
+    entity_id: sensor.dark_sky_icon
+    to: 'fog'
+  condition:
+  - condition: state
+    entity_id: sensor.dark_sky_icon
+    state: 'fog'
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.current_condition
+      option: Foggy
+#
+#################################################################
+# Condition Its Windy
+#################################################################
+- id: condition_its_windy
+  alias: Condition Its Windy
+  initial_state: true
+  trigger:
+  - platform: homeassistant
+    event: start
+  - platform: state
+    entity_id: sensor.dark_sky_icon
+    to: 'wind'
+  condition:
+  - condition: state
+    entity_id: sensor.dark_sky_icon
+    state: 'wind'
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.current_condition
+      option: Windy
+#
+# Dark Sky icons as of 2/20/2019: clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day, or partly-cloudy-night
+#input_select-current_condition: Sunny, Cloudy, Rainy, Windy, Foggy
+#

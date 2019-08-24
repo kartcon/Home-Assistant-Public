@@ -1,0 +1,43 @@
+load_outdoor_cameras:
+    widget_type: navigate
+    title: Go to Outdoor Cameras
+    icon_inactive: fa-random
+    url: /CameraPanelOutdoor
+
+load_camera1:
+    widget_type: navigate
+    title: Camera 1
+    icon_inactive: mdi-television
+    url: /Camera_Outdoor_1
+
+load_camera2:
+    widget_type: navigate
+    title: Camera 2
+    icon_inactive: mdi-television
+    url: /Camera_Outdoor_2
+
+load_camera3:
+    widget_type: navigate
+    title: Camera 3
+    icon_inactive: mdi-television
+    url: /Camera_Outdoor_3
+
+load_camera4:
+    widget_type: navigate
+    title: Camera 4
+    icon_inactive: mdi-television
+    url: /Camera_Outdoor_4
+
+outcam2:
+    widget_type: camera
+    title: Front Yard
+#    refresh: 15
+    entity_picture: http://192.168.0.101:8101/videostream.cgi?username=admin&password=KCP8410
+
+layout:
+  - include: top_nav_small
+  - load_outdoor_cameras (2x1), outcam2 (6x4)
+  - load_camera1, load_camera2
+  - load_camera3, load_camera4
+  - 
+  - include: bottom_nav

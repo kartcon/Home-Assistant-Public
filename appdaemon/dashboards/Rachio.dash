@@ -1,0 +1,24 @@
+#
+# Main arguments, all optional
+#
+title: Sprinklers
+widget_dimensions: [120, 120]
+widget_margins: [5, 5]
+columns: 8
+
+rachio_frame:
+  widget_type: iframe
+  title: Rachio
+  #refresh: 60
+  url_list: 
+    - https://app.rach.io
+
+# Includes (Optional)
+
+layout:
+  - rachio_frame(8x5)
+  - 
+  - 
+  - 
+  - 
+  - include: bottom_nav

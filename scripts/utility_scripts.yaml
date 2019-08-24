@@ -1,0 +1,63 @@
+#################################################################
+## UTILITY SCRIPTS
+#################################################################
+#
+#################################################################
+# Script: Refresh Speedtest
+# Called from [_______]
+# In file: [_______]
+#################################################################
+refresh_speedtest:
+  alias: Refresh Speed Test Sensors
+  sequence:
+  - service: sensor.update_speedtest
+#
+#################################################################
+# Script: Refresh Performance Test
+# Called from [_______]
+# In file: [_______]
+#################################################################
+refresh_performance_test:
+  alias: Refresh System Performance Sensors
+  sequence:
+  - service: homeassistant.update_entity
+    data:
+      message: sensor.load_1m
+  - service: homeassistant.update_entity
+    data:
+      message: sensor.load_5m
+  - service: homeassistant.update_entity
+    data:
+      message: sensor.load_15m
+  - service: homeassistant.update_entity
+    data:
+      message: sensor.memory_free
+  - service: homeassistant.update_entity
+    data:
+      message: sensor.memory_use
+  - service: homeassistant.update_entity
+    data:
+      message: sensor.memory_use_percent
+#
+#################################################################
+# Script: Write To Log
+# Called from [multiple automations]
+# In file: [/automations/...]
+#################################################################
+write_to_log:
+  alias: Write To Log
+  sequence:
+  - service: logbook.log
+    data_template:
+      name: Log Entry
+#      entity_id: "{{ entity_id }}"
+      message: "- {{ entity_id }} - {{ message }}"
+      domain: alert
+  - service: script.turn_off
+    entity_id: script.write_to_log
+#
+#  Call using:
+#  - service: script.write_to_log
+#    data:
+#      entity_id: media_player.sunroom_sonos
+#      message: 'This is the message text'

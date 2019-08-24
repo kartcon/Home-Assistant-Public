@@ -1,0 +1,51 @@
+#################################################################
+# WEATHER SCRIPTS
+#################################################################
+#
+#################################################################
+# Its Raining
+# Called from [its_raining] 
+# In file: [/automations/weather.yaml]
+#################################################################
+its_raining:
+  alias: Its Raining
+  sequence:
+  - service: script.turn_on
+    entity_id: script.close_garage_door1
+  - service: script.turn_on
+    entity_id: script.close_garage_door2
+  - service: persistent_notification.create
+    data_template:
+      message: >-
+        At {{now().strftime("%m/%d/%Y %H:%M")}} its raining.
+      title: PWS Weather Notification
+  - condition: state
+    entity_id: input_boolean.enable_weather_alerts
+    state: 'on'
+  - service: notify.ios_group_art_steff
+    data:
+      message: "At {{now().strftime('%m/%d/%Y %H:%M')}} its raining."
+      title: PWS Weather Notification
+#
+#################################################################
+# Its Gloomy Raining
+# Called from [its_gloomy] 
+# In file: [/automations/weather.yaml]
+#################################################################
+its_gloomy_raining:
+  alias: Its Gloomy Raining
+  sequence:
+  - service: script.turn_on
+    entity_id: script.inside_lights_on_before_sunset
+  - service: persistent_notification.create
+    data_template:
+      message: >-
+        At {{now().strftime("%m/%d/%Y %H:%M")}} its rainy and gloomy.
+      title: PWS Weather Notification
+  - service: script.sonos_say
+    data:
+      sonos_entity: media_player.sunroom_sonos
+      volume: 0.4
+      message: "Its raining and gloomy outside so I've turned the lights on to brighten things up."
+      delay: '00:00:05'
+#

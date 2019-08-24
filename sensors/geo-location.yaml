@@ -1,0 +1,119 @@
+#############################################################
+#              Geo-Location Templates                       #
+#############################################################
+#
+############################
+#         Badges           #
+############################
+#
+- platform: template
+  sensors:
+    #--- Art/Steff location badge --------------------
+    art_badge:
+      value_template: >-
+        {% if states("device_tracker.arts_iphone_8") %}
+          {% if states("device_tracker.arts_iphone_8") != "not_home" %}
+            {{ states("device_tracker.arts_iphone_8") | title }}
+          {% elif states("proximity.art_to_home") %}
+            {{ states("proximity.art_to_home") }} mi
+          {% else %}
+            Waiting
+          {% endif %}
+        {% endif %}
+      friendly_name: 'Arts Avatar'
+      entity_picture_template: /local/avatars/Arts_Avatar.png
+#
+    steff_badge:
+      value_template: >-
+        {% if states("device_tracker.steffs_iphone_8") %}
+          {% if states("device_tracker.steffs_iphone_8") != "not_home" %}
+            {{ states("device_tracker.steffs_iphone_8") | title }}
+          {% elif states("proximity.steff_to_home") %}
+            {{ states("proximity.steff_to_home") }} mi
+          {% else %}
+            Waiting
+          {% endif %}
+        {% endif %}
+      friendly_name: 'Steffs Avatar'
+      entity_picture_template: /local/avatars/Steffs_Avatar.png
+#
+############################
+#      GPS Data Art        #
+############################
+#
+#    artsiphone8_distance:
+#      value_template: '{{float(state_attr("device_tracker.artsiphone8","distance"))}}'
+#      unit_of_measurement: 'mi'
+#    artsiphone8_calc_distance:
+#      value_template: '{{float(state_attr("device_tracker.artsiphone8","calc_distance"))}}'
+#      unit_of_measurement: 'mi'
+#    artsiphone8_waze_distance:
+#      value_template: '{{float(state_attr("device_tracker.artsiphone8","waze_distance"))}}'
+#      unit_of_measurement: 'mi'
+#    artsiphone8_travel_time:
+#      value_template: '{{state_attr("device_tracker.artsiphone8","travel_time")}}'
+#
+#    artsiphone8_dir_of_travel:
+#      value_template: '{{state_attr("device_tracker.artsiphone8","dir_of_travel") | replace("_"," ") | title}}'
+#    artsiphone8_gps_accuracy:
+#      value_template: '{{state_attr("device_tracker.artsiphone8","gps_accuracy")}}'
+#    artsiphone8_poll_count:
+#      value_template: '{{state_attr("device_tracker.artsiphone8","poll_count")}}'
+#    artsiphone8_last_located:
+#      value_template: '{{state_attr("device_tracker.artsiphone8","last_located")}}'
+#    artsiphone8_last_update:
+#      value_template: '{{state_attr("device_tracker.artsiphone8","last_update")}}'
+#    artsiphone8_next_update:
+#      value_template: '{{state_attr("device_tracker.artsiphone8","next_update")}}'
+#
+############################
+#      GPS Data Steff      #
+############################
+#
+#    steffsiphone8_distance:
+#      value_template: '{{float(state_attr("device_tracker.steffsiphone8","distance"))}}'
+#      unit_of_measurement: 'mi'
+#    steffsiphone8_calc_distance:
+#      value_template: '{{float(state_attr("device_tracker.steffsiphone8","calc_distance"))}}'
+#      unit_of_measurement: 'mi'
+#    steffsiphone8_waze_distance:
+#      value_template: '{{float(state_attr("device_tracker.steffsiphone8","waze_distance"))}}'
+#      unit_of_measurement: 'mi'
+#    steffsiphone8_travel_time:
+#      value_template: '{{state_attr("device_tracker.steffsiphone8","travel_time")}}'
+#
+#    steffsiphone8_dir_of_travel:
+#      value_template: '{{state_attr("device_tracker.steffsiphone8","dir_of_travel") | replace("_"," ") | title}}'
+#    steffsiphone8_gps_accuracy:
+#      value_template: '{{state_attr("device_tracker.steffsiphone8","gps_accuracy")}}'
+#    steffsiphone8_poll_count:
+#      value_template: '{{state_attr("device_tracker.steffsiphone8","poll_count")}}'
+#    steffsiphone8_info:
+#      value_template: '{{state_attr("device_tracker.steffsiphone8","info")}}'
+#
+#    steffsiphone8_interval:
+#      value_template: '{{state_attr("device_tracker.steffsiphone8","interval")}}'
+#    steffsiphone8_last_located:
+#      value_template: '{{state_attr("device_tracker.steffsiphone8","last_located")}}'
+#    steffsiphone8_last_update:
+#      value_template: '{{state_attr("device_tracker.steffsiphone8","last_update")}}'
+#    steffsiphone8_next_update:
+#      value_template: '{{state_attr("device_tracker.steffsiphone8","next_update")}}'
+#
+############################
+#      GPS Data SJM        #
+############################
+#
+#
+############################
+#    Presence Confidence   #
+############################
+    presence_confidence_art:
+      value_template: "{{ ((states.binary_sensor.art_presence.attributes.probability)*100) }}"
+      friendly_name: "Presence Confidence Art"
+      unit_of_measurement: '%'
+    presence_confidence_steff:
+      value_template: "{{ ((states.binary_sensor.steff_presence.attributes.probability)*100) }}"
+      friendly_name: "Presence Confidence Steff"
+      unit_of_measurement: '%'
+#

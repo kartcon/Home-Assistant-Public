@@ -1,0 +1,41 @@
+#
+# Main arguments, all optional
+#
+title: Bird Rooms
+widget_dimensions: [120, 120]
+widget_margins: [5, 5]
+columns: 8
+
+birdrm1:
+  widget_type: camera
+  title: Bird Room 1
+  frame_style: ""
+  entity_picture: http://192.168.0.101:8101/videostream.cgi?username=admin&password=KCP8410
+
+birdrm2:
+  widget_type: camera
+  title: Bird Room 2
+  frame_style: ""
+  entity_picture: http://192.168.0.102:8102/videostream.cgi?username=admin&password=KCP8410
+
+sunset:
+    widget_type: sensor
+    entity: sensor.next_sunset
+    title: Next Sunset
+    text: sensor.sunset
+
+bird_lights_off:
+  widget_type: scene
+  title: Bird Room Lights Off
+  entity: scene.lrsc__bird_rm_lights_off
+  icon_on: mdi-auto-fix
+  icon_off: mdi-auto-fix
+  icon_style_inactive:  "color: yellow;"
+
+layout:
+    - include: top_nav_small
+    - birdrm1(3x3), sunset(2x1), birdrm2(3x3)
+    - light.bird_room_1_light_52, light.bird_room_2_light_53
+    - bird_lights_off
+    - include: rooms_panel
+    - include: bottom_nav

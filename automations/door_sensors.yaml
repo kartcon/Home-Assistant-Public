@@ -1,0 +1,256 @@
+#################################################################
+## DOOR SENSOR AUTOMATIONS
+#################################################################
+#
+#################################################################
+##  Front Door Sensor Tripped
+#################################################################
+- id: front_door_sensor_tripped
+  alias: Front Door Sensor Tripped
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.front_door_31
+    from: 'off'
+    to: 'on'
+    for: '00:00:15'
+  - platform: time_pattern
+    minutes: /10
+  condition:
+  - condition: state
+    entity_id: alarm_control_panel.ha_alarm
+    state: 'disarmed'
+  - condition: state
+    entity_id: switch.front_door_31
+    state: 'on'
+  - condition: state
+    entity_id: binary_sensor.front_door_31
+    state: 'on'
+  action:
+  - service: script.turn_on
+    entity_id: script.reset_front_door_sensor
+#
+#################################################################
+##  Back Door Sensor Tripped
+#################################################################
+- id: back_door_sensor_tripped
+  alias: Back Door Sensor Tripped
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.back_door_36
+    from: 'off'
+    to: 'on'
+    for: '00:00:15'
+  - platform: time_pattern
+    minutes: /10
+  condition:
+  - condition: state
+    entity_id: alarm_control_panel.ha_alarm
+    state: 'disarmed'
+  - condition: state
+    entity_id: switch.back_door_36
+    state: 'on'
+  - condition: state
+    entity_id: binary_sensor.back_door_36
+    state: 'on'
+  action:
+  - service: script.turn_on
+    entity_id: script.reset_back_door_sensor
+#
+#################################################################
+##  Garage Entry Door Sensor Tripped
+#################################################################
+- id: garage_entry_door_sensor_tripped
+  alias: Garage Entry Door Sensor Tripped
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.garage_entry_door_39
+    from: 'off'
+    to: 'on'
+    for: '00:00:15'
+  - platform: time_pattern
+    minutes: /10
+  condition:
+  - condition: state
+    entity_id: alarm_control_panel.ha_alarm
+    state: 'disarmed'
+  - condition: state
+    entity_id: switch.garage_entry_door_39
+    state: 'on'
+  - condition: state
+    entity_id: binary_sensor.garage_entry_door_39
+    state: 'on'
+  action:
+  - service: script.turn_on
+    entity_id: script.reset_garage_entry_door_sensor
+#
+#################################################################
+##  Sliding Door Left Sensor Tripped
+#################################################################
+- id: sliding_door_left_sensor_tripped
+  alias: Sliding Door Left Sensor Tripped
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.sliding_door_left_37
+    from: 'off'
+    to: 'on'
+    for: '00:00:15'
+  - platform: time_pattern
+    minutes: /10
+  condition:
+  - condition: state
+    entity_id: alarm_control_panel.ha_alarm
+    state: 'disarmed'
+  - condition: state
+    entity_id: switch.sliding_door_left_37
+    state: 'on'
+  - condition: state
+    entity_id: binary_sensor.sliding_door_left_37
+    state: 'on'
+  action:
+  - service: script.turn_on
+    entity_id: script.reset_sliding_door_left_sensor
+#
+#################################################################
+##  Sliding Door Right Sensor Tripped
+#################################################################
+- id: sliding_door_right_sensor_tripped
+  alias: Sliding Door Right Sensor Tripped
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.sliding_door_right_38
+    from: 'off'
+    to: 'on'
+    for: '00:00:15'
+  - platform: time_pattern
+    minutes: /10
+  condition:
+  - condition: state
+    entity_id: alarm_control_panel.ha_alarm
+    state: 'disarmed'
+  - condition: state
+    entity_id: switch.sliding_door_right_38
+    state: 'on'
+  - condition: state
+    entity_id: binary_sensor.sliding_door_right_38
+    state: 'on'
+  action:
+  - service: script.turn_on
+    entity_id: script.reset_sliding_door_right_sensor
+#
+#################################################################
+##  Sun Room East Door Sensor Tripped
+#################################################################
+- id: sunroom_east_door_sensor_tripped
+  alias: Sun Room East Door Sensor Tripped
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.sunroom_east_34
+    from: 'off'
+    to: 'on'
+    for: '00:00:15'
+  - platform: time_pattern
+    minutes: /10
+  condition:
+  - condition: state
+    entity_id: alarm_control_panel.ha_alarm
+    state: 'disarmed'
+  - condition: state
+    entity_id: switch.sunroom_east_34
+    state: 'on'
+  - condition: state
+    entity_id: binary_sensor.sunroom_east_34
+    state: 'on'
+  action:
+  - service: script.turn_on
+    entity_id: script.reset_sunroom_east_sensor
+#
+#################################################################
+##  Sun Room West Door Sensor Tripped
+#################################################################
+- id: sunroom_west_door_sensor_tripped
+  alias: Sun Room West Door Sensor Tripped
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.sunroom_west_35
+    from: 'off'
+    to: 'on'
+    for: '00:00:15'
+  - platform: time_pattern
+    minutes: /10
+  condition:
+  - condition: state
+    entity_id: alarm_control_panel.ha_alarm
+    state: 'disarmed'
+  - condition: state
+    entity_id: switch.sunroom_west_35
+    state: 'on'
+  - condition: state
+    entity_id: binary_sensor.sunroom_west_35
+    state: 'on'
+  action:
+  - service: script.turn_on
+    entity_id: script.reset_sunroom_west_sensor
+#
+#################################################################
+##  Garage 2 Tilt Sensor Tripped
+#################################################################
+#- id: garage_2_tilt_sensor_tripped
+#  alias: Garage 2 Tilt Sensor Tripped
+#  initial_state: true
+#  trigger:
+#  - platform: state
+#    entity_id: binary_sensor.two_car_gar_sensor_65
+#    from: 'off'
+#    to: 'on'
+#    for: '00:00:15'
+#  - platform: time_pattern
+#    minutes: /10
+#  condition:
+#  - condition: state
+#    entity_id: alarm_control_panel.ha_alarm
+#    state: 'disarmed'
+#  - condition: state
+#    entity_id: switch.two_car_gar_sensor_65
+#    state: 'on'
+#  - condition: state
+#    entity_id: binary_sensor.two_car_gar_sensor_65
+#    state: 'on'
+#  action:
+#  - service: script.turn_on
+#    entity_id: script.reset_two_car_gar_sensor
+#
+#################################################################
+##  Garage 1 Tilt Sensor Tripped
+#################################################################
+- id: garage_1_tilt_sensor_tripped
+  alias: Garage 1 Tilt Sensor Tripped
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.one_car_gar_sensor_66
+    from: 'off'
+    to: 'on'
+    for: '00:00:15'
+  - platform: time_pattern
+    minutes: /10
+  condition:
+  - condition: state
+    entity_id: alarm_control_panel.ha_alarm
+    state: 'disarmed'
+  - condition: state
+    entity_id: switch.one_car_gar_sensor_66
+    state: 'on'
+  - condition: state
+    entity_id: binary_sensor.one_car_gar_sensor_66
+    state: 'on'
+  action:
+  - service: script.turn_on
+    entity_id: script.reset_one_car_gar_sensor
+#

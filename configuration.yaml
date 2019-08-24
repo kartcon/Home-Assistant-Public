@@ -1,0 +1,214 @@
+#  ---------------
+# Configure a default setup of Home Assistant (frontend, api, etc)
+#default_config:
+#  ---------------
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
+#  ---------------
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: HA-iMac
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret latitude
+  longitude: !secret longitude
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 4.3
+  # metric for Metric, imperial for Imperial
+  unit_system: imperial
+  # Pick yours from here:
+  # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  customize: !include customize.yaml
+  time_zone: !secret timezone
+#  ---------------
+# 0.90 setup see:
+# https://github.com/CCOSTAN/Home-AssistantConfig/blob/master/config/configuration.yaml
+# comment out http_cfgs 'include' below
+  auth_providers:
+    - type: homeassistant
+    - type: legacy_api_password
+      api_password: !secret api_password
+    - type: trusted_networks
+      trusted_networks:
+      - !secret trusted_network1
+      - !secret trusted_network2
+      - !secret external_ip
+#  ---------------
+# Enables Breaking Changes Sensor (>0.96)
+#breaking_changes:
+#  ---------------
+# Enables configuration UI
+config:
+#  ---------------
+# Enables the frontend
+frontend:
+  javascript_version: latest
+#  ---------------
+# Enables support for IOS
+ios:
+# see Include section below!
+#  ---------------
+# Enables support for tracking state changes over time
+logbook:
+#  ---------------
+# https://www.home-assistant.io/components/logger/
+logger:
+  default: info
+#  logs:
+#    homeassistant.components.device_tracker: critical
+#    homeassistant.components.camera: critical
+#  ---------------
+# Lovelace configuration via YAML
+lovelace:
+  mode: yaml
+#  ---------------
+# Enables a map showing the location of tracked devices
+map:
+#  ---------------
+# Enable Person component
+person:
+#  ---------------
+# Enable Python scripts
+python_script:
+#  ---------------
+# Track the sun
+sun:
+#  ---------------
+# The wake_on_lan component enables the ability to send magic packets
+# to Wake on LAN capable devices, to turn them on.
+switch:
+  - platform: wake_on_lan
+    mac_address: "EC-F4-51-97-E8-DD"
+    name: sun_room_lg_tv
+#  ---------------
+# System Health component
+system_health:
+#  ---------------
+# Text to speech
+tts:
+  - platform: google_translate
+    service_name: google_say
+# Text to speech
+#  ---------------
+# Checks for available updates
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  include_used_components: true
+#  ---------------
+#
+# Included files
+alarm_control_panel: !include alarm_cp.yaml
+automation: !include_dir_merge_list automations
+binary_sensor: !include binary_sensors.yaml
+camera: !include_dir_merge_list cameras
+device_tracker: !include device_trackers.yaml
+group: !include_dir_merge_named groups
+history: !include history_cfgs.yaml
+ios: !include ios_cfg.yaml
+##http: !include http_cfgs.yaml
+##input_boolean: !include_dir_merge_named input_boolean
+input_boolean: !include input_booleans.yaml
+input_datetime: !include input_datetimes.yaml
+input_number: !include input_numbers.yaml
+input_select: !include input_selects.yaml
+light: !include lights.yaml
+media_player: !include media_players.yaml
+notify: !include_dir_merge_list notify
+proximity: !include proximity.yaml
+recorder: !include recorders.yaml
+scene: !include_dir_list scenes
+script: !include_dir_merge_named scripts
+sensor: !include_dir_merge_list sensors
+weblink: !include weblinks.yaml
+zone: !include zones.yaml
+#
+# ******************************************************************************
+#    Additional Components - alphabetically listed
+#*******************************************************************************
+#  ---------------
+# Alexa Media Player
+# https://github.com/keatontaylor/custom_components/wiki/Configuration
+# https://github.com/keatontaylor/custom_components/tree/master/alexa_media
+alexa_media:
+  accounts:
+    - email: !secret alexa_email
+      password: !secret alexa_pw
+      url: amazon.com
+#
+#  ---------------
+# Google (Maps,Calendar, ect)
+#google:
+#  client_id: !secret google_cal_client_id
+#  client_secret: !secret google_cal_secret_id
+#
+#  ---------------
+# Enable Home Assistant Community Store
+hacs:
+  token: !secret githubtoken1
+  appdaemon: True
+  # Enable tracking of AppDaemon apps.
+  python_script: True
+  # Enable tracking of python scripts.
+  theme: True
+  # Enable tracking of themes.
+#
+#  ---------------
+# Own Tracks
+owntracks:
+  max_gps_accuracy: 65
+  events_only: false
+#  waypoints: true
+#
+#  ---------------
+#panel_iframe:
+# SSH in Sidebar
+#  terminal:
+#    title: Terminal
+#    icon: mdi:console
+#    url: !secret terminal_url
+# HASS Configurator in sidebar
+#  configurator:
+#    title: Configurator
+#    icon: mdi:wrench
+#    url: !secret configurator_url
+#
+#  ---------------
+# Rachio Irrigation Control
+rachio:
+  api_key: !secret rachio_api_key
+#
+#  ---------------
+# Sleep IQ Bed
+sleepiq:
+  username: !secret sleepiq_un
+  password: !secret sleepiq_pw
+#
+#  ---------------
+# Speed Test
+#speedtestdotnet:
+#  scan_interval:
+#    hours: 6
+#    minutes: 0
+#  monitored_conditions:
+#    - ping
+#    - download
+#    - upload
+#
+#  ---------------
+# Vera Setup
+vera:
+  vera_controller_url: !secret vera_url
+  # Optional to exclude devices - this is a list of vera device ids
+  exclude: [ 7, 13, 14, 47, 57, 86, 87, 109, 110, 133, 134, 135, 136, 140, 147, 155, 189, 205]
+  # Optional to import switches as lights - this is a list of vera device ids
+  lights: [25, 26, 27, 29, 44, 46, 48, 49, 52, 53, 62, 92, 93, 94, 95, 105, 106, 115, 123, 124, 126, 201, 202, 203, 204, 213, 222, 224, 225]
+#
+#  ---------------
+# Weather - Dark Sky Weather
+# See also [sensors/dark_sky.yaml]
+weather:
+  - platform: darksky
+    mode: daily
+    api_key: !secret darksky_api_key
+#
+#  ---------------

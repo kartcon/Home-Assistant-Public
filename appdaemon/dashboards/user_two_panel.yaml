@@ -1,0 +1,120 @@
+user_two_avatar:
+  widget_type: camera
+  title: Steff
+  entity_picture: http://192.168.0.50:8123/local/Steffs_Avatar.png
+
+user_two_lan:
+    title: UB4252 (ping)
+    widget_type: binary_sensor
+    entity: binary_sensor.ping_steff
+    state_text: 1
+    state_map:
+      "on": 'Connected'
+      "off": 'Offline'
+    icon_on: fa-wifi
+    icon_style_active: "color: lime;"
+    icon_off: fa-wifi
+    icon_style_inactive: "color: red;"
+
+user_two_phone_battery:
+  title: IPhone 8 Battery
+  widget_type: gauge
+  entity: sensor.steffs_iphone_8_battery_level
+  min: 0
+  max: 100
+  units: "%"
+  low_color: FF0000
+  med_color: FFFF00
+  high_color: 33CC00
+
+user_two_phone_battery_status:
+  title: Battery Status
+  widget_type: sensor
+  entity: sensor.steffs_iphone_8_battery_state
+  text: sensor.steff_ip8_device_status
+  text_style: "font-size: 100%;"
+  state_map:
+    "Charging": 'Charging'
+    "NotCharging": 'Not Charging'
+
+user_two_phone_device_status:
+  title: Device Status
+  widget_type: sensor
+  entity: sensor.steff_ip8_device_status
+  text: sensor.steff_ip8_device_status
+  text_style: "font-size: 100%;"
+  state_map:
+    "online": 'Connected'
+    "offline": 'Offline'
+
+user_two_ipad_battery:
+  title: IPad Battery
+  widget_type: gauge
+  entity: sensor.steffs_ipad_mini_battery_level
+  min: 0
+  max: 100
+  units: "%"
+  low_color: FF0000
+  med_color: FFFF00
+  high_color: 33CC00
+
+user_two_ipad_battery_status:
+  title: Battery Status
+  widget_type: sensor
+  entity: sensor.steffs_ipad_mini_battery_state
+  text: sensor.steff_ipad_battery_status
+  text_style: "font-size: 100%;"
+  state_map:
+    "Charging": 'Charging'
+    "NotCharging": 'Not Charging'
+
+user_two_watch_battery:
+  title: I-Watch Battery
+  widget_type: gauge
+  entity: sensor.steff_iwatch_battery
+  min: 0
+  max: 100
+  units: "%"
+  low_color: FF0000
+  med_color: FFFF00
+  high_color: 33CC00
+
+user_two_watch_battery_status:
+  title: Battery Status
+  widget_type: sensor
+  entity: sensor.steff_iwatch_battery_status
+  text: sensor.steff_iwatch_battery_status
+  text_style: "font-size: 100%;"
+  state_map:
+    "Charging": 'Charging'
+    "NotCharging": 'Not Charging'
+
+user_two_sleepnumber:
+  title: Sleep Number
+  widget_type: gauge
+  entity: sensor.sleepnumber_cc04b4013d81_steff_sleepnumber
+  min: 0
+  max: 100
+  units: ""
+  low_color: '#DF80FF'
+  med_color: '#BF00FF'
+  high_color: '#600080'
+#  widget_style: "color: #ea4b82;"
+  color: "#BF00FF"
+
+user_two_inbed:
+    title: Status
+    widget_type: binary_sensor
+    entity: binary_sensor.sleepnumber_cc04b4013d81_steff_is_in_bed
+    state_text: 1
+    state_map:
+      "on": 'In Bed'
+      "off": 'Out of Bed'
+    icon_on: mdi-hotel
+    icon_style_active: "color: #E65100;"
+    icon_off: mdi-bed-empty
+    icon_style_inactive: "color: #BDBDBD;"
+
+layout:
+  - user_two_avatar (2x2), user_two_lan, user_two_phone_battery, user_two_ipad_battery, user_two_watch_battery, user_two_sleepnumber
+  - user_two_phone_device_status, user_two_phone_battery_status, user_two_ipad_battery_status, user_two_watch_battery_status, user_two_inbed

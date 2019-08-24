@@ -1,0 +1,11 @@
+switch_light_panels:
+    widget_type: navigate
+    title: Go to Indoor Lighting
+#    icon_active: mdi:login
+#    icon_inactive: mdi:login
+    url: /LightsPanelIndoor
+
+layout:
+  - switch_light_panels (2x1), switch.porch_light_46, switch.garage_lights_48, switch.soffit_center_123, switch.soffit_east_126, switch.holiday_lights_222, switch.house_floods_105
+  - spacer(2x1), switch.sun_room_floods_202, switch.pergola_lights_213, switch.hot_tub_lights_201,  switch.outdoor_fountain_124
+  - 

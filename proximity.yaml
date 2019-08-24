@@ -1,0 +1,28 @@
+#########################################################
+#  Proximity Configuration                              #
+#  https://www.home-assistant.io/components/proximity/  #
+#########################################################
+#
+# proximity:
+  art_to_home:
+    zone: home
+#    ignored_zones:
+#      - front_gate
+    devices:
+      # Art
+#      - device_tracker.arts_iphone_8
+      - device_tracker.art_ot1
+    tolerance: 50
+    unit_of_measurement: mi
+#
+  steff_to_home:
+    zone: home
+#    ignored_zones:
+#      - front_gate
+    devices:
+      # Steff
+#      - device_tracker.steffs_iphone_8
+      - device_tracker.steff_ot2
+    tolerance: 50
+    unit_of_measurement: mi
+#

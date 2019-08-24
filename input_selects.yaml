@@ -1,0 +1,185 @@
+##############################################################
+##   Input Select                                           ##
+##############################################################
+#
+##############################################################
+# Climate
+##############################################################
+  current_condition:
+    name: Current Condition
+    icon: mdi:weather-partlycloudy
+    options:
+      - Sunny
+      - Clear
+      - Cloudy
+      - Rainy
+      - Windy
+      - Foggy
+      - Unknown
+    initial: Unknown
+#
+##############################################################
+# DESTINATIONS (Waze)
+##############################################################
+  destination:
+    name: Waze Destination
+    icon: mdi:map-search
+    options:
+      - "Home"
+      - "Shands"
+      - "Baptist"
+      - "Memorial"
+      - "Mayo"
+      - "Phoebe"
+      - "Flagler"
+      - "St Vincents"
+      - "Mom & Dad"
+    initial: "Home"
+#
+#########################################################
+#   IPHONE/ICLOUD ATTRIBUTE INPUT SELECTS
+#########################################################
+  icloud_commands:
+    name: iCloud Commands
+    options:
+      - Pause
+      - Resume
+      - Waze On/Off
+      - Pause artsiphone8
+      - Resume artsiphone8
+#      - Pause steffsiphone8
+#      - Resume steffsiphone8
+    icon: mdi:apple-keyboard-command
+  
+  icloud_set_interval:
+    name: iCloud Polling Interval
+    options:
+      - 15 sec
+      - 1 min
+      - 3 min
+      - 5 min
+      - 10 min
+      - 20 min
+      - 30 min
+      - 1 hr
+      - 2 hrs
+    initial: 30 min
+    icon: mdi:clock
+
+  icloud_debug_commands:
+    name: iCloud Debug Command
+    options:
+      - debug interval
+      - debug gps
+      - debug old
+    icon: mdi:android-debug-bridge
+#
+##############################################################
+# Lighting
+##############################################################
+  kit_lights_auto_off:
+    name: Kit Lights AutoOff After (Min)
+    icon: mdi:camera-timer
+    options:
+      - 10
+      - 20
+      - 30
+      - 60
+      - 90
+      - 120
+      - 180
+      - 240
+    initial: 30
+#
+  lr_lights_auto_off:
+    name: LR Lights AutoOff After (Min)
+    icon: mdi:camera-timer
+    options:
+      - 10
+      - 20
+      - 30
+      - 60
+      - 90
+      - 120
+      - 180
+      - 240
+    initial: 120
+#
+  led_color:
+    name: LED Color
+    icon: mdi:led-outline
+    options:
+      - "Red,255,0,0"
+      - "Dk Orange, 255,36,0"
+      - "Orange,255,85,0"
+      - "Lt Orange, 255,153,0"
+      - "Yellow,253,255,0"
+      - "Green,0,255,0"
+      - "Lt Green,0,255,35"
+      - "Teal,0,255,85"
+      - "Sky Blue,0,255,153"
+      - "Lt Blue,0,253,255"
+      - "Dk Blue,0,0,255"
+      - "Med Blue,35,0,255"
+      - "Violet,85,0,255"
+      - "Purple,255,0,153"
+      - "Pink,255,0,253"
+      - "White,255,255,255"
+    initial: "Dk Blue,0,0,255"
+#
+##############################################################
+# Seasons
+##############################################################
+  season_holiday:
+    name: Season/Holiday
+    icon: mdi:calendar-question
+    options:
+      - Valentines Day
+      - St Pattys Day
+      - Easter
+      - Memorial Day
+      - Flag Day
+      - July 4th
+      - Labor Day
+      - Breast Cancer
+      - Halloween
+      - Thanksgiving
+      - Christmas
+      - Spring
+      - Summer
+      - Autumn
+      - Winter
+#
+##############################################################
+# Thermostats
+##############################################################
+  thermostat_mode:
+    name: Thermostat Mode
+    icon: mdi:thermostat
+    options:
+      - "Auto"
+      - "Off"
+      - "Cool"
+      - "Heat"
+    initial: "Auto"
+#
+  thermostat_phase:
+    name: Thermostat Phase
+    icon: mdi:thermostat
+    options:
+      - "Morning"
+      - "Daytime"
+      - "Evening"
+      - "Sleeping"
+#
+##############################################################
+# Text To Speech
+##############################################################
+  tts_destination:
+    name: TTS Destination
+    icon: mdi:voice
+    options:
+      - "Sonos"
+      - "Echo"
+#    initial: "Auto"
+#

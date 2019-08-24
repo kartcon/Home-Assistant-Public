@@ -1,0 +1,127 @@
+#
+#########################################
+#  View 3 - HVAC
+#########################################
+#
+title: Users
+path: users
+id: v_users
+icon: mdi:target-account
+panel: true
+cards:
+- type: horizontal-stack
+  cards:
+# COL 1
+    - type: vertical-stack
+      cards:
+        - type: horizontal-stack
+          cards:
+            - type: picture
+              image: /local/avatars/Arts_Avatar.png
+              entity: camera.arts_location
+              tap_action:
+                action: none
+#
+            - type: picture-entity
+              entity: camera.arts_location
+              aspect_ratio: 100%
+              show_name: true
+              show_state: false
+#
+        - type: entities
+          title: Arts Trackers
+          show_header_toggle: false
+          entities:
+            - entity: device_tracker.art_ot1
+              name: d_t.art_ot1
+#            - entity: device_tracker.arts_iphone_8
+#              name: d_t.arts_iphone_8
+            - entity: proximity.art_to_home
+              name: proximity.art_to_home
+            - entity: person.art
+              name: person.art
+            - entity: binary_sensor.ping_art
+              name: binary_sensor.ping_art
+            - entity: sensor.art_badge
+              name: sensor.art_badge
+#            - type: divider
+#              # not working >
+#            - entity: device_tracker.artsiphone8
+#              name: device_tracker.artsiphone8
+#            - entity: sensor.artsiphone8_zone
+#              name: sensor.artsiphone8_zone
+#            - entity: sensor.artsiphone8_distance
+#              name: sensor.artsiphone8_distance
+#              # not working <
+#
+# COL 2
+    - type: vertical-stack
+      cards:
+      - type: entities
+        title: Geo-Trackers
+        show_header_toggle: false
+        entities:
+          - entity: binary_sensor.art_presence
+            name: Bayesian Art Presence
+          - entity: sensor.presence_confidence_art
+            name: Presence Confidence Art
+          - entity: binary_sensor.steff_presence
+            name: Bayesian Steff Presence
+          - entity: sensor.presence_confidence_steff
+            name: Presence Confidence Steff
+          - type: divider
+          - entity: input_boolean.art_home
+          - entity: input_boolean.steff_home
+          - type: divider
+          - entity: input_boolean.everyone_home
+          - entity: input_boolean.someone_home
+          - entity: input_boolean.no_one_home
+      - type: "custom:birthday-card"
+        title: "Upcoming Events"
+        numberofdays: 30
+
+
+#
+# COL 3
+    - type: vertical-stack
+      cards:
+        - type: horizontal-stack
+          cards:
+            - type: picture-entity
+              entity: camera.steffs_location
+              aspect_ratio: 100%
+              show_name: true
+              show_state: false
+#
+            - type: picture
+              image: /local/avatars/Steffs_Avatar.png
+              entity: camera.arts_location
+              tap_action:
+                action: none
+#
+        - type: entities
+          title: Steffs Trackers
+          show_header_toggle: false
+          entities:
+            - entity: device_tracker.steff_ot2
+              name: d_t.steff_ot2
+#            - entity: device_tracker.steffs_iphone_8
+#              name: d_t.steffs_iphone_8
+            - entity: proximity.steff_to_home
+              name: proximity.steff_to_home
+            - entity: person.steff
+              name: person.steff
+            - entity: binary_sensor.ping_steff
+              name: binary_sensor.ping_steff
+            - entity: sensor.steff_badge
+              name: sensor.steff_badge
+#            - type: divider
+#              # not working >
+#            - entity: device_tracker.steffsiphone8
+#              name: device_tracker.steffsiphone8
+#            - entity: sensor.steffsiphone8_zone
+#              name: sensor.steffsiphone8_zone
+#            - entity: sensor.steffsiphone8_distance
+#              name: sensor.steffsiphone8_distance
+#              # not working <
+#

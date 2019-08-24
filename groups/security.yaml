@@ -1,0 +1,70 @@
+#################################################################
+#     Security
+#################################################################
+#
+all_locks:
+  name: All Locks
+  view: no
+  icon: mdi:lock
+  entities:
+    - lock.back_door_lock_61
+    - lock.front_door_bolt_241
+    - lock.garage_controller_1_55
+    - lock.garage_controller_2_54
+#
+alarm_home_on_zones:
+  view: no
+  icon: mdi:shield-lock
+  entities:
+    - switch.front_door_31
+#    - switch.back_door_36
+#    - switch.garage_entry_door_39
+#    - switch.sliding_door_left_37
+#    - switch.sliding_door_right_38
+    - switch.sunroom_east_34
+    - switch.sunroom_west_35
+    - switch.one_car_gar_sensor_66
+    - switch.two_car_gar_sensor_65
+
+alarm_home_off_zones:
+  view: no
+  icon: mdi:shield-lock
+  entities:
+#    - switch.front_door_31
+    - switch.back_door_36
+    - switch.garage_entry_door_39
+    - switch.sliding_door_left_37
+    - switch.sliding_door_right_38
+#    - switch.sunroom_east_34
+#    - switch.sunroom_west_35
+#    - switch.one_car_gar_sensor_66
+#    - switch.two_car_gar_sensor_65
+
+alarm_all_zones:
+  view: no
+  icon: mdi:shield-lock
+  entities:
+    - switch.front_door_31
+    - switch.back_door_36
+    - switch.garage_entry_door_39
+    - switch.sliding_door_left_37
+    - switch.sliding_door_right_38
+    - switch.sunroom_east_34
+    - switch.sunroom_west_35
+    - switch.one_car_gar_sensor_66
+    - switch.two_car_gar_sensor_65
+
+door_sensors:
+  view: no
+  icon: mdi:door
+  entities:
+    - binary_sensor.front_door_31
+    - binary_sensor.back_door_36
+    - binary_sensor.garage_entry_door_39
+    - binary_sensor.sliding_door_left_37
+    - binary_sensor.sliding_door_right_38
+    - binary_sensor.sunroom_east_34
+    - binary_sensor.sunroom_west_35
+    - binary_sensor.one_car_gar_sensor_66
+    - binary_sensor.two_car_gar_sensor_65
+#

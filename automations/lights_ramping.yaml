@@ -1,0 +1,144 @@
+#################################################################
+## LIGHTING AUTOMATIONS (RAMPING EVENTS)
+#################################################################
+#
+#################################################################
+# LR Cans Dim - Start at 21:00:00
+#################################################################
+- id: lr_cans_dim
+  alias: 'LR Cans Dim'
+  initial_state: true
+  trigger:
+    platform: time_pattern
+    minutes: '/2'
+    seconds: 0
+  condition:
+    - condition: state
+      entity_id: light.lr_can_lights_62
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.enable_lr_slow_dim
+      state: 'on'
+    - condition: time
+      after: '21:00:00'
+      before: '22:30:00'
+    - condition: template
+      value_template: "{{ state_attr('light.lr_can_lights_62', 'brightness') > 138 }}"
+  action:
+    - service: light.turn_on
+      data_template:
+        entity_id: light.lr_can_lights_62
+        brightness: >-
+          {% set lr_current = states.light.lr_can_lights_62.attributes.brightness|default(0)|int %}
+          {% set lr_step = 2 %}
+          {% set lr_next = lr_current - lr_step %}
+          {% if lr_next < 138 %}
+            {% set lr_next = 138 %}
+          {% endif %}
+          {{ lr_next }}
+#
+#################################################################
+# Sunroom Lights Dim - Start at 19:30:00
+#################################################################
+- id: sr_lights_dim
+  alias: 'Sunroom Lights Dim'
+  initial_state: true
+  trigger:
+    platform: time_pattern
+    minutes: '/5'
+    seconds: 0
+  condition:
+    - condition: state
+      entity_id: light.sunroom_lights_203
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.enable_sr_slow_dim
+      state: 'on'
+    - condition: time
+      after: '19:15:00'
+      before: '20:30:00'
+    - condition: template
+      value_template: "{{ state_attr('light.sunroom_lights_203', 'brightness') > 73 }}"
+  action:
+    - service: light.turn_on
+      data_template:
+        entity_id: light.sunroom_lights_203
+        brightness: >-
+          {% set sr_current = states.light.sunroom_lights_203.attributes.brightness|default(0)|int %}
+          {% set sr_step = 4 %}
+          {% set sr_next = sr_current - sr_step %}
+          {% if sr_next < 73 %}
+            {% set sr_next = 73 %}
+          {% endif %}
+          {{ sr_next }}
+#
+#################################################################
+# Bird Room 1 Lights Dim - Start at 18:00:00, End @ 20:00:00
+#################################################################
+- id: birdrm1_lights_dim
+  alias: 'Bird Rm1 Lights Dim'
+  initial_state: true
+  trigger:
+    platform: time_pattern
+    minutes: '/5'
+    seconds: 0
+  condition:
+    - condition: state
+      entity_id: light.bird_room_1_light_52
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.enable_br1_slow_dim
+      state: 'on'
+    - condition: time
+      after: '18:00:00'
+      before: '21:00:00'
+    - condition: template
+      value_template: "{{ state_attr('light.bird_room_1_light_52', 'brightness') > 13 }}"
+  action:
+    - service: light.turn_on
+      data_template:
+        entity_id: light.bird_room_1_light_52
+        brightness: >-
+          {% set br1_current = states.light.bird_room_1_light_52.attributes.brightness|default(0)|int %}
+          {% set br1_step = 7 %}
+          {% set br1_next = br1_current - br1_step %}
+          {% if br1_next < 13 %}
+            {% set br1_next = 13 %}
+          {% endif %}
+          {{ br1_next }}
+#
+#################################################################
+# Bird Room 2 Lights Dim - Start at 18:00:00, End @ 20:00:00
+#################################################################
+- id: birdrm2_lights_dim
+  alias: 'Bird Rm2 Lights Dim'
+  initial_state: true
+  trigger:
+    platform: time_pattern
+    minutes: '/5'
+    seconds: 0
+  condition:
+    - condition: state
+      entity_id: light.bird_room_2_light_53
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.enable_br2_slow_dim
+      state: 'on'
+    - condition: time
+      after: '18:00:00'
+      before: '21:00:00'
+    - condition: template
+      value_template: "{{ state_attr('light.bird_room_2_light_53', 'brightness') > 13 }}"
+  action:
+    - service: light.turn_on
+      data_template:
+        entity_id: light.bird_room_2_light_53
+        brightness: >-
+          {% set br2_current = states.light.bird_room_2_light_53.attributes.brightness|default(0)|int %}
+          {% set br2_step = 7 %}
+          {% set br2_next = br2_current - br2_step %}
+          {% if br2_next < 13 %}
+            {% set br2_next = 13 %}
+          {% endif %}
+          {{ br2_next }}
+#

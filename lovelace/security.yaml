@@ -1,0 +1,155 @@
+#########################################
+#  View 4 - ALARM & SENSORs
+#########################################
+#
+title: Security
+path: security
+icon: mdi:security
+id: v_alrm2
+panel: true
+cards:
+- type: horizontal-stack
+  cards:
+# COL 1
+    - type: vertical-stack
+      cards:
+        - type: alarm-panel
+          title: Alarm Keypad
+          entity: alarm_control_panel.ha_alarm
+        - type: entities
+          title: Alarm Configuration
+          show_header_toggle: false
+          entities:
+            - entity: alarm_control_panel.ha_alarm
+            - entity: input_boolean.alarm_tripped
+            - entity: input_boolean.alarm_silence
+#            - entity: input_boolean.alarm_panic_mode
+            - type: divider
+            - entity: input_boolean.alarm_auto
+            - entity: input_boolean.mode_guest
+            - entity: input_boolean.mode_vacation
+            - type: divider
+#            - entity: input_boolean.enable_push_notifications
+#            - entity: input_boolean.enable_prowl_notifications
+            - entity: input_boolean.enable_auto_arm_notifications
+            - entity: input_boolean.enable_disarm_notifications
+            - entity: input_boolean.enable_sensor_notifications
+#
+# COL 2
+    - type: vertical-stack
+      cards:
+        - type: entities
+          title: Door Sensors
+          show_header_toggle: false
+          entities:
+            - entity: binary_sensor.front_door_31
+              icon: mdi:door
+              secondary_info: last-changed
+            - entity: binary_sensor.back_door_36
+              icon: mdi:door
+              secondary_info: last-changed
+            - entity: binary_sensor.garage_entry_door_39
+              icon: mdi:door
+              secondary_info: last-changed
+            - entity: binary_sensor.sliding_door_left_37
+              icon: mdi:door
+              secondary_info: last-changed
+            - entity: binary_sensor.sliding_door_right_38
+              icon: mdi:door
+              secondary_info: last-changed
+            - entity: binary_sensor.sunroom_east_34
+              icon: mdi:door
+              secondary_info: last-changed
+            - entity: binary_sensor.sunroom_west_35
+              icon: mdi:door
+              secondary_info: last-changed
+            - entity: binary_sensor.one_car_gar_sensor_66
+              icon: mdi:door
+              secondary_info: last-changed
+            - entity: binary_sensor.two_car_gar_sensor_65
+              icon: mdi:door
+              secondary_info: last-changed
+#
+        - type: entities
+          title: Presence
+          show_name: true
+          show_header_toggle: false
+          entities:
+            - entity: binary_sensor.art_presence
+            - entity: binary_sensor.steff_presence
+            - type: divider
+            - entity: input_boolean.art_home
+            - entity: input_boolean.steff_home
+            - type: divider
+            - entity: input_boolean.everyone_home
+            - entity: input_boolean.someone_home
+            - entity: input_boolean.no_one_home
+#
+#
+# COL 3
+    - type: vertical-stack
+      cards:
+        - type: entities
+          title: Zones Armed
+          show_header_toggle: true
+          entities:
+            - entity: switch.front_door_31
+              icon: mdi:door
+              secondary_info: last-changed
+            - entity: switch.back_door_36
+              icon: mdi:door
+              secondary_info: last-changed
+            - entity: switch.garage_entry_door_39
+              icon: mdi:door
+              secondary_info: last-changed
+            - entity: switch.sliding_door_left_37
+              icon: mdi:door
+              secondary_info: last-changed
+            - entity: switch.sliding_door_right_38
+              icon: mdi:door
+              secondary_info: last-changed
+            - entity: switch.sunroom_east_34
+              icon: mdi:door
+              secondary_info: last-changed
+            - entity: switch.sunroom_west_35
+              icon: mdi:door
+              secondary_info: last-changed
+            - entity: switch.one_car_gar_sensor_66
+              icon: mdi:door
+              secondary_info: last-changed
+            - entity: switch.two_car_gar_sensor_65
+              icon: mdi:door
+              secondary_info: last-changed
+#
+        - type: glance
+          title: Locks
+          show_name: true
+          show_header_toggle: false
+          columns: 2
+          entities:
+            - lock.front_door_bolt_241
+            - lock.back_door_lock_61
+            - lock.garage_controller_1_55
+            - lock.garage_controller_2_54
+#
+        - type: horizontal-stack
+          cards:
+            - type: entity-button
+              name: Refresh Art
+              icon: mdi:google-maps
+              tap_action:
+                action: call-service
+                service: script.turn_on
+                service_data:
+                  entity_id: script.refresh_geolocation
+              entity: script.refresh_geolocation
+#
+            - type: entity-button
+              name: Refresh Steff
+              icon: mdi:google-maps
+              tap_action:
+                action: call-service
+                service: script.turn_on
+                service_data:
+                  entity_id: script.refresh_geolocation
+              entity: script.refresh_geolocation

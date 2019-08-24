@@ -1,2 +1,2 @@
-# Home-Assistant-Public
- Public Repository
+# .homeassistant
+ Home Assistant Repo

@@ -1,0 +1,8 @@
+# LG WebOS TV
+#
+- name: lg_tv
+  id: lg_tv_notify
+  initial_state: true
+  platform: webostv
+  host: !secret lg_tv_url
+  filename: webostv.conf

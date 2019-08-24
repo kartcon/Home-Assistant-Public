@@ -1,0 +1,126 @@
+#
+# Main arguments, all optional
+#
+title: Main Panel
+widget_dimensions: [120, 120]
+widget_margins: [5, 5]
+columns: 8
+
+#clock:
+#    widget_type: clock
+
+sunrise:
+  widget_type: sensor
+  entity: sensor.next_sunrise
+  title: Next Sunrise
+  text: sensor.sunrise
+#  widget_style: "color: $yellow; font-size: 40%;"
+#  title_style: "color: $yellow; font-size: 100%;"
+  text_style: "font-size: 150%;"
+
+sunset:
+  widget_type: sensor
+  entity: sensor.next_sunset
+  title: Next Sunset
+  text: sensor.sunset
+  text_style: "font-size: 150%;"
+
+lowtide:
+  widget_type: sensor
+  entity: sensor.next_low_tide
+  title: Next Low Tide
+  text: sensor.next_low_tide
+  text_style: "font-size: 150%;"
+
+hightide:
+  widget_type: sensor
+  entity: sensor.next_high_tide
+  title: Next High Tide
+  text: sensor.next_high_tide
+  text_style: "font-size: 150%;"
+
+moonphase:
+  widget_type: sensor
+  entity: sensor.moon
+  title: Moon Phase
+  text: sensor.moon
+  state_map:
+    "new_moon": 'New Moon'
+    "waxing_crescent": 'Waxing Cresent'
+    "first_quarter": 'First Quarter'
+    "waxing_gibbous": 'Waxing Gibbous'
+    "full_moon": 'Full Moon'
+    "waning_gibbous": 'Waning Gibbous'
+    "last_quarter": 'Last Quarter'
+    "waning_crescent": 'Waning Crescent'
+#  widget_style: "font-size: 40%;"
+  text_style: "font-size: 150%;"
+
+moonicon:
+  widget_type: icon
+  entity: sensor.moon_icon
+#  state_text: 1
+  icons:
+    "mdi:brightness-1":
+      icon: mdi-brightness-1
+      style: "color: #F5F5F5"
+    "mdi:brightness-2":
+      icon: mdi-brightness-2
+      style: "color: #F5F5F5"
+    "mdi:brightness-3":
+      icon: mdi-brightness-3
+      style: "color: #F5F5F5"
+    "mdi:brightness-4":
+      icon: mdi-brightness-4
+      style: "color: #F5F5F5"
+    "mdi:brightness-5":
+      icon: mdi-brightness-5
+      style: "color: #F5F5F5"
+    "mdi:brightness-6":
+      icon: mdi-brightness-6
+      style: "color: #F5F5F5"
+    "mdi:brightness-7":
+      icon: mdi-brightness-7
+      style: "color: #F5F5F5"
+  title: Moon
+  
+weather:
+  widget_type: weather
+  entity: weather.dark_sky
+  title: Current Conditions
+  title_style: "color: white;"
+  units: "&deg;F"
+
+weather_summary:
+  widget_type: sensor
+  entity: sensor.dark_sky_hourly_summary
+  title: Summary
+  title_style: "color: white;"
+  units: "&deg;F"
+
+mode:
+  widget_type: sensor
+  title: House Mode
+  text_style: "text-transform: uppercase;font-size: 300%"
+  entity: input_select.house_mode
+
+alarm:
+  widget_type: label
+  title: Alarm Status
+#  widget_type: alarm
+#  entity: alarm_control_panel.ha_alarm
+#  state_style: "font-size: 250%;"
+#  title_style: "color: white;"
+
+seven_day_forecast:
+  widget_type: camera
+#  title: 7 Day Forecast
+  entity_picture: https://cdn.tegna-media.com/wtlv/weather/7Day_forecast.jpg
+
+layout:
+  - include: top_nav_small
+  - weather(2x2), sunrise(2x1), seven_day_forecast(4x2)
+  - sunset(2x1)
+  - alarm(2x1), moonicon, moonphase, lowtide(2x1), hightide(2x1)
+  - include: rooms_panel
+  - include: bottom_nav

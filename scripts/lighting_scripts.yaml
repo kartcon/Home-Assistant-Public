@@ -1,0 +1,217 @@
+#################################################################
+## LIGHTING SCRIPTS
+#################################################################
+#
+#################################################################
+# SCRIPT: Inside Lights On 1 Hour before Sunset
+# Called from [Interior lights on 1 hour before sunset]
+# In file: [Lights_time.yaml]
+#################################################################
+inside_lights_on_before_sunset:
+  alias: 'Inside Lights On Before Sunset'
+  sequence:
+  - service: light.turn_on
+    data:
+      entity_id: light.china_cabinet_25
+      brightness: 51
+  - service: light.turn_on
+    data:
+      entity_id: light.entertainment_center_26
+  - service: light.turn_on
+    data:
+      entity_id: light.lr_can_lights_62
+      brightness: 230
+  - service: light.turn_on
+    data:
+      entity_id: light.office_light_223
+      brightness: 153
+  - service: light.turn_on
+    data:
+      entity_id: light.office_desk_lamp_27
+  - service: light.turn_on
+    data:
+      entity_id: light.sunroom_lights_203
+      brightness: 153
+  - service: light.turn_on
+    data:
+      entity_id: light.bird_room_1_light_52
+      brightness: 51
+  - service: light.turn_on
+    data:
+      entity_id: light.bird_room_2_light_53
+      brightness: 51
+#------------------------------------------
+#  Set Colors on LIFX Lights
+#------------------------------------------
+  - service: light.lifx_set_state
+    data:
+      entity_id: light.tv_left
+      power: true
+      brightness: 58
+      color_temp: 285
+  - service: light.lifx_set_state
+    data:
+      entity_id: light.tv_right
+      power: true
+      brightness: 58
+      color_temp: 285
+#------------------------------------------
+#  Set Colors on LED Strip Lights
+#------------------------------------------
+  - service: light.turn_on
+    data:
+      entity_id: light.flux_led_strip
+      brightness: 77
+      rgb_color: [0,0,255]
+#
+#################################################################
+# SCENE: Outside Lights On at Sunset
+# Called from [Exterior lights on at Sunset]
+# In file: [Lights_time.yaml]
+#################################################################
+outside_lights_on_at_sunset:
+  alias: 'Outside Lights On at Sunset'
+  sequence:
+  - service: light.turn_on
+    data:
+      entity_id: light.porch_light_46
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_lights_48
+  - service: light.turn_on
+    data:
+      entity_id: light.pergola_lights_213
+  - service: light.turn_on
+    data:
+      entity_id: light.hot_tub_lights_201
+  - service: light.turn_on
+    data:
+      entity_id: light.sun_room_floods_202
+#------------------------------------------
+#  Set Colors on LIFX Lights
+#------------------------------------------
+  - service: light.lifx_set_state
+    data:
+      entity_id: light.front_porch
+      power: true
+      brightness: 94
+      rgb_color: [255,239,0]
+  - service: light.lifx_set_state
+    data:
+      entity_id: light.garage_east
+      power: true
+      brightness: 94
+      rgb_color: [255,239,0]
+  - service: light.lifx_set_state
+    data:
+      entity_id: light.garage_center
+      power: true
+      brightness: 94
+      rgb_color: [255,239,0]
+  - service: light.lifx_set_state
+    data:
+      entity_id: light.garage_west
+      power: true
+      brightness: 94
+      rgb_color: [255,239,0]
+#
+#################################################################
+# LIFX Lights off
+# Called from [All Lights off at 11:00p]
+# In file: [lights_time.yaml]
+# Uses Lifx set_state command vs light_off
+#################################################################
+lifx_lights_off:
+  alias: LIFX Lights Off
+  sequence:
+  - service: light.lifx_set_state
+    data:
+      entity_id: light.tv_left
+      power: false
+  - service: light.lifx_set_state
+    data:
+      entity_id: light.tv_right
+      power: false
+  - service: light.lifx_set_state
+    data:
+      entity_id: light.front_porch
+      power: false
+  - service: light.lifx_set_state
+    data:
+      entity_id: light.garage_east
+      power: false
+  - service: light.lifx_set_state
+    data:
+      entity_id: light.garage_center
+      power: false
+  - service: light.lifx_set_state
+    data:
+      entity_id: light.garage_west
+      power: false
+  - service: script.turn_on
+    entity_id: script.lifx_set_default
+#
+#################################################################
+# Set Default LIFX Colors
+# Called from [LIFX Lights Off]
+# In file: [lighting_script.yaml]
+# Uses Lifx set_state command vs light_off
+#################################################################
+lifx_set_default:
+  alias: LIFX Set Default
+  sequence:
+  - service: light.lifx_set_state
+    data:
+      entity_id: light.tv_left
+      brightness: 58
+      color_temp: 285
+  - service: light.lifx_set_state
+    data:
+      entity_id: light.tv_right
+      brightness: 58
+      color_temp: 285
+  - service: light.lifx_set_state
+    data:
+      entity_id: light.front_porch
+      brightness: 128
+      color_temp: 285
+  - service: light.lifx_set_state
+    data:
+      entity_id: light.garage_east
+      brightness: 128
+      color_temp: 285
+  - service: light.lifx_set_state
+    data:
+      entity_id: light.garage_cent
+      brightness: 128
+      color_temp: 285
+  - service: light.lifx_set_state
+    data:
+      entity_id: light.garage_west
+      brightness: 128
+      color_temp: 285
+#
+#################################################################
+## Desk Lamp
+# Called from [_______]
+# In file: [_______]
+# Both are triggered by an [entity button] card
+#################################################################
+desk_light_on:
+  alias: Desk Light On
+  sequence:
+  - alias: Desk Light On
+    data:
+      entity_id:
+      - light.office_desk_lamp_27
+    service: light.turn_on
+#
+desk_light_off:
+  alias: Desk Light Off
+  sequence:
+  - alias: Desk Light Off
+    data:
+      entity_id:
+      - light.office_desk_lamp_27
+    service: light.turn_off
+#

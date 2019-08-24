@@ -1,0 +1,13 @@
+#
+# Main arguments, all optional
+#
+title: Lights Outdoor
+widget_dimensions: [120, 120]
+widget_margins: [5, 5]
+columns: 8
+
+layout:
+  - include: top_nav_small
+  - include: lights_outdoor
+  - include: rooms_panel
+  - include: bottom_nav

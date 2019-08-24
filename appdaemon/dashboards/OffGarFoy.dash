@@ -1,0 +1,38 @@
+#
+# Main arguments, all optional
+#
+title: Office, Garage & Foyer
+widget_dimensions: [120, 120]
+widget_margins: [5, 5]
+columns: 8
+
+garage_door1_scene:
+  widget_type: scene
+  title: Toggle Garage Door 1
+  entity: scene.toggle_garage_door_1
+  icon_on: mdi-auto-fix
+  icon_off: mdi-auto-fix
+  icon_style_inactive:  "color: yellow;"
+
+garage_door2_scene:
+  widget_type: scene
+  title: Toggle Garage Door 2
+  entity: scene.toggle_garage_door_2
+  icon_on: mdi-auto-fix
+  icon_off: mdi-auto-fix
+  icon_style_inactive:  "color: yellow;"
+
+officecam7:
+  widget_type: camera
+  title: Office
+  frame_style: ""
+  entity_picture: http://192.168.0.107:8107/videostream.cgi?username=admin&password=KCP8410
+
+layout:
+    - include: top_nav_small
+    - officecam7(3x2), spacer, switch.garage_fan_225, switch.garage_lights_48, lock.garage_controller_1_55, lock.garage_controller_2_54
+    - spacer, spacer, spacer, garage_door1_scene, garage_door2_scene
+    - light.office_light_223, switch.office_desk_lamp_27, switch.office_fan_224, spacer, switch.porch_light_46, switch.soffit_east_126, switch.soffit_center_123, switch.holiday_lights_222
+    - include: rooms_panel
+    - include: bottom_nav
+

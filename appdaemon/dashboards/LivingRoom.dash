@@ -1,0 +1,75 @@
+#
+# Main arguments, all optional
+#
+title: Living Room
+widget_dimensions: [120, 120]
+widget_margins: [5, 5]
+columns: 8
+
+lrcam5:
+  widget_type: camera
+  title: Living Room
+  frame_style: ""
+  entity_picture: http://192.168.0.105:8105/videostream.cgi?username=admin&password=KCP8410
+# camera.living_room
+
+lr_lights_on:
+  widget_type: scene
+  title: Living Room Lights On
+  entity: scene.lrsc__all_lights_on
+  icon_on: mdi-auto-fix
+  icon_off: mdi-auto-fix
+  icon_style_inactive:  "color: yellow;"
+#
+lr_lights_off:
+  widget_type: scene
+  title: Living Room Lights Off
+  entity: scene.lrsc__all_lights_off
+  icon_on: mdi-auto-fix
+  icon_off: mdi-auto-fix
+  icon_style_inactive:  "color: yellow;"
+
+lr-motion:
+  widget_type: switch
+  title: Living Room Motion
+  entity: binary_sensor.lr_motion_sensor_67
+  state_text: 1
+  state_map:
+    "on": 'Motion Detected'
+    "off": 'No Motion'
+  icon_on: mdi-run-fast
+  icon_off: mdi-walk
+
+lr-motion_sensor:
+  widget_type: switch
+  title: Living Room Motion
+  entity: switch.lr_motion_sensor_67
+  state_text: 1
+  state_map:
+    "on": 'Enabled'
+    "off": 'Bypassed'
+  icon_on: mdi-security
+  icon_off: mdi-shield-outline
+
+lr-fan:
+  widget_type: switch
+  title: Living Room Fan
+  entity: switch.lr_fan_115
+  icon_on: mdi-fan
+  icon_off: mdi-fan-off
+
+sr-fan:
+  widget_type: light
+  title: Sun Room Fan
+  entity: light.sunroom_fan_204
+  icon_on: mdi-fan
+  icon_off: mdi-fan
+
+layout:
+    - include: top_nav_small
+    - lrcam5(3x2), light.lr_can_lights_62, lr-fan, light.entertainment_center_25, light.china_cabinet_29, switch.lr_christmas_tree_26
+    - lr_lights_on, lr_lights_off, spacer, light.sunroom_lights_203, sr-fan
+    - sensor.lr_humidity_sensor_80, sensor.lr_light_sensor_79, sensor.lr_temp_sensor_78, lr-motion_sensor, lr-motion
+    - include: rooms_panel
+    - include: bottom_nav
+

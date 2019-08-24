@@ -1,0 +1,1202 @@
+title: Our Home
+resources:
+  - url: /local/monster-card.js?v=2
+    type: js
+  - url: /local/dist/google-calendar-card.js?v=1
+    type: module
+  - url: https://use.fontawesome.com/releases/v5.2.0/css/all.css
+    type: css
+    # https://github.com/custom-cards/surveillance-card
+  - url: /local/surveillance-card.js?v=0
+    type: module
+excluded_entities:
+  - climate.office
+  - device_tracker.echo_dot6n6
+  - device_tracker.jasons_iphone
+  - device_tracker.link_sc17_zgp
+  - device_tracker.parrot_ck3100
+  - device_tracker.rac_cf19
+  - device_tracker.person2_5x
+  - sensor.samsung_m283x_series_172237250
+  - sensor.samsung_m283x_series_172237250_output_tray_0
+  - sensor.samsung_m283x_series_172237250_tray_1
+  - sensor.printer
+views:
+  - title: Overview
+    id: overview
+    icon: mdi:home
+    badges:
+    - alarm_control_panel.ha_alarm
+    cards:
+    #####
+    - type: vertical-stack
+      cards:
+      - type: entity-filter
+        entities:
+          - entity: alert.garage_door_l
+            name: Garage door, bike
+          - entity: alert.garage_door_r
+            name: Garage door, car
+        show_empty: false
+        state_filter:
+          - 'on'
+        card:
+          type: entities
+          title: Alerts
+      - type: glance
+        title: People
+        column_width: calc(100% / 4)
+        entities:
+          - sensor.person3_travel
+          - sensor.person1_travel
+          - sensor.person2_travel
+          - sensor.person4_travel
+      - type: glance
+        title: Living room
+        column_width: calc(100% / 4)
+        entities:
+          - entity: switch.tv_light_switch
+            tap_action: toggle
+          - entity: switch.cabinet_light_switch
+            tap_action: toggle
+          - entity: switch.table_light_switch
+            tap_action: toggle
+          - entity: switch.livingroom_socket_switch
+            name: "Socket"
+            tap_action: toggle
+          - entity: binary_sensor.patio_door_left_sensor
+            name: "Patio door"
+          - entity: binary_sensor.living_room_motion
+            name: "Motion"
+          - entity: sensor.living_room_multi_temperature
+            name: "Temperature"
+          - entity: sensor.living_room_multi_luminance
+            name: "Light level"
+          - entity: media_player.samsung_tv_remote
+            name: TV
+          - entity: media_player.living_room
+            name: "Sonos"
+          - entity: media_player.cast_living_room_speaker
+            name: "Home Mini"
+          - entity: media_player.lenovosmartdisplay109233
+            name: "Home Hub"
+      - type: glance
+        title: Hall and front
+        #column_width: 25%
+        column_width: calc(100% / 4)
+        entities:
+          - binary_sensor.front_door_sensor
+          - entity: switch.vestibule_switch
+            name: Vestibule
+            tap_action: toggle
+          - entity: light.hall
+            name: Hall light
+          - entity: switch.hall_downstairs_switch
+            name: Hall socket
+            tap_action: toggle
+          - entity: binary_sensor.garage_closed_bike_sensor
+            name: bike
+          - entity: binary_sensor.garage_closed_car_sensor
+            name: Car
+          - entity: switch.number_sign_switch
+            tap_action: toggle
+    #####
+    - type: vertical-stack
+      cards:
+      - type: entity-filter
+        entities:
+          - binary_sensor.front_door_sensor
+          - entity: binary_sensor.garage_closed_bike_sensor
+            name: bike
+          - entity: binary_sensor.garage_closed_car_sensor
+            name: Car
+          - entity: binary_sensor.patio_door_left_sensor
+            name: Patio door
+          - entity: binary_sensor.utility_door_exterior_sensor
+            name: Utility
+        show_empty: false
+        state_filter:
+          - 'on'
+        card:
+          type: glance
+          title: Open doors
+      - type: glance
+        title: Family room
+        entities:
+          - entity: sensor.person1
+            name: XBox
+          - entity: device_tracker.family_tv
+            name: TV
+          - entity: media_player.family_room
+            name: Sonos
+          - entity: media_player.cast_kitchen_speaker
+            name: Home Mini
+          - entity: switch.family_room_socket_switch
+            name: Socket
+            tap_action: toggle
+      - type: glance
+        title: Utility room & outside
+        #column_width: 25%
+        column_width: calc(100% / 4)
+        entities:
+          - entity: binary_sensor.utility_door_exterior_sensor
+            name: Door
+          - entity: switch.garden_lights_switch
+            tap_action: toggle
+          - entity: sensor.dark_sky_apparent_temperature
+            name: Temperature
+          - entity: sensor.dark_sky_minutely_summary
+            name: Weather
+      - type: weather-forecast
+        entity: weather.openweathermap # hourly
+    #####
+    - type: vertical-stack
+      cards:
+      - type: glance
+        title: Master bedroom
+        #column_width: 25%
+        column_width: calc(100% / 5)
+        entities:
+          - entity: light.master_bedroom_bedhead
+            name: Bedhead
+          - entity: media_player.person2
+            name: Squeezebox
+          - entity: media_player.cast_master_bedroom_speaker
+            name: Home Mini
+          - entity: switch.radio_person2
+            icon: mdi:alarm
+            tap_action: toggle
+            name: Alarms
+          - entity: switch.master_bedroom_socket_switch
+            tap_action: toggle
+            name: Socket
+      - type: glance
+        title: Second bedroom
+        #column_width: 25%
+        column_width: calc(100% / 5)
+        entities:
+          - entity: light.person1_bedroom_bedside
+            name: Bedhead
+          - entity: media_player.person1
+            name: Squeezebox
+          - entity: media_player.cast_second_bedroom_speaker
+            name: Home Mini
+          - entity: switch.radio_person1
+            icon: mdi:alarm
+            tap_action: toggle
+            name: Alarms
+          - entity: switch.second_bedroom_switch
+            tap_action: toggle
+            name: Socket
+      - type: glance
+        title: Guest bedroom
+        #column_width: 33%
+        column_width: calc(100% / 3)
+        entities:
+          - entity: media_player.cast_guest_bedroom_speaker
+            name: Home Mini
+          - entity: switch.front_bedroom_switch
+            tap_action: toggle
+            name: Socket
+          - entity: switch.spare_socket_switch
+            tap_action: toggle
+      - type: glance
+        title: Office
+        column_width: calc(100% / 4)
+        entities:
+          - entity: binary_sensor.office_multi_sensor
+            name: Motion
+          - entity: sensor.office_multi_temperature
+            name: Temperature
+          - entity: sensor.office_multi_luminance
+            name: Light level
+          - entity: sensor.office_multi_relative_humidity
+            name: Humidity
+          - entity: media_player.office
+            name: Sonos
+          - entity: media_player.cast_office_speaker
+            name: Home Mini
+          - entity: media_player.googlehomehub8747
+            name: "Home Hub"
+  - title: Rooms
+    id: rooms
+    icon: mdi:floor-plan
+    cards:
+      - type: picture-glance
+        title: "The house"
+        image: /local/images/house.jpg
+        entities:
+          - binary_sensor.garage_closed_bike_sensor
+          - binary_sensor.garage_closed_car_sensor
+          - binary_sensor.front_door_sensor
+          - switch.number_sign_switch
+          - input_boolean.person3_home
+          - input_boolean.person1_home
+          - input_boolean.person2_home
+        state_image: 
+          "off": /local/images/house.jpg
+          "on": /local/images/house_away.jpg
+        entity: input_boolean.all_away
+      - type: picture-glance
+        image: /local/images/downstairs_hall.jpg
+        title: Downstairs hall
+        entities:
+          - light.hall
+          - switch.hall_downstairs_switch
+      - type: picture-glance
+        image: /local/images/living_room_day.jpg
+        title: Living room
+        entities:
+          - switch.cabinet_light_switch
+          - switch.table_light_switch
+          - switch.tv_light_switch
+          - switch.livingroom_socket_switch
+          - binary_sensor.patio_door_left_sensor
+          - binary_sensor.living_room_motion
+        state_image: 
+          "on": /local/images/living_room_night.jpg
+          "off": /local/images/living_room_day.jpg
+        entity: group.living_room_lights
+      - type: picture-glance
+        image: /local/images/master_bedroom.jpg
+        title: Master bedroom
+        entities:
+          - media_player.cast_master_bedroom_speaker
+          - media_player.person2
+          - entity: switch.radio_person2
+            icon: mdi:alarm
+          - light.master_bedroom_bedhead
+      - type: picture-glance
+        image: /local/images/second_bedroom.jpg
+        title: Second bedroom
+        entities:
+          - media_player.cast_second_bedroom_speaker
+          - media_player.person1
+          - entity: switch.radio_person1
+            icon: mdi:alarm
+          - light.person1_bedroom_bedside
+      - type: history-graph
+        title: Temperatures
+        entities:
+          - sensor.living_room_multi_temperature
+          - sensor.office_multi_temperature
+        hours_to_show: 36
+        refresh_interval: 600
+  - title: Map
+    id: map
+    icon: mdi:map
+    panel: true
+    cards:
+      - type: vertical-stack
+        cards:
+        - type: map
+          aspect_ratio: 29%
+          default_zoom: 17
+          entities:
+            - device_tracker.person3_mobile
+            - device_tracker.person1_mobile
+            - device_tracker.person2_mobile_gps
+            - zone.home
+            - zone.friend1
+            - zone.friend2
+            - zone.home_station
+            - zone.work
+        - type: horizontal-stack
+          cards:
+          - type: map
+            aspect_ratio: 105%
+            default_zoom: 18
+            entities:
+              - device_tracker.person3_mobile
+          - type: map
+            aspect_ratio: 105%
+            default_zoom: 18
+            entities:
+              - device_tracker.person1_mobile
+          - type: map
+            aspect_ratio: 105%
+            default_zoom: 18
+            entities:
+              - device_tracker.person2_mobile_gps
+          - type: map
+            aspect_ratio: 105%
+            default_zoom: 18
+            entities:
+              - device_tracker.person4_mobile
+  - title: Media players downstairs
+    id: media_downstairs
+    icon: mdi:movie
+    cards:
+      - type: vertical-stack
+        cards:
+        - type: media-control
+          entity: media_player.samsung_tv_remote
+        - type: media-control
+          entity: media_player.cast_living_room_tv
+        - type: media-control
+          entity: media_player.cast_living_room_speaker
+        - type: media-control
+          entity: media_player.living_room
+      - type: vertical-stack
+        cards:
+        - type: media-control
+          entity: media_player.cast_kitchen_speaker
+        - type: media-control
+          entity: media_player.family_room
+        - type: media-control
+          entity: media_player.cast_office_speaker
+        - type: media-control
+          entity: media_player.office
+      - type: vertical-stack
+        cards:
+        - type: media-control
+          entity: media_player.person1
+        - type: media-control
+          entity: media_player.cast_second_bedroom_speaker
+        - type: media-control
+          entity: media_player.person2
+        - type: media-control
+          entity: media_player.cast_master_bedroom_speaker
+        - type: media-control
+          entity: media_player.cast_guest_bedroom_speaker
+  - title: Surveillance
+    id: surveillance
+    icon: mdi:cctv
+    panel: true
+    cards:
+      - type: custom:surveillance-card
+        thumb_interval: 10
+        update_interval: 0.5
+        cameras:
+          - entity: camera.front_camera
+  - title: Weather
+    id: weather
+    icon: mdi:weather-partlycloudy
+    cards:
+    - type: entities
+      title: Weather from Dark Sky
+      entities:
+      - sensor.dark_sky_summary
+      - sensor.dark_sky_minutely_summary
+      - sensor.dark_sky_hourly_summary
+      - sensor.dark_sky_apparent_temperature
+      - sensor.dark_sky_temperature
+      - sensor.dark_sky_precip
+      - sensor.dark_sky_precip_intensity
+      - sensor.dark_sky_precip_probability
+      - sensor.dark_sky_wind_speed
+      - sensor.dark_sky_visibility
+      - sensor.dark_sky_humidity
+      - sensor.dark_sky_cloud_coverage
+    - type: weather-forecast
+      entity: weather.met_office_home
+    - type: weather-forecast
+      entity: weather.dark_sky  # hourly
+    - type: weather-forecast
+      entity: weather.openweathermap # hourly
+  - title: Train status
+    id: train_status
+    icon: mdi:train
+    cards:
+    - type: glance
+      title: Ontime status
+      column_width: calc(100% / 2)
+      entities:
+      - entity: binary_sensor.trains_to_xyz_ontime
+        name: To work
+      - entity: binary_sensor.trains_to_abc_ontime
+        name: To home
+    - type: horizontal-stack
+      cards:
+      - type: vertical-stack
+        cards:
+        - type: glance
+          title: Next train home to station
+          #column_width: 33%
+          column_width: calc(100% / 3)
+          entities:
+          - entity: sensor.next_train_xyz_status
+            name: Status
+          - entity: sensor.next_train_xyz_scheduled
+            name: Scheduled
+          - entity: sensor.next_train_xyz_estimated
+            name: Expected
+        - type: glance
+          title: Second train home to station
+          #column_width: 33%
+          column_width: calc(100% / 3)
+          entities:
+          - entity: sensor.second_train_xyz_status
+            name: Status
+          - entity: sensor.second_train_xyz_scheduled
+            name: Scheduled
+          - entity: sensor.second_train_xyz_estimated
+            name: Expected
+        - type: glance
+          title: Third train home to station
+          #column_width: 33%
+          column_width: calc(100% / 3)
+          entities:
+          - entity: sensor.third_train_xyz_status
+            name: Status
+          - entity: sensor.third_train_xyz_scheduled
+            name: Scheduled
+          - entity: sensor.third_train_xyz_estimated
+            name: Expected
+      - type: vertical-stack
+        cards:
+        - type: glance
+          title: Next train station to home
+          #column_width: 33%
+          column_width: calc(100% / 3)
+          entities:
+          - entity: sensor.next_train_abc_status
+            name: Status
+          - entity: sensor.next_train_abc_scheduled
+            name: Scheduled
+          - entity: sensor.next_train_abc_estimated
+            name: Expected
+        - type: glance
+          title: Second train station to home
+          #column_width: 33%
+          column_width: calc(100% / 3)
+          entities:
+          - entity: sensor.second_train_abc_status
+            name: Status
+          - entity: sensor.second_train_abc_scheduled
+            name: Scheduled
+          - entity: sensor.second_train_abc_estimated
+            name: Expected
+        - type: glance
+          title: Third train station to home
+          #column_width: 33%
+          column_width: calc(100% / 3)
+          entities:
+          - entity: sensor.third_train_abc_status
+            name: Status
+          - entity: sensor.third_train_abc_scheduled
+            name: Scheduled
+          - entity: sensor.third_train_abc_estimated
+            name: Expected
+ 
+  - title: Spacer
+    id: spacer
+    icon: mdi:dots-horizontal
+    cards: []
+  - title: People
+    id: people
+    icon: mdi:account-multiple
+    cards:
+    - type: vertical-stack
+      cards:
+      - type: glance
+        title: person3
+        column_width: calc(100% / 6)
+        entities:
+        - sensor.person3_travel
+        - entity: device_tracker.person3_mobile
+          name: GPS
+          icon: mdi:crosshairs-gps
+        - entity: device_tracker.person3_mobile_wifi
+          name: WiFi
+          icon: mdi:wifi
+        - entity: device_tracker.nexus_5x
+          name: BT
+          icon: mdi:bluetooth
+        - entity: sensor.battery_person3_mobile
+          name: Battery
+        - entity: input_boolean.person3_phone_charging
+          name: Phone charging
+        - entity: sensor.person3s_time_to_home
+          name: Car home
+          icon: mdi:map-marker-distance
+        - entity: sensor.person3s_time_to_home_2
+          name: Bus home
+          icon: mdi:map-marker-distance
+        - entity: proximity.person3_home
+          name: To home
+      - type: entities
+        entities:
+        - entity: input_datetime.person3_next_alarm
+          name: Next alarm
+      - type: custom:google-calendar-card
+        entities: 
+          - calendar.person3
+      - type: glance
+        title: person4
+        column_width: calc(100% / 6)
+        entities:
+        - sensor.person4_travel
+        - entity: device_tracker.person4_mobile
+          name: GPS
+          icon: mdi:crosshairs-gps
+        - entity: device_tracker.001d29a549ae
+          name: BT
+          icon: mdi:bluetooth
+        - entity: sensor.battery_person4_mobile
+          name: Battery
+        - entity: sensor.person4s_time_to_home
+          name: To home
+          icon: mdi:map-marker-distance
+        - entity: proximity.person4_home
+          name: To home
+    - type: vertical-stack
+      cards:
+      - type: glance
+        title: person2
+        column_width: calc(100% / 6)
+        entities:
+        - sensor.person2_travel
+        - entity: device_tracker.person2_mobile_gps
+          name: GPS
+          icon: mdi:crosshairs-gps
+        - entity: device_tracker.404e36245315
+          name: WiFi
+          icon: mdi:wifi
+        - entity: device_tracker.serenity
+          name: BT
+          icon: mdi:bluetooth
+        - entity: sensor.battery_person2_mobile
+          name: Battery
+        - entity: input_boolean.person2_phone_charging
+          name: Phone charging
+        - entity: sensor.person2s_time_to_home_2
+          name: Car home
+          icon: mdi:map-marker-distance
+        - entity: proximity.person2_home
+          name: To home
+        - entity: switch.radio_person2
+          icon: mdi:alarm
+          name: Alarms
+      - type: entities
+        entities:
+        - entity: input_datetime.person2_next_alarm
+          name: Next alarm
+      - type: glance
+        title: person2's devices
+        column_width: calc(100% / 6)
+        entities:
+        - entity: device_tracker.person2_tablet_5
+          name: Tablet
+          icon: mdi:crosshairs-gps
+        - entity: device_tracker.pc1722372113
+          name: Tablet
+          icon: mdi:wifi
+        - entity: device_tracker.person2s_m5
+          name: Tablet
+          icon: mdi:bluetooth
+        - entity: sensor.battery_person2_tablet
+          name: Tablet
+        - entity: device_tracker.9c305b3c6c87
+          name: Laptop
+          icon: mdi:wifi
+        - entity: device_tracker.jayne
+          name: Laptop
+          icon: mdi:bluetooth
+      - type: custom:google-calendar-card
+        entities:
+          - calendar.person2
+          - calendar.person2_work
+          - calendar.person2_holiday
+          - calendar.person2_wfh
+          - calendar.person2_away
+          - calendar.birthdays_and_anniversaries
+      - type: glance
+        title: Work
+        column_width: calc(100% / 6)
+        entities:
+        - entity: device_tracker.80b03de23ba2
+          name: WiFi
+          icon: mdi:wifi
+        - entity: device_tracker.gloaming
+          name: BT
+          icon: mdi:bluetooth
+        - entity: device_tracker.00e04c680550
+          name: Laptop
+          icon: mdi:laptop
+        - entity: proximity.person2_work
+          name: To work
+        - entity: calendar.person2_wfh
+          name: WFH
+        - calendar.person2_away
+        - binary_sensor.workday_sensor
+    - type: vertical-stack
+      cards:
+      - type: glance
+        title: person1
+        column_width: calc(100% / 6)
+        entities:
+        - sensor.person1_travel
+        - entity: device_tracker.person1_mobile
+          name: GPS
+          icon: mdi:crosshairs-gps
+        - entity: device_tracker.404e36d4772f
+          name: WiFi
+          icon: mdi:wifi
+        - entity: device_tracker.pixie
+          name: BT
+          icon: mdi:bluetooth
+        - entity: sensor.battery_person1_mobile
+          name: Battery
+        - entity: input_boolean.person1_phone_charging
+          name: Phone charging
+        - entity: sensor.person1s_time_to_home_2
+          name: Walking home
+          icon: mdi:map-marker-distance
+        - entity: sensor.person1s_time_to_home_by_transit
+          name: Bus home
+          icon: mdi:map-marker-distance
+        - entity: sensor.person1s_time_to_home
+          name: Car home
+          icon: mdi:map-marker-distance
+        - entity: proximity.person1_home
+          name: To home
+        - entity: switch.radio_person1
+          icon: mdi:alarm
+          tap_action: toggle
+          name: Alarms
+      - type: entities
+        entities:
+        - entity: input_datetime.person1_next_alarm
+          name: Next alarm
+      - type: glance
+        title: person1's Devices
+        entities:
+        - entity: device_tracker.person1_headphones
+          name: Headphones
+        - entity: device_tracker.person1_tablet
+          name: Tablet
+          icon: mdi:crosshairs-gps
+        - entity: device_tracker.pc1722372108
+          name: Tablet
+          icon: mdi:wifi
+        - entity: device_tracker.huawei_mediapad_m5
+          name: Tablet
+          icon: mdi:bluetooth
+        - entity: sensor.battery_person1_tablet
+          name: Tablet
+      - type: custom:google-calendar-card
+        entities:
+          - calendar.person1
+  - title: Information
+    id: information
+    icon: mdi:information-outline
+    cards:
+    - type: entities
+      title: Rooms
+      entities:
+      - input_select.living_room
+      - input_boolean.living_room_occupied
+      - input_select.family_room
+      - input_boolean.family_room_occupied
+      - input_boolean.office_occupied
+    - type: entities
+      title: Sensors
+      entities:
+      - sun.sun
+      - sensor.sun_elevation
+      - binary_sensor.zwave_health
+      - entity: sensor.last_opened
+        icon: mdi:door
+      - entity: sensor.last_motion
+        icon: mdi:run
+    - type: entities
+      title: Trend sensors
+      entities:
+      - binary_sensor.trend_living_room_light
+      - binary_sensor.trend_sun_elevation
+    - type: glance
+      title: Devices
+      entities:
+      - entity: device_tracker.family_tv
+        name: Family room
+    - type: history-graph
+      title: Sun
+      entities:
+        - entity: sensor.sun_elevation
+          name: Elevation
+      hours_to_show: 48
+      refresh_interval: 600
+    - type: glance
+      title: Printer status
+      entities:
+      - entity: sensor.samsung_m283x_series_172237250_toner_black
+        name: Toner
+      - sensor.printer_toner_remaining
+      - entity: sensor.samsung_m283x_series_172237250_drum_black
+        name: Drum
+      - sensor.printer_imaging_unit_remaining
+      - sensor.printer_forward_roller_remaining
+      - sensor.printer_pick_up_roller_remaining
+      - sensor.printer_retard_roller_remaining
+      - sensor.printer_transfer_roller_remaining
+      - sensor.printer_fuser_life_remaining
+    - type: glance
+      title: Z-Wave battery devices
+      column_width: calc(100% / 4)
+      entities:
+        - entity: zwave.garage_closed_bike
+          name: Garage left
+        - entity: sensor.zwave_battery_garage_closed_bike
+          name: Garage left
+        - entity: zwave.garage_closed_car
+          name: Garage car
+        - entity: sensor.zwave_battery_garage_closed_car
+          name: Garage car
+        - zwave.front_door
+        - sensor.zwave_battery_front_door
+        - zwave.patio_door_left
+        - sensor.zwave_battery_patio_door_left
+        - zwave.utility_door_exterior
+        - entity: sensor.zwave_battery_utility_door_exterior
+          name: Utility door
+        - zwave.living_room_multi
+        - sensor.zwave_battery_living_room_multi
+        - zwave.nodon_crc3100_octan_remote
+        - sensor.zwave_battery_nodon_crc3100_octan_remote
+        - zwave.green_remote
+        - sensor.zwave_battery_green_remote
+        - zwave.utility
+        - entity: sensor.zwave_battery_utility
+          name: Utility switch
+    - type: glance
+      title: Z-Wave mains
+      entities:
+      - zwave.zwaveme_razberry_controller_2016_zwave
+      - zwave.table_light
+      - zwave.cabinet_light
+      - zwave.tv_light
+      - zwave.number_sign
+      - zwave.garden_lights
+      - zwave.spare_socket
+      - zwave.master_bedroom_socket
+      - zwave.office_multi
+      - zwave.second_bedroom
+      - zwave.family_room_socket
+      - zwave.hall_downstairs
+      - zwave.livingroom_socket
+      - zwave.vestibule
+      - zwave.front_bedroom
+  - title: Z-Wave
+    id: zwave
+    panel: true
+    icon: mdi:z-wave
+    cards:
+    - type: iframe
+      url: /local/z-wave-graph.html
+  - title: Automations
+    id: automations
+    icon: mdi:home-variant
+    cards:
+    - type: entities
+      title: Automations for the Family room
+      entities:
+      - automation.family_room_occupied
+      - automation.family_room_not_occupied
+    - type: entities
+      title: Automations for downstairs
+      entities:
+      - automation.hall_lights_on
+      - automation.hall_lights_off
+      - automation.hall_lights_off_departure
+    - type: entities
+      title: Automations for the front of the house
+      entities:
+      - automation.number_on_at_sunset
+      - automation.number_on_in_the_morning
+      - automation.number_sign_off
+      - automation.person2_up_early
+      - automation.returned_home
+    - type: entities
+      title: Automations for the garden
+      entities:
+      - automation.utility_door_open_after_sunset_closed
+      - automation.utility_door_open_after_sunset_turn_on
+      - automation.utility_door_open_after_sunset_turn_off
+      - automation.nighttime_garden_off
+      - automation.garden_lights_left_on
+      - binary_sensor.garden_lights_left_on
+  - title: Living room automations
+    id: automations_living_room
+    icon: mdi:home-circle
+    cards:
+    - type: entities
+      title: Automations for the Living room Current
+      entities:
+      - automation.all_away_media_off
+      - automation.lounge_dark_motion
+      - automation.table_light_on
+      - automation.living_room_arrival
+    - type: entities
+      title: Automations for the Living room 
+      entities:
+      - automation.living_room_away
+      - automation.living_room_day_off
+      - automation.living_room_day_on
+      - automation.living_room_night_off
+      - automation.living_room_night_on
+      - automation.living_room_occupied
+      - automation.living_room_not_occupied
+      - automation.living_room_lights_day_on
+      - automation.living_room_lights_night_on
+      - automation.living_room_lights_off
+      - automation.tv_light_on
+    - type: entities
+      title: Media automations
+      entities:
+      - automation.tv_on_sonos_off
+      - automation.sonos_on_tv_mute
+      - automation.sonos_off_tv_unmute
+  - title: Master bedroom automations
+    id: automations_master_bedroom
+    icon: mdi:hotel
+    cards:
+    - type: entities
+      title: Automations for the master bedroom
+      entities:
+      - automation.person2_up_bedhead_light_on
+      - automation.person2_up_bedhead_light_off
+      - automation.bedhead_light_left_on
+      - automation.bedhead_light_on_night
+      - automation.bedhead_light_dim_sunset
+      - automation.bedhead_light_dim_sunset_off
+      - automation.bedhead_light_dim
+      - automation.bedhead_light_dim_off
+      - automation.bedhead_light_dim_late
+      - automation.bedhead_light_dim_late_off
+      - automation.bedhead_light_dim_midnight
+      - automation.bedhead_light_dim_midnight_off
+      - automation.bedhead_light_bright_sunrise
+      - automation.bedhead_light_on_morning
+      - automation.late_disable_fluxer
+    - type: entities
+      title: Remote automations for the light
+      entities:
+      - automation.bedhead_turn_on
+      - automation.bedhead_turn_off
+      - automation.bedhead_turn_on_min
+      - automation.bedhead_turn_on_max
+      - automation.bedhead_turn_on_cool
+      - automation.bedhead_turn_on_warm
+      - automation.bedhead_turn_white
+      - automation.bedhead_turn_white_max
+      - automation.bedhead_turn_on_red
+      - automation.bedhead_turn_red
+      - automation.master_bedhead_bright
+      - automation.master_bedhead_bright_stop
+      - automation.master_bedhead_dim
+      - automation.master_bedhead_dim_stop
+      - automation.master_bedhead_cool
+      - automation.master_bedhead_cool_stop
+      - automation.master_bedhead_warm
+      - automation.master_bedhead_warm_stop
+  - title: Upstairs automations
+    id: automations_upstairs
+    icon: mdi:home-modern
+    cards:
+    - type: entities
+      title: Automations for the 2nd bedroom light
+      entities:
+      - automation.person1_up_bedhead_light_on
+      - automation.person1_up_bedhead_light_off
+      - automation.person1_bedside_left_on
+      - automation.person1_bedside_turn_on
+      - automation.person1_bedside_turn_off
+      - automation.person1_bedside_turn_on_min
+      - automation.person1_bedside_turn_on_max
+      - automation.person1_bedside_turn_on_cool
+      - automation.person1_bedside_turn_on_warm
+      - automation.person1_bedside_turn_white
+      - automation.person1_bedside_turn_white_max
+      - automation.person1_bedside_turn_on_red
+      - automation.person1_bedside_turn_red
+    - type: entities
+      title: Automations for the second bedroom
+      entities:
+      - automation.person1_alarm_on
+      - automation.person1_alarm_off
+      - automation.person1_radio_on
+      - automation.person1_radio_on_late
+      - automation.person1_radio_on_night
+      - automation.person1_radio_off
+      - automation.person1_radio_off_late
+    - type: entities
+      title: Automations for the office
+      entities:
+      - automation.play_classical_music_in_the_office
+      - automation.stop_classical_music_in_the_office
+      - automation.pause_music_in_the_office
+      - automation.resume_music_in_the_office
+      - automation.office_occupied
+      - automation.office_not_occupied
+  - title: More Automations
+    id: automations_more
+    icon: mdi:engine-outline
+    cards:
+    - type: entities
+      title: Automations at startup
+      entities:
+      - automation.startup_person3_up
+      - automation.startup_person1_up
+      - automation.startup_person2_up
+    - type: entities
+      title: Battery level automations
+      entities:
+      - automation.battery_garage_door_closed_car
+      - automation.battery_garage_door_closed_bike
+      - automation.battery_livingroom_multi
+      - automation.battery_utility_door
+      - automation.battery_utility_light_switch
+      - automation.battery_front_door
+      - automation.battery_patio_door_left
+      - automation.battery_remote
+      - automation.battery_green_remote
+    - type: entities
+      title: Misc automations
+      entities:
+      - automation.house_awake
+      - automation.weather_notification
+      - automation.bin_notification
+      - automation.printer_low
+      - automation.test
+      - automation.test_notify
+      - automation.test_media
+    - type: entities
+      title: Seasonal automations
+      entities:
+      - automation.christmas_lights_on
+      - automation.christmas_lights_off
+      - automation.christmas_lights_off_season
+      - automation.season_is_christmas
+      - automation.season_is_easter
+      - automation.season_is_winter
+      - automation.season_is_spring
+      - automation.season_is_summer
+      - automation.season_is_autumn
+  - title: Automations person2
+    id: automations_person2
+    icon: mdi:account-star
+    cards:
+    - type: entities
+      title: People driven automations - person2
+      entities:
+      - automation.person2_next_alarm
+      - automation.person2_asleep
+      - automation.person2_in_bed
+      - automation.person2_away
+      - automation.person2_home
+      - automation.person2_up
+      - automation.workday_for_person2
+      - automation.person2_travelling
+      - automation.person2_returning
+      - automation.person2_is_travelling
+      - automation.person2_is_not_travelling
+      - automation.person2_phone_unplugged
+      - automation.person2_phone_plugged
+    - type: entities
+      title: Automations for travel - person2
+      entities:
+      - automation.person2_coming_home
+      - automation.person2_at_station
+      - automation.person2_at_gym
+      - automation.person2_left_gym
+      - automation.train_status
+      - automation.return_train_status
+      - automation.return_train_watcher
+    - type: entities
+      title: Automations changing inputs - person2
+      entities:
+      - automation.not_workday_for_person2
+      - automation.person2_working_from_home
+      - automation.person2_working_trains
+      - automation.person2_working_away
+      - automation.person2_not_working_away
+  - title: Automations person3
+    id: automations_person3
+    icon: mdi:account-heart
+    cards:
+    - type: entities
+      title: People driven automations - person3
+      entities:
+      - automation.person3_next_alarm
+      - automation.person3_asleep
+      - automation.person3_in_bed
+      - automation.person3_away
+      - automation.person3_home
+      - automation.person3_up
+      - automation.person3_awake
+      - automation.person3_travelling
+      - automation.person3_phone_unplugged
+      - automation.person3_phone_plugged
+      - automation.person3_coming_home
+  - title: Automations person1
+    id: automations_person1
+    icon: mdi:account-circle
+    cards:
+    - type: entities
+      title: People driven automations - person1
+      entities:
+      - automation.person1_next_alarm
+      - automation.person1_asleep
+      - automation.person1_in_bed
+      - automation.person1_at_work
+      - automation.person1_away
+      - automation.person1_home
+      - automation.person1_home_after_work
+      - automation.person1_returning
+      - automation.person1_up
+      - automation.person1_up_reminder
+      - automation.person1_mobile_low_battery
+      - automation.person1_travelling
+      - automation.person1_is_travelling
+      - automation.person1_is_not_travelling
+    - type: entities
+      title: Automations changing inputs
+      entities:
+      - automation.work_day_for_person1
+      - automation.not_work_day_for_person1
+  - title: Automations
+    id: automations_group
+    icon: mdi:account-group
+    cards:
+    - type: entities
+      title: People driven automations
+      entities:
+      - automation.bedtime
+      - automation.adults_away
+      - automation.adults_returned
+      - automation.all_away
+      - automation.all_returned
+      - automation.mark_person_as_just_arrived
+      - automation.mark_person_as_away
+      - automation.mark_person_as_home
+      - automation.mark_person_as_just_left
+      - automation.person4_coming_home
+    - type: entities
+      title: Automations for travel
+      entities:
+      - automation.holiday
+      - automation.holiday_over
+  - title: Automations about Home Assistant
+    id: automations_platform
+    icon: mdi:settings
+    cards:
+    - type: entities
+      title: Core HA automations
+      entities:
+      - automation.ha_update_available_notifications
+      - automation.ha_started
+      - automation.ha_started_later
+      - automation.ha_stopped
+      - automation.ha_ready
+    - type: entities
+      title: Misc HA automations
+      entities:
+      - automation.test_zwave_network
+      - automation.zwave_check
+      - automation.zwave_health_check
+      - automation.generate_zwave_graph
+      - automation.clear_states
+      - automation.sunrise_enable_automations
+      - automation.recorder_purge
+  - title: Alarm automations
+    id: automations_alarm
+    icon: mdi:alarm-bell
+    cards:
+    - type: entities
+      title: Alarm
+      entities:
+      - alarm_control_panel.ha_alarm
+    - type: entities
+      title: Alarm automations
+      entities:
+      - automation.alarm_arm_away
+      - automation.alarm_arm_at_night
+      - automation.alarm_disarm_in_the_morning
+      - automation.alarm_disarm_upon_return
+      - automation.alarm_armed_trigger
+      - automation.alarm_triggered_away
+      - automation.alarm_triggered_home
+  - title: Inputs
+    id: inputs
+    icon: mdi:information-variant
+    cards:
+    - type: entities
+      title: Toggles for automations
+      entities:
+      - input_boolean.bedtime
+      - input_boolean.adults_away
+      - input_boolean.all_away
+      - input_boolean.holiday_mode
+      - type: divider
+      - input_boolean.lighting_automations
+      - input_boolean.livingroom_lights_auto
+      - type: divider
+      - input_boolean.guest_mode
+      - input_boolean.alarm_mode
+    - type: entities
+      title: Toggles for people automations
+      entities:
+      - input_boolean.person2_is_awake
+      - input_boolean.person2_in_bed
+      - input_boolean.person1_is_awake
+      - input_boolean.person1_in_bed
+      - input_boolean.person3_is_awake
+      - input_boolean.person3_in_bed
+      - input_boolean.person2_travelling
+      - input_boolean.person1_travelling
+      - input_boolean.person3_travelling
+      - input_boolean.person2_home
+      - input_boolean.person1_home
+      - input_boolean.person3_home
+      - input_boolean.person4_home
+      - type: divider
+      - input_boolean.notify_train_status_work
+      - input_boolean.notify_person2_working
+      - input_boolean.notify_person1_work
+    - type: entities
+      title: Inputs for automations
+      entities:
+      - input_number.room_low_light
+      - input_number.room_dark
+      - input_number.light_step
+      - input_number.light_minimum
+      - input_number.light_maximum
+      - input_number.light_step_colour
+    - type: entities
+      title: Selections for automations
+      entities:
+      - input_select.season
+      - sensor.season
+    - type: entities
+      title: Switches
+      entities:
+      - switch.fluxer
+      - switch.flux_hall
+    - type: entities
+      title: People
+      entities:
+      - input_select.person3_status_dropdown
+      - input_select.person1_status_dropdown
+      - input_select.person2_status_dropdown
+      - input_select.person4_status_dropdown
+  - title: scripts
+    id: scripts
+    icon: mdi:script
+    cards: 
+    - type: entities
+      entities:
+      - script.alarm_lights_enable
+      - script.alarm_lights_on
+      - script.bedhead_light_bright_pause
+      - script.bedhead_light_bright
+      - script.bedhead_light_cool_pause
+      - script.bedhead_light_cool
+      - script.bedhead_light_dim_pause
+      - script.bedhead_light_dim
+      - script.bedhead_light_warm_pause
+      - script.bedhead_light_warm
+      - script.bedtime_slow_off
+      - script.garden_door_after_sunset
+      - script.garden_door_before_sunrise
+      - script.wake_person1

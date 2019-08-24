@@ -1,0 +1,71 @@
+load_indoor_cameras:
+    widget_type: navigate
+    title: Go to Indoor Cameras
+    icon_inactive: fa-random
+    url: /CameraPanelIndoor
+
+load_camera1:
+    widget_type: navigate
+    title: Camera 1
+    icon_inactive: mdi-television
+    url: /Camera_Outdoor_1
+
+load_camera2:
+    widget_type: navigate
+    title: Camera 2
+    icon_inactive: mdi-television
+    url: /Camera_Outdoor_2
+
+load_camera3:
+    widget_type: navigate
+    title: Camera 3
+    icon_inactive: mdi-television
+    url: /Camera_Outdoor_3
+
+load_camera4:
+    widget_type: navigate
+    title: Camera 4
+    icon_inactive: mdi-television
+    url: /Camera_Outdoor_4
+
+outsidecam1:
+    widget_type: camera
+    title: Front Entry
+    refresh: 5
+    frame_style: ""
+#    entity_picture: !secret cam_url
+
+outsidecam2:
+    widget_type: camera
+    title: Front Yard
+    refresh: 1
+    frame_style: ""
+#    entity_picture: !secret cam_url
+
+outsidecam3:
+    widget_type: camera
+    title: Side Yard
+    refresh: 1
+    frame_style: ""
+#    entity_picture: !secret cam_url
+
+outsidecam4:
+    widget_type: camera
+    title: Back Yard
+    refresh: 1
+    frame_style: ""
+#    entity_picture: !secret cam_url
+
+
+layout:
+  - load_indoor_cameras (2x1), outsidecam1 (3x2), outsidecam2 (3x2)
+  - load_camera1, load_camera2
+  - load_camera3, load_camera4, outsidecam3 (3x2), outsidecam4 (3x2)
+  - 
+
+#insidecam1:
+#    widget_type: iframe
+#    title: Bird Room 1
+#    #refresh: 60
+#    url_list: 
+#      - http://192.168.0.101:8101/videostream.cgi?username=admin&password=KCP8410

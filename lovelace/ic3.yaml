@@ -1,0 +1,220 @@
+#########################################
+#  iCloud 3
+#########################################
+#
+title: iCloud
+path: ic3
+id: v_ic3
+icon: mdi:apple-icloud
+panel: true
+cards:
+
+- type: horizontal-stack
+  cards:
+# COL 1
+  - type: vertical-stack
+    cards:
+#     Card 1-1
+    - type: entities
+#      title: Settings
+      show_header_toggle: false
+      entities:
+#
+      - entity: sensor.art_badge
+        name: Art
+      - entity: sensor.artsiphone8_badge
+        name: Badge
+      - entity: device_tracker.art_ot1
+        name: OwnTracks
+        icon: mdi:map-marker-outline
+      - entity: sensor.artsiphone8_battery
+        name: Battery
+        icon: mdi:battery
+      - entity: sensor.artsiphone8_battery_status
+        name: Battery Status
+        icon: mdi:battery-unknown
+#      - entity: sensor.artsiphone8_info
+#        name: Info
+#        icon: mdi:information-outline
+      - entity: sensor.artsiphone8_altitude
+        name: Altitude
+        icon: mdi:altimeter
+      - entity: sensor.artsiphone8_speed
+        name: Speed
+        icon: mdi:speedometer
+#
+      - type: divider
+      - entity: sensor.artsiphone8_dir_of_travel
+        name: Direction
+        icon: mdi:compass-outline
+      - entity: sensor.artsiphone8_interval
+        name: Interval
+        icon: mdi:clock-start
+#        tap_action: call-service
+#        service: script.icloud_command_display_interval_formula
+      - entity: sensor.artsiphone8_travel_time
+        name: TravTime
+        icon: mdi:clock-outline
+      - entity: sensor.artsiphone8_zone
+        name: Zone
+        icon: mdi:map-marker-radius
+      - entity: sensor.artsiphone8_zone_name1
+        name: Zone 1
+        icon: mdi:map-marker-radius
+      - entity: sensor.artsiphone8_zone_name2
+        name: Zone 2
+        icon: mdi:map-marker-radius
+      - entity: sensor.artsiphone8_zone_name3
+        name: Zone 3
+        icon: mdi:map-marker-radius
+      - entity: sensor.artsiphone8_zone_timestamp
+        name: Zone Timestamp
+        icon: mdi:clock-outline
+      - entity: sensor.artsiphone8_last_zone
+        name: Last Zone
+        icon: mdi:map-marker-off
+      - entity: sensor.artsiphone8_last_zone_name1
+        name: Last Zone 1
+        icon: mdi:map-marker-off
+      - entity: sensor.artsiphone8_last_zone_name2
+        name: Last Zone 2
+        icon: mdi:map-marker-off
+      - entity: sensor.artsiphone8_last_zone_name3
+        name: Last Zone 3
+        icon: mdi:map-marker-off
+#
+      - type: divider
+      - entity: sensor.artsiphone8_distance
+        name: Distance
+        icon: mdi:map-marker-distance
+      - entity: sensor.artsiphone8_travel_distance
+        name: Travel Distance
+        icon: mdi:map-marker-distance
+      - entity: sensor.artsiphone8_gps_accuracy
+        name: GPS Accuracy
+        icon: mdi:restore-clock
+#      - entity: sensor.artsiphone8_waze_distance
+#        name: WazeDist
+#        icon: mdi:map-marker-distance
+#      - entity: sensor.artsiphone8_calc_distance
+#        name: CalcDist
+#        icon: mdi:map-marker-distance
+#
+      - type: divider
+      - entity: sensor.artsiphone8_last_located
+        name: Located
+        icon: mdi:clock-outline
+      - entity: sensor.artsiphone8_last_update
+        name: LastUpdt
+        icon: mdi:restore-clock
+      - entity: sensor.artsiphone8_next_update
+        name: NextUpdt
+        icon: mdi:update
+      - entity: sensor.artsiphone8_poll_count
+        name: PollCount
+        icon: mdi:counter
+    - type: markdown
+      content: "PollCount values are: iCloud, IOS App and discarded transactions for the day"
+#
+# COL 2
+  - type: vertical-stack
+    cards:
+#     Card 2-1
+    - type: entities
+#      title: Settings
+      show_header_toggle: false
+      entities:
+        - entity: sensor.steff_badge
+          name: Steff
+        - entity: sensor.steffsiphone8_badge
+          name: Badge
+        - entity: device_tracker.steff_ot2
+          name: OwnTracks
+          icon: mdi:map-marker-outline
+        - entity: sensor.steffsiphone8_battery
+          name: Battery
+          icon: mdi:battery
+        - entity: sensor.steffsiphone8_battery_status
+          name: Battery Status
+          icon: mdi:battery-unknown
+#        - entity: sensor.steffsiphone8_info
+#          name: Info
+#          icon: mdi:information-outline
+        - entity: sensor.steffsiphone8_altitude
+          name: Altitude
+          icon: mdi:altimeter
+        - entity: sensor.steffsiphone8_speed
+          name: Speed
+          icon: mdi:speedometer
+#
+        - type: divider
+        - entity: sensor.steffsiphone8_dir_of_travel
+          name: Direction
+          icon: mdi:compass-outline
+        - entity: sensor.steffsiphone8_interval
+          name: Interval
+          icon: mdi:clock-start
+#          tap_action: call-service
+#          service: script.icloud_command_display_interval_formula
+        - entity: sensor.steffsiphone8_travel_time
+          name: TravTime
+          icon: mdi:clock-outline
+        - entity: sensor.steffsiphone8_zone
+          name: Zone
+          icon: mdi:map-marker-radius
+        - entity: sensor.steffsiphone8_zone_name1
+          name: Zone 1
+          icon: mdi:map-marker-radius
+        - entity: sensor.steffsiphone8_zone_name2
+          name: Zone 2
+          icon: mdi:map-marker-radius
+        - entity: sensor.steffsiphone8_zone_name3
+          name: Zone 3
+          icon: mdi:map-marker-radius
+        - entity: sensor.steffsiphone8_zone_timestamp
+          name: Zone Timestamp
+          icon: mdi:clock-outline
+        - entity: sensor.steffsiphone8_last_zone
+          name: Last Zone
+          icon: mdi:map-marker-off
+        - entity: sensor.steffsiphone8_last_zone_name1
+          name: Last Zone 1
+          icon: mdi:map-marker-off
+        - entity: sensor.steffsiphone8_last_zone_name2
+          name: Last Zone 2
+          icon: mdi:map-marker-off
+        - entity: sensor.steffsiphone8_last_zone_name3
+          name: Last Zone 3
+          icon: mdi:map-marker-off
+#
+        - type: divider
+        - entity: sensor.steffsiphone8_distance
+          name: Distance
+          icon: mdi:map-marker-distance
+        - entity: sensor.steffsiphone8_travel_distance
+          name: Travel Distance
+          icon: mdi:map-marker-distance
+        - entity: sensor.steffsiphone8_gps_accuracy
+          name: GPS Accuracy
+          icon: mdi:restore-clock
+#      - entity: sensor.steffsiphone8_waze_distance
+#        name: WazeDist
+#        icon: mdi:map-marker-distance
+#      - entity: sensor.steffsiphone8_calc_distance
+#        name: CalcDist
+#        icon: mdi:map-marker-distance
+#
+        - type: divider
+        - entity: sensor.steffsiphone8_last_located
+          name: Located
+          icon: mdi:clock-outline
+        - entity: sensor.steffsiphone8_last_update
+          name: LastUpdt
+          icon: mdi:restore-clock
+        - entity: sensor.steffsiphone8_next_update
+          name: NextUpdt
+          icon: mdi:update
+        - entity: sensor.steffsiphone8_poll_count
+          name: PollCount
+          icon: mdi:counter
+#

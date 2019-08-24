@@ -1,0 +1,150 @@
+tstat1:
+  widget_type: climate
+  title: Downstairs
+  entity: climate.tstat_1_144
+#  step: 1
+#  units: F
+#  precision: 0
+#  icon_up: mdi-termometer
+#  icon_down: mdi-termometer
+
+mode1:
+  widget_type: input_select
+  entity: climate.tstat_1_144
+  # operation_list: heat,cool,auto,off
+
+tstat2:
+  widget_type: climate
+  title: Upstairs
+  entity: climate.tstat_2_145
+  icon_on: mdi-termometer
+  icon_off: mdi-termometer
+
+mode2:
+  widget_type: input_select
+  entity: climate.tstat_2_145
+  operation_list: thermostat_mode
+
+inside_temp:
+  widget_type: sensor
+  title: Inside
+  entity: sensor.lr_temp_sensor_78
+  icon_on: mdi-termometer
+  icon_off: mdi-termometer
+
+outside_temp:
+  widget_type: sensor
+  title: Outside
+  entity: sensor.dark_sky_temperature
+  icon_on: mdi-termometer
+  icon_off: mdi-termometer
+
+forcast_now:
+  widget_type: sensor
+  title: Forecast Now
+  entity: sensor.dark_sky_minutely_summary
+  icon_on: mdi-termometer
+  icon_off: mdi-termometer
+
+forcast_hour:
+  widget_type: sensor
+  title: Forecast Hour
+  entity: sensor.dark_sky_hourly_summary
+  icon_on: mdi-termometer
+  icon_off: mdi-termometer
+
+pws_alerts:
+  widget_type: sensor
+  title: Alerts
+  entity: sensor.pws_alerts
+  precision: 0
+
+pws_feelslike:
+  widget_type: sensor
+  title: Feels Like
+  entity: sensor.pws_feelslike_f
+  precision: 0
+
+precip_today:
+  widget_type: sensor
+  title: Precip Today
+  entity: sensor.pws_precip_today_in
+  precision: 0
+
+#low_today:
+#  widget_type: sensor
+#  title: Forecast Low
+#  entity: sensor.dark_sky_overnight_low_apparent_temperature
+#  precision: 0
+#
+#low_tomorrow:
+#  widget_type: sensor
+#  title: Tomorrow's Low
+#  entity: sensor.dark_sky_overnight_low_apparent_temperature_1
+#  precision: 0
+#
+#low_nextday:
+#  widget_type: sensor
+#  title: Next Days Low
+#  entity: sensor.dark_sky_overnight_low_apparent_temperature_2
+#  precision: 0
+
+rain_pct_today:
+  widget_type: sensor
+  title: Rain Pct Today
+  entity: sensor.dark_sky_precip_probability
+  precision: 0
+  units: "%"
+
+rain_pct_tomorrow:
+  widget_type: sensor
+  title: Rain Pct Tomorrow
+  entity: sensor.dark_sky_precip_probability_1
+  precision: 0
+  units: "%"
+
+precip_tomorrow:
+  widget_type: sensor
+  title: Precip Tomorrow
+  entity: sensor.pws_precip_1d_in
+  precision: 0
+  units: "%"
+
+LR-fan:
+  widget_type: switch
+  title: Living Room Fan
+  entity: light.lr_fan_115
+  icon_on: mdi-fan
+  icon_off: mdi-fan
+#  icon_style_active: $style_active_warn
+
+SR-fan:
+  widget_type: light
+  title: Sun Room Fan
+  entity: light.sunroom_fan_204
+  icon_on: mdi-fan
+  icon_off: mdi-fan
+#  icon_style_active: $style_active_warn
+
+Garage-fan:
+  widget_type: switch
+  title: Garage Fan
+  entity: light.garage_fan_225
+  icon_on: mdi-fan
+  icon_off: mdi-fan
+#  icon_style_active: $style_active_warn
+
+Office-fan:
+  widget_type: switch
+  title: Office Fan
+  entity: light.office_fan_224
+  icon_on: mdi-fan
+  icon_off: mdi-fan
+#  icon_style_active: $style_active_warn
+
+layout:
+  - tstat2 (1x1), LR-fan, Garage-fan, forcast_now (2x1), pws_alerts, rain_pct_today, rain_pct_tomorrow
+  - tstat1 (1x1), SR-fan, Office-fan, forcast_hour (2x1), pws_feelslike, precip_today, precip_tomorrow
+  - inside_temp, outside_temp, spacer(3x1)
+
+# , spacer (2x1), spacer (4x1), spacer (2x1), spacer (2x1)

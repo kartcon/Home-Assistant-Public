@@ -1,0 +1,120 @@
+user_one_avatar:
+  widget_type: camera
+  title: Art
+  entity_picture: http://192.168.0.50:8123/local/Arts_Avatar.png
+
+user_one_lan:
+    title: UB4252 (ping)
+    widget_type: binary_sensor
+    entity: binary_sensor.ping_art
+    state_text: 1
+    state_map:
+      "on": 'Connected'
+      "off": 'Offline'
+    icon_on: fa-wifi
+    icon_style_active: "color: lime;"
+    icon_off: fa-wifi
+    icon_style_inactive: "color: red;"
+
+user_one_phone_battery:
+  title: IPhone 8 Battery
+  widget_type: gauge
+  entity: sensor.arts_iphone_8_battery_level
+  min: 0
+  max: 100
+  units: "%"
+  low_color: FF0000
+  med_color: FFFF00
+  high_color: 33CC00
+
+user_one_phone_battery_status:
+  title: Battery Status
+  widget_type: sensor
+  entity: sensor.arts_iphone_8_battery_state
+  text: sensor.art_ip8_device_status
+  text_style: "font-size: 100%;"
+  state_map:
+    "Charging": 'Charging'
+    "NotCharging": 'Not Charging'
+
+user_one_phone_device_status:
+  title: Device Status
+  widget_type: sensor
+  entity: sensor.art_ip8_device_status
+  text: sensor.art_ip8_device_status
+  text_style: "font-size: 100%;"
+  state_map:
+    "online": 'Connected'
+    "offline": 'Offline'
+
+user_one_ipad_battery:
+  title: IPad Battery
+  widget_type: gauge
+  entity: sensor.sjm_ipad_battery
+  min: 0
+  max: 100
+  units: "%"
+  low_color: FF0000
+  med_color: FFFF00
+  high_color: 33CC00
+
+user_one_ipad_battery_status:
+  title: Battery Status
+  widget_type: sensor
+  entity: sensor.sjm_ipad_battery_status
+  text: sensor.sjm_ip8_device_status
+  text_style: "font-size: 100%;"
+  state_map:
+    "Charging": 'Charging'
+    "NotCharging": 'Not Charging'
+
+user_onewatch_battery:
+  title: I-Watch Battery
+  widget_type: gauge
+  entity: sensor.art_iwatch_battery
+  min: 0
+  max: 100
+  units: "%"
+  low_color: FF0000
+  med_color: FFFF00
+  high_color: 33CC00
+
+user_one_watch_battery_status:
+  title: Battery Status
+  widget_type: sensor
+  entity: sensor.art_iwatch_battery_status
+  text: sensor.art_iwatch_battery_status
+  text_style: "font-size: 100%;"
+  state_map:
+    "Charging": 'Charging'
+    "NotCharging": 'Not Charging'
+
+user_one_sleepnumber:
+  title: Sleep Number
+  widget_type: gauge
+  entity: sensor.sleepnumber_cc04b4013d81_art_sleepnumber
+  min: 0
+  max: 100
+  units: ""
+  low_color: '#80ccff'
+  med_color: '#0099ff'
+  high_color: '#004d80'
+#  widget_style: "color: #ea4b82;"
+  color: "#0099ff"
+
+user_one_inbed:
+  title: Status
+  widget_type: binary_sensor
+  entity: binary_sensor.sleepnumber_cc04b4013d81_art_is_in_bed
+  state_text: 1
+  state_map:
+    "on": 'In Bed'
+    "off": 'Out of Bed'
+  icon_on: mdi-hotel
+  icon_style_active: "color: #E65100;"
+  icon_off: mdi-bed-empty
+  icon_style_inactive: "color: #BDBDBD;"
+
+layout:
+  - user_one_avatar (2x2), user_one_lan, user_one_phone_battery, user_one_ipad_battery, user_onewatch_battery, user_one_sleepnumber
+  - user_one_phone_device_status, user_one_phone_battery_status, user_one_ipad_battery_status, user_one_watch_battery_status, user_one_inbed

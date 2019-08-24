@@ -1,0 +1,74 @@
+#################################################################
+## TTS SCRIPTS
+#################################################################
+#
+#################################################################
+# Script: Sonos Say
+# Called from [various automations] 
+# In file: [_______]
+#################################################################
+sonos_say:
+  alias: "Sonos TTS script"
+  sequence:
+   - service: sonos.snapshot
+     data_template:
+       entity_id: "{{ sonos_entity }}"
+   - service: sonos.unjoin
+     data_template:
+       entity_id: "{{ sonos_entity }}"
+   - service: media_player.volume_set
+     data_template:
+       entity_id: "{{ sonos_entity }}"
+       volume_level: "{{ volume }}"
+#   - service: tts.voicerss_say
+   - service: tts.google_say
+     data_template:
+       entity_id: "{{ sonos_entity }}"
+       message: "{{ message }}"
+   - delay: "{{ delay }}"
+   - service: sonos.restore
+     data_template:
+       entity_id: "{{ sonos_entity }}"
+#
+#################################################################
+## TTS USAGE EXAMPLES
+#################################################################
+#
+# Alexa:
+# -- Working Simply TTS
+#  - service: notify.alexa_media
+#    data_template:
+#      target:
+#        - media_player.office_echo
+#      data:
+#        type: tts
+#      message: "{{ trigger.to_state.attributes.friendly_name }}."
+#      message: "Hello World"
+# -- Working Simply TTS with Tone alert
+#  - service: notify.alexa_media
+#    data:
+#      target:
+#        - media_player.office_echo
+#      data:
+#        type: announce
+#        #method: all
+#      message: "Hello World"
+# -- Working Pust Notication to both Art & Steffs phones
+#  - service: notify.alexa_media
+#    data:
+#      target:
+#        - media_player.office_echo
+#      data:
+#        type: push
+#      title: "I just wanted to say"
+#      message: "Hello World"
+# ----------------
+#
+# Sonos:
+#    - service: script.sonos_say
+#      data:
+#        sonos_entity: media_player.sunroom_sonos
+#        volume: 0.5
+#        message: 'This is just a test!'
+#        delay: '00:00:05'
+#

@@ -1,0 +1,38 @@
+#########################################
+#  View CAMERAS
+#########################################
+#
+#title: Cameras
+#path: camera
+#id: v_cams
+#icon: mdi:cctv
+#panel: true
+#cards:
+#- type: picture-entity
+#  entity: camera.kitchen_mpg
+#  image: http://192.168.0.101:8101/videostream.cgi?usr=admin&pwd=kcp8410
+#  image: http://192.168.0.101:8101/snapshot.cgi
+#  image: http://192.168.0.107:8107/snapshot.cgi
+#  /api/camera_proxy/camera.bird_rm1_foscam?usr=admin&pwd=kcp8410
+#
+title: Cameras
+path: cameras
+id: v_cams
+icon: mdi:cctv
+panel: true
+cards:
+  - type: custom:surveillance-card
+    thumb_interval: 15
+    update_interval: 5
+    cameras:
+      - entity: camera.front_door_camera
+        #motion_entity: binary_sensor.camera.kitchen_foscam
+      - entity: camera.front_yard_camera
+        #motion_entity: binary_sensor.camera.kitchen_foscam
+      - entity: camera.sidewalk_camera
+        #motion_entity: binary_sensor.camera.kitchen_foscam
+      - entity: camera.back_yard_camera
+        #motion_entity: binary_sensor.camera.kitchen_foscam
+#
+# https://github.com/custom-cards/surveillance-card
+#

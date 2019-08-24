@@ -1,0 +1,13 @@
+#########################
+#     Media Players     #
+#########################
+#
+- platform: webostv
+  host: !secret lg_tv_url
+  name: Sun Room LG TV
+  filename: webostv.conf
+  turn_on_action:
+    service: wake_on_lan.send_magic_packet
+    data:
+      mac: !secret lg_tv_mac
+#

@@ -1,0 +1,8 @@
+# Prowl
+#
+- name: Prowl
+  platform: prowl
+  id: prowl_notify
+  initial_state: true
+  api_key: !secret prowl_api_key
+#

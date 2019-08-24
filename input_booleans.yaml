@@ -1,0 +1,251 @@
+##############################################################
+## Input Boolean                                            ##
+##############################################################
+#
+##############################################################
+# Geolocation Toggles
+##############################################################
+  art_home:
+    name: Art Home
+#    initial: off
+    icon: mdi:home-account
+#
+  steff_home:
+    name: Steff Home
+#    initial: off
+    icon: mdi:home-account
+#
+  everyone_home:
+#    initial: off
+    name: Everyone Home
+    icon: mdi:account-supervisor-circle
+#
+  someone_home:
+#    initial: off
+    name: Someone Home
+    icon: mdi:account-circle
+#
+  no_one_home:
+#    initial: off
+    name: No One Home
+    icon: mdi:account-circle-outline
+#
+##############################################################
+# Lighting Toggles
+##############################################################
+  kit_motion_detected:
+    name: Kitchen Motion Detected
+    initial: off
+    icon: mdi:run-fast
+#
+  lr_motion_detected:
+    name: Living Room Motion Detected
+    initial: off
+    icon: mdi:run-fast
+#
+  enable_lr_slow_dim:
+    name: Living Rm Slow Dim
+    initial: on
+    icon: mdi:trending-down
+#
+  enable_sr_slow_dim:
+    name: Sun Room Slow Dim
+    initial: on
+    icon: mdi:trending-down
+#
+  enable_br1_slow_dim:
+    name: Bird Rm1 Slow Dim
+    initial: on
+    icon: mdi:trending-down
+#
+  enable_br2_slow_dim:
+    name: Bird Rm2 Slow Dim
+    initial: on
+    icon: mdi:trending-down
+#
+##############################################################
+# Notifications Toggles
+##############################################################
+  enable_auto_arm_notifications:
+    name: Auto-Arm Notifications
+#    initial: on
+    icon: mdi:message-alert-outline
+#
+  enable_battery_notifications:
+    name: Battery Notifications
+#    initial: on
+    icon: mdi:message-alert-outline
+#
+  enable_disarm_notifications:
+    name: Disarm Notifications
+#    initial: on
+    icon: mdi:message-alert-outline
+#
+  daily_briefing_art:
+    name: Arts Daily Briefing
+    initial: on
+    icon: mdi:voice
+#
+  daily_briefing_steff:
+    name: Steffs Daily Briefing
+    initial: on
+    icon: mdi:voice
+#i
+  enable_sensor_notifications:
+    name: Sensor Reset Notifications
+#    initial: on
+    icon: mdi:message-alert
+#
+  enable_system_alerts:
+    name: Enable System Alerts
+#    initial: on
+    icon: mdi:server
+#
+  zone_alerts:
+    name: Enable Zone Alerts
+#    initial: on
+    icon: mdi:map-marker-radius
+#
+  enable_weather_alerts:
+    name: Enable Weather Alerts
+#    initial: on
+    icon: mdi:weather-lightning-rainy
+#
+##############################################################
+# Sandbox
+##############################################################
+  enable_sandbox:
+    name: Enable Sandbox Testing
+#    initial: on
+    icon: mdi:test-tube
+#
+  trigger_sandbox:
+    name: Trigger Sandbox Testing
+#    initial: off
+    icon: mdi:play
+#
+##############################################################
+# Seasonal Toggles
+##############################################################
+  enable_valentine_lighting:
+    name: Valentines Day Lighting
+    initial: off
+    icon: mdi:heart
+#
+  enable_pattys_lighting:
+    name: St Pattys Day Lighting
+    initial: off
+    icon: mdi:clover
+#
+  enable_easter_lighting:
+    name: Easter Lighting
+    initial: off
+    icon: mdi:egg-easter
+#
+  enable_memorial_lighting:
+    name: Memorial Day Lighting
+    initial: off
+    icon: mdi:grave-stone
+#
+  enable_flag_day_lighting:
+    name: Flag Day Lighting
+    initial: off
+    icon: mdi:flag-variant
+#
+  enable_independence_lighting:
+    name: July 4th Lighting
+    initial: off
+    icon: mdi:vanish
+#      or mdi:flare
+  enable_labor_lighting:
+    name: Labor Day Lighting
+    initial: off
+    icon: mdi:truck
+#
+  enable_cancer_lighting:
+    name: Breast Cancer Lighting
+    initial: off
+    icon: mdi:ribbon
+#
+  enable_halloween_lighting:
+    name: Halloween Lighting
+    initial: off
+    icon: mdi:halloween
+#
+  enable_thanksgiving_lighting:
+    name: Thanksgiving Lighting
+    initial: off
+    icon: mdi:pumpkin
+#
+  enable_christmas_lighting:
+    name: Christmas Lighting
+    initial: off
+    icon: mdi:gift
+#
+##############################################################
+# Security Toggles
+##############################################################
+  mode_guest:
+    name: Enable Guest Mode
+#    initial: on
+    icon: mdi:account-heart
+#
+  mode_vacation:
+    name: Enable Vacation Mode
+#    initial: on
+    icon: mdi:airplane
+#
+  alarm_auto:
+    name: Auto Enable/Disable
+    initial: on
+    icon: mdi:shield
+#
+  alarm_tripped:
+    name: Alarm Tripped
+    initial: off
+    icon: mdi:alarm-light
+#
+#  alarm_panic_mode:
+#    name: Panic Mode
+#    initial: off
+#    icon: mdi:led-on
+#
+  alarm_silence:
+    name: Alarm Silence
+    initial: off
+    icon: mdi:bell-off
+#
+##############################################################
+# System & Alerts Toggles
+##############################################################
+  close_garage_doors_in_rain:
+    name: Close Garage Doors in Rain
+    initial: on
+    icon: mdi:garage
+#
+  enable_hassio_autobackup:
+    name: Automatic Backups
+#    initial: on
+    icon: mdi:zip-disk
+#
+  speak_kit_motion:
+    name: Speak Kitchen Motion
+    initial: off
+    icon: mdi:voice
+#
+  speak_lr_motion:
+    name: Speak LR Motion
+    initial: off
+    icon: mdi:voice
+#
+##############################################################
+# Weather Toggles
+##############################################################
+#  its_raining:
+#    name: Its Raining
+#    icon: mdi:weather-rainy
+#
+#  its_windy:
+#    name: Its Windy
+#    icon: mdi:weather-windy
+#

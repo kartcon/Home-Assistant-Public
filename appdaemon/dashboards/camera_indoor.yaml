@@ -1,0 +1,78 @@
+load_outdoor_cameras:
+    widget_type: navigate
+    title: Go to Outdoor Cameras
+    icon_inactive: fa-random
+    url: /CameraPanelOutdoor
+
+load_camera1:
+    widget_type: navigate
+    title: Camera 1
+    icon_inactive: mdi-television
+    url: /Camera_Indoor_1
+
+load_camera2:
+    widget_type: navigate
+    title: Camera 2
+    icon_inactive: mdi-television
+    url: /Camera_Indoor_2
+
+load_camera3:
+    widget_type: navigate
+    title: Camera 3
+    icon_inactive: mdi-television
+    url: /Camera_Indoor_3
+
+load_camera5:
+    widget_type: navigate
+    title: Camera 5
+    icon_inactive: mdi-television
+    url: /Camera_Indoor_5
+
+load_camera7:
+    widget_type: navigate
+    title: Camera 7
+    icon_inactive: mdi-television
+    url: /Camera_Indoor_7
+
+insidecam1:
+  widget_type: camera
+  title: Bird Room 1
+  frame_style: ""
+  entity_picture: http://192.168.0.101:8101/videostream.cgi?username=admin&password=KCP8410
+
+insidecam2:
+  widget_type: camera
+  title: Bird Room 2
+  frame_style: ""
+  entity_picture: http://192.168.0.102:8102/videostream.cgi?username=admin&password=KCP8410
+
+insidecam3:
+  widget_type: camera
+  title: Kitchen
+  frame_style: ""
+  entity_picture: http://192.168.0.103:8103/videostream.cgi?username=admin&password=KCP8410
+
+insidecam5:
+  widget_type: camera
+  title: Living Room
+  frame_style: ""
+  entity_picture: http://192.168.0.105:8105/videostream.cgi?username=admin&password=KCP8410
+
+insidecam7:
+  widget_type: camera
+  title: Office
+  frame_style: ""
+  entity_picture: http://192.168.0.107:8107/videostream.cgi?username=admin&password=KCP8410
+
+layout:
+  - load_outdoor_cameras (2x1), insidecam1 (3x2), insidecam2 (3x2)
+  - load_camera1, load_camera2
+  - load_camera3, load_camera5, insidecam3 (3x2), insidecam7 (3x2)
+  - load_camera7
+
+#insidecam1:
+#    widget_type: iframe
+#    title: Bird Room 1
+#    #refresh: 60
+#    url_list: 
+#      - http://192.168.0.101:8101/videostream.cgi?username=admin&password=KCP8410

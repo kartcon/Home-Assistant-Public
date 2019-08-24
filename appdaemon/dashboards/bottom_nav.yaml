@@ -1,0 +1,66 @@
+# Row 1 bottom_nav.yaml
+load_panel_main:
+    widget_type: navigate
+    title: Main Panel
+    icon_inactive: mdi-home
+    url: /MainDashboard
+    #background_color: "#00f"
+    icon_color: green
+    #icon_size: 200%
+    #title_color: red
+    #title_size: 200%
+
+load_panel_lights:
+    widget_type: navigate
+    title: Lighting
+    icon_inactive: mdi-lightbulb
+    url: /LightsPanelIndoor
+
+load_panel_hvac:
+    widget_type: navigate
+    title: HVAC
+    icon_inactive: mdi-air-conditioner
+    url: /HVACPanel
+
+load_panel_weather:
+    widget_type: navigate
+    title: Weather
+    icon_inactive: mdi-weather-sunny
+    url: /WeatherPanel
+
+load_panel_alarm:
+    widget_type: navigate
+    title: Alarm
+    icon_inactive: mdi-alarm-light
+    url: /AlarmPanel
+
+load_panel_sprinkler:
+    widget_type: navigate
+    title: Sprinklers
+    icon_inactive: mdi-fountain
+    url: /SprinklerPanel
+
+#load_panel_cameras:
+#    widget_type: navigate
+#    title: Cameras
+#    icon_inactive: mdi-cctv
+#    url: /CameraPanelIndoor
+#    
+load_controls:
+    widget_type: navigate
+    title: System
+    icon_inactive: mdi-server
+    url: /ControlPanel
+    
+load_users:
+    widget_type: navigate
+    title: Users
+    icon_inactive: fa-users
+    url: /Users
+    
+# reload:
+#    widget_type: reload
+#    title: Reload
+
+layout:
+    - load_panel_main, load_panel_lights, load_panel_hvac, load_panel_weather, load_panel_alarm, load_panel_sprinkler, load_users, load_controls

@@ -1,0 +1,64 @@
+#########################################
+#  SENSOR data
+#########################################
+#
+title: Sensors
+path: sensors
+icon: mdi:eye
+id: v_sens
+panel: true
+cards:
+- type: horizontal-stack
+  cards:
+# COL 1
+    - type: vertical-stack
+      cards:
+        - type: custom:monster-card
+          card:
+            type: entities
+            show_header_toggle: false
+            title: Binary Sensors
+          filter:
+            include:
+              - domain: binary_sensor
+            exclude:
+              - domain: automation
+#
+# COL 2
+    - type: vertical-stack
+      cards:
+        - type: custom:monster-card
+          card:
+            type: entities
+            show_header_toggle: false
+            title: Sensors
+          filter:
+            include:
+              - domain: sensor
+            exclude:
+              - domain: binary_sensor
+              - entity_id: "*pws*"
+              - entity_id: "*dark_sky*"
+#
+# COL 3
+    - type: vertical-stack
+      cards:
+        - type: custom:monster-card
+          card:
+            type: entities
+            show_header_toggle: false
+            title: PWS Sensors
+          filter:
+            include:
+              - entity_id: "*pws*"
+            exclude:
+              - entity_id: group.wu_pws
+        - type: custom:monster-card
+          card:
+            type: entities
+            show_header_toggle: false
+            title: Weather Sensors
+          filter:
+            include:
+              - entity_id: "*dark_sky*"
+#

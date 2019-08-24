@@ -1,0 +1,16 @@
+#
+# Main arguments, all optional
+#
+title: Users
+widget_dimensions: [120, 120]
+widget_margins: [5, 5]
+columns: 8
+#
+# Includes (Optional)
+#
+layout:
+    - include: top_nav_small
+    - include: user_one_panel
+    - include: user_two_panel
+    - include: bottom_nav
+

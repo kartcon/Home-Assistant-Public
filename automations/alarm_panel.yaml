@@ -1,0 +1,807 @@
+#################################################################
+## Security Automations
+#################################################################
+#
+#################################################################
+## PreSet Alarm to Armed Away
+#################################################################
+- id: preset_alarm_to_armed_away
+  alias: 'PreSet Alarm to Armed Away'
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: input_boolean.no_one_home
+    from: 'off'
+    to: 'on'
+    for: '00:00:05'
+  condition:
+  - condition: state
+    entity_id: alarm_control_panel.ha_alarm
+    state: disarmed
+  - condition: state
+    entity_id: input_boolean.alarm_auto
+    state: 'on'
+  - condition: state
+    entity_id: input_boolean.no_one_home
+    state: 'on'
+  - condition: state
+    entity_id: group.door_sensors
+    state: 'on'
+  action:
+  - service: script.write_to_log
+    data:
+      entity_id: alarm_control_panel.ha_alarm
+      message: Automation - PreSet Alarm to Armed Away
+  - service: script.turn_on
+    data_template:
+      entity_id: >-
+        {% if is_state('binary_sensor.front_door_31', 'on') %}
+          script.reset_front_door_sensor
+        {% endif %}
+  - service: script.turn_on
+    data_template:
+      entity_id: >-
+        {% if is_state('binary_sensor.back_door_36', 'on') %}
+          script.reset_back_door_sensor
+        {% endif %}
+  - service: script.turn_on
+    data_template:
+      entity_id: >-
+        {% if is_state('binary_sensor.garage_entry_door_39', 'on') %}
+          script.reset_garage_entry_door_sensor
+        {% endif %}
+  - service: script.turn_on
+    data_template:
+      entity_id: >-
+        {% if is_state('binary_sensor.sliding_door_left_37', 'on') %}
+          script.reset_sliding_door_left_sensor
+        {% endif %}
+  - service: script.turn_on
+    data_template:
+      entity_id: >-
+        {% if is_state('binary_sensor.sliding_door_right_38', 'on') %}
+          script.reset_sliding_door_right_sensor
+        {% endif %}
+  - service: script.turn_on
+    data_template:
+      entity_id: >-
+        {% if is_state('binary_sensor.sunroom_east_34', 'on') %}
+          script.reset_sunroom_east_sensor
+        {% endif %}
+  - service: script.turn_on
+    data_template:
+      entity_id: >-
+        {% if is_state('binary_sensor.sunroom_west_35', 'on') %}
+          script.reset_sunroom_west_sensor
+        {% endif %}
+  - service: script.turn_on
+    data_template:
+      entity_id: >-
+        {% if is_state('binary_sensor.one_car_gar_sensor_66', 'on') %}
+          script.reset_one_car_gar_sensor
+        {% endif %}
+  - service: script.turn_on
+    data_template:
+      entity_id: >-
+        {% if is_state('binary_sensor.two_car_gar_sensor_65', 'on') %}
+          script.reset_two_car_gar_sensor
+        {% endif %}
+  - service: script.turn_on
+    entity_id: script.check_open_door_status
+#
+#################################################################
+## Set Alarm to Armed Away
+#################################################################
+#
+- id: set_alarm_to_armed_away
+  alias: 'Set Alarm to Armed Away'
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: input_boolean.no_one_home
+    from: 'off'
+    to: 'on'
+    for: '00:00:15'
+  condition:
+  - condition: state
+    entity_id: input_boolean.alarm_auto
+    state: 'on'
+#  - condition: state
+#    entity_id: group.door_sensors
+#    state: 'off'
+#  - condition: time
+#    after: '05:00:00'
+#    before: '23:59:59'
+  action:
+  - service: script.write_to_log
+    data:
+      entity_id: alarm_control_panel.ha_alarm
+      message: Automation - Set Alarm to Armed Away
+  - service: script.turn_on
+    entity_id: script.check_open_door_status
+  - service: script.turn_on
+    entity_id: script.set_alarm_armed_away
+#
+#################################################################
+## Set Alarm to Armed Home Weekday
+#################################################################
+#
+- id: set_alarm_to_armed_home_weekday
+  alias: 'Set Alarm to Armed Home Weekday'
+  initial_state: true
+  trigger:
+  - platform: time
+    at: '22:55:00'
+  condition:
+  - condition: time
+    weekday:
+      - sun
+      - mon
+      - tue
+      - wed
+      - thu
+  - condition: state
+    entity_id: input_boolean.alarm_auto
+    state: 'on'
+  action:
+  - service: script.write_to_log
+    data:
+      entity_id: alarm_control_panel.ha_alarm
+      message: Automation - Set Alarm to Armed Home Weekday
+  - service: switch.turn_on
+    data:
+      entity_id: group.alarm_home_on_zones
+  - service: switch.turn_off
+    data:
+      entity_id: group.alarm_home_off_zones
+  - service: script.turn_on
+    entity_id: script.check_open_door_status
+  - service: script.turn_on
+    entity_id: script.set_alarm_armed_home
+#
+#################################################################
+## Set Alarm to Armed Home Weekend
+#################################################################
+#
+- id: set_alarm_to_armed_home_weekend
+  alias: 'Set Alarm to Armed Home Weekend'
+  initial_state: true
+  trigger:
+  - platform: time
+    at: '22:55:00'
+  condition:
+  - condition: time
+    weekday:
+      - fri
+      - sat
+  - condition: state
+    entity_id: input_boolean.alarm_auto
+    state: 'on'
+  action:
+  - service: script.write_to_log
+    data:
+      entity_id: alarm_control_panel.ha_alarm
+      message: Automation - Set Alarm to Armed Home Weekend
+  - service: switch.turn_on
+    data:
+      entity_id: group.alarm_home_on_zones
+  - service: switch.turn_off
+    data:
+      entity_id: group.alarm_home_off_zones
+  - service: script.turn_on
+    entity_id: script.check_open_door_status
+  - service: script.turn_on
+    entity_id: script.set_alarm_armed_home
+#
+#################################################################
+## Set Alarm to Disarmed every morning at 6am
+#################################################################
+#
+- id: set_alarm_to_disarmed_every_morning
+  alias: 'Set Alarm to Disarmed every morning'
+  initial_state: true
+  trigger:
+  - platform: time
+    at: '06:00:00'
+  condition:
+  - condition: state
+    entity_id: input_boolean.alarm_auto
+    state: 'on'
+  - condition: state
+    entity_id: input_boolean.no_one_home
+    state: 'off'
+  action:
+  - service: script.write_to_log
+    data:
+      entity_id: alarm_control_panel.ha_alarm
+      message: Automation - Set Alarm to Disarmed every morning
+  - service: script.turn_on
+    entity_id: script.set_alarm_disarmed
+  - service: switch.turn_on
+    data:
+      entity_id: group.alarm_all_zones
+#
+#################################################################
+## Set Alarm to Disarmed arriving Home
+#################################################################
+#
+- id: set_alarm_to_disarmed_arriving_home
+  alias: 'Set Alarm to Disarmed arriving Home'
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: input_boolean.no_one_home
+    from: 'on'
+    to: 'off'
+    for: '00:00:15'
+  condition:
+  - condition: state
+    entity_id: input_boolean.alarm_auto
+    state: 'on'
+  action:
+  - service: script.write_to_log
+    data:
+      entity_id: alarm_control_panel.ha_alarm
+      message: Automation - Set Alarm to Disarmed arriving Home
+  - service: script.turn_on
+    entity_id: script.set_alarm_disarmed
+  - service: switch.turn_on
+    data:
+      entity_id: group.alarm_all_zones
+      # Enables all door sensor zone switches
+  - service: switch.turn_on
+    data:
+      entity_id: light.kitchen_uc_lights_44
+  - service: switch.turn_on
+    data:
+      entity_id: light.nook_uc_lights_116
+# --- Testing an Actionable Notification Here
+# --- See: https://www.home-assistant.io/docs/ecosystem/ios/notifications/actions/
+  - service: notify.ios_group_art_only
+    data:
+      message: "Arrived Home"
+      data:
+        push:
+          badge: 0
+          category: 'arrived'
+          sound: "US-EN-Alexa-Welcome-Home.wav"
+#
+#################################################################
+## Trigger Alarm While in Armed Away Mode
+#################################################################
+#
+- id: trigger_alarm_while_armed_away
+  alias: 'Trigger Alarm While Armed Away'
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.front_door_31
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.back_door_36
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.garage_entry_door_39
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.one_car_gar_sensor_66
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.two_car_gar_sensor_65
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.sliding_door_left_37
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.sliding_door_right_38
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.sunroom_east_34
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.sunroom_west_35
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: alarm_control_panel.ha_alarm
+    state: armed_away
+  - condition: state
+    entity_id: input_boolean.mode_guest
+    state: 'off'
+  - condition: state
+    entity_id: input_boolean.mode_vacation
+    state: 'off'
+  action:
+  - service: script.write_to_log
+    data:
+      entity_id: alarm_control_panel.ha_alarm
+      message: Automation - Trigger Alarm While Armed Away
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.alarm_tripped
+  - service: script.turn_on
+    entity_id: script.check_open_door_status
+  - service: alarm_control_panel.alarm_trigger
+    entity_id: alarm_control_panel.ha_alarm
+#
+#################################################################
+## Trigger Alarm While in Armed Home Mode
+#################################################################
+#
+- id: trigger_alarm_while_armed_home
+  alias: 'Trigger Alarm While Armed Home'
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.front_door_31
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.one_car_gar_sensor_66
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.two_car_gar_sensor_65
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.sunroom_east_34
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.sunroom_west_35
+    to: 'on'
+# Unused Sensors:
+#  - platform: state
+#    entity_id: binary_sensor.back_door_36
+#    to: 'on'
+#  - platform: state
+#    entity_id: binary_sensor.garage_entry_door_39
+#    to: 'on'
+#  - platform: state
+#    entity_id: binary_sensor.sliding_door_left_37
+#    to: 'on'
+#  - platform: state
+#    entity_id: binary_sensor.sliding_door_right_38
+#    to: 'on'
+# ---------------
+  condition:
+  - condition: state
+    entity_id: alarm_control_panel.ha_alarm
+    state: armed_home
+  action:
+  - service: script.write_to_log
+    data:
+      entity_id: alarm_control_panel.ha_alarm
+      message: Automation - Trigger Alarm While Armed Home
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.alarm_tripped
+  - service: script.turn_on
+    entity_id: script.check_open_door_status
+  - service: alarm_control_panel.alarm_trigger
+    entity_id: alarm_control_panel.ha_alarm
+#
+##########################################################
+## Sound the Alarm Siren
+##########################################################
+#
+- id: alarm_panel_sound_siren
+  alias: 'Alarm Panel Sound Siren'
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: input_boolean.alarm_tripped
+    to: 'on'
+    for: '00:00:30'
+  condition:
+  - condition: state
+    entity_id: input_boolean.alarm_silence
+    state: 'off'
+#  - condition: state
+#    entity_id: alarm_control_panel.ha_alarm
+#    state: 'triggered'
+  action:
+  - service: script.write_to_log
+    data:
+      entity_id: alarm_control_panel.ha_alarm
+      message: Automation - Alarm Panel Siren Activated
+  - service: persistent_notification.create
+    data_template:
+      title: "Siren Activated!"
+      message: At {{now().strftime("%m/%d/%Y %H:%M:%S")}} the Alarm sounded. Please check all doors and windows.
+  - service: switch.turn_on
+    entity_id: switch.siren_206
+  - service: light.turn_on
+    entity_id:
+      - group.alarm_emergency
+  - service: notify.ios_group_art_steff
+    data_template:
+      title: "Siren Activated!"
+      message: At {{now().strftime("%m/%d/%Y %H:%M:%S")}} the Alarm sounded. Please check all doors and windows.
+  - delay: '00:01:00'
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.alarm_tripped
+# --- Testing an Actionable Notification Here
+# --- See: https://www.home-assistant.io/docs/ecosystem/ios/notifications/actions/
+  - service: notify.ios_group_art_only
+    data:
+      message: "Siren Activated!"
+      data:
+        push:
+          badge: 0
+          category: 'alarm'
+#
+##########################################################
+## Silence the Alarm Siren
+##########################################################
+#
+- id: alarm_panel_silence_siren
+  alias: 'Alarm Panel Silence Siren'
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: input_boolean.alarm_tripped
+    to: 'off'
+  - platform: state
+    entity_id: input_boolean.alarm_silence
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: switch.siren_206
+    state: 'on'
+  action:
+  - service: script.write_to_log
+    data:
+      entity_id: alarm_control_panel.ha_alarm
+      message: Automation - Alarm Panel Siren Silenced
+  - service: switch.turn_off
+    entity_id: switch.siren_206
+  - service: persistent_notification.create
+    data_template:
+      title: "Siren Silenced"
+      message: At {{now().strftime("%m/%d/%Y %H:%M:%S")}} the Alarm was silenced.
+#
+##########################################################
+## Pre Warn the Alarm Siren
+##########################################################
+#
+- id: alarm_panel_pre_warn_siren
+  alias: 'Alarm Panel Pre Warn Siren'
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: input_boolean.alarm_tripped
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: input_boolean.alarm_silence
+    state: 'off'
+  action:
+  - service: script.write_to_log
+    data:
+      entity_id: alarm_control_panel.ha_alarm
+      message: Automation - Alarm Panel Pre Warn Siren
+  - service: script.turn_on
+    entity_id: script.pre_warning_siren
+#  - service: input_boolean.turn_off
+#    entity_id: input_boolean.alarm_tripped
+#
+#################################################################
+## ACTIONABLE NOTIFICATION RESPONSES
+#################################################################
+#
+#################################################################
+## ANR Unlock Front Door
+#################################################################
+#
+- id: anr_unlock_front_door
+  alias: ANR Unlock Front Door
+  initial_state: true
+  trigger:
+    platform: event
+    event_type: ios.notification_action_fired
+    event_data:
+      actionName: UNLOCKFRONTDOOR
+  action:
+  - service: script.write_to_log
+    data:
+      entity_id: alarm_control_panel.ha_alarm
+      message: Automation - ANR Unlock Front Door
+  - service: lock.unlock
+    data:
+      entity_id:
+      - lock.front_door_bolt_241
+#
+#################################################################
+## ANR Open Garage Door
+#################################################################
+#
+- id: anr_open_garage_door
+  alias: ANR Open Garage Door
+  initial_state: true
+  trigger:
+    platform: event
+    event_type: ios.notification_action_fired
+    event_data:
+      actionName: OPENGARAGEDOOR
+  action:
+  - service: script.write_to_log
+    data:
+      entity_id: alarm_control_panel.ha_alarm
+      message: Automation - ANR Open Garage Door
+  - service: lock.unlock
+    data:
+      entity_id:
+      - lock.garage_controller_1_55
+#
+#################################################################
+## ANR Silence Alarm
+#################################################################
+#
+- id: anr_silence_alarm
+  alias: ANR Silence Alarm
+  initial_state: true
+  trigger:
+    platform: event
+    event_type: ios.notification_action_fired
+    event_data:
+      actionName: SILENCEALARM
+  action:
+  - service: script.write_to_log
+    data:
+      entity_id: alarm_control_panel.ha_alarm
+      message: Automation - ANR Silence Alarm
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.alarm_silence
+  - service: switch.turn_off
+    entity_id: switch.siren_206
+#
+#################################################################
+## NOTIFICATIONS
+#################################################################
+#
+#############################################################
+##  Notification: Alarm Changed to Armed Home Mode
+#############################################################
+#
+- id: notification_alarm_changed_to_armed_home
+  alias: 'Notification Alarm Changed to Armed Home'
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: alarm_control_panel.ha_alarm
+    from: pending
+    to: armed_home
+  condition:
+  - condition: state
+    entity_id: input_boolean.enable_auto_arm_notifications
+    state: 'on'
+  action:
+  - service: script.write_to_log
+    data:
+      entity_id: alarm_control_panel.ha_alarm
+      message: Notification - Alarm Changed to Armed Home
+  - service: persistent_notification.create
+    data_template:
+      title: Armed Home
+      message: >-
+        The alarm has been changed to Armed Home at {{now().strftime("%m/%d/%Y %H:%M:%S")}}.
+  - service: script.turn_on
+    entity_id: script.blink_lights_tv
+  - delay: 0:00:03
+  - service: notify.lg_tv
+    data:
+      title: "Alarm Set"
+      message: "The alarm system has been set to Armed Home."
+  - condition: state
+    entity_id: input_boolean.enable_auto_arm_notifications
+    state: 'on'
+  - service: notify.ios_group_art_steff
+    data:
+      title: "Alarm Set"
+      message: "The alarm system has been set to Armed Home."
+#
+#############################################################
+##  Notification: Alarm Changed to Armed Away Mode
+#############################################################
+#
+- id: notification_alarm_changed_to_armed_away
+  alias: 'Notification Alarm Changed to Armed Away'
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: alarm_control_panel.ha_alarm
+    from: pending
+    to: armed_away
+  condition:
+  - condition: state
+    entity_id: input_boolean.enable_auto_arm_notifications
+    state: 'on'
+  action:
+  - service: script.write_to_log
+    data:
+      entity_id: alarm_control_panel.ha_alarm
+      message: Notification - Alarm Changed to Armed Away
+  - service: persistent_notification.create
+    data_template:
+      title: "Armed Away"
+      message: >-
+        The alarm has been changed to Armed Away at {{now().strftime("%m/%d/%Y %H:%M:%S")}}.
+  - condition: state
+    entity_id: input_boolean.enable_auto_arm_notifications
+    state: 'on'
+  - service: notify.ios_group_art_steff
+    data:
+      title: "Armed Away"
+      message: "The alarm system has been set to Away."
+#
+#############################################################
+##  Notification: Alarm Changed to Disarmed Mode
+#############################################################
+#
+- id: notification_alarm_set_to_disarmed
+  alias: 'Notification Alarm Set to Disarmed'
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: alarm_control_panel.ha_alarm
+    to: disarmed
+  condition:
+  - condition: state
+    entity_id: input_boolean.enable_disarm_notifications
+    state: 'on'
+  action:
+  - service: script.write_to_log
+    data:
+      entity_id: alarm_control_panel.ha_alarm
+      message: Notification - Alarm Set to Disarmed
+  - service: persistent_notification.create
+    data_template:
+      title: "Alarm Disarmed"
+      message: >-
+        The alarm was disarmed at {{now().strftime("%m/%d/%Y %H:%M:%S")}}.
+  - condition: state
+    entity_id: input_boolean.enable_disarm_notifications
+    state: 'on'
+  - service: notify.ios_group_art_steff
+    data:
+      title: "Alarm Disarmed"
+      message: "The alarm system has been disarmed."
+#
+#############################################################
+##  Notification: Alarm Tripped
+#############################################################
+#
+- id: notification_alarm_set_to_tripped
+  alias: 'Notification Alarm Set to Tripped'
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: input_boolean.alarm_tripped
+    to: 'on'
+  action:
+  - service: script.write_to_log
+    data:
+      entity_id: alarm_control_panel.ha_alarm
+      message: Notification - Alarm Set to Tripped
+  - service: persistent_notification.create
+    data_template:
+      title: "Security Alert!"
+      message: >-
+        {{now().strftime("%m/%d/%Y %H:%M:%S")}}. The alarm was tripped by the
+        {% set sensors = [states.binary_sensor.front_door_31, states.binary_sensor.back_door_36,  states.binary_sensor.garage_entry_door_39, states.binary_sensor.one_car_gar_sensor_66, states.binary_sensor.two_car_gar_sensor_65, states.binary_sensor.sliding_door_left_37, states.binary_sensor.sliding_door_right_38, states.binary_sensor.sunroom_east_34, states.binary_sensor.sunroom_west_35] %}
+        {%- for x in sensors -%}
+          {%- if (x.state_with_unit == "on") -%}
+            {{ x.name | upper }},
+          {%- endif -%}
+        {% endfor %}
+#        At {{now().strftime("%m/%d/%Y %H:%M:%S")}} the alarm was tripped by the
+#        {%- set sensors = [states.binary_sensor.front_door_31, states.binary_sensor.back_door_36,  states.binary_sensor.garage_entry_door_39, states.binary_sensor.one_car_gar_sensor_66, states.binary_sensor.two_car_gar_sensor_65, states.binary_sensor.sliding_door_left_37, states.binary_sensor.sliding_door_right_38, states.binary_sensor.sunroom_east_34, states.binary_sensor.sunroom_west_35] -%}
+#        {%- for sensor in sensors -%}
+#          {%- if as_timestamp(sensor.last_changed) == as_timestamp(sensors | map(attribute='last_changed') | max) -%}
+#            {{ sensor.name }} sensor.
+#          {% endif -%}
+#        {%- endfor -%}
+  - service: notify.ios_group_art_steff
+    data:
+      title: "Security Alert!"
+      message: "The alarm system has been tripped."
+#
+#################################################################
+##  Front Door Unlocked While In Vacation Mode
+#################################################################
+- id: front_door_unlocked_vacation_mode
+  alias: Front Door Unlocked Vacation Mode
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: lock.front_door_bolt_241
+    to: 'unlocked'
+  - platform: state
+    entity_id: binary_sensor.front_door_31
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: input_boolean.mode_vacation
+    state: 'on'
+  action:
+  - service: script.write_to_log
+    data_template:
+      entity_id: alarm_control_panel.ha_alarm
+      message: >-
+        Automation - Front Door Unlocked - Vacation Mode
+  - service: script.turn_on
+    entity_id: script.set_alarm_disarmed
+  - delay: '00:00:05'
+  - service: light.turn_on
+    data:
+      entity_id: light.kitchen_pendants_106, light.kitchen_can_lights_49
+  - service: script.turn_on
+    entity_id: script.blink_lights_porch
+  - service: notify.ios_group_art_steff
+    data_template:
+      title: "Pet Sitter Arrived!"
+      message: At {{now().strftime("%m/%d/%Y %H:%M:%S")}} the Pet Sitter Arived.
+  - service: persistent_notification.create
+    data_template:
+      title: "Pet Sitter Arrived!"
+      message: >-
+        At {{now().strftime("%m/%d/%Y %H:%M:%S")}} the Pet Sitter Arived.
+  - delay: '00:01:00'
+  - service: media_player.volume_set
+    data:
+      entity_id: media_player.kitchen_echo
+      volume_level: '0.8'
+  - delay: '00:00:02'
+  - service: notify.alexa_media
+    data_template:
+      target:
+        - media_player.kitchen_echo
+      data:
+        type: announce
+      message: "The alarm has been disabled for sixty minutes. Please remember to press the lock button when leaving."
+  - delay: '01:00:00'
+  - service: script.write_to_log
+    data:
+      entity_id: alarm_control_panel.ha_alarm
+      message: Automation - Set Alarm to Armed Away
+  - service: script.turn_on
+    entity_id: script.check_open_door_status
+  - service: script.turn_on
+    entity_id: script.set_alarm_armed_away
+#
+#################################################################
+##  Front Door Locked While In Vacation Mode
+#################################################################
+- id: front_door_locked_vacation_mode
+  alias: Front Door Locked Vacation Mode
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: lock.front_door_bolt_241
+    to: 'locked'
+  condition:
+  - condition: state
+    entity_id: input_boolean.mode_vacation
+    state: 'on'
+  action:
+  - service: script.write_to_log
+    data:
+      entity_id: alarm_control_panel.ha_alarm
+      message: Automation - Front Door Locked - Vacation Mode
+  - service: script.turn_on
+    entity_id: script.check_open_door_status
+  - service: script.turn_on
+    entity_id: script.set_alarm_armed_away
+  - service: notify.ios_group_art_steff
+    data_template:
+      title: "Front Door Locked - Vacation Mode!"
+      message: At {{now().strftime("%m/%d/%Y %H:%M:%S")}} - Front Door Locked - Vacation Mode.
+  - service: persistent_notification.create
+    data_template:
+      title: "Pet Sitter Left!"
+      message: >-
+        At {{now().strftime("%m/%d/%Y %H:%M:%S")}} - Front Door Locked - Vacation Mode.
+  - delay: '00:00:05'
+  - service: script.turn_on
+    entity_id: script.blink_lights_porch
+  - service: light.turn_off
+    data:
+      entity_id: light.kitchen_pendants_106, light.kitchen_can_lights_49
+#

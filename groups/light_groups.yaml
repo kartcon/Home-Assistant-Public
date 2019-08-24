@@ -1,0 +1,93 @@
+# In Home Assistant’s world, a wall plug is a switch.
+#################################################################
+#     Other Lighting - not Room based
+#################################################################
+#
+alarm_emergency:
+  name: Alarm Emergency Group
+  view: no
+  icon: mdi:home
+  entities:
+    - light.porch_lights_46
+    - light.garage_lights_48
+    - light.pergola_lights_213
+    - light.hot_tub_lights_201
+    - light.sun_room_floods_202
+    - light.house_floods_105
+    - light.kitchen_pendants_106
+    - light.kitchen_can_lights_49
+    - light.lr_can_lights_62
+    - light.mbr_can_lights_95
+    - light.mbr_bath_lights_94
+    - light.sunroom_lights_203
+    - light.office_light_223
+#
+christmas_lights:
+  name: Christmas Lights
+  view: no
+  icon: mdi:gift
+  entities:
+    - light.soffit_center_123
+    - light.soffit_east_126
+    - light.holiday_lights_222
+    - light.lr_christmas_tree_26
+#
+inside_light_group:
+  name: Inside Light Group
+  view: no
+  icon: mdi:home
+  entities:
+    - light.bird_room_1_light_52
+    - light.bird_room_2_light_53
+    - light.china_cabinet_25
+    - light.entertainment_center_26
+    - light.kitchen_can_lights_49
+    - light.kitchen_pendants_106
+    - light.kitchen_uc_lights_44
+    - light.lr_can_lights_62
+#    - light.tv_left
+#    - light.tv_right
+    - light.mbr_bath_fan_93
+    - light.mbr_bath_lights_94
+    - light.mbr_can_lights_95
+    - light.mbr_shower_light_92
+    - light.nook_uc_lights_116
+    - light.office_desk_lamp_27
+    - light.office_light_223
+    - light.sunroom_lights_203
+    - light.flux_led_strip
+#
+outside_light_group:
+  name: Outside Light Group
+  view: no
+  icon: mdi:home
+  entities:
+#    - light.porch_light_46
+#    - light.garage_lights_48
+    - light.pergola_lights_213
+    - light.hot_tub_lights_201
+    - light.outdoor_switch_1_124
+    - light.sun_room_floods_202
+    - light.house_floods_105
+#
+lifx_light_group:
+  name: LIFX Light Group
+  view: no
+  icon: mdi:home
+  entities:
+    - light.tv_left
+    - light.tv_right
+    - light.garage_east
+    - light.garage_center
+    - light.garage_west
+    - light.front_porch
+#
+ceiling_fan_group:
+  name: Ceiling Fan Group
+  view: no
+  icon: mdi:fan
+  entities:
+    - light.lr_fan_115
+    - light.sunroom_fan_204
+    - light.office_fan_224
+    - light.garage_fan_225

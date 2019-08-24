@@ -1,0 +1,11 @@
+vera:
+  widget_type: navigate
+  title: Vera
+#    icon_style_active: "color: #ea4b82;"
+#    icon_on: mdi-vuejs
+#      - https://home.getvera.com/assets/defaultv4/img/oem_logo.png
+  icon_inactive: mdi-vuejs
+  dashboard: Vera
+
+layout:
+  - vera (2x1)

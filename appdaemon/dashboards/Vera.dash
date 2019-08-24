@@ -1,0 +1,24 @@
+#
+# Main arguments, all optional
+#
+title: Vera
+widget_dimensions: [120, 120]
+widget_margins: [5, 5]
+columns: 8
+
+vera_frame:
+  widget_type: iframe
+  title: Vera
+  #refresh: 60
+  url_list: 
+    - http://192.168.0.11
+
+# Includes (Optional)
+
+layout:
+  - vera_frame(8x5)
+  - 
+  - 
+  - 
+  - 
+  - include: bottom_nav

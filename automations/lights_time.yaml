@@ -1,0 +1,272 @@
+#################################################################
+## LIGHTING AUTOMATIONS (TIME BASED EVENTS)
+#################################################################
+#
+#################################################################
+# Kitchen UCL's on at 6:00a
+#################################################################
+- id: kit_ucl_on_at_0600
+  alias: Kitchen UCL's on at 06:00
+  initial_state: true
+  trigger:
+    platform: time
+    at: '06:00:00'
+  condition: []
+  action:
+  - service: light.turn_on
+    data:
+      entity_id: light.kitchen_uc_lights_44
+  - service: light.turn_on
+    data:
+      entity_id: light.nook_uc_lights_116
+      brightness: 127
+#
+#################################################################
+# Master Bath Lights ON at 6:30a
+#################################################################
+- id: mbath_lights_on_at_0630
+  alias: MBath Lights on at 06:30
+  initial_state: true
+  trigger:
+    platform: time
+    at: '06:30:00'
+  condition:
+  - condition: time
+    weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+  - condition: state
+    entity_id: input_boolean.art_home
+    state: 'on'
+  action:
+  - service: light.turn_on
+    data:
+      entity_id: light.mbr_bath_lights_94
+      brightness: 76
+  - delay:
+      minutes: 30
+  - service: light.turn_off
+    entity_id: light.mbr_bath_lights_94
+#
+#################################################################
+# Office Lights ON for Sydney at 6:45a
+#################################################################
+- id: office_lights_on_at_0645
+  alias: Office Lights on at 06:45
+  initial_state: true
+  trigger:
+    platform: time
+    at: '06:45:00'
+  condition:
+  - condition: time
+    weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+  - condition: state
+    entity_id: input_boolean.art_home
+    state: 'on'
+  action:
+  - service: light.turn_on
+    data:
+      entity_id: light.office_light_223
+      brightness: 38
+  - delay:
+      minutes: 30
+      seconds: 00
+  - service: light.turn_off
+    entity_id: light.office_light_223
+#
+#################################################################
+# Kitchen Lights on at 4:00p
+#################################################################
+- id: kit_lights_on_at_1600
+  alias: Kitchen Lights on at 16:00
+  initial_state: true
+  trigger:
+    platform: time
+    at: '16:00:00'
+  condition: []
+  action:
+  - service: light.turn_on
+    entity_id: light.kitchen_can_lights_49
+  - service: light.turn_on
+    entity_id: light.kitchen_uc_lights_44
+  - service: light.turn_on
+    data:
+      entity_id: light.nook_uc_lights_116
+      brightness: 127
+#
+#################################################################
+# Outdoor Fountain On at 4:00p, Off at 8:00p
+#################################################################
+- id: fountain_on_at_1600
+  alias: Fountain on at 16:00
+  initial_state: true
+  trigger:
+    platform: time
+    at: '16:00:00'
+  condition: []
+  action:
+  - service: light.turn_on
+    entity_id: light.outdoor_switch_1_124
+  - delay:
+      hours: 4
+  - service: light.turn_off
+    entity_id: light.outdoor_switch_1_124
+#
+#################################################################
+# Outdoor Fountain Off at 8:01p
+#################################################################
+- id: fountain_off_at_2001
+  alias: Fountain off at 20:01
+  initial_state: true
+  trigger:
+    platform: time
+    at: '20:01:00'
+  condition:
+  - condition: state
+    entity_id: light.outdoor_switch_1_124
+    state: 'on'
+  action:
+  - service: light.turn_off
+    entity_id: light.outdoor_switch_1_124
+#
+#################################################################
+# Bird Room Lights Off at 9:00p
+#################################################################
+- id: bird_rms_off_at_2100
+  alias: Bird Rooms Off at 2100
+  initial_state: true
+  trigger:
+    platform: time
+    at: '21:00:00'
+  condition: []
+  action:
+  - service: light.turn_off
+    entity_id: light.bird_room_1_light_52
+  - service: light.turn_off
+    entity_id: light.bird_room_2_light_53
+#
+#################################################################
+# All Lights off at 11:00p
+#################################################################
+- id: all_off_at_2300
+  alias: All Lights Off at 2300
+  initial_state: true
+  trigger:
+    platform: time
+    at: '23:00:00'
+  condition: []
+  action:
+  - service: light.turn_off
+    entity_id: group.ceiling_fan_group
+  - service: light.turn_off
+    entity_id: group.outside_light_group
+  - service: light.turn_off
+    entity_id: group.inside_light_group
+  - service: script.turn_on
+    entity_id: script.lifx_lights_off
+#  - service: script.turn_on
+#    entity_id: script.turn_off_lgtv
+#
+#################################################################
+# LG LR TV off at 11:05p
+#################################################################
+- id: lg_lr_tv_off_at_2305
+  alias: LG LR TV off at 2305
+  initial_state: true
+  trigger:
+    platform: time
+    at: '23:05:00'
+  condition: []
+  action:
+  - service: script.turn_on
+    entity_id: script.turn_off_lgtv
+#
+#################################################################
+# All Lights off at 11:30p
+#################################################################
+- id: all_off_at_2330
+  alias: All Lights Off at 2330
+  initial_state: true
+  trigger:
+    platform: time
+    at: '23:30:00'
+  condition: []
+  action:
+#  - service: light.turn_off
+#    entity_id: group.ceiling_fan_group
+  - service: light.turn_off
+    entity_id: group.outside_light_group
+#  - service: light.turn_off
+#    entity_id: group.inside_light_group
+  - service: script.turn_on
+    entity_id: script.lifx_lights_off
+  - service: script.turn_on
+    entity_id: script.turn_off_lgtv
+#
+#################################################################
+## LIGHTING AUTOMATIONS (SUNRISE/SUNSET BASED EVENTS)
+#################################################################
+#
+#################################################################
+# Interior lights on 1 hour before sunset
+#################################################################
+- id: inside_lights_on_before_sunset
+  alias: Interior lights on 1 Hr before Sunset
+  initial_state: true
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: '-01:00:00'
+  - platform: time
+    at: '19:00:00'
+  condition:
+  - condition: state
+    entity_id: light.china_cabinet_25
+    state: 'off'
+  action:
+    service: script.turn_on
+    entity_id: script.inside_lights_on_before_sunset
+#
+#################################################################
+# Exterior lights on at Sunset
+#################################################################
+- id: ext_lights_on_before_sunset
+  alias: Exterior lights on before Sunset
+  initial_state: true
+  trigger:
+    platform: sun
+    event: sunset
+    offset: '-00:00:15'
+  condition: []
+  action:
+    service: script.turn_on
+    entity_id: script.outside_lights_on_at_sunset
+#
+#################################################################
+# Master Bath Lights on after Sunset
+#################################################################
+- id: mbath_lights_on_after_sunset
+  alias: Master Bath Lights on after Sunset
+  initial_state: true
+  trigger:
+    platform: sun
+    event: sunset
+    offset: '00:10:00'
+  condition:
+  - condition: state
+    entity_id: light.mbr_bath_lights_94
+    state: 'off'
+  action:
+    service: light.turn_on
+    data:
+      entity_id: light.mbr_bath_lights_94
+      brightness: 76
+#

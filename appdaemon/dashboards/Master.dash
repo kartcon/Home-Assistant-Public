@@ -1,0 +1,112 @@
+#
+# Main arguments, all optional
+#
+title: Rooms
+widget_dimensions: [120, 120]
+widget_margins: [5, 5]
+columns: 8
+
+user_one_avatar:
+  widget_type: camera
+  title: Art
+  entity_picture: http://192.168.0.50:8123/local/Arts_Avatar.png
+
+user_two_avatar:
+  widget_type: camera
+  title: Steff
+  entity_picture: http://192.168.0.50:8123/local/Steffs_Avatar.png
+
+user_one_sleepnumber:
+  title: Sleep Number
+  widget_type: gauge
+  entity: sensor.sleepnumber_cc04b4013d81_art_sleepnumber
+  min: 0
+  max: 100
+  units: ""
+  low_color: BBDEFB
+  med_color: 64B5F6
+  high_color: 2196F3
+#  widget_style: "color: #ea4b82;"
+  color: "#4bcdea"
+
+user_one_inbed:
+  title: Status
+  widget_type: binary_sensor
+  entity: binary_sensor.sleepnumber_cc04b4013d81_art_is_in_bed
+  state_text: 1
+  state_map:
+    "on": 'In Bed'
+    "off": 'Out of Bed'
+  icon_on: mdi-hotel
+  icon_style_active: "color: #E65100;"
+  icon_off: mdi-bed-empty
+  icon_style_inactive: "color: #BDBDBD;"
+
+user_two_sleepnumber:
+  title: Sleep Number
+  widget_type: gauge
+  entity: sensor.sleepnumber_cc04b4013d81_steff_sleepnumber
+  min: 0
+  max: 100
+  units: ""
+  low_color: D1C4E9
+  med_color: 9575CD
+  high_color: 7E57C2
+#  widget_style: "color: #ea4b82;"
+  color: "#ea4b82"
+
+user_two_inbed:
+    title: Status
+    widget_type: binary_sensor
+    entity: binary_sensor.sleepnumber_cc04b4013d81_steff_is_in_bed
+    state_text: 1
+    state_map:
+      "on": 'In Bed'
+      "off": 'Out of Bed'
+    icon_on: mdi-hotel
+    icon_style_active: "color: #E65100;"
+    icon_off: mdi-bed-empty
+    icon_style_inactive: "color: #BDBDBD;"
+
+mbr_lights_on:
+  widget_type: scene
+  title: Master Bedroom Lights On
+  entity: scene.mm__mbr_can_lights_on
+  icon_on: mdi-auto-fix
+  icon_off: mdi-auto-fix
+  icon_style_inactive:  "color: yellow;"
+
+mbr_lights_off:
+  widget_type: scene
+  title: Master Bedroom Lights Off
+  entity: scene.mm__mbr_can_lights_off
+  icon_on: mdi-auto-fix
+  icon_off: mdi-auto-fix
+  icon_style_inactive:  "color: yellow;"
+
+mbr_lights_up:
+  widget_type: scene
+  title: Master Bedroom Lights Up
+  entity: scene.mm__mbr_lights_up
+  icon_on: mdi-auto-fix
+  icon_off: mdi-auto-fix
+  icon_style_inactive:  "color: yellow;"
+
+mbr_lights_down:
+  widget_type: scene
+  title: Master Bedroom Lights Down
+  entity: scene.mm__mbr_lights_dn
+  icon_on: mdi-auto-fix
+  icon_off: mdi-auto-fix
+  icon_style_inactive:  "color: yellow;"
+
+
+
+layout:
+    - include: top_nav_small
+    - user_one_avatar, user_two_avatar, spacer, light.mbr_can_lights_95, light.mbr_bath_lights_94, switch.mbr_shower_light_92, switch.mbr_bath_fan_93
+    - user_one_sleepnumber, user_two_sleepnumber, spacer, mbr_lights_on, mbr_lights_off, mbr_lights_up, mbr_lights_down
+    - user_one_inbed, user_two_inbed, spacer
+    - include: rooms_panel
+    - include: bottom_nav
+

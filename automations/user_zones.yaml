@@ -1,0 +1,88 @@
+#################################################################
+## GEOLOCATION
+#################################################################
+#
+#############################################################
+##  Steff enters Shopping Zone
+#############################################################
+- id: geo_steff_enters_shopping_zone
+  alias: Geo Steff enters Shopping Zone
+  initial_state: true
+  trigger:
+  - entity_id: device_tracker.steff_ot2
+#  - entity_id: sensor.steffsiphone8_zone
+    event: enter
+    platform: zone
+    zone: zone.shopping
+  condition:
+  - condition: state
+    entity_id: input_boolean.zone_alerts
+    state: 'on'
+  action:
+  - service: notify.ios_group_art_only
+    data:
+      message: Steff enters the shopping zone.
+#
+#############################################################
+##  Steff leaving Shopping Zone
+#############################################################
+- id: geo_steff_exits_shoppingh_zone
+  alias: Geo Steff exits Shopping Zone
+  initial_state: true
+  trigger:
+  - entity_id: device_tracker.steff_ot2
+#  - entity_id: sensor.steffsiphone8_zone
+    event: leave
+    platform: zone
+    zone: zone.shopping
+  condition:
+  - condition: state
+    entity_id: input_boolean.zone_alerts
+    state: 'on'
+  action:
+  - service: notify.ios_group_art_only
+    data:
+      message: Steff exits the shopping zone.
+#
+#############################################################
+##  Steff enters Church Zone
+#############################################################
+- id: geo_steff_enters_church_zone
+  alias: Geo Steff enters Church Zone
+  initial_state: true
+  trigger:
+  - entity_id: device_tracker.steff_ot2
+#  - entity_id: sensor.steffsiphone8_zone
+    event: enter
+    platform: zone
+    zone: zone.church
+  condition:
+  - condition: state
+    entity_id: input_boolean.zone_alerts
+    state: 'on'
+  action:
+  - service: notify.ios_group_art_only
+    data:
+      message: Steff enters the Church zone.
+#
+#############################################################
+##  Steff leaves Church Zone
+#############################################################
+- id: geo_steff_exits_church_zone
+  alias: Geo Steff exits Church Zone
+  initial_state: true
+  trigger:
+  - entity_id: device_tracker.steff_ot2
+#  - entity_id: sensor.steffsiphone8_zone
+    event: leave
+    platform: zone
+    zone: zone.church
+  condition:
+  - condition: state
+    entity_id: input_boolean.zone_alerts
+    state: 'on'
+  action:
+  - service: notify.ios_group_art_only
+    data:
+      message: Steff exits the Church zone.
+#

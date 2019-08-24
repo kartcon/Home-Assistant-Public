@@ -1,0 +1,188 @@
+#################################################################
+## HVAC AUTOMATIONS
+#################################################################
+#
+#################################################################
+# HVAC Mode to Heat
+#################################################################
+- id: hvac_heat_mode
+  alias: HVAC Heat Mode
+  initial_state: true
+  trigger:
+    platform: numeric_state
+#    entity_id: sensor.pws_temp_f
+    entity_id: sensor.dark_sky_temperature
+    below: 67
+#  condition:
+#  - condition: state
+#    entity_id: input_boolean.no_one_home
+#    state: 'off'
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.thermostat_mode
+      option: Heat
+#
+#################################################################
+# HVAC Mode to Cool
+#################################################################
+- id: hvac_cool_mode
+  alias: HVAC Cool Mode
+  initial_state: true
+  trigger:
+    platform: numeric_state
+#    entity_id: sensor.pws_temp_f
+    entity_id: sensor.dark_sky_temperature
+    above: 72
+#  condition:
+#  - condition: state
+#    entity_id: input_boolean.no_one_home
+#    state: 'off'
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.thermostat_mode
+      option: Cool
+#
+#################################################################
+# HVAC Mode to Auto
+#################################################################
+- id: hvac_auto_mode
+  alias: HVAC Auto Mode
+  initial_state: true
+  trigger:
+    platform: numeric_state
+#    entity_id: sensor.pws_temp_f
+    entity_id: sensor.dark_sky_temperature
+    above: 67
+    below: 72
+#  condition:
+#  - condition: state
+#    entity_id: input_boolean.no_one_home
+#    state: 'off'
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.thermostat_mode
+      option: Auto
+#
+#################################################################
+# Phase of the Day: Morning
+#################################################################
+- id: hvac_phase_morning
+  alias: HVAC Phase Morning
+  initial_state: true
+  trigger:
+    platform: time
+    at: '06:00:00'
+#  condition:
+#  - condition: state
+#    entity_id: input_boolean.no_one_home
+#    state: 'off'
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.thermostat_phase
+      option: Morning
+#
+#################################################################
+# Phase of the Day: Daytime
+#################################################################
+- id: hvac_phase_daytime
+  alias: HVAC Phase Daytime
+  initial_state: true
+  trigger:
+    platform: time
+    at: '08:30:00'
+#  condition:
+#  - condition: state
+#    entity_id: input_boolean.no_one_home
+#    state: 'off'
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.thermostat_phase
+      option: Daytime
+#
+#################################################################
+# Phase of the Day: Evening
+#################################################################
+- id: hvac_phase_evening
+  alias: HVAC Phase Evening
+  initial_state: true
+  trigger:
+    platform: sun
+    event: sunset
+#  condition:
+#  - condition: state
+#    entity_id: input_boolean.no_one_home
+#    state: 'off'
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.thermostat_phase
+      option: Evening
+#
+#################################################################
+# Phase of the Day: Sleeping
+#################################################################
+- id: hvac_phase_sleeping
+  alias: HVAC Phase Sleeping
+  initial_state: true
+  trigger:
+    platform: time
+    at: '23:00:00'
+#  condition:
+#  - condition: state
+#    entity_id: input_boolean.no_one_home
+#    state: 'off'
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.thermostat_phase
+      option: Sleeping
+#
+#################################################################
+# HVAC Auto Updated
+#################################################################
+- id: hvac_auto_updated
+  alias: HVAC Auto Updated
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: input_select.thermostat_mode
+  - platform: state
+    entity_id: input_select.thermostat_phase
+  condition: []
+  action:
+  - service: script.turn_on
+    entity_id: script.update_tstats_script
+#
+#################################################################
+# HVAC Mode Changed
+#################################################################
+#- id: hvac_mode_changed
+#  alias: HVAC Mode Changed
+#  initial_state: true
+#  trigger:
+#    platform: state
+#    entity_id: input_select.thermostat_mode
+#  condition: []
+#  action:
+#    - service: script.turn_on
+#      entity_id: script.update_tstats_script
+#
+#################################################################
+# HVAC Phase Changed
+#################################################################
+#- id: hvac_phase_changed
+#  alias: HVAC Phase Changed
+#  initial_state: true
+#  trigger:
+#    platform: state
+#    entity_id: input_select.thermostat_phase
+#  condition: []
+#  action:
+#    - service: script.turn_on
+#      entity_id: script.update_tstats_script
+#

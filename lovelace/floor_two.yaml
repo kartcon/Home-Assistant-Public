@@ -1,0 +1,63 @@
+#########################################
+#  View - SECOND FLOOR
+#########################################
+#
+title: Second Floor
+path: floor_two
+id: v_second_floor
+icon: mdi:home-floor-2
+# panel: true
+cards:
+#     Card 1
+#  - type: markdown
+#    id: c_t6c1
+#    content: >
+#      ## Second Floor
+#     Card 2
+  - type: entities
+    title: Second Floor
+    show_header_toggle: true
+    entities:
+      - entity: light.office_desk_lamp_27
+        icon: mdi:desk-lamp
+      - entity: light.office_light_223
+        icon: mdi:lightbulb
+      - entity: light.office_fan_224
+        icon: mdi:fan
+#     Card 3
+  - type: picture-elements
+    image: /local/floorplan/second_floor.png
+    elements:
+      - type: state-icon
+        tap_action: 
+          action: toggle
+        entity: light.office_desk_lamp_27
+        style:
+          top: 23%
+          left: 65%
+      - type: state-icon
+        tap_action: 
+          action: toggle
+        entity: light.office_light_223
+        style:
+          top: 30%
+          left: 48%
+      - type: image
+        tap_action: 
+          action: toggle
+        entity: light.office_fan_224
+        state_image:
+          "on": /local/icons/fan.png
+          "off": /local/icons/fan-off.png
+        state_filter:
+          "on": brightness(0.8);
+          "off": brightness(0.2);
+        style:
+          top: 30%
+          left: 53%
+ # Thermostat 2
+      - type: state-label
+        entity: sensor.tstat2_temp
+        style:
+          top: 39%
+          left: 65%

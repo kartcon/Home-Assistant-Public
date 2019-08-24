@@ -1,0 +1,161 @@
+#
+# Main arguments, all optional
+#
+title: Sandbox
+widget_dimensions: [120, 120]
+widget_margins: [5, 5]
+columns: 8
+
+#
+# Includes (Optional)
+#
+
+# clock
+w_clock:
+  widget_type: clock
+  #time_format: 24hr
+  show_seconds: 1
+  date_format_country: "us"
+  date_format_options:
+    weekday: "short"
+    day: "numeric"
+    month: "numeric"  
+  widget_style: "background: white"
+  date_style: "color: black"
+  time_style: "color: green"
+
+# weather
+w_weather:
+  widget_type: weather
+  title: Today
+  title_style: "color: white;"
+  units: "&deg;F"
+  show_forecast: 1
+  prefer_icons: 0
+  forecast_title: Tomorrow
+  sensors:
+    icon: sensor.dark_sky_icon
+    temperature: sensor.dark_sky_temperature
+    apparent_temperature: sensor.dark_sky_apparent_temperature
+    humidity: sensor.dark_sky_humidity
+    precip_probability: sensor.dark_sky_precip_probability
+    precip_intensity: sensor.dark_sky_precip_intensity
+    precip_type: sensor.dark_sky_precip
+    pressure: sensor.dark_sky_pressure
+    wind_speed: sensor.dark_sky_wind_speed
+    wind_bearing: sensor.dark_sky_wind_bearing
+    forecast_icon: sensor.dark_sky_icon_1
+    forecast_temperature_min:  sensor.dark_sky_overnight_low_apparent_temperature_1
+    forecast_temperature_max: sensor.dark_sky_daytime_high_apparent_temperature_1
+    forecast_precip_probability: sensor.dark_sky_precip_probability_1
+    forecast_precip_type: sensor.dark_sky_precip_1
+#  widget_style:
+#  main_style:
+#  unit_style:
+#  sub_style:
+#  sub_unit_style:
+#  title_style:
+
+weather_summary:
+
+sensor:
+
+#input_select:
+w_input_select:
+  widget_type: input_select
+#  entity: input_select.house_mode
+#  title: House Mode
+#  text_style: "text-transform: uppercase;font-size: 300%"
+
+rss:
+
+gauge:
+
+device_tracker:
+
+#label:
+w_label:
+  widget_type: label
+  title: Alarm Status
+  title2: Label
+#  widget_type: alarm
+#  entity: alarm_control_panel.ha_alarm
+#  state_style: "font-size: 250%;"
+#  title_style: "color: white;"
+
+scene:
+
+script:
+
+mode:
+
+switch:
+
+lock:
+
+cover:
+
+input_boolean:
+
+icon:
+
+light:
+
+input_number:
+
+input_slider:
+
+climate:
+
+media_player:
+
+group:
+
+navigate:
+
+reload:
+
+iframe:
+
+entitypicture:
+
+camera:
+
+alarm:
+
+# temperature:
+w_temperature:
+  widget_type: temperature
+  title: Current Temperature
+  entity: sensor.dark_sky_temperature
+  settings:
+    minValue: 0
+    maxValue: 120
+    width: 120
+    height: 120
+    majorTicks: [0,20,40,60,80,100,120]
+    highlights: [{'from': 0, 'to': 60, 'color': '#81D4FA'},{'from': 90, 'to': 120, 'color': '#EF9A9A'}]
+
+# radial:
+w_radial:
+  widget_type: radial
+  entity: sensor.sleepnumber_cc04b4013d81_art_sleepnumber
+  settings:
+    title: Sleep Number
+    minValue: 0
+    maxValue: 100
+    majorTicks: [0,20,40,60,80,100]
+    highlights: [{'from': 0, 'to': 18, 'color': 'rgba(0,0, 255, .3)'},{'from': 25, 'to': 100, 'color': 'rgba(255, 0, 0, .3)'}]
+
+w_refresh:
+  widget_type: reload
+  title: Refresh
+
+layout:
+    - include: top_nav_small
+    - w_refresh, w_radial, w_label, w_weather
+    - w_clock (2x1), w_temperature
+    - 
+    - 
+    - include: bottom_nav
+

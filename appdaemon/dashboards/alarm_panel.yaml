@@ -1,0 +1,296 @@
+front_door_armed:
+    title: Front Door
+    widget_type: switch
+    entity: switch.front_door_31
+    state_text: 1
+    state_map:
+      "on": 'Armed'
+      "off": 'Bypassed'
+    icon_on: mdi-shield
+    icon_style_active: "color: lime;"
+    icon_off: mdi-shield-outline
+    icon_style_inactive: "color: red;"
+
+front_door_tripped:
+    title: Front Door
+    widget_type: binary_sensor
+    entity: binary_sensor.front_door_31
+    state_text: 1
+    state_map:
+      "on": 'Open'
+      "off": 'Closed'
+    icon_on: mdi-door-open
+    icon_style_active: "color: red;"
+    icon_off: mdi-door-closed
+    icon_style_inactive: "color: lime;"
+
+
+back_door_armed:
+    title: Back Door
+    widget_type: switch
+    entity: switch.back_door_36
+    state_text: 1
+    state_map:
+      "on": 'Armed'
+      "off": 'Bypassed'
+    icon_on: mdi-shield
+    icon_style_active: "color: lime;"
+    icon_off: mdi-shield-outline
+    icon_style_inactive: "color: red;"
+
+back_door_tripped:
+    title: Back Door
+    widget_type: binary_sensor
+    entity: binary_sensor.back_door_36
+    state_text: 1
+    state_map:
+      "on": 'Open'
+      "off": 'Closed'
+    icon_on: mdi-door-open
+    icon_style_active: "color: red;"
+    icon_off: mdi-door-closed
+    icon_style_inactive: "color: lime;"
+
+
+garage_entry_armed:
+    title: Garage Entry
+    widget_type: switch
+    entity: switch.garage_entry_door_39
+    state_text: 1
+    state_map:
+      "on": 'Armed'
+      "off": 'Bypassed'
+    icon_on: mdi-shield
+    icon_style_active: "color: lime;"
+    icon_off: mdi-shield-outline
+    icon_style_inactive: "color: red;"
+
+garage_entry_tripped:
+    title: Garage Entry
+    widget_type: binary_sensor
+    entity: binary_sensor.garage_entry_door_39
+    state_text: 1
+    state_map:
+      "on": 'Open'
+      "off": 'Closed'
+    icon_on: mdi-door-open
+    icon_style_active: "color: red;"
+    icon_off: mdi-door-closed
+    icon_style_inactive: "color: lime;"
+
+
+garage_one_armed:
+    title: Garage 1
+    widget_type: switch
+    entity: switch.one_car_gar_sensor_66
+    state_text: 1
+    state_map:
+      "on": 'Armed'
+      "off": 'Bypassed'
+    icon_on: mdi-shield
+    icon_style_active: "color: lime;"
+    icon_off: mdi-shield-outline
+    icon_style_inactive: "color: red;"
+
+garage_one_tripped:
+    title: Garage 1
+    widget_type: binary_sensor
+    entity: binary_sensor.one_car_gar_sensor_66
+    state_text: 1
+    state_map:
+      "on": 'Open'
+      "off": 'Closed'
+    icon_on: mdi-door-open
+    icon_style_active: "color: red;"
+    icon_off: mdi-door-closed
+    icon_style_inactive: "color: lime;"
+
+
+garage_two_armed:
+    title: Garage 2
+    widget_type: switch
+    entity: switch.two_car_gar_sensor_65
+    state_text: 1
+    state_map:
+      "on": 'Armed'
+      "off": 'Bypassed'
+    icon_on: mdi-shield
+    icon_style_active: "color: lime;"
+    icon_off: mdi-shield-outline
+    icon_style_inactive: "color: red;"
+
+garage_two_tripped:
+    title: Garage 2
+    widget_type: binary_sensor
+    entity: binary_sensor.two_car_gar_sensor_65
+    state_text: 1
+    state_map:
+      "on": 'Open'
+      "off": 'Closed'
+    icon_on: mdi-door-open
+    icon_style_active: "color: red;"
+    icon_off: mdi-door-closed
+    icon_style_inactive: "color: lime;"
+
+
+slider_east_armed:
+    title: Sliding Door East
+    widget_type: switch
+    entity: switch.sliding_door_left_37
+    state_text: 1
+    state_map:
+      "on": 'Armed'
+      "off": 'Bypassed'
+    icon_on: mdi-shield
+    icon_style_active: "color: lime;"
+    icon_off: mdi-shield-outline
+    icon_style_inactive: "color: red;"
+
+slider_east_tripped:
+    title: Sliding Door East
+    widget_type: binary_sensor
+    entity: binary_sensor.sliding_door_left_37
+    state_text: 1
+    state_map:
+      "on": 'Open'
+      "off": 'Closed'
+    icon_on: mdi-door-open
+    icon_style_active: "color: red;"
+    icon_off: mdi-door-closed
+    icon_style_inactive: "color: lime;"
+
+
+slider_west_armed:
+    title: Sliding Door West
+    widget_type: switch
+    entity: switch.sliding_door_right_38
+    state_text: 1
+    state_map:
+      "on": 'Armed'
+      "off": 'Bypassed'
+    icon_on: mdi-shield
+    icon_style_active: "color: lime;"
+    icon_off: mdi-shield-outline
+    icon_style_inactive: "color: red;"
+
+slider_west_tripped:
+    title: Sliding Door West
+    widget_type: binary_sensor
+    entity: binary_sensor.sliding_door_right_38
+    state_text: 1
+    state_map:
+      "on": 'Open'
+      "off": 'Closed'
+    icon_on: mdi-door-open
+    icon_style_active: "color: red;"
+    icon_off: mdi-door-closed
+    icon_style_inactive: "color: lime;"
+
+
+sr_east_armed:
+    title: Sun Room East
+    widget_type: switch
+    entity: switch.sunroom_east_34
+    state_text: 1
+    state_map:
+      "on": 'Armed'
+      "off": 'Bypassed'
+    icon_on: mdi-shield
+    icon_style_active: "color: lime;"
+    icon_off: mdi-shield-outline
+    icon_style_inactive: "color: red;"
+
+sr_east_tripped:
+    title: Sun Room East
+    widget_type: binary_sensor
+    entity: binary_sensor.sunroom_east_34
+    state_text: 1
+    state_map:
+      "on": 'Open'
+      "off": 'Closed'
+    icon_on: mdi-door-open
+    icon_style_active: "color: red;"
+    icon_off: mdi-door-closed
+    icon_style_inactive: "color: lime;"
+
+
+sr_west_armed:
+    title: Sun Room West
+    widget_type: switch
+    entity: switch.sunroom_west_35
+    state_text: 1
+    state_map:
+      "on": 'Armed'
+      "off": 'Bypassed'
+    icon_on: mdi-shield
+    icon_style_active: "color: lime;"
+    icon_off: mdi-shield-outline
+    icon_style_inactive: "color: red;"
+
+sr_west_tripped:
+    title: Sun Room West
+    widget_type: binary_sensor
+    entity: binary_sensor.sunroom_west_35
+    state_text: 1
+    state_map:
+      "on": 'Open'
+      "off": 'Closed'
+    icon_on: mdi-door-open
+    icon_style_active: "color: red;"
+    icon_off: mdi-door-closed
+    icon_style_inactive: "color: lime;"
+
+# ---------------------------------------
+
+enable_alarm:
+  widget_type: scene
+  title: Enable Alarm System
+  entity: scene.alarm_enable_alarm_system
+  icon_on: mdi-security-home
+  icon_off: mdi-security-home
+  icon_style_inactive:  "color: lime;"
+
+disable_alarm:
+  widget_type: scene
+  entity: scene.alarm_disable_alarm_system
+  title: Disable Alarm System
+  icon_on: mdi-security-home
+  icon_off: mdi-security-home
+  icon_style_inactive:  "color: red;"
+
+silence_alarm:
+  widget_type: scene
+  entity: scene.alarm_silence_siren
+  title: Silence Alarm
+  icon_on: fa-bell-slash
+  icon_off: mdi-alarm-off
+  icon_style_inactive:  "color: yellow;"
+
+arm_all_zones:
+  widget_type: scene
+  entity: scene.alarm_arm_all_zones
+  title: Arm All Zones
+  icon_on: mdi-security
+  icon_off: mdi-security
+  icon_style_inactive:  "color: teal;"
+
+bypass_all_zones:
+  widget_type: scene
+  entity: scene.alarm_bypass_all_zones
+  title: Bypass All Zones
+  icon_on: mdi-shield-outline
+  icon_off: mdi-shield-outline
+  icon_style_inactive:  "color: teal;"
+
+# ---------------------------------------
+
+refresh:
+  widget_type: reload
+  title: Refresh
+#  widget_style:  "background-color: SLATEGRAY;"
+
+layout:
+  - enable_alarm, arm_all_zones, front_door_armed, back_door_armed, garage_entry_armed,front_door_tripped, back_door_tripped, garage_entry_tripped
+  - disable_alarm, bypass_all_zones, garage_one_armed, slider_east_armed, slider_west_armed, garage_one_tripped, slider_east_tripped, slider_west_tripped
+  - silence_alarm, refresh, garage_two_armed, sr_east_armed, sr_west_armed, garage_two_tripped, sr_east_tripped, sr_west_tripped
+

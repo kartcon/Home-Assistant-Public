@@ -1,0 +1,44 @@
+#########################
+#   Dark Sky Weather    #
+#########################
+- platform: darksky
+  api_key: !secret darksky_api_key
+  forecast:
+    - 0
+    - 1
+#    - 2
+  monitored_conditions:
+    - apparent_temperature
+#    - apparent_temperature_high
+#    - apparent_temperature_low
+#    - cloud_cover
+    - daily_summary
+      # A human-readable text summary for the next week.
+#    - dew_point
+    - icon
+    - hourly_summary
+      # A human-readable text summary for the next two days.
+    - humidity
+    - minutely_summary
+      # A human-readable text summary for the next hour.
+    - moon_phase
+#    - nearest_storm_bearing
+    - nearest_storm_distance
+#    - ozone
+#    - precip_type
+#    - precip_intensity
+    - precip_probability
+#    - precip_accumulation
+#    - pressure
+    - summary
+#    - sunrise_time
+#    - sunset_time
+    - temperature
+    - temperature_high
+    - temperature_low
+    - visibility
+    - wind_bearing
+    - wind_speed
+    - wind_gust
+  scan_interval: '00:15:00'
+#

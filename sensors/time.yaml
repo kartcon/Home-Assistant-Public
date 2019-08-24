@@ -1,0 +1,149 @@
+#############################################################
+#               Time & Date Templates                       #
+#############################################################
+#
+- platform: template
+  sensors:
+    readable_time:
+      entity_id: sensor.time
+#      value_template: "{{ now().strftime('%I:%M:%S %p') }}"      ( with seconds )
+      value_template: "{{ now().strftime('%I:%M %p') }}"
+      friendly_name: "Readable Time"
+    readable_date_short:
+      entity_id: sensor.time
+      value_template: "{{ as_timestamp(now()) | timestamp_custom('%x', True) }}"
+      friendly_name: "Readable Date Short"
+    readable_date_long:
+      entity_id: sensor.time
+      value_template: "{{ as_timestamp(now()) | timestamp_custom('%a %b %d, %Y', True) }}"
+      friendly_name: "Readable Date Long"
+    readable_full:
+      entity_id: sensor.time
+#      value_template: "{{ now().strftime('%a %b %d, %Y | %I:%M:%S %p') }}"      ( with seconds )
+      value_template: "{{ now().strftime('%a %b %d, %Y | %I:%M %p') }}"
+      friendly_name: "Readable Date"
+    time_of_day:
+      entity_id: sensor.time
+      value_template: >
+        {% set current_hour = strptime(states('sensor.time'), "%H:%M").hour %}
+        {% if current_hour < 12 %}
+          Morning
+        {% elif 12 <= current_hour < 18 %}
+          Afternoon
+        {% else %}
+          Evening
+        {% endif %}
+      friendly_name: "Time of Day"
+    dayoftheweek:
+      entity_id: sensor.date
+      value_template: "{{ now().strftime('%A') }}"
+      friendly_name: "Day of the week"
+      # Returns: Sunday
+    dayofthemonth:
+      entity_id: sensor.date
+      value_template: "{{ now().day }}"
+      friendly_name: "Day of the Month"
+      # Returns: 18
+    dateofthemonth:
+      entity_id: sensor.date
+      value_template: >
+        {% set suffix = ['st', 'nd', 'rd'] %}
+        {% set day = now().day %}
+        {% set index = 3 if day // 10 == 1 or day % 10 == 0 else (day % 10) - 1 %}
+        {{ day~'th' if index > 2 else day~suffix[index] }}
+      friendly_name: "Day of the Month"
+      # Returns: 18th
+    day_of_year:
+      entity_id: sensor.time
+      value_template: "{{ now().strftime('%j') }}"
+      friendly_name: "Day of the Year"
+      # Returns: 230
+    week_of_year:
+      entity_id: sensor.time
+      value_template: "{{ now().strftime('%U') }}"
+      friendly_name: "Week of the Year"
+      # Returns: 33
+    month_name:
+      entity_id: sensor.date
+      value_template: "{{ now().strftime('%B') }}"
+      friendly_name: "Month Name"
+      # Returns: August
+#    date_two_weeks_ahead:
+#      entity_id: sensor.time
+#      value_template: "{{ (as_timestamp(now()) + (14*24*3600)) | timestamp_custom('%Y-%m-%d', True) }}"
+#      friendly_name: "Date 2 Wks Ahead"
+      # Returns: date two weeks ahead
+    week_odd_even:
+      entity_id:
+        - sensor.date_time
+      value_template: >-
+        {% set year = states.sensor.date_time.state.split(',')[0].split('-')[0] %}
+        {% set month = states.sensor.date_time.state.split(',')[0].split('-')[1] %}
+        {% set date = states.sensor.date_time.state.split(',')[0].split('-')[2] %}
+        {% set today = strptime(year ~ '-' ~ month ~ '-' ~ date , '%Y-%m-%d') %}
+        {%- if (as_timestamp(today) | timestamp_custom('%U', true) | int ) % 2 == 0 -%}
+          Even Week
+        {%- else -%}
+          Odd Week
+        {%- endif -%}
+      friendly_name: "Week Odd/Even"
+      # Returns: Odd
+#          Even Week (Week# {{ as_timestamp(today) | timestamp_custom('%U', true) }})
+#          Odd Week (Week# {{ as_timestamp(today) | timestamp_custom('%U', true) }})
+#
+#############################################################
+#             Users Home/Away Calculations                  #
+#############################################################
+#
+#####################################
+# Accumulative ARTS HOME time
+#####################################
+    art_home_time:
+      friendly_name: "Art (Time Home)"
+      unit_of_measurement: 'hours'
+      value_template: >-
+        {% if is_state('input_boolean.art_home', 'on') %}
+          {{ (((as_timestamp(utcnow()))- states('input_number.ts_art_home') | float) / 3600) | round (2) }}
+        {% else %}
+          {{ ((states('input_number.ts_art_away') | float - states('input_number.ts_art_home') | float) / 3600) | round (2) }}
+        {% endif %}
+#
+#####################################
+# Accumulative ARTS AWAY time
+#####################################
+    art_away_time:
+      friendly_name: "Art (Time Away)"
+      unit_of_measurement: 'hours'
+      value_template: >-
+        {% if is_state('input_boolean.art_home', 'off') %}
+          {{ ((as_timestamp(utcnow()) - states('input_number.ts_art_away') | float) / 3600) | round (2) }}
+        {% else %}
+          {{ ((states('input_number.ts_art_home') | float - states('input_number.ts_art_away') | float) / 3600) | round (2) }}
+        {% endif %}
+#
+#####################################
+# Accumulative STEFFS HOME time
+#####################################
+    steff_home_time:
+      friendly_name: "Steff (Time Home)"
+      unit_of_measurement: 'hours'
+      value_template: >-
+        {% if is_state('input_boolean.steff_home', 'on') %}
+          {{ (((as_timestamp(utcnow()))- states('input_number.ts_steff_home') | float) / 3600) | round (2) }}
+        {% else %}
+          {{ ((states('input_number.ts_steff_away') | float - states('input_number.ts_steff_home') | float) / 3600) | round (2) }}
+        {% endif %}
+#
+#####################################
+# Accumulative STEFFS AWAY time
+#####################################
+    steff_away_time:
+      friendly_name: "Steff (Time Away)"
+      unit_of_measurement: 'hours'
+      value_template: >-
+        {% if is_state('input_boolean.steff_home', 'off') %}
+          {{ ((as_timestamp(utcnow()) - states('input_number.ts_steff_away') | float) / 3600) | round (2) }}
+        {% else %}
+          {{ ((states('input_number.ts_steff_home') | float - states('input_number.ts_steff_away') | float) / 3600) | round (2) }}
+        {% endif %}
+#

@@ -1,0 +1,44 @@
+#################################################################
+## VISUAL NOTIFICATION SCRIPTS
+#################################################################
+#
+#################################################################
+# Incoming Notification
+# Called from : Notifications in alarm_panel.yaml, all actions in door_locks.yaml,
+# Trash & Recycling reminders in scheduled_events.yaml,
+#################################################################
+blink_lights_tv:
+  alias: 'Incoming Notification'
+  sequence:
+    - service: light.lifx_effect_pulse
+      data:
+        entity_id: light.tv_left, light.tv_right
+        rgb_color: [255,255,255]
+        brightness: 128
+        period: 0.2
+        cycles: 3
+        mode: blink
+        power_on: False
+#
+blink_lights_porch:
+  alias: 'Incoming Notification'
+  sequence:
+    - service: light.lifx_set_state
+      data:
+        entity_id: light.front_porch
+        brightness: 128
+        color_temp: 285
+    - service: light.lifx_effect_pulse
+      data:
+        entity_id: light.front_porch
+        rgb_color: [255,255,255]
+        brightness: 128
+        period: 0.2
+        cycles: 4
+        mode: blink
+        power_on: True
+    - service: light.lifx_set_state
+      data:
+        entity_id: light.front_porch
+        power: false
+#

@@ -1,0 +1,718 @@
+#################################################################
+# DOOR SENSOR SCRIPTS
+#################################################################
+#
+#################################################################
+# Reset Front Door Sensor
+# Called from [PreSet Alarm to Armed Away]
+# In file: [automations/alarm_panel.yaml]
+# Called from [Front Door Sensor Tripped]
+# In file: [automations/door_sensors.yaml]
+## Called from [update_front_door_sensor_on_lock]
+## In file: [automations/door_locks.yaml]
+#################################################################
+reset_front_door_sensor:
+  alias: Reset Front Door Sensor
+  sequence:
+  - service: switch.turn_off
+    data:
+      entity_id: switch.front_door_31
+  - delay: '00:00:02'
+  - service: switch.turn_on
+    data:
+      entity_id: switch.front_door_31
+  - delay: '00:00:02'
+  - service: switch.turn_off
+    data:
+      entity_id: switch.front_door_31
+  - delay: '00:00:02'
+  - service: switch.turn_on
+    data:
+      entity_id: switch.front_door_31
+  - delay: '00:00:02'
+  - service: homeassistant.update_entity
+    data:
+      entity_id: binary_sensor.front_door_31
+  - wait_template: "{{ is_state('binary_sensor.front_door_31', 'off') }}"
+    timeout: '00:00:10'
+    continue_on_timeout: 'true'
+  - service: script.write_to_log
+    data_template:
+      entity_id: switch.front_door_31
+      message: >-
+        At {{now().strftime("%m/%d/%Y %H:%M:%S")}} Script - Reset Front Door Sensor
+  - condition: state
+    entity_id: input_boolean.enable_sensor_notifications
+    state: 'on'
+  - service: persistent_notification.create
+    data:
+      title: "Door Sensor Alert"
+      message: "At {{now().strftime('%m/%d/%Y %H:%M:%S')}} the FRONT DOOR sensor was reset (Zone-Toggled).
+                Enabled = {{states.switch.front_door_31.state}}, 
+                Tripped = {{states.binary_sensor.front_door_31.state}}."
+#
+#################################################################
+# Reset Back Door Sensor
+# Called from [PreSet Alarm to Armed Away]
+# In file: [automations/alarm_panel.yaml]
+# Called from [Back Door Sensor Tripped]
+# In file: [automations/door_sensors.yaml]
+#################################################################
+reset_back_door_sensor:
+  alias: Reset Back Door Sensor
+  sequence:
+  - service: switch.turn_off
+    data:
+      entity_id: switch.back_door_36
+  - delay: '00:00:02'
+  - service: switch.turn_on
+    data:
+      entity_id: switch.back_door_36
+  - delay: '00:00:02'
+  - service: switch.turn_off
+    data:
+      entity_id: switch.back_door_36
+  - delay: '00:00:02'
+  - service: switch.turn_on
+    data:
+      entity_id: switch.back_door_36
+  - delay: '00:00:02'
+  - service: homeassistant.update_entity
+    data:
+      entity_id: binary_sensor.back_door_36
+  - wait_template: "{{ is_state('binary_sensor.back_door_36', 'off') }}"
+    timeout: '00:00:10'
+    continue_on_timeout: 'true'
+  - service: script.write_to_log
+    data_template:
+      entity_id: switch.back_door_36
+      message: >-
+        At {{now().strftime("%m/%d/%Y %H:%M:%S")}} Script - Reset Back Door Sensor
+  - condition: state
+    entity_id: input_boolean.enable_sensor_notifications
+    state: 'on'
+  - service: persistent_notification.create
+    data:
+      title: "Door Sensor Alert"
+      message: "At {{now().strftime('%m/%d/%Y %H:%M:%S')}} the BACK DOOR sensor was reset (Zone-Toggled).
+                Enabled = {{states.switch.back_door_36.state}}, 
+                Tripped = {{states.binary_sensor.back_door_36.state}}."
+#
+#################################################################
+# Reset Garage Entry Door Sensor
+# Called from [PreSet Alarm to Armed Away]
+# In file: [automations/alarm_panel.yaml]
+# Called from [Garage Entry Door Sensor Tripped]
+# In file: [automations/door_sensors.yaml]
+#################################################################
+reset_garage_entry_door_sensor:
+  alias: Reset Garage Entry Door Sensor
+  sequence:
+  - service: switch.turn_off
+    data:
+      entity_id: switch.garage_entry_door_39
+  - delay: '00:00:02'
+  - service: switch.turn_on
+    data:
+      entity_id: switch.garage_entry_door_39
+  - delay: '00:00:02'
+  - service: switch.turn_off
+    data:
+      entity_id: switch.garage_entry_door_39
+  - delay: '00:00:02'
+  - service: switch.turn_on
+    data:
+      entity_id: switch.garage_entry_door_39
+  - delay: '00:00:02'
+  - service: homeassistant.update_entity
+    data:
+      entity_id: binary_sensor.garage_entry_door_39
+  - wait_template: "{{ is_state('binary_sensor.garage_entry_door_39', 'off') }}"
+    timeout: '00:00:10'
+    continue_on_timeout: 'true'
+  - service: script.write_to_log
+    data_template:
+      entity_id: switch.garage_entry_door_39
+      message: >-
+        At {{now().strftime("%m/%d/%Y %H:%M:%S")}} Script - Reset Garage Entry Door Sensor
+  - condition: state
+    entity_id: input_boolean.enable_sensor_notifications
+    state: 'on'
+  - service: persistent_notification.create
+    data:
+      title: "Door Sensor Alert"
+      message: "At {{now().strftime('%m/%d/%Y %H:%M:%S')}} the GARAGE ENTRY DOOR sensor was reset (Zone-Toggled).
+                Enabled = {{states.switch.garage_entry_door_39.state}}, 
+                Tripped = {{states.binary_sensor.garage_entry_door_39.state}}."
+#
+#################################################################
+# Reset Sliding Door Left Sensor
+# Called from [PreSet Alarm to Armed Away]
+# In file: [automations/alarm_panel.yaml]
+# Called from [Sliding Door Left Sensor Tripped]
+# In file: [automations/door_sensors.yaml]
+#################################################################
+reset_sliding_door_left_sensor:
+  alias: Reset Sliding Door Left Sensor
+  sequence:
+  - service: switch.turn_off
+    data:
+      entity_id: switch.sliding_door_left_37
+  - delay: '00:00:02'
+  - service: switch.turn_on
+    data:
+      entity_id: switch.sliding_door_left_37
+  - delay: '00:00:02'
+  - service: switch.turn_off
+    data:
+      entity_id: switch.sliding_door_left_37
+  - delay: '00:00:02'
+  - service: switch.turn_on
+    data:
+      entity_id: switch.sliding_door_left_37
+  - delay: '00:00:02'
+  - service: homeassistant.update_entity
+    data:
+      entity_id: binary_sensor.sliding_door_left_37
+  - wait_template: "{{ is_state('binary_sensor.sliding_door_left_37', 'off') }}"
+    timeout: '00:00:10'
+    continue_on_timeout: 'true'
+  - service: script.write_to_log
+    data_template:
+      entity_id: switch.sliding_door_left_37
+      message: >-
+        At {{now().strftime("%m/%d/%Y %H:%M:%S")}} Script - Reset Sliding Door Left Sensor
+  - condition: state
+    entity_id: input_boolean.enable_sensor_notifications
+    state: 'on'
+  - service: persistent_notification.create
+    data:
+      title: "Door Sensor Alert"
+      message: "At {{now().strftime('%m/%d/%Y %H:%M:%S')}} the SLIDING DOOR LEFT sensor was reset (Zone-Toggled).
+                Enabled = {{states.switch.sliding_door_left_37.state}}, 
+                Tripped = {{states.binary_sensor.sliding_door_left_37.state}}."
+#
+#################################################################
+# Reset Sliding Door Right Sensor
+# Called from [PreSet Alarm to Armed Away]
+# In file: [automations/alarm_panel.yaml]
+# Called from [Sliding Door Right Sensor Tripped]
+# In file: [automations/door_sensors.yaml]
+#################################################################
+reset_sliding_door_right_sensor:
+  alias: Reset Sliding Door Right Sensor
+  sequence:
+  - service: switch.turn_off
+    data:
+      entity_id: switch.sliding_door_right_38
+  - delay: '00:00:02'
+  - service: switch.turn_on
+    data:
+      entity_id: switch.sliding_door_right_38
+  - delay: '00:00:02'
+  - service: switch.turn_off
+    data:
+      entity_id: switch.sliding_door_right_38
+  - delay: '00:00:02'
+  - service: switch.turn_on
+    data:
+      entity_id: switch.sliding_door_right_38
+  - delay: '00:00:02'
+  - service: homeassistant.update_entity
+    data:
+      entity_id: binary_sensor.sliding_door_right_38
+  - wait_template: "{{ is_state('binary_sensor.sliding_door_right_38', 'off') }}"
+    timeout: '00:00:10'
+    continue_on_timeout: 'true'
+  - service: script.write_to_log
+    data_template:
+      entity_id: switch.sliding_door_right_38
+      message: >-
+        At {{now().strftime("%m/%d/%Y %H:%M:%S")}} Script - Reset Sliding Door Right Sensor
+  - condition: state
+    entity_id: input_boolean.enable_sensor_notifications
+    state: 'on'
+  - service: persistent_notification.create
+    data:
+      title: "Door Sensor Alert"
+      message: "At {{now().strftime('%m/%d/%Y %H:%M:%S')}} the SLIDING DOOR RIGHT sensor was reset (Zone-Toggled).
+                Enabled = {{states.switch.sliding_door_right_38.state}}, 
+                Tripped = {{states.binary_sensor.sliding_door_right_38.state}}."
+#
+#################################################################
+# Reset Sunroom East Sensor
+# Called from [PreSet Alarm to Armed Away]
+# In file: [automations/alarm_panel.yaml]
+# Called from [Sun Room East Door Sensor Tripped]
+# In file: [automations/door_sensors.yaml]
+#################################################################
+reset_sunroom_east_sensor:
+  alias: Reset Sunroom East Sensor
+  sequence:
+  - service: switch.turn_off
+    data:
+      entity_id: switch.sunroom_east_34
+  - delay: '00:00:02'
+  - service: switch.turn_on
+    data:
+      entity_id: switch.sunroom_east_34
+  - delay: '00:00:02'
+  - service: switch.turn_off
+    data:
+      entity_id: switch.sunroom_east_34
+  - delay: '00:00:02'
+  - service: switch.turn_on
+    data:
+      entity_id: switch.sunroom_east_34
+  - delay: '00:00:02'
+  - service: homeassistant.update_entity
+    data:
+      entity_id: binary_sensor.sunroom_east_34
+  - wait_template: "{{ is_state('binary_sensor.sunroom_east_34', 'off') }}"
+    timeout: '00:00:10'
+    continue_on_timeout: 'true'
+  - service: script.write_to_log
+    data_template:
+      entity_id: switch.sunroom_east_34
+      message: >-
+        At {{now().strftime("%m/%d/%Y %H:%M:%S")}} Script - Reset Sunroom East Sensor
+  - condition: state
+    entity_id: input_boolean.enable_sensor_notifications
+    state: 'on'
+  - service: persistent_notification.create
+    data:
+      title: "Door Sensor Alert"
+      message: "At {{now().strftime('%m/%d/%Y %H:%M:%S')}} the SUNROOM EAST DOOR sensor was reset (Zone-Toggled).
+                Enabled = {{states.switch.sunroom_east_34.state}}, 
+                Tripped = {{states.binary_sensor.sunroom_east_34.state}}."
+#
+#################################################################
+# Reset Sunroom West Sensor
+# Called from [PreSet Alarm to Armed Away]
+# In file: [automations/alarm_panel.yaml]
+# Called from [Sun Room West Door Sensor Tripped]
+# In file: [automations/door_sensors.yaml]
+#################################################################
+reset_sunroom_west_sensor:
+  alias: Reset Sunroom West Sensor
+  sequence:
+  - service: switch.turn_off
+    data:
+      entity_id: switch.sunroom_west_35
+  - delay: '00:00:02'
+  - service: switch.turn_on
+    data:
+      entity_id: switch.sunroom_west_35
+  - delay: '00:00:02'
+  - service: switch.turn_off
+    data:
+      entity_id: switch.sunroom_west_35
+  - delay: '00:00:02'
+  - service: switch.turn_on
+    data:
+      entity_id: switch.sunroom_west_35
+  - delay: '00:00:02'
+  - service: homeassistant.update_entity
+    data:
+      entity_id: binary_sensor.sunroom_west_35
+  - wait_template: "{{ is_state('binary_sensor.sunroom_west_35', 'off') }}"
+    timeout: '00:00:10'
+    continue_on_timeout: 'true'
+  - service: script.write_to_log
+    data_template:
+      entity_id: switch.sunroom_west_35
+      message: >-
+        At {{now().strftime("%m/%d/%Y %H:%M:%S")}} Script - Reset Sunroom West Sensor
+  - condition: state
+    entity_id: input_boolean.enable_sensor_notifications
+    state: 'on'
+  - service: persistent_notification.create
+    data:
+      title: "Door Sensor Alert"
+      message: "At {{now().strftime('%m/%d/%Y %H:%M:%S')}} the SUNROOM WEST DOOR sensor was reset (Zone-Toggled).
+                Enabled = {{states.switch.sunroom_west_35.state}}, 
+                Tripped = {{states.binary_sensor.sunroom_west_35.state}}."
+#
+#################################################################
+# Reset One Car Gar Sensor
+# Called from [PreSet Alarm to Armed Away]
+# In file: [automations/alarm_panel.yaml]
+# Called from [Garage 1 Tilt Sensor Tripped]
+# In file: [automations/door_sensors.yaml]
+#################################################################
+reset_one_car_gar_sensor:
+  alias: Reset One Car Gar Sensor
+  sequence:
+  - service: switch.turn_off
+    data:
+      entity_id: switch.one_car_gar_sensor_66
+  - delay: '00:00:02'
+  - service: switch.turn_on
+    data:
+      entity_id: switch.one_car_gar_sensor_66
+  - delay: '00:00:02'
+  - service: switch.turn_off
+    data:
+      entity_id: switch.one_car_gar_sensor_66
+  - delay: '00:00:02'
+  - service: switch.turn_on
+    data:
+      entity_id: switch.one_car_gar_sensor_66
+  - delay: '00:00:02'
+  - service: homeassistant.update_entity
+    data:
+      entity_id: binary_sensor.one_car_gar_sensor_66
+  - wait_template: "{{ is_state('binary_sensor.one_car_gar_sensor_66', 'off') }}"
+    timeout: '00:00:10'
+    continue_on_timeout: 'true'
+  - service: script.write_to_log
+    data_template:
+      entity_id: switch.one_car_gar_sensor_66
+      message: >-
+        At {{now().strftime("%m/%d/%Y %H:%M:%S")}} Script - Reset One Car Gar Sensor
+  - condition: state
+    entity_id: input_boolean.enable_sensor_notifications
+    state: 'on'
+  - service: persistent_notification.create
+    data:
+      title: "Door Sensor Alert"
+      message: "At {{now().strftime('%m/%d/%Y %H:%M:%S')}} the ONE CAR GAR sensor was reset (Zone-Toggled).
+                Enabled = {{states.switch.one_car_gar_sensor_66.state}}, 
+                Tripped = {{states.binary_sensor.one_car_gar_sensor_66.state}}."
+#
+#################################################################
+# Reset Two Car Gar Sensor
+# Called from [PreSet Alarm to Armed Away]
+# In file: [automations/alarm_panel.yaml]
+## Called from [Garage 2 Tilt Sensor Tripped]
+## In file: [automations/door_sensors.yaml]
+# Called from [update_garage_door_2_sensor_on_lock]
+# In file: [automations/door_locks.yaml]
+# Called from [close_garage_doors_at_sunset]
+# In file: [automations/door_locks.yaml]
+#################################################################
+reset_two_car_gar_sensor:
+  alias: Reset Two Car Gar Sensor
+  sequence:
+  - service: switch.turn_off
+    data:
+      entity_id: switch.two_car_gar_sensor_65
+  - delay: '00:00:02'
+  - service: switch.turn_on
+    data:
+      entity_id: switch.two_car_gar_sensor_65
+  - delay: '00:00:02'
+  - service: switch.turn_off
+    data:
+      entity_id: switch.two_car_gar_sensor_65
+  - delay: '00:00:02'
+  - service: switch.turn_on
+    data:
+      entity_id: switch.two_car_gar_sensor_65
+  - delay: '00:00:02'
+  - service: homeassistant.update_entity
+    data:
+      entity_id: binary_sensor.two_car_gar_sensor_65
+  - wait_template: "{{ is_state('binary_sensor.two_car_gar_sensor_65', 'off') }}"
+    timeout: '00:00:10'
+    continue_on_timeout: 'true'
+  - service: script.write_to_log
+    data_template:
+      entity_id: switch.two_car_gar_sensor_65
+      message: >-
+        At {{now().strftime("%m/%d/%Y %H:%M:%S")}} Script - Reset Two Car Gar Sensor
+  - condition: state
+    entity_id: input_boolean.enable_sensor_notifications
+    state: 'on'
+  - service: persistent_notification.create
+    data:
+      title: "Door Sensor Alert"
+      message: "At {{now().strftime('%m/%d/%Y %H:%M:%S')}} the TWO CAR GAR sensor was reset (Zone-Toggled).
+                Enabled = {{states.switch.two_car_gar_sensor_65.state}}, 
+                Tripped = {{states.binary_sensor.two_car_gar_sensor_65.state}}."
+#################################################################
+#
+#   DISABLE DOOR SENSOR SCRIPTS
+#
+#################################################################
+# Disable Front Door Sensor
+# Called from [Sensor Automations] (Tripped, 5 min Timer)
+# In file: [automations/sensor.yaml]
+#################################################################
+#disable_front_door_sensor:
+#  alias: Disable Front Door Sensor
+#  sequence:
+#  - service: script.write_to_log
+#    data:
+#      entity_id: switch.front_door_31
+#      message: 'Disable Front Door Sensor'
+#  - service: switch.turn_off
+#    data:
+#      entity_id: switch.front_door_31
+#  - service: homeassistant.update_entity
+#    data:
+#      entity_id: binary_sensor.front_door_31
+#  - wait_template: "{{ is_state('binary_sensor.front_door_31', 'off') }}"
+#    timeout: '00:00:30'
+#    continue_on_timeout: 'true'
+#  - condition: state
+#    entity_id: input_boolean.enable_sensor_notifications
+#    state: 'on'
+#  - service: persistent_notification.create
+#    data:
+#      title: "Disable Front Door Sensor"
+#      message: "At {{now().strftime('%m/%d/%Y %H:%M:%S')}} the FRONT DOOR sensor was disabled (Zone-Toggled). 
+#                Enabled = {{states.switch.front_door_31.state}}, 
+#                Tripped = {{states.binary_sensor.front_door_31.state}}."
+#
+#################################################################
+# Disable Back Door Sensor
+# Called from [Sensor Automations] (Tripped, 5 min Timer)
+# In file: [automations/sensor.yaml]
+#################################################################
+#disable_back_door_sensor:
+#  alias: Disable Back Door Sensor
+#  sequence:
+#  - service: script.write_to_log
+#    data:
+#      entity_id: switch.back_door_36
+#      message: 'Disable Back Door Sensor'
+#  - service: switch.turn_off
+#    data:
+#      entity_id: switch.back_door_36
+#  - service: homeassistant.update_entity
+#    data:
+#      entity_id: binary_sensor.back_door_36
+#  - wait_template: "{{ is_state('binary_sensor.back_door_36', 'off') }}"
+#    timeout: '00:00:30'
+#    continue_on_timeout: 'true'
+#  - condition: state
+#    entity_id: input_boolean.enable_sensor_notifications
+#    state: 'on'
+#  - service: persistent_notification.create
+#    data:
+#      title: "Disable Back Door Sensor"
+#      message: "At {{now().strftime('%m/%d/%Y %H:%M:%S')}} the BACK DOOR sensor was disabled (Zone-Toggled). 
+#                Enabled = {{states.switch.back_door_36.state}}, 
+#                Tripped = {{states.binary_sensor.back_door_36.state}}."
+#
+#################################################################
+# Disable Garage Entry Door Sensor
+# Called from [Sensor Automations] (Tripped, 5 min Timer)
+# In file: [automations/sensor.yaml]
+#################################################################
+#disable_garage_entry_door_sensor:
+#  alias: Disable Garage Entry Door Sensor
+#  sequence:
+#  - service: script.write_to_log
+#    data:
+#      entity_id: switch.garage_entry_door_39
+#      message: 'Disable Garage Entry Door Sensor'
+#  - service: switch.turn_off
+#    data:
+#      entity_id: switch.garage_entry_door_39
+#  - service: homeassistant.update_entity
+#    data:
+#      entity_id: binary_sensor.garage_entry_door_39
+#  - wait_template: "{{ is_state('binary_sensor.garage_entry_door_39', 'off') }}"
+#    timeout: '00:00:30'
+#    continue_on_timeout: 'true'
+#  - condition: state
+#    entity_id: input_boolean.enable_sensor_notifications
+#    state: 'on'
+#  - service: persistent_notification.create
+#    data:
+#      title: "Disable Garage Entry Door Sensor"
+#      message: "At {{now().strftime('%m/%d/%Y %H:%M:%S')}} the GARAGE ENTRY DOOR sensor was disabled (Zone-Toggled). 
+#                Enabled = {{states.switch.garage_entry_door_39.state}}, 
+#                Tripped = {{states.binary_sensor.garage_entry_door_39.state}}."
+#
+#################################################################
+# Disable Sliding Door Left Sensor
+# Called from [Sensor Automations] (Tripped, 5 min Timer)
+# In file: [automations/sensor.yaml]
+#################################################################
+#disable_sliding_door_left_sensor:
+#  alias: Disable Sliding Door Left Sensor
+#  sequence:
+#  - service: script.write_to_log
+#    data:
+#      entity_id: switch.sliding_door_left_37
+#      message: 'Disable Sliding Door Left Sensor'
+#  - service: switch.turn_off
+#    data:
+#      entity_id: switch.sliding_door_left_37
+#  - service: homeassistant.update_entity
+#    data:
+#      entity_id: binary_sensor.sliding_door_left_37
+#  - wait_template: "{{ is_state('binary_sensor.sliding_door_left_37', 'off') }}"
+#    timeout: '00:00:30'
+#    continue_on_timeout: 'true'
+#  - condition: state
+#    entity_id: input_boolean.enable_sensor_notifications
+#    state: 'on'
+#  - service: persistent_notification.create
+#    data:
+#      title: "Disable Sliding Door Left Sensor"
+#      message: "At {{now().strftime('%m/%d/%Y %H:%M:%S')}} the SLIDING DOOR LEFT sensor was disabled (Zone-Toggled). 
+#                Enabled = {{states.switch.sliding_door_left_37.state}}, 
+#                Tripped = {{states.binary_sensor.sliding_door_left_37.state}}."
+#
+#################################################################
+# Disable Sliding Door Right Sensor
+# Called from [Sensor Automations] (Tripped, 5 min Timer)
+# In file: [automations/sensor.yaml]
+#################################################################
+#disable_sliding_door_right_sensor:
+#  alias: Disable Sliding Door Right Sensor
+#  sequence:
+#  - service: script.write_to_log
+#    data:
+#      entity_id: switch.sliding_door_right_38
+#      message: 'Disable Sliding Door Right Sensor'
+#  - service: switch.turn_off
+#    data:
+#      entity_id: switch.sliding_door_right_38
+#  - service: homeassistant.update_entity
+#    data:
+#      entity_id: binary_sensor.sliding_door_right_38
+#  - wait_template: "{{ is_state('binary_sensor.sliding_door_right_38', 'off') }}"
+#    timeout: '00:00:30'
+#    continue_on_timeout: 'true'
+#  - condition: state
+#    entity_id: input_boolean.enable_sensor_notifications
+#    state: 'on'
+#  - service: persistent_notification.create
+#    data:
+#      title: "Disable Sliding Door Right Sensor"
+#      message: "At {{now().strftime('%m/%d/%Y %H:%M:%S')}} the SLIDING DOOR RIGHT sensor was disabled (Zone-Toggled). 
+#                Enabled = {{states.switch.sliding_door_right_38.state}}, 
+#                Tripped = {{states.binary_sensor.sliding_door_right_38.state}}."
+#
+#################################################################
+# Disable Sunroom East Sensor
+# Called from [Sensor Automations] (Tripped, 5 min Timer)
+# In file: [automations/sensor.yaml]
+#################################################################
+#disable_sunroom_east_sensor:
+#  alias: Disable Sunroom East Sensor
+#  sequence:
+#  - service: script.write_to_log
+#    data:
+#      entity_id: switch.sunroom_east_34
+#      message: 'Disable Sunroom East Sensor'
+#  - service: switch.turn_off
+#    data:
+#      entity_id: switch.sunroom_east_34
+#  - service: homeassistant.update_entity
+#    data:
+#      entity_id: binary_sensor.sunroom_east_34
+#  - wait_template: "{{ is_state('binary_sensor.sunroom_east_34', 'off') }}"
+#    timeout: '00:00:30'
+#    continue_on_timeout: 'true'
+#  - condition: state
+#    entity_id: input_boolean.enable_sensor_notifications
+#    state: 'on'
+#  - service: persistent_notification.create
+#    data:
+#      title: "Disable Sunroom East Sensor"
+#      message: "At {{now().strftime('%m/%d/%Y %H:%M:%S')}} the SUNROOM EAST sensor was disabled (Zone-Toggled). 
+#                Enabled = {{states.switch.sunroom_east_34.state}}, 
+#                Tripped = {{states.binary_sensor.sunroom_east_34.state}}."
+#
+#################################################################
+# Disable Sunroom West Sensor
+# Called from [Sensor Automations] (Tripped, 5 min Timer)
+# In file: [automations/sensor.yaml]
+#################################################################
+#disable_sunroom_west_sensor:
+#  alias: Disable Sunroom West Sensor
+#  sequence:
+#  - service: script.write_to_log
+#    data:
+#      entity_id: switch.sunroom_west_35
+#      message: 'Disable Sunroom West Sensor'
+#  - service: switch.turn_off
+#    data:
+#      entity_id: switch.sunroom_west_35
+#  - service: homeassistant.update_entity
+#    data:
+#      entity_id: binary_sensor.sunroom_west_35
+#  - wait_template: "{{ is_state('binary_sensor.sunroom_west_35', 'off') }}"
+#    timeout: '00:00:30'
+#    continue_on_timeout: 'true'
+#  - condition: state
+#    entity_id: input_boolean.enable_sensor_notifications
+#    state: 'on'
+#  - service: persistent_notification.create
+#    data:
+#      title: "Disable Sunroom West Sensor"
+#      message: "At {{now().strftime('%m/%d/%Y %H:%M:%S')}} the SUNROOM WEST sensor was disabled (Zone-Toggled). 
+#                Enabled = {{states.switch.sunroom_west_35.state}}, 
+#                Tripped = {{states.binary_sensor.sunroom_west_35.state}}."
+#
+#################################################################
+# Disable One Car Gar Sensor
+# Called from [Sensor Automations] (Tripped, 5 min Timer)
+# In file: [automations/sensor.yaml]
+#################################################################
+#disable_one_car_gar_sensor:
+#  alias: Disable One Car Gar Sensor
+#  sequence:
+#  - service: script.write_to_log
+#    data:
+#      entity_id: switch.one_car_gar_sensor_66
+#      message: 'Disable One Car Gar Sensor'
+#  - service: switch.turn_off
+#    data:
+#      entity_id: switch.one_car_gar_sensor_66
+#  - service: homeassistant.update_entity
+#    data:
+#      entity_id: binary_sensor.one_car_gar_sensor_66
+#  - wait_template: "{{ is_state('binary_sensor.one_car_gar_sensor_66', 'off') }}"
+#    timeout: '00:00:30'
+#    continue_on_timeout: 'true'
+#  - condition: state
+#    entity_id: input_boolean.enable_sensor_notifications
+#    state: 'on'
+#  - service: persistent_notification.create
+#    data:
+#      title: "Disable One Car Gar Sensor"
+#      message: "At {{now().strftime('%m/%d/%Y %H:%M:%S')}} the ONE CAR GAR sensor was disabled (Zone-Toggled). 
+#                Enabled = {{states.switch.one_car_gar_sensor_66.state}}, 
+#                Tripped = {{states.binary_sensor.one_car_gar_sensor_66.state}}."
+#
+#################################################################
+# Disable Two Car Gar Sensor
+# Called from [Sensor Automations] (Tripped, 5 min Timer)
+# In file: [automations/sensor.yaml]
+#################################################################
+#disable_two_car_gar_sensor:
+#  alias: Disable Two Car Gar Sensor
+#  sequence:
+#  - service: script.write_to_log
+#    data:
+#      entity_id: switch.two_car_gar_sensor_65
+#      message: 'Disable Two Car Gar Sensor'
+#  - service: switch.turn_off
+#    data:
+#      entity_id: switch.two_car_gar_sensor_65
+#  - service: homeassistant.update_entity
+#    data:
+#      entity_id: switch.two_car_gar_sensor_65
+#  - service: homeassistant.update_entity
+#    data:
+#      entity_id: binary_sensor.two_car_gar_sensor_65
+#  - wait_template: "{{ is_state('binary_sensor.two_car_gar_sensor_65', 'off') }}"
+#    timeout: '00:00:30'
+#    continue_on_timeout: 'true'
+#  - condition: state
+#    entity_id: input_boolean.enable_sensor_notifications
+#    state: 'on'
+#  - service: persistent_notification.create
+#    data:
+#      title: "Disable Two Car Gar Sensor"
+#      message: "At {{now().strftime('%m/%d/%Y %H:%M:%S')}} the TWO CAR GAR sensor was disabled (Zone-Toggled). 
+#                Enabled = {{states.switch.two_car_gar_sensor_65.state}}, 
+#                Tripped = {{states.binary_sensor.two_car_gar_sensor_65.state}}."
+#

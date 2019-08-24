@@ -1,0 +1,151 @@
+#################################################################
+## HVAC SCRIPTS
+#################################################################
+#
+#################################################################
+# Script: Update_Tstats_Script
+# Called from [hvac_auto_updated] 
+# Called from [hvac_mode_changed, hvac_phase_changed] 
+# In file: [/automation/hvac.yaml]
+#################################################################
+update_tstats_script:
+  alias: Update Thermostats
+  sequence:
+#  - delay:
+#      seconds: 30
+#
+#  - service: persistent_notification.create
+#    data_template:
+#      title: "HVAC Status Changed"
+#      message: >-
+#        Thermostat presets changed to {{states('input_select.thermostat_phase')}} {{states('input_select.thermostat_mode')}} mode.
+#
+  - delay:
+      seconds: 10
+#
+  - service: climate.set_operation_mode
+    data_template:
+      entity_id: climate.tstat_1_144
+      operation_mode: >-
+        {% if states('input_select.thermostat_mode') == 'Heat' %}
+          heat
+        {% elif states('input_select.thermostat_mode') == 'Cool' %}
+          cool
+        {% else %}
+          auto
+        {% endif %}
+#
+  - delay:
+      seconds: 10
+#
+  - service: climate.set_operation_mode
+    data_template:
+      entity_id: climate.tstat_2_145
+      operation_mode: >-
+        {% if states('input_select.thermostat_mode') == 'Heat' %}
+          heat
+        {% elif states('input_select.thermostat_mode') == 'Cool' %}
+          cool
+        {% else %}
+          auto
+        {% endif %}
+#
+  - delay:
+      seconds: 10
+#
+  - service: climate.set_temperature
+    data_template:
+      entity_id: climate.tstat_1_144
+      temperature: >-
+        {% if states('input_select.thermostat_phase') == 'Morning' %}
+          {% if states('input_select.thermostat_mode') == 'Heat' %}
+            {{ states('input_number.t1_heat_morning') }}
+          {% elif states('input_select.thermostat_mode') == 'Cool' %}
+            {{ states('input_number.t1_cool_morning') }}
+          {% else %}
+            {{ states('input_number.t1_aco') }}
+          {% endif %}
+        {% elif states('input_select.thermostat_phase') == 'Daytime' %}
+          {% if states('input_select.thermostat_mode') == 'Heat' %}
+            {{ states('input_number.t1_heat_daytime') }}
+          {% elif states('input_select.thermostat_mode') == 'Cool' %}
+            {{ states('input_number.t1_cool_daytime') }}
+          {% else %}
+            {{ states('input_number.t1_aco') }}
+          {% endif %}
+        {% elif states('input_select.thermostat_phase') == 'Evening' %}
+          {% if states('input_select.thermostat_mode') == 'Heat' %}
+            {{ states('input_number.t1_heat_evening') }}
+          {% elif states('input_select.thermostat_mode') == 'Cool' %}
+            {{ states('input_number.t1_cool_evening') }}
+          {% else %}
+            {{ states('input_number.t1_aco') }}
+          {% endif %}
+        {% elif states('input_select.thermostat_phase') == 'Sleeping' %}
+          {% if states('input_select.thermostat_mode') == 'Heat' %}
+            {{ states('input_number.t1_heat_sleeping') }}
+          {% elif states('input_select.thermostat_mode') == 'Cool' %}
+            {{ states('input_number.t1_cool_sleeping') }}
+          {% else %}
+            {{ states('input_number.t1_aco') }}
+          {% endif %}
+        {% else %}
+          75
+        {% endif %}
+#
+  - delay:
+      seconds: 10
+#
+  - service: climate.set_temperature
+    data_template:
+      entity_id: climate.tstat_2_145
+      temperature: >-
+        {% if states('input_select.thermostat_phase') == 'Morning' %}
+          {% if states('input_select.thermostat_mode') == 'Heat' %}
+            {{ states('input_number.t2_heat_morning') }}
+          {% elif states('input_select.thermostat_mode') == 'Cool' %}
+            {{ states('input_number.t2_cool_morning') }}
+          {% else %}
+            {{ states('input_number.t2_aco') }}
+          {% endif %}
+        {% elif states('input_select.thermostat_phase') == 'Daytime' %}
+          {% if states('input_select.thermostat_mode') == 'Heat' %}
+            {{ states('input_number.t2_heat_daytime') }}
+          {% elif states('input_select.thermostat_mode') == 'Cool' %}
+            {{ states('input_number.t2_cool_daytime') }}
+          {% else %}
+            {{ states('input_number.t2_aco') }}
+          {% endif %}
+        {% elif states('input_select.thermostat_phase') == 'Evening' %}
+          {% if states('input_select.thermostat_mode') == 'Heat' %}
+            {{ states('input_number.t2_heat_evening') }}
+          {% elif states('input_select.thermostat_mode') == 'Cool' %}
+            {{ states('input_number.t2_cool_evening') }}
+          {% else %}
+            {{ states('input_number.t2_aco') }}
+          {% endif %}
+        {% elif states('input_select.thermostat_phase') == 'Sleeping' %}
+          {% if states('input_select.thermostat_mode') == 'Heat' %}
+            {{ states('input_number.t2_heat_sleeping') }}
+          {% elif states('input_select.thermostat_mode') == 'Cool' %}
+            {{ states('input_number.t2_cool_sleeping') }}
+          {% else %}
+            {{ states('input_number.t2_aco') }}
+          {% endif %}
+        {% else %}
+          75
+        {% endif %}
+#
+#  - delay:
+#      seconds: 20
+#
+#  - service: persistent_notification.create
+#    data_template:
+#      title: "HVAC Settings Changed"
+#      message: >-
+#        Thermostat settings changed to:
+#        Downstairs: {{states('input_select.thermostat_phase')}} {{(states.climate.tstat_1_144.attributes.operation_mode)}} at {{(states.climate.tstat_1_144.attributes.temperature)}} degrees.
+#        Upstairs: {{states('input_select.thermostat_phase')}} {{(states.climate.tstat_2_145.attributes.operation_mode)}} at {{(states.climate.tstat_2_145.attributes.temperature)}} degrees.
+#        Thermostat Mode Changed to {{ trigger.to_state.state }}.
+#        Thermostat presets changed to {{states('input_select.thermostat_phase')}} {{states('input_select.thermostat_mode')}} mode.
+#

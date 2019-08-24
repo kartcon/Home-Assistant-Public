@@ -1,0 +1,159 @@
+binary_sensor.back_door_36:
+  device_class: door
+binary_sensor.front_door_31:
+  device_class: door
+binary_sensor.garage_entry_door_39:
+  device_class: door
+binary_sensor.kit_motion_sensor_81:
+  device_class: motion
+binary_sensor.lr_motion_sensor_67:
+  device_class: motion
+binary_sensor.one_car_gar_sensor_66:
+  device_class: garage_door
+binary_sensor.sleepnumber_cc04b4013d81_art_is_in_bed:
+  device_class: occupancy
+binary_sensor.sleepnumber_cc04b4013d81_steff_is_in_bed:
+  device_class: occupancy
+binary_sensor.sliding_door_left_37:
+  device_class: door
+binary_sensor.sliding_door_right_38:
+  device_class: door
+binary_sensor.sunroom_east_34:
+  device_class: door
+binary_sensor.sunroom_west_35:
+  device_class: door
+binary_sensor.two_car_gar_sensor_65:
+  device_class: garage_door
+device_tracker.000504030201:
+  friendly_name: 000504030201_192.168.0.254
+device_tracker.0024a56154a7:
+  friendly_name: Sony Bravia TV
+ddevice_tracker.0050f1800000:
+  friendly_name: Xfinity Router
+evice_tracker.08e689395984:
+  friendly_name: Dads I-Phone (NMap)
+device_tracker.1c9e46b997e8:
+  friendly_name: Steffs IPad Mini (NMap)
+device_tracker.20c9d0174ee8:
+  friendly_name: Steffs Time Machine
+device_tracker.244ce338f61c:
+  friendly_name: Sunroom Alexa
+device_tracker.24c86e0929ac:
+  friendly_name: AcuRite Hub
+device_tracker.28f076447f08:
+  friendly_name: Steffs IMac (NMap)
+device_tracker.30636b89170e:
+  friendly_name: Steffs I-Watch (NMap)
+device_tracker.38af2982df4c:
+  friendly_name: NVR
+device_tracker.38c9861ca950:
+  friendly_name: Steffs I-Mac (ETH0-NMap)
+device_tracker.48022a464750:
+  friendly_name: Foscam 103
+device_tracker.48022a46ad5f:
+  friendly_name: Foscam 102
+device_tracker.48022a46601b:
+  friendly_name: Foscam 101
+device_tracker.685b3593cf52:
+  friendly_name: Arts I-Mac (ETH0-NMap)
+device_tracker.701ce7f66fc1:
+  friendly_name: Kitchen PC
+device_tracker.70778176ee60:
+  friendly_name: Arts Laser Jet
+device_tracker.74c63bc71ffe:
+  friendly_name: Rachio Irrigation Controller
+device_tracker.7894b4e77443:
+  friendly_name: Vera Secure
+device_tracker.78e10314a165:
+  friendly_name: Kitchen Alexa
+device_tracker.84947073:
+  friendly_name: Unknown Device (NMap)
+device_tracker.907240097c91:
+  friendly_name: Arts Time Machine
+device_tracker.a0edcdedac1f:
+  friendly_name: Apple TV (NMap)
+device_tracker.bc8556ee2d07:
+  friendly_name: Steffs LaserJet
+device_tracker.b827eb9e124a:
+  friendly_name: Alt-UI Wifi
+device_tracker.b827ebcb471f:
+  friendly_name: Alt-UI Eth0
+device_tracker.c4_98_80_69_a8_4a:
+  friendly_name: Arts iPhone (NMap)
+  icon: mdi:ip-network
+device_tracker.c498806b5b27:
+  friendly_name: Steffs I-Phone 8 (NMap)
+device_tracker.c8e0eb4253b9:
+  friendly_name: Arts I-Mac (Wifi-NMap)
+device_tracker.cc04b4013d81:
+  friendly_name: Sleep Number Bed
+device_tracker.d0d2b0c20e85:
+  friendly_name: SJM I-Pad (NMap)
+device_tracker.e8abfa553f21:
+  friendly_name: Foscam 107
+device_tracker.ecf45197e8dd:
+  friendly_name: LG TV
+group.all_devices:
+  hidden: false
+group.all_locks:
+  hidden: false
+group.all_remotes:
+  hidden: false
+group.all_lights:
+  hidden: false
+group.all_switches:
+  hidden: false
+group.all_automations:
+  hidden: false
+scene.lrsc_lock_all:
+  friendly_name: Lock All Exterior Doors
+scene.mm_all_off:
+  friendly_name: All Lights Off
+scene.mm_all_on:
+  friendly_name: All Lights On
+sensor.high_temperature_11:
+  friendly_name: Forcast High Temp
+  device_class: temperature
+sensor.low_temperature_10:
+  friendly_name: Forcast Low Temp
+  device_class: temperature
+sensor.sleepnumber_cc04b4013d81_art_sleepnumber:
+  friendly_name: SleepNumber - Art SleepNumber
+sensor.sleepnumber_cc04b4013d81_steff_sleepnumber:
+  friendly_name: SleepNumber - Steff SleepNumber
+sensor.version_available:
+  friendly_name: Version Available
+sensor.version_current:
+  friendly_name: Version Current
+switch.holiday_lights_222:
+  friendly_name: Holiday Lights
+switch.sensor3_229:
+  friendly_name: Bird Room 1 Sensor
+binary_sensor.sensor3_229:
+  friendly_name: Bird Room 1 Motion
+sensor.temperature_sensor_230:
+  friendly_name: Bird Rm1 Temp Sensor
+sensor.light_sensor_231:
+  friendly_name: Bird Rm1 Light Sensor
+sensor.humidity_sensor_232:
+  friendly_name: Bird Rm1 Humidity Sensor
+switch.sensor4_233:
+  friendly_name: Sun Room Sensor
+binary_sensor.sensor4_233:
+  friendly_name: Sun Room Motion
+sensor.temperature_sensor_234:
+  friendly_name: Sun Rm Temp Sensor
+sensor.light_sensor_235:
+  friendly_name: Sun Rm Light Sensor
+sensor.humidity_sensor_236:
+  friendly_name: Sun Rm Humidity Sensor
+media_player.sun_room_lg_tv:
+  friendly_name: LG TV
+sensor.ipv4_address_en0:
+  friendly_name: LAN IP address
+  icon: mdi:lan
+sensor.ipv4_address_en1:
+  friendly_name: WiFi IP address
+  icon: mdi:wifi
+sensor.external_ip:
+  friendly_name: External IP address

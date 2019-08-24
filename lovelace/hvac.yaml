@@ -1,0 +1,142 @@
+#
+#########################################
+#  View 3 - HVAC
+#########################################
+#
+title: HVAC
+path: hvac
+id: v_hvac
+icon: mdi:radiator
+panel: true
+cards:
+- type: horizontal-stack
+  cards:
+# COL 1
+    - type: vertical-stack
+      cards:
+      - type: thermostat
+        title: Downstairs
+        show_header_toggle: false
+        entity: climate.tstat_1_144
+      - type: thermostat
+        title: Upstairs
+        show_header_toggle: false
+        entity: climate.tstat_2_145
+# COL 2
+    - type: vertical-stack
+      cards:
+      - type: entities
+        title: HVAC Modes
+        show_header_toggle: false
+        entities:
+#          - entity: sensor.pws_temp_f
+#            name: Outside Temp
+          - entity: sensor.dark_sky_temperature
+            name: Outside Temp
+          - input_select.thermostat_mode
+          - input_select.thermostat_phase
+      - type: conditional
+        conditions:
+          - entity: input_select.thermostat_mode
+            state: "Cool"
+        card:
+          type: entities
+          entities:
+            - entity: input_number.t1_cool_morning
+              name: Downstairs Cool Morning
+            - entity: input_number.t1_cool_daytime
+              name: Downstairs Cool Daytime
+            - entity: input_number.t1_cool_evening
+              name: Downstairs Cool Evening
+            - entity: input_number.t1_cool_sleeping
+              name: Downstairs Cool Sleeping
+            - entity: input_number.t1_aco
+              name: Downstairs Auto Change Over
+            - type: divider
+            - entity: input_number.t2_cool_morning
+              name: Upstairs Cool Morning
+            - entity: input_number.t2_cool_daytime
+              name: Upstairs Cool Daytime
+            - entity: input_number.t2_cool_evening
+              name: Upstairs Cool Evening
+            - entity: input_number.t2_cool_sleeping
+              name: Upstairs Cool Sleeping
+            - entity: input_number.t2_aco
+              name: Upstairs Auto Change Over
+      - type: conditional
+        conditions:
+          - entity: input_select.thermostat_mode
+            state: "Heat"
+        card:
+          type: entities
+          entities:
+            - entity: input_number.t1_heat_morning
+              name: Downstairs Heat Morning
+            - entity: input_number.t1_heat_daytime
+              name: Downstairs Heat Daytime
+            - entity: input_number.t1_heat_evening
+              name: Downstairs Heat Evening
+            - entity: input_number.t1_heat_sleeping
+              name: Downstairs Heat Sleeping
+            - entity: input_number.t1_aco
+              name: Downstairs Auto Change Over
+            - type: divider
+            - entity: input_number.t2_heat_morning
+              name: Upstairs Heat Morning
+            - entity: input_number.t2_heat_daytime
+              name: Upstairs Heat Daytime
+            - entity: input_number.t2_heat_evening
+              name: Upstairs Heat Evening
+            - entity: input_number.t2_heat_sleeping
+              name: Upstairs Heat Sleeping
+            - entity: input_number.t2_aco
+              name: Upstairs Auto Change Over
+      - type: conditional
+        conditions:
+          - entity: input_select.thermostat_mode
+            state: "Auto"
+        card:
+          type: entities
+          entities:
+            - entity: input_number.t1_aco
+              name: Downstairs Auto Change Over
+            - entity: input_number.t2_aco
+              name: Upstairs Auto Change Over
+#
+# COL 3
+    - type: vertical-stack
+      cards:
+      - type: history-graph
+        title: 'Temperature Graph'
+        refresh_interval: 300
+        hours_to_show: 24
+        entities:
+          - entity: sensor.dark_sky_temperature
+            name: Outside Temp
+          - entity: sensor.kit_temp_sensor_226
+            name: Kitchen
+          - entity: sensor.tstat1_temp
+            name: Downstairs
+          - entity: sensor.tstat2_temp
+            name: Upstairs
+          - entity: sensor.temperature_sensor_234
+            name: Sunroom
+          - entity: sensor.temperature_sensor_237
+            name: Bird Rm1
+      - type: picture
+        image: https://cdn.tegna-media.com/wtlv/weather/7Day_forecast.jpg
+#      - type: thermostat
+#        id: v_hvac_c6
+#        title: Upstairs
+#        show_header_toggle: false
+#        entity: climate.tstat_2_145
+      - type: glance
+        title: Temp & Humidity Sensors
+        columns: 3
+        entities:
+         - sensor.kit_temp_sensor_226
+         - sensor.kit_humidity_sensor_228
+         - sensor.kit_light_sensor_227
+         - sensor.lr_temp_sensor_78
+         - sensor.lr_humidity_sensor_80
+         - sensor.lr_light_sensor_79

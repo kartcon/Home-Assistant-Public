@@ -1,0 +1,46 @@
+#########################################
+#  SANDBOX
+#########################################
+#
+title: Sandbox
+path: sandbox
+id: v_sbox
+icon: mdi:package-variant
+#panel: true
+cards:
+- type: horizontal-stack
+  cards:
+    - type: entity-button
+      name: Refresh Geo
+      tap_action: call-service
+      entity: script.refresh_geolocation
+      service: script.turn_on
+
+    - type: entity-button
+      name: Turn On Desk Lamp
+      entity: script.desk_light_on
+      tap_action:
+        action: call-service
+        service: script.desk_light_on
+        service_data:
+          entity_id: script.desk_light_on
+#
+    - type: entity-button
+      name: Turn Off Desk Lamp
+      entity: script.desk_light_off
+      tap_action:
+        action: call-service
+        service: script.desk_light_off
+        service_data:
+          entity_id: script.desk_light_off
+#
+    - type: entity-button
+      name: Send Push - Art Only
+      entity: script.desk_light_off
+      tap_action:
+        action: call-service
+        service: script.push_art_only
+#        service_data:
+#          entity_id: script.push_art_only
+#
+#

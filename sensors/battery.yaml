@@ -1,0 +1,99 @@
+#############################################################
+#                           Templates                       #
+#############################################################
+- platform: template
+  sensors:
+############################
+#  Mobile Devices          #
+############################
+    artsiphone8_battery:
+      value_template: '{{state_attr("device_tracker.art_ot1","battery_level")}}'
+#      value_template: '{{state_attr("device_tracker.artsiphone8","battery")}}'
+      unit_of_measurement: '%'
+#
+#    artsiphone8_battery:
+#      friendly_name: Arts iPhone Battery
+#      unit_of_measurement: '%'
+#      value_template: >-
+#          {%- if states.device_tracker.artsiphone8.attributes.battery %}
+#              {{ states.device_tracker.artsiphone8.attributes.battery|round }}
+#          {% else %}
+#              {{ states.sensor.artsiphone8_battery.state }}
+#          {%- endif %}
+#      device_class: battery
+#
+    steffsiphone8_battery:
+      value_template: '{{state_attr("device_tracker.steff_ot2","battery_level")}}'
+#      value_template: '{{state_attr("device_tracker.steffsiphone8","battery")}}'
+      unit_of_measurement: '%'
+#
+############################
+#  Door Locks              #
+############################
+    front_door_lock_batstat:
+      value_template: "{{ (states.lock.front_door_bolt_241.attributes.battery_level | round(0)) }}"
+      friendly_name: "Front Door Lock"
+    back_door_lock_batstat:
+      value_template: "{{ (states.lock.back_door_lock_61.attributes.battery_level | round(0)) }}"
+      friendly_name: "Back Door Lock"
+#
+############################
+#  Door Sensors            #
+############################
+    front_door_sensor_batstat:
+      value_template: "{{ (states.binary_sensor.front_door_31.attributes.battery_level | round(0)) }}"
+      friendly_name: "Front Entry Door Sensor"
+    back_door_sensor_batstat:
+      value_template: "{{ (states.binary_sensor.back_door_36.attributes.battery_level | round(0)) }}"
+      friendly_name: "Back Entry Door Sensor"
+    garage_entry_door_sensor_batstat:
+      value_template: "{{ (states.binary_sensor.garage_entry_door_39.attributes.battery_level | round(0)) }}"
+      friendly_name: "Garage Entry Door Sensor"
+    one_car_garage_sensor_batstat:
+      value_template: "{{ (states.binary_sensor.one_car_gar_sensor_66.attributes.battery_level | round(0)) }}"
+      friendly_name: "Garage 1 Tilt Sensor"
+    two_car_garage_sensor_batstat:
+      value_template: "{{ (states.binary_sensor.two_car_gar_sensor_65.attributes.battery_level | round(0)) }}"
+      friendly_name: "Garage 2 Tilt Sensor"
+    sr_east_door_sensor_batstat:
+      value_template: "{{ (states.binary_sensor.sunroom_east_34.attributes.battery_level | round(0)) }}"
+      friendly_name: "Sun Room East Door Sensor"
+    sr_west_door_sensor_batstat:
+      value_template: "{{ (states.binary_sensor.sunroom_west_35.attributes.battery_level | round(0)) }}"
+      friendly_name: "Sun Room West Door Sensor"
+    lr_east_door_sensor_batstat:
+      value_template: "{{ (states.binary_sensor.sliding_door_left_37.attributes.battery_level | round(0)) }}"
+      friendly_name: "Living Room East Door Sensor"
+    lr_west_door_sensor_batstat:
+      value_template: "{{ (states.binary_sensor.sliding_door_right_38.attributes.battery_level | round(0)) }}"
+      friendly_name: "Living Room West Door Sensor"
+#
+############################
+#     Misc Batteriess      #
+############################
+#    battery_status:
+#      friendly_name: "Battery"
+#      value_template: >-
+#        {%- set threshold = 25 -%}
+#        {%- set domains = ['sensor', 'binary_sensor'] -%}
+#        {%- for domain in domains -%}
+#        {%- for item in states[domain] if ((item.attributes.battery_low is defined and item.attributes['battery_low'] == true) or (item.attributes.battery_level is defined and item.attributes['battery_level'] | int < threshold)) -%}
+#            {{ item.name }}{%- if not loop.last %}, {% endif -%}
+#        {%- endfor -%}
+#        {%- endfor -%}
+#
+############################
+#     Motion Sensors       #
+############################
+    kitchen_motion_sensor_batstat:
+      value_template: "{{ (states.binary_sensor.kit_motion_sensor_81.attributes.battery_level | round(0)) }}"
+      friendly_name: "Kitchen Motion Sensor"
+    lr_motion_sensor_batstat:
+      value_template: "{{ (states.binary_sensor.lr_motion_sensor_67.attributes.battery_level | round(0)) }}"
+      friendly_name: "LR Motion Sensor"
+    birdrm1_motion_sensor_batstat:
+      value_template: "{{ (states.binary_sensor.birdrm1_motion_229.attributes.battery_level | round(0)) }}"
+      friendly_name: "BirdRm1 Motion Sensor"
+    sunroom_motion_sensor_batstat:
+      value_template: "{{ (states.binary_sensor.sun_room_motion_233.attributes.battery_level | round(0)) }}"
+      friendly_name: "SunRoom Motion Sensor"

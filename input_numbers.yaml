@@ -1,0 +1,242 @@
+##############################################################
+##   Input Number                                           ##
+##############################################################
+#
+###############################################################
+# Climate
+##############################################################
+# T1 Cooling Set Points
+  t1_cool_morning:
+    name: T1 Cool Morning
+    icon: mdi:temperature-fahrenheit
+#    initial: 80
+    min: 65
+    max: 85
+    step: 1
+    mode: box
+#
+  t1_cool_daytime:
+    name: T1 Cool Daytime
+    icon: mdi:temperature-fahrenheit
+#    initial: 81
+    min: 65
+    max: 85
+    step: 1
+    mode: box
+#
+  t1_cool_evening:
+    name: T1 Cool Evening
+    icon: mdi:temperature-fahrenheit
+#    initial: 80
+    min: 65
+    max: 85
+    step: 1
+    mode: box
+#
+  t1_cool_sleeping:
+    name: T1 Cool Sleeping
+    icon: mdi:temperature-fahrenheit
+#    initial: 80
+    min: 65
+    max: 85
+    step: 1
+    mode: box
+#
+# T2 Cooling Set Points
+  t2_cool_morning:
+    name: T2 Cool Morning
+    icon: mdi:temperature-fahrenheit
+#    initial: 81
+    min: 65
+    max: 85
+    step: 1
+    mode: box
+#
+  t2_cool_daytime:
+    name: T2 Cool Daytime
+    icon: mdi:temperature-fahrenheit
+#    initial: 81
+    min: 65
+    max: 85
+    step: 1
+    mode: box
+#
+  t2_cool_evening:
+    name: T2 Cool Evening
+    icon: mdi:temperature-fahrenheit
+#    initial: 79
+    min: 65
+    max: 85
+    step: 1
+    mode: box
+#
+  t2_cool_sleeping:
+    name: T2 Cool Sleeping
+    icon: mdi:temperature-fahrenheit
+#    initial: 80
+    min: 65
+    max: 85
+    step: 1
+    mode: box
+#
+# T1 Heating Set Points
+  t1_heat_morning:
+    name: T1 Heat Morning
+    icon: mdi:temperature-fahrenheit
+#    initial: 75
+    min: 65
+    max: 85
+    step: 1
+    mode: box
+#
+  t1_heat_daytime:
+    name: T1 Heat Daytime
+    icon: mdi:temperature-fahrenheit
+#    initial: 74
+    min: 65
+    max: 85
+    step: 1
+    mode: box
+#
+  t1_heat_evening:
+    name: T1 Heat Evening
+    icon: mdi:temperature-fahrenheit
+#    initial: 75
+    min: 65
+    max: 85
+    step: 1
+    mode: box
+#
+  t1_heat_sleeping:
+    name: T1 Heat Sleeping
+    icon: mdi:temperature-fahrenheit
+#    initial: 73
+    min: 65
+    max: 85
+    step: 1
+    mode: box
+#
+# T2 Heating Set Points
+  t2_heat_morning:
+    name: T2 Heat Morning
+    icon: mdi:temperature-fahrenheit
+#    initial: 75
+    min: 65
+    max: 85
+    step: 1
+    mode: box
+#
+  t2_heat_daytime:
+    name: T2 Heat Daytime
+    icon: mdi:temperature-fahrenheit
+#    initial: 74
+    min: 65
+    max: 85
+    step: 1
+    mode: box
+#
+  t2_heat_evening:
+    name: T2 Heat Evening
+    icon: mdi:temperature-fahrenheit
+#    initial: 73
+    min: 65
+    max: 85
+    step: 1
+    mode: box
+#
+  t2_heat_sleeping:
+    name: T2 Heat Sleeping
+    icon: mdi:temperature-fahrenheit
+#    initial: 73
+    min: 65
+    max: 85
+    step: 1
+    mode: box
+#
+# Auto Change Over Set Points
+  t1_aco:
+    name: T1 Auto Change Over
+    icon: mdi:temperature-fahrenheit
+#    initial: 78
+    min: 65
+    max: 85
+    step: 1
+    mode: box
+#
+  t2_aco:
+    name: T2 Auto Change Over
+    icon: mdi:temperature-fahrenheit
+#    initial: 78
+    min: 65
+    max: 85
+    step: 1
+    mode: box
+#
+# Unused set points
+#  t1_heat_aco:
+#    name: T1 Heat Change Over
+#    icon: mdi:temperature-fahrenheit
+#    initial: 74
+#    min: 65
+#    max: 85
+#    step: 1
+#    mode: box
+#
+#  t2_heat_aco:
+#    name: T2 Heat Change Over
+#    icon: mdi:temperature-fahrenheit
+#    initial: 75
+#    min: 65
+#    max: 85
+#    step: 1
+#    mode: box
+#
+##############################################################
+# Lighting
+##############################################################
+#
+  led_strip_brightness:
+    name: LED Brightness
+    icon: mdi:led-on
+    initial: 30
+    min: 5
+    max: 255
+    step: 25
+    mode: slider
+#
+##############################################################
+# Timers
+##############################################################
+#
+  ts_art_home:
+    name: Art Home Timestamp
+    icon: mdi:timer
+    min: 1514782800
+    max: 1830315600
+    step: 60
+    mode: box
+#
+  ts_art_away:
+    name: Art Away Timestamp
+    icon: mdi:timer
+    min: 1514782800
+    max: 1830315600
+    step: 60
+    mode: box
+#
+  ts_steff_home:
+    name: Steff Home Timestamp
+    icon: mdi:timer
+    min: 1514782800
+    max: 1830315600
+    step: 60
+    mode: box
+#
+  ts_steff_away:
+    name: Steff Away Timestamp
+    icon: mdi:timer
+    min: 1514782800
+    max: 1830315600
+    step: 60
+    mode: box
+#

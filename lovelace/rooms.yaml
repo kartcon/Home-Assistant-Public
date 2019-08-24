@@ -1,0 +1,217 @@
+#########################################
+#  View 2 - ROOMS
+#########################################
+#
+title: Rooms
+path: rooms
+id: v_rooms
+icon: mdi:lightbulb
+panel: true
+cards:
+- type: horizontal-stack
+  cards:
+# COL 1
+    - type: vertical-stack
+      cards:
+        - type: entities
+          title: Kitchen
+          show_header_toggle: true
+          entities:
+            - entity: light.kitchen_can_lights_49
+              icon: mdi:blur-radial
+            - type: custom:slider-entity-row
+              entity: light.kitchen_pendants_106
+              name: Pendants
+              icon: mdi:ceiling-light
+            - entity: light.kitchen_uc_lights_44
+              icon: mdi:led-strip
+            - type: custom:slider-entity-row
+              entity: light.nook_uc_lights_116
+              name: Nook
+              icon: mdi:led-strip
+            - entity: sensor.kit_light_sensor_227
+              icon: mdi:candle
+            - entity: input_boolean.kit_motion_detected
+            - entity: input_datetime.last_kitchen_motion
+#
+        - type: entities
+          title: Master Bed/Bath
+          show_header_toggle: true
+          entities:
+            - type: custom:slider-entity-row
+              entity: light.mbr_can_lights_95
+              name: Cans
+              icon: mdi:blur-radial
+            - type: custom:slider-entity-row
+              entity: light.mbr_bath_lights_94
+              name: Vanity
+              icon: mdi:blur-radial
+            - entity: light.mbr_shower_light_92
+              icon: mdi:blur-radial
+            - entity: light.mbr_bath_fan_93
+              icon: mdi:fan
+#        - type: entities
+#          title: Locks
+#          show_header_toggle: true
+#          entities:
+#            - lock.front_door_bolt_241
+#            - lock.back_door_lock_61
+#            - entity: lock.garage_controller_1_55
+#              icon: mdi:garage
+#            - entity: lock.garage_controller_2_54
+#              icon: mdi:garage
+#        - type: entities
+#          id: v_rooms_c3
+#          title: Garage
+#          show_header_toggle: true
+#          entities:
+#            - light.garage_fan_225
+#
+# COL 2
+    - type: vertical-stack
+      cards:
+        - type: entities
+          title: Living Room
+          show_header_toggle: true
+          entities:
+            - type: custom:slider-entity-row
+              entity: light.lr_can_lights_62
+              name: Cans
+              icon: mdi:blur-radial
+            - entity: light.lr_fan_115
+              icon: mdi:fan
+            - entity: light.tv_left
+              icon: mdi:looks
+            - entity:  light.tv_right
+              icon: mdi:looks
+            - entity: light.entertainment_center_26
+              icon: mdi:ceiling-light
+            - type: custom:slider-entity-row
+              entity: light.china_cabinet_25
+              icon: mdi:ceiling-light
+            - entity: sensor.lr_light_sensor_79
+              icon: mdi:candle
+            - entity: input_boolean.lr_motion_detected
+            - entity: input_datetime.last_livingrm_motion
+#            - entity: light.lr_christmas_tree_26
+#              icon: mdi:pine-tree
+#
+        - type: entities
+          title: Bird Rooms
+          show_header_toggle: true
+          entities:
+            - type: custom:slider-entity-row
+              entity: light.bird_room_1_light_52
+              name: Rm 1
+              icon: mdi:ceiling-light
+            - type: custom:slider-entity-row
+              entity: light.bird_room_2_light_53
+              name: Rm 2
+              icon: mdi:ceiling-light
+#
+# COL 3
+    - type: vertical-stack
+      cards:
+        - type: entities
+          title: Sun Room
+          show_header_toggle: true
+          entities:
+            - type: custom:slider-entity-row
+              entity: light.sunroom_lights_203
+              name: Lights
+              icon: mdi:ceiling-light
+            - type: custom:slider-entity-row
+#            - type: entity
+              entity: light.sunroom_fan_204
+              name: Fan
+              icon: mdi:fan
+            - type: "custom:button-entity-row"
+              buttons:
+              - service: light.turn_on
+                service_data:
+                  entity_id: light.sunroom_fan_204
+                  brightness: 76
+                name: "L"
+                icon: mdi:alpha-l-box
+                style:
+#                  - color: white
+#                 icon_color: yellow
+              - service: light.turn_on
+                service_data:
+                  entity_id: light.sunroom_fan_204
+                  brightness: 166
+                name: "M"
+                icon: mdi:alpha-m-box
+#                 icon_color: blue
+              - service: light.turn_on
+                service_data:
+                  entity_id: light.sunroom_fan_204
+                  brightness: 255
+                name: "H"
+                icon: mdi:alpha-h-box
+#                 icon_color: red
+              - service: light.turn_on
+                service_data:
+                  entity_id: light.sunroom_fan_204
+                  brightness: 0
+                name: "Off"
+                icon: mdi:alpha-o-box
+#                 icon_color: grey
+#            - type: custom:fan-control-entity-row
+#              entity: light.sunroom_fan_204
+#              name: Fan
+#              icon: mdi:fan
+#              customTheme: false
+            - entity:  light.flux_led_strip
+            - type: custom:slider-entity-row
+              entity:  light.flux_led_strip
+#              icon: mdi:led-strip
+              full_row: true
+#
+        - type: entities
+          title: Bonus Room
+          show_header_toggle: true
+          entities:
+            - entity: light.office_desk_lamp_27
+              icon: mdi:desk-lamp
+            - type: custom:slider-entity-row
+              entity: light.office_light_223
+              name: Light
+              icon: mdi:ceiling-light
+            - entity: light.office_fan_224
+              icon: mdi:fan
+#
+# COL 4
+    - type: vertical-stack
+      cards:
+        - type: entities
+          title: Outside
+          show_header_toggle: true
+          entities:
+            - entity: light.pergola_lights_213
+              icon: mdi:led-on
+            - entity: light.hot_tub_lights_201
+              icon: mdi:led-on
+            - entity: light.sun_room_floods_202
+              icon: mdi:track-light
+            - entity: light.house_floods_105
+              icon: mdi:track-light
+            - entity: light.garage_east
+              icon: mdi:wall-sconce
+            - entity: light.garage_center
+              icon: mdi:wall-sconce
+            - entity: light.garage_west
+              icon: mdi:wall-sconce
+            - entity: light.garage_fan_225
+              icon: mdi:fan
+            - entity: light.holiday_lights_222
+              icon: mdi:led-on
+            - entity: light.outdoor_switch_1_124
+              icon: mdi:fountain
+            - entity: light.front_porch
+              icon: mdi:ceiling-light
+            - entity: light.soffit_east_126
+              icon: mdi:power-socket-us
+            - entity: light.soffit_center_123
+              icon: mdi:power-socket-us
+#

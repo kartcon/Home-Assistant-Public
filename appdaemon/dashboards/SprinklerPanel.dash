@@ -1,0 +1,251 @@
+#
+# Main arguments, all optional
+#
+title: Sprinklers
+widget_dimensions: [120, 120]
+widget_margins: [5, 5]
+columns: 8
+
+load_panel_rachio:
+  widget_type: navigate
+  title: Rachio
+  icon_inactive: mdi-language-r
+  icon_inactive_style:  "color: deepskyblue;"
+  dashboard: Rachio
+
+controller_online:
+  title: Online Status
+  widget_type: binary_sensor
+  entity: binary_sensor.rachio_irrigation_controller_online
+  state_text: 1
+  state_map:
+    "on": 'Online'
+    "off": 'Offline'
+  icon_on: mdi-wifi
+  icon_style_active: "color: lime;"
+  icon_off: mdi-wifi-off
+  icon_style_inactive: "color: red;"
+
+controller_state:
+  title: Controller Status
+  widget_type: switch
+  entity: switch.rachio_irrigation_controller_in_standby_mode
+  state_text: 1
+  state_map:
+    "on": 'Standby'
+    "off": 'Ready'
+  icon_on: fa-toggle-off
+  icon_style_active: "color: red;"
+  icon_off: fa-toggle-on
+  icon_style_inactive: "color: lime;"
+
+label1:
+  widget_type: label
+  title: Front Lawn West Side
+  widget_style: "background: #FEF9E7;"
+  state_text_style: "color: black;"
+  title_style: "color: black; font-size: 150%;"
+label2:
+  widget_type: label
+  title: Front Flower Beds
+  widget_style: "background: #F6DDCC;"
+  state_text_style: "color: black;"
+  title_style: "color: black; font-size: 150%;"
+label3:
+  widget_type: label
+  title: East Lawn & Flower Beds
+  widget_style: "background: #FDEDEC;"
+  state_text_style: "color: black;"
+  title_style: "color: black; font-size: 150%;"
+label4:
+  widget_type: label
+  title: Back Yard Lawn
+  widget_style: "background: #F4ECF7;"
+  state_text_style: "color: black;"
+  title_style: "color: black; font-size: 150%;"
+label5:
+  widget_type: label
+  title: West Lawn  & Flower Beds
+  widget_style: "background: #D6EAF8;"
+  state_text_style: "color: black;"
+  title_style: "color: black; font-size: 150%;"
+
+zone1:
+  title: Zone 1
+  widget_type: switch
+  entity: switch.front_lawn_west
+  state_text: 1
+  state_map:
+    "on": 'Watering'
+    "off": 'Off'
+  icon_on: mdi-water
+  icon_style_active: "color: #3498DB;"
+  icon_off: mdi-water-off
+  icon_style_inactive: "color: grey;"
+  widget_style: "background: #FEF9E7;"
+  state_text_style: "color: black;"
+  title_style: "color: black;"
+
+zone2:
+  title: Zone 2
+  widget_type: switch
+  entity: switch.front_flower_beds
+  state_text: 1
+  state_map:
+    "on": 'Watering'
+    "off": 'Off'
+  icon_on: mdi-water
+  icon_style_active: "color: #3498DB;"
+  icon_off: mdi-water-off
+  icon_style_inactive: "color: grey;"
+  widget_style: "background: #F6DDCC;"
+  state_text_style: "color: black;"
+  title_style: "color: black;"
+
+zone3:
+  title: Zone 3
+  widget_type: switch
+  entity: switch.east_lawn__flower_beds
+  state_text: 1
+  state_map:
+    "on": 'Watering'
+    "off": 'Off'
+  icon_on: mdi-water
+  icon_style_active: "color: #3498DB;"
+  icon_off: mdi-water-off
+  icon_style_inactive: "color: grey;"
+  widget_style: "background: #FDEDEC;"
+  state_text_style: "color: black;"
+  title_style: "color: black;"
+
+zone4:
+  title: Zone 4
+  widget_type: switch
+  entity: switch.back_yard_lawn
+  state_text: 1
+  state_map:
+    "on": 'Watering'
+    "off": 'Off'
+  icon_on: mdi-water
+  icon_style_active: "color: #3498DB;"
+  icon_off: mdi-water-off
+  icon_style_inactive: "color: grey;"
+  widget_style: "background: #F4ECF7;"
+  state_text_style: "color: black;"
+  title_style: "color: black;"
+
+zone5:
+  title: Zone 5
+  widget_type: switch
+  entity: switch.west_lawn
+  state_text: 1
+  state_map:
+    "on": 'Watering'
+    "off": 'Off'
+  icon_on: mdi-water
+  icon_style_active: "color: #3498DB;"
+  icon_off: mdi-water-off
+  icon_style_inactive: "color: grey;"
+  widget_style: "background: #D6EAF8;"
+  state_text_style: "color: black;"
+  title_style: "color: black;"
+
+z1_10min:
+  widget_type: scene
+  title: Water Zone 1
+  title2: for 10 minutes
+  entity: scene.zone_1_water_for_10_min
+  icon_on: mdi-timer
+  icon_style_active:  "color: lime;"
+  icon_off: mdi-timer
+  widget_style: "background: #FEF9E7;"
+  title_style: "color: black; font-size: 100%;"
+  title2_style: "color: black; font-size: 100%;"
+  
+z2_10min:
+  widget_type: scene
+  title: Water Zone 2
+  title2: for 10 minutes
+  entity: scene.zone_2_water_for_10_min
+  icon_on: mdi-timer
+  icon_style_active:  "color: lime;"
+  icon_off: mdi-timer
+  widget_style: "background: #F6DDCC;"
+  title_style: "color: black; font-size: 100%;"
+  title2_style: "color: black; font-size: 100%;"
+
+z3_10min:
+  widget_type: scene
+  title: Water Zone 3
+  title2: for 10 minutes
+  entity: scene.zone_3_water_for_10_min
+  icon_on: mdi-timer
+  icon_style_active:  "color: lime;"
+  icon_off: mdi-timer
+  widget_style: "background: #FDEDEC;"
+  title_style: "color: black; font-size: 100%;"
+  title2_style: "color: black; font-size: 100%;"
+
+z4_10min:
+  widget_type: scene
+  title: Water Zone 4
+  title2: for 10 minutes
+  entity: scene.zone_4_water_for_10_min
+  icon_on: mdi-timer
+  icon_style_active:  "color: lime;"
+  icon_off: mdi-timer
+  widget_style: "background: #F4ECF7;"
+  title_style: "color: black; font-size: 100%;"
+  title2_style: "color: black; font-size: 100%;"
+
+z5_10min:
+  widget_type: scene
+  title: Water Zone 5
+  title2: for 10 minutes
+  entity: scene.zone_5_water_for_10_min
+  icon_on: mdi-timer
+  icon_style_active:  "color: lime;"
+  icon_off: mdi-timer
+  widget_style: "background: #D6EAF8;"
+  title_style: "color: black; font-size: 100%;"
+  title2_style: "color: black; font-size: 100%;"
+
+nearest_storm_distance:
+  widget_type: sensor
+  title: Nearest Storm Distance
+  entity: sensor.dark_sky_nearest_storm_distance
+
+precip_probability:
+  widget_type: sensor
+  title: Precip Probability
+  entity: sensor.dark_sky_precip_probability
+
+precip_intensity:
+  widget_type: sensor
+  title: Precip Intensity
+  entity: sensor.pws_precip_today_in
+
+forecast_today:
+  widget_type: sensor
+  title: Current Forecast
+  entity: sensor.dark_sky_hourly_summary
+
+weather_frame:
+  widget_type: iframe
+  title: Radar
+#  refresh: 10
+  frame_style: ""
+  img_list: 
+#    - https://radar.weather.gov/ridge/radar_lite.php?rid=jax&product=N1P&loop=yes
+    - https://radar.weather.gov/Conus/Loop/southeast_loop.gif
+
+layout:
+  - include: top_nav_small
+  - load_panel_rachio, controller_online, controller_state, forecast_today(2x1), nearest_storm_distance, precip_probability, precip_intensity
+  - weather_frame(3x3), label1, label2, label3, label4, label5
+  - zone1, zone2, zone3, zone4, zone5
+  - z1_10min, z2_10min, z3_10min, z4_10min, z5_10min
+  - include: bottom_nav
+
+#  Do not use these: switch.back_yard_lawn_135, switch.east_lawn__flower_beds_140 
+#  switch.front_flower_beds_136, switch.front_lawn_west_134, switch.west_lawn_133

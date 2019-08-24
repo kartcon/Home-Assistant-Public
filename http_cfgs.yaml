@@ -1,0 +1,22 @@
+#########################
+#  HTTP Configuration   #
+#########################
+#
+  api_password: !secret api_password
+  cors_allowed_origins:
+    - https://google.com
+    - https://home-assistant.io
+#  use_x_forwarded_for: True
+#  trusted_proxies:
+#    - 127.0.0.1
+  trusted_networks:
+    - !secret trusted_network1
+    - !secret trusted_network2
+  ip_ban_enabled: true
+  login_attempts_threshold: 5
+#
+#========================================================
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
+#========================================================

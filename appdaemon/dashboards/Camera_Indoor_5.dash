@@ -1,0 +1,49 @@
+load_indoor_cameras:
+  widget_type: navigate
+  title: Go to Indoor Cameras
+  icon_inactive: fa-random
+  url: /CameraPanelIndoor
+
+load_camera1:
+  widget_type: navigate
+  title: Camera 1
+  icon_inactive: mdi-television
+  url: /Camera_Indoor_1
+
+load_camera2:
+  widget_type: navigate
+  title: Camera 2
+  icon_inactive: mdi-television
+  url: /Camera_Indoor_2
+
+load_camera3:
+  widget_type: navigate
+  title: Camera 3
+  icon_inactive: mdi-television
+  url: /Camera_Indoor_3
+
+load_camera5:
+  widget_type: navigate
+  title: Camera 5
+  icon_inactive: mdi-television
+  url: /Camera_Indoor_5
+
+load_camera7:
+  widget_type: navigate
+  title: Camera 7
+  icon_inactive: mdi-television
+  url: /Camera_Indoor_7
+
+insidecam5:
+  widget_type: camera
+  title: Living Room
+  frame_style: ""
+  entity_picture: http://192.168.0.105:8105/videostream.cgi?username=admin&password=KCP8410
+
+layout:
+  - include: top_nav_small
+  - load_indoor_cameras (2x1), insidecam5 (6x4)
+  - load_camera1, load_camera2
+  - load_camera3, load_camera5
+  - load_camera7
+  - include: bottom_nav

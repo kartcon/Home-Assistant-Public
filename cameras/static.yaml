@@ -1,0 +1,34 @@
+# Camera Setup
+#
+#####################
+#  Static Images    #
+#####################
+#
+- platform: generic
+  name: Seven Day Forecast
+  still_image_url: https://cdn.tegna-media.com/wtlv/weather/7Day_forecast.jpg
+#
+- platform: generic
+  name: Atlantic Basin
+  still_image_url: https://sirocco.accuweather.com/sat_mosaic_640x480_public/ei/isaeatln.gif
+#
+- platform: generic
+  name: Reflectivity Radar
+  still_image_url: https://radblast.wunderground.com/cgi-bin/radar/WUNIDS_map?station=JAX&brand=wui&num=20&delay=25&type=N0R&frame=0&scale=1.000&noclutter=1&showstorms=1&mapx=400&mapy=240&centerx=400&centery=240&transx=0&transy=0&showlabels=1&severe=0&rainsnow=1&lightning=1&smooth=0&rand=24781365&lat=0&lon=0&label=you
+#
+- platform: generic
+  name: Regional Radar
+  still_image_url: https://icons.wxug.com/data/weather-maps/radar/united-states/saint-petersburg-florida-region-current-radar-animation.gif
+#
+- platform: generic
+  name: NWS Radar Mosaic
+  still_image_url: https://radar.weather.gov/Conus/Loop/southeast_loop.gif
+#
+- platform: generic
+  name: Tide Times
+  still_image_url: https://media.news4jax.com/photo/MAP/5277628/5277628_Position5.JPG
+#
+- platform: generic
+  name: Tide Graph
+  still_image_url: https://wave.marineweather.net/itide/tides/png/fl_clapboard_creek.png?x=1543758223
+#

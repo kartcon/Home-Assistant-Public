@@ -1,0 +1,133 @@
+#########################################
+#  USERS and User data
+#########################################
+#
+title: Users Full
+path: users_full
+icon: mdi:account-multiple
+id: v_users_full
+panel: true
+cards:
+- type: horizontal-stack
+  cards:
+# COL 1 Art
+    - type: vertical-stack
+      cards:
+        - type: horizontal-stack
+          cards:
+            - type: picture
+              image: /local/avatars/Arts_Avatar.png
+              entity: camera.arts_location
+              tap_action:
+                action: none
+#
+            - type: picture-entity
+              entity: camera.arts_location
+              aspect_ratio: 100%
+              show_name: true
+              show_state: false
+#
+        - type: custom:monster-card
+          card:
+            type: entities
+            show_header_toggle: false
+            title: Arts Sensors
+          filter:
+            include:
+              - name: "*art*"
+            exclude:
+              - domain: automation
+
+#
+# COL 2 Middle
+    - type: vertical-stack
+      cards:
+        - type: horizontal-stack
+          cards:
+            - type: entity-button
+              name: Refresh Art
+              icon: mdi:google-maps
+              tap_action:
+                action: call-service
+                service: script.turn_on
+                service_data:
+                  entity_id: script.refresh_geolocation
+              entity: script.refresh_geolocation
+#
+            - type: entity-button
+              name: Refresh Steff
+              icon: mdi:google-maps
+              tap_action:
+                action: call-service
+                service: script.turn_on
+                service_data:
+                  entity_id: script.refresh_geolocation
+              entity: script.refresh_geolocation
+#
+        - type: custom:monster-card
+          card:
+            type: glance
+            show_header_toggle: false
+            columns: 3
+            title: GPS Tracker
+          filter:
+            include:
+              - domain: device_tracker
+#                options:
+#                  secondary_info: battery
+                attributes:
+                  source_type: gps
+#
+#        - type: custom:monster-card
+#          card:
+#            type: entities
+#            show_header_toggle: false
+#            title: Automations
+#          filter:
+#            include:
+#              - entity_id: "automation.*art*"
+#              - entity_id: "automation.*steff*"
+#            exclude:
+#
+#        - type: custom:monster-card
+#          card:
+#            type: entities
+#            show_header_toggle: false
+#            title: Booleans
+#          filter:
+#            include:
+#              - entity_id: "input_boolean.*art*"
+#              - entity_id: "input_boolean.*steff*"
+#            exclude:
+        - type: "custom:birthday-card"
+          title: "Birthdays"
+          numberofdays: 10
+#
+# COL 3 Steff
+    - type: vertical-stack
+      cards:
+        - type: horizontal-stack
+          cards:
+            - type: picture-entity
+              entity: camera.steffs_location
+              aspect_ratio: 100%
+              show_name: true
+              show_state: false
+#
+            - type: picture
+              image: /local/avatars/Steffs_Avatar.png
+              entity: camera.arts_location
+              tap_action:
+                action: none
+#
+        - type: custom:monster-card
+          card:
+            type: entities
+            show_header_toggle: false
+            title: Steffs Sensors
+          filter:
+            include:
+              - name: "*steff*"
+            exclude:
+              - domain: automation
+#

@@ -1,0 +1,85 @@
+#
+# Main arguments, all optional
+#
+title: Rooms
+widget_dimensions: [120, 120]
+widget_margins: [5, 5]
+columns: 8
+
+outsidecam1:
+    widget_type: camera
+    title: Front Entry
+    refresh: 5
+    frame_style: ""
+#    entity_picture: !secret cam_url
+
+outsidecam2:
+    widget_type: camera
+    title: Front Yard
+    refresh: 1
+    frame_style: ""
+#    entity_picture: !secret cam_url
+
+outsidecam3:
+    widget_type: camera
+    title: Side Yard
+    refresh: 1
+    frame_style: ""
+#    entity_picture: !secret cam_url
+
+outsidecam4:
+    widget_type: camera
+    title: Back Yard
+    refresh: 1
+    frame_style: ""
+#    entity_picture: !secret cam_url
+
+sunset_lights_on:
+  widget_type: scene
+  title: Lights On Before Sunset
+  entity: scene.manual_lights_on_before_sunset
+  icon_on: mdi-auto-fix
+  icon_off: mdi-auto-fix
+  icon_style_inactive:  "color: yellow;"
+
+all_lights_on:
+  widget_type: scene
+  title: All Lights On
+  entity: scene.mm__all_on
+  icon_on: mdi-auto-fix
+  icon_off: mdi-auto-fix
+  icon_style_inactive:  "color: yellow;"
+
+all_lights_off:
+  widget_type: scene
+  title: All Lights Off
+  entity: scene.mm__all_off
+  icon_on: mdi-auto-fix
+  icon_off: mdi-auto-fix
+  icon_style_inactive:  "color: yellow;"
+
+lock_all_doors:
+  widget_type: scene
+  title: Lock Exterior Doors
+  entity: scene.lrsc__lock_all
+  icon_on: mdi-auto-fix
+  icon_off: mdi-auto-fix
+  icon_style_inactive:  "color: yellow;"
+
+forecast_now:
+  widget_type: sensor
+  title: Immediate Forecast
+  entity: sensor.dark_sky_minutely_summary
+
+current_temperature:
+  widget_type: sensor
+  title: Current Temperature
+  entity: sensor.dark_sky_temperature
+
+layout:
+    - include: top_nav_small
+    - outsidecam1, outsidecam2, switch.porch_light_46, switch.garage_lights_48, switch.house_floods_105, switch.soffit_center_123, switch.soffit_east_126, switch.holiday_lights_222
+    - outsidecam3, outsidecam4, switch.sun_room_floods_202, switch.pergola_lights_213, switch.hot_tub_lights_201, switch.outdoor_fountain_124
+    -  forecast_now(2x1), current_temperature, sunset_lights_on, all_lights_on, all_lights_off, lock_all_doors
+    - include: rooms_panel
+    - include: bottom_nav

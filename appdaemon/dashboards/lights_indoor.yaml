@@ -1,0 +1,11 @@
+switch_light_panels:
+    widget_type: navigate
+    title: Go to Outdoor Lighting
+#    icon_active: mdi:logout
+#    icon_inactive: mdi:logout
+    url: /LightsPanelOutdoor
+
+layout:
+  - switch_light_panels (2x1), light.bird_room_1_light_52, light.bird_room_2_light_53, light.kitchen_can_lights_49, light.kitchen_pendants_106, light.kitchen_uc_lights_44, light.nook_uc_lights_116
+  - light.lr_can_lights_62, light.lr_fan_115, light.entertainment_center_25, light.china_cabinet_29, light.lr_christmas_tree_26, light.sunroom_lights_203, light.sunroom_fan_204
+  - light.mbr_can_lights_95, light.mbr_bath_lights_94, light.mbr_shower_light_92, light.mbr_bath_fan_93, light.office_desk_lamp_27, light.office_light_223, light.office_fan_224, light.garage_fan_225

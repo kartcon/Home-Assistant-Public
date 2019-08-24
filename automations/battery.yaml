@@ -1,0 +1,122 @@
+#################################################################
+## BATTERY ALERT
+#################################################################
+- id: battery_alert
+  initial_state: true
+  alias: "Battery Alert"
+  trigger:
+    - platform: numeric_state
+      entity_id:
+        - sensor.kitchen_motion_sensor_batstat
+        - sensor.lr_motion_sensor_batstat
+        - sensor.front_door_lock_batstat
+        - sensor.back_door_lock_batstat
+        - sensor.front_door_sensor_batstat
+        - sensor.back_door_sensor_batstat
+        - sensor.garage_entry_door_sensor_batstat
+        - sensor.lr_east_door_sensor_batstat
+        - sensor.lr_west_door_sensor_batstat
+        - sensor.sr_east_door_sensor_batstat
+        - sensor.sr_west_door_sensor_batstat
+        - sensor.one_car_garage_sensor_batstat
+        - sensor.two_car_garage_sensor_batstat
+        - sensor.artsiphone8_battery
+        - sensor.arts_iphone_8_battery_level
+        - sensor.steffsiphone8_battery
+        - sensor.steffs_iphone_8_battery_level
+        - sensor.sjm_ipad_battery
+        - sensor.sjm_ipad_battery_level
+        - sensor.steffs_ipad_mini_battery
+        - sensor.steffs_ipad_mini_battery_level
+      below: 31
+      above: 20
+  action:
+  - condition: state
+    entity_id: input_boolean.enable_battery_notifications
+    state: 'on'
+  - service: notify.ios_group_art_only
+    data_template:
+      title: "Recharge or change battery soon."
+      message: "The battery for {{ trigger.to_state.attributes.friendly_name }} is at 30 percent."
+#
+#################################################################
+## BATTERY LOW
+#################################################################
+- id: battery_low
+  initial_state: true
+  alias: "Battery Low"
+  trigger:
+    - platform: numeric_state
+      entity_id:
+        - sensor.kitchen_motion_sensor_batstat
+        - sensor.lr_motion_sensor_batstat
+        - sensor.front_door_lock_batstat
+        - sensor.back_door_lock_batstat
+        - sensor.front_door_sensor_batstat
+        - sensor.back_door_sensor_batstat
+        - sensor.garage_entry_door_sensor_batstat
+        - sensor.lr_east_door_sensor_batstat
+        - sensor.lr_west_door_sensor_batstat
+        - sensor.sr_east_door_sensor_batstat
+        - sensor.sr_west_door_sensor_batstat
+        - sensor.one_car_garage_sensor_batstat
+        - sensor.two_car_garage_sensor_batstat
+        - sensor.artsiphone8_battery
+        - sensor.arts_iphone_8_battery_level
+        - sensor.steffsiphone8_battery
+        - sensor.steffs_iphone_8_battery_level
+        - sensor.sjm_ipad_battery
+        - sensor.sjm_ipad_battery_level
+        - sensor.steffs_ipad_mini_battery
+        - sensor.steffs_ipad_mini_battery_level
+      below: 21
+      above: 10
+  action:
+  - condition: state
+    entity_id: input_boolean.enable_battery_notifications
+    state: 'on'
+  - service: notify.ios_group_art_only
+    data_template:
+      title: "{{ trigger.to_state.attributes.friendly_name }} Battery Low"
+      message: "The battery for {{ trigger.to_state.attributes.friendly_name }} is at 20 percent."
+#
+#################################################################
+## BATTERY CRITICAL
+#################################################################
+- id: battery_critical
+  initial_state: true
+  alias: "Battery Critical"
+  trigger:
+    - platform: numeric_state
+      entity_id:
+        - sensor.kitchen_motion_sensor_batstat
+        - sensor.lr_motion_sensor_batstat
+        - sensor.front_door_lock_batstat
+        - sensor.back_door_lock_batstat
+        - sensor.front_door_sensor_batstat
+        - sensor.back_door_sensor_batstat
+        - sensor.garage_entry_door_sensor_batstat
+        - sensor.lr_east_door_sensor_batstat
+        - sensor.lr_west_door_sensor_batstat
+        - sensor.sr_east_door_sensor_batstat
+        - sensor.sr_west_door_sensor_batstat
+        - sensor.one_car_garage_sensor_batstat
+        - sensor.two_car_garage_sensor_batstat
+        - sensor.artsiphone8_battery
+        - sensor.arts_iphone_8_battery_level
+        - sensor.steffsiphone8_battery
+        - sensor.steffs_iphone_8_battery_level
+        - sensor.sjm_ipad_battery
+        - sensor.sjm_ipad_battery_level
+        - sensor.steffs_ipad_mini_battery
+        - sensor.steffs_ipad_mini_battery_level
+      below: 11
+  action:
+  - condition: state
+    entity_id: input_boolean.enable_battery_notifications
+    state: 'on'
+  - service: notify.ios_group_art_only
+    data_template:
+      title: "Critical Battery Alert"
+      message: "The battery for {{ trigger.to_state.attributes.friendly_name }} is 10 percent or less!"
+#

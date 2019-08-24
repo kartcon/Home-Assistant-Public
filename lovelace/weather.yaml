@@ -1,0 +1,58 @@
+#########################################
+#  WEATHER CONDITIONS
+#########################################
+#
+title: Weather
+id: v_weat_con
+path: weather
+icon: mdi:thermometer-lines
+panel: true
+cards:
+- type: horizontal-stack
+  cards:
+# COL 1
+    - type: vertical-stack
+      cards:
+#       Card 1-1
+#        - type: custom:monster-card
+#          card:
+#            type: entities
+#            show_header_toggle: false
+#            title: PWS Sensors
+#          filter:
+#            include:
+#              - entity_id: "*pws*"
+#            exclude:
+#              - entity_id: group.wu_pws
+        - type: entities
+          title: Settings
+          show_header_toggle: false
+          entities:
+            - entity: input_select.current_condition
+            - entity: binary_sensor.its_raining
+            - entity: input_boolean.close_garage_doors_in_rain
+            - type: divider
+            - entity: sensor.bayesian_rain
+            - type: divider
+#            - entity: sensor.pws_weather
+            - entity: weather.dark_sky
+            - entity: sensor.dark_sky_icon
+            - entity: sensor.dark_sky_icon_0d
+            - entity: sensor.dark_sky_precip_probability
+            - entity: sensor.dark_sky_precip_probability_0d
+            - entity: sensor.dark_sky_summary
+            - entity: sensor.dark_sky_summary_0d
+            - entity: sensor.dark_sky_nearest_storm_distance
+#
+# COL 2
+    - type: vertical-stack
+      cards:
+#       Card 2-1
+        - type: custom:monster-card
+          card:
+            type: entities
+            show_header_toggle: false
+            title: Weather Sensors
+          filter:
+            include:
+              - entity_id: "*dark_sky*"

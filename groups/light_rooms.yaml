@@ -1,0 +1,82 @@
+# In Home Assistant’s world, a wall plug is a switch.
+#################################################################
+#     Rooms
+#################################################################
+#
+kitchen:
+  name: Kitchen
+  view: no
+  icon: mdi:home
+  entities:
+    - light.kitchen_pendants_106
+    - light.kitchen_can_lights_49
+    - light.kitchen_uc_lights_44
+    - light.nook_uc_lights_116
+#    - binary_sensor.kit_motion_sensor_81
+#    - sensor.kit_temp_sensor_117
+#    _ sensor.kit_light_sensor_227
+#    - sensor.kit_humidity_sensor_119
+
+livingroom:
+  name: Living Room
+  view: no
+  icon: mdi:home
+  entities:
+    - light.lr_can_lights_62
+    - light.lr_fan_115
+    - light.china_cabinet_25
+    - light.entertainment_center_26
+    - light.tv_left
+    - light.tv_right
+#    - binary_sensor.lr_motion_sensor_67
+#    - sensor.lr_temp_sensor_78
+#    - sensor.lr_light_sensor_79
+#    - sensor.lr_humidity_sensor_80
+
+birdrooms:
+  name: Bird Rooms
+  view: no
+  icon: mdi:home
+  entities:
+    - light.bird_room_1_light_52
+    - light.bird_room_2_light_53
+
+sunroom:
+  name: Sun Room
+  view: no
+  icon: mdi:home
+  entities:
+    - light.sunroom_lights_203
+    - light.sunroom_fan_204
+    - light.sun_room_floods_202
+    - light.sunroom_fountain_26
+    - light.house_floods_105
+    - light.flux_led_strip
+
+master:
+  name: Master Bedroom/Bath
+  view: no
+  icon: mdi:home
+  entities:
+    - light.mbr_can_lights_95
+    - light.mbr_bath_lights_94
+    - light.mbr_bath_fan_93
+    - light.mbr_shower_light_92
+
+upstairs:
+  name: Upstairs
+  view: no
+  icon: mdi:home
+  entities:
+    - light.office_desk_lamp_27
+    - light.office_desk_lamp_27
+    - light.office_fan_224
+
+garage:
+  name: Garage
+  view: no
+  icon: mdi:home
+  entities:
+    - light.garage_lights_48
+    - light.garage_fan_225
+#

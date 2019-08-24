@@ -1,0 +1,95 @@
+weather_frame:
+  widget_type: iframe
+  title: Radar
+  refresh: 10
+  frame_style: ""
+#  url_list: 
+#    - https://www.wunderground.com/weather-radar/united-states-regional/fl/saint-petersburg/animated
+  img_list: 
+    - https://radar.weather.gov/Conus/Loop/southeast_loop.gif
+    - https://icons.wxug.com/data/weather-maps/radar/united-states/saint-petersburg-florida-region-current-radar-animation.gif
+#    - https://sirocco.accuweather.com/sat_mosaic_640x480_public/ei/isaeatln.gif
+
+forecast_now:
+  widget_type: sensor
+  title: Immediate Forecast
+  entity: sensor.dark_sky_minutely_summary
+
+forecast_today:
+  widget_type: sensor
+  title: Current Forecast
+  entity: sensor.dark_sky_hourly_summary
+
+forecast_long:
+  widget_type: sensor
+  title: Full Forecast
+  entity: sensor.dark_sky_daily_summary
+
+current_temperature:
+  widget_type: sensor
+  title: Current Temperature
+  entity: sensor.dark_sky_temperature
+
+pws_feelslike:
+  widget_type: sensor
+  title: Feels Like
+  entity: sensor.pws_feelslike_f
+  precision: 0
+
+wind_speed:
+  widget_type: sensor
+  title: Wind Speed
+  entity: sensor.dark_sky_wind_speed
+
+pws_temp:
+  widget_type: sensor
+  title: PWS Temp
+  entity: sensor.pws_temp_f
+  precision: 1
+
+humidity:
+  widget_type: sensor
+  title: Humidity
+  entity: sensor.dark_sky_humidity
+
+dew_point:
+  widget_type: sensor
+  title: Dew Point
+  entity: sensor.dark_sky_dew_point
+
+pressure:
+  widget_type: sensor
+  title: Barometer
+  entity: sensor.pws_pressure_in
+
+nearest_storm_distance:
+  widget_type: sensor
+  title: Nearest Storm Distance
+  entity: sensor.dark_sky_nearest_storm_distance
+
+#nearest_storm_bearing:
+#  widget_type: sensor
+#  title: Nearest Storm Bearing
+#  entity: sensor.dark_sky_nearest_storm_bearing
+
+visibility:
+  widget_type: sensor
+  title: Visibility
+  entity: sensor.dark_sky_visibility
+
+precip_probability:
+  widget_type: sensor
+  title: Precip Probability
+  entity: sensor.dark_sky_precip_probability
+
+precip_today:
+  widget_type: sensor
+  title: Precip Today
+  entity: sensor.pws_precip_today_in
+  precision: 0
+
+layout:
+  - weather_frame(4x4), forecast_now(2x1), current_temperature, pws_temp
+  - forecast_today(2x1), humidity, pws_feelslike
+  - forecast_long(2x1), wind_speed, visibility
+  - pressure, nearest_storm_distance, precip_probability, precip_today

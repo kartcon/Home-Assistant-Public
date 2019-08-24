@@ -1,0 +1,85 @@
+#
+- name: Home
+  latitude: 30.4548083
+  longitude: -81.5355
+  radius: 300
+  icon: mdi:home-circle
+#
+- name: Front Gate
+  latitude: 30.459045
+  longitude: -81.531359
+  radius: 200
+  icon: mdi:boom-gate
+#
+- name: Shands Jax
+  latitude: 30.3485
+  longitude: -81.6644
+  radius: 150
+  icon: mdi:hospital
+#
+- name: Shands North
+  latitude: 30.4843
+  longitude: -81.6335
+  radius: 100
+  icon: mdi:hospital
+#
+- name: Baptist
+  latitude: 30.3158
+  longitude: -81.6649
+  radius: 100
+  icon: mdi:hospital
+#
+- name: Memorial
+  latitude: 30.2888
+  longitude: -81.6008
+  radius: 100
+  icon: mdi:hospital
+#
+- name: Mayo
+  latitude: 30.2643
+  longitude: -81.4407
+  radius: 100
+  icon: mdi:hospital
+#
+- name: St_Vincents
+  latitude: 30.307462
+  longitude: -81.690012
+  radius: 100
+  icon: mdi:hospital
+#
+- name: Flagler
+  latitude: 29.86331
+  longitude: -81.31720
+  radius: 100
+  icon: mdi:hospital
+#
+- name: Phoebe
+  latitude: 31.5904507
+  longitude: -84.1595808
+  radius: 100
+  icon: mdi:hospital
+#
+- name: Shopping
+  latitude: 30.4776
+  longitude: -81.6388
+  radius: 600
+  icon: mdi:shopping
+#
+- name: Church
+  latitude: 30.4768136
+  longitude: -81.6166806
+  radius: 100
+  icon: mdi:church
+#
+- name: Mom & Dad
+  latitude: 29.102902
+  longitude: -81.050993
+  radius: 100
+  icon: mdi:home-circle
+#
+# This will override the default home zone
+#- name: Tidewater
+#  latitude: 30.4550
+#  longitude: -81.5315
+#  radius: 650
+#  icon: mdi:home-circle

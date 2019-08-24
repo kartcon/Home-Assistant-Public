@@ -1,0 +1,279 @@
+#################################################################
+## User Synch
+#################################################################
+#
+#############################################################
+##  Synch User One Home (keeps toggles in synch)
+#############################################################
+#
+- id: synch_user_one_home
+  alias: 'Synch User One Home'
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: input_boolean.art_home
+    to: 'on'
+  action:
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.someone_home
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.no_one_home
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.everyone_home
+#   Check to see if User 2 Home. > Makes Everybody Home
+  - condition: state
+    entity_id: input_boolean.steff_home
+    state: 'on'
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.someone_home
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.everyone_home
+#
+#############################################################
+##  Synch User One Away (keeps toggles in synch)
+#############################################################
+#
+- id: synch_user_one_away
+  alias: 'Synch User One Away'
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: input_boolean.art_home
+    to: 'off'
+  action:
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.someone_home
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.no_one_home
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.everyone_home
+#   Check to see if User 2 Away. > Makes Everybody Away
+  - condition: state
+    entity_id: input_boolean.steff_home
+    state: 'off'
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.no_one_home
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.someone_home
+#
+#############################################################
+##  Synch User Two Home (keeps toggles in synch)
+#############################################################
+#
+- id: synch_user_two_home
+  alias: 'Synch User Two Home'
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: input_boolean.steff_home
+    to: 'on'
+  action:
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.someone_home
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.no_one_home
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.everyone_home
+#       Check to see if User 1 Home. > Makes Everybody Home
+  - condition: state
+    entity_id: input_boolean.art_home
+    state: 'on'
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.someone_home
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.everyone_home
+#
+#############################################################
+##  Synch User Two Away (keeps toggles in synch)
+#############################################################
+#
+- id: synch_user_two_away
+  alias: 'Synch User Two Away'
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: input_boolean.steff_home
+    to: 'off'
+  action:
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.someone_home
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.no_one_home
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.everyone_home
+#       Check to see if User 2 Away. > Makes Everybody Away
+  - condition: state
+    entity_id: input_boolean.art_home
+    state: 'off'
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.no_one_home
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.someone_home
+#
+#############################################################
+##  Synch Everyone Home (keeps toggles in synch)
+#############################################################
+#
+- id: synch_everyone_home
+  alias: 'Synch Everyone Home'
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: input_boolean.everyone_home
+    to: 'on'
+  action:
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.someone_home
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.no_one_home
+#
+#############################################################
+##  Synch Someone Home (keeps toggle synch)
+#############################################################
+#
+- id: synch_someone_home
+  alias: 'Synch Someone Home'
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: input_boolean.someone_home
+    to: 'on'
+  action:
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.everyone_home
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.no_one_home
+#
+#############################################################
+##  Synch No one Home (keeps toggle synch)
+#############################################################
+#
+- id: synch_no_one_home
+  alias: 'Synch No one Home'
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: input_boolean.no_one_home
+    to: 'on'
+  action:
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.everyone_home
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.someone_home
+#
+#############################################################
+##  Update Arts Times
+#############################################################
+#
+- id: update_arts_home_time
+  alias: "Update Arts home time"
+  initial_state: true
+  trigger:
+  - platform: time_pattern
+    minutes: '/5'
+    seconds: 1
+  action:
+  - condition: state
+    entity_id: input_boolean.art_home
+    state: 'on'
+  - service: homeassistant.update_entity
+    data:
+      entity_id: sensor.art_home_time
+#
+- id: update_arts_away_time
+  alias: "Update Arts away time"
+  initial_state: true
+  trigger:
+  - platform: time_pattern
+    minutes: '/5'
+    seconds: 2
+  action:
+  - condition: state
+    entity_id: input_boolean.art_home
+    state: 'off'
+  - service: homeassistant.update_entity
+    data:
+      entity_id: sensor.art_away_time
+#
+#############################################################
+##  Update Steffs Times
+#############################################################
+#
+- id: update_steffs_home_time
+  alias: "Update Steffs home time"
+  initial_state: true
+  trigger:
+  - platform: time_pattern
+    minutes: '/5'
+    seconds: 3
+  action:
+  - condition: state
+    entity_id: input_boolean.steff_home
+    state: 'on'
+  - service: homeassistant.update_entity
+    data:
+      entity_id: sensor.steff_home_time
+#
+- id: update_steffs_away_time
+  alias: "Update Steffs away time"
+  initial_state: true
+  trigger:
+  - platform: time_pattern
+    minutes: '/5'
+    seconds: 4
+  action:
+  - condition: state
+    entity_id: input_boolean.steff_home
+    state: 'off'
+  - service: homeassistant.update_entity
+    data:
+      entity_id: sensor.steff_away_time
+#
+#############################################################
+##  Is anybody Home? - Reset on All Toggles Off
+#############################################################
+#
+#- id: is_eanybody_home
+#- alias: 'Is anybody Home'
+#  initial_state: true
+#  trigger:
+#    platform: time_pattern
+#    # This will match every 5 minutes
+#    minutes: '/5'
+#    seconds: 0
+#  condition:
+#  - condition: state
+#    entity_id: input_boolean.no_one_home
+#    state: 'off'
+#  - condition: state
+#    entity_id: input_boolean.someone_home
+#    state: 'off'
+#  - condition: state
+#    entity_id: input_boolean.everyone_home
+#    state: 'off'
+#  action:
+#  - service: device_tracker.icloud_update
+#
+#############################################################
+##  User Status Template (sets users to Home or Away)
+#############################################################
+#
+#- id: user_status_template
+#  alias: 'User Status Template'
+#  initial_state: true
+#  trigger:
+#  - platform: template
+#    value_template: "{% if is_state('binary_sensor.art_presence', 'on') %}true{% endif %}"
+#  - platform: template
+#    value_template: "{% if is_state('binary_sensor.steff_presence', 'on') %}true{% endif %}"
+#  - platform: homeassistant
+#    event: start
+#    # Event can also be 'shutdown'
+#  action:
+#  - service_template: >
+#      input_boolean.turn_{% if states('binary_sensor.art_presence') == 'on' %} 'on' {% else %} 'off' {% endif %}
+#      entity_id: input_boolean.art_home
+#  - service_template: >
+#      input_boolean.turn_{% if states('binary_sensor.steff_presence') == 'on' %} 'on' {% else %} 'off' {% endif %}
+#      entity_id: input_boolean.steff_home
+#

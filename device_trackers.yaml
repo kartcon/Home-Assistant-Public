@@ -1,0 +1,67 @@
+#########################
+#    Device Tracker     #
+#########################
+#
+#- platform: icloud3
+#  username: !secret icloud_un1
+#  password: !secret icloud_pw1
+#  account_name: !secret icloud_acct_name1
+#  consider_home: 180
+#  distance_method: calc
+#  # [distance_method: calc] - disables Waze
+#  inzone_interval: 30 min
+#  interval_seconds: 10
+#  new_device_defaults:
+#    track_new_devices: false
+#    hide_if_away: true
+#  icloud_disabled: true
+#  include_device_type:
+#    - iphone
+#    - ipad
+#  include_devices:
+#    - artsiphone8
+##    - arts_iphone_8
+#    - sjm_ipad
+#    - steffsiphone8
+##    - steffs_iphone_8
+#    - steffs_ipad_mini
+#  exclude_device:
+#    - kathleendavissiphone
+#    - kathy_sipad
+#    - kathleensimac_2
+#    - sjmipad
+#
+#- platform: xfinity
+#  host: secret! router_url
+#  username: secret! router_un
+#  password: secret! router_pw
+#  interval_seconds: 15
+#  consider_home: 180
+#  new_device_defaults:
+#    track_new_devices: false
+#    hide_if_away: true
+#
+#- platform: iphonedetect
+#  consider_home: 60
+#  new_device_defaults:
+#    track_new_devices: false
+#    hide_if_away: false
+#  hosts:
+#    user1: !secret nmap_user1_phone
+#    user2: !secret nmap_user2_phone
+#
+#- platform: bluetooth_tracker
+#
+#  - platform: nmap_tracker
+#    hosts: !secret nmap_hosts
+#    home_interval: 10
+#    exclude:
+#     - !secret nmap_exclude1
+#     - !secret nmap_exclude2
+#     - !secret nmap_exclude3
+#
+#- platform: icloud
+#  username: !secret icloud_un
+#  password: !secret icloud_pw
+#  account_name: !secret icloud_acct_name
+#

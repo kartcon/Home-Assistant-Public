@@ -1,0 +1,362 @@
+#################################################################
+## LIGHTING AUTOMATIONS (HOLIDAY EVENTS)
+#################################################################
+#
+#################################################################
+# Valentines Day Lights On
+#################################################################
+- id: valentines_lights_on_at_sunset
+  alias: Valentines Day Lights On at Sunset
+  initial_state: true
+  trigger:
+    platform: sun
+    event: sunset
+    offset: '00:00:05'
+  condition:
+  - condition: state
+    entity_id: input_boolean.enable_valentine_lighting
+    state: 'on'
+  action:
+  - service: script.turn_on
+    entity_id: script.valentines_day_script
+  - service: persistent_notification.create
+    data:
+      message: Valentines Day Lighting turned on.
+      title: Holiday Schedule Applied
+  - service: notify.lg_tv
+    data:
+      title: "Notification"
+      message: "Valentines Day Lighting turned on."
+  - condition: state
+    entity_id: input_boolean.enable_system_alerts
+    state: 'on'
+  - service: notify.ios_group_art_steff
+    data:
+      message: "Valentines Day Lighting turned on."
+#
+#################################################################
+# St Pattys Day Lights On
+#################################################################
+- id: st_pattys_lights_on_at_sunset
+  alias: St Pattys Day Lights On at Sunset
+  initial_state: true
+  trigger:
+    platform: sun
+    event: sunset
+    offset: '00:00:05'
+  condition:
+  - condition: state
+    entity_id: input_boolean.enable_pattys_lighting
+    state: 'on'
+  action:
+  - service: script.turn_on
+    entity_id: script.st_pattys_day_script
+#
+  - service: script.wtite_to_log
+    data:
+      entity_id: 'automation.st_pattys_day_lights_on_at_sunset'
+      message: 'Automation triggered!'
+#
+  - service: persistent_notification.create
+    data:
+      message: St Pattys Day Lighting turned on.
+      title: Holiday Schedule Applied
+  - service: notify.lg_tv
+    data:
+      title: "Notification"
+      message: "St Pattys Day Lighting turned on."
+  - condition: state
+    entity_id: input_boolean.enable_system_alerts
+    state: 'on'
+  - service: notify.ios_group_art_steff
+    data:
+      message: "St Pattys Day Lighting turned on."
+#
+#################################################################
+# Easter Lights On
+#################################################################
+- id: easter_lights_on_at_sunset
+  alias: Easter Lights On at Sunset
+  initial_state: true
+  trigger:
+    platform: sun
+    event: sunset
+    offset: '00:00:05'
+  condition:
+  - condition: state
+    entity_id: input_boolean.enable_easter_lighting
+    state: 'on'
+  action:
+  - service: script.turn_on
+    entity_id: script.easter_script
+  - service: persistent_notification.create
+    data:
+      message: Easter Lighting turned on.
+      title: Holiday Schedule Applied
+  - service: notify.lg_tv
+    data:
+      title: "Notification"
+      message: "Easter Lighting turned on."
+  - condition: state
+    entity_id: input_boolean.enable_system_alerts
+    state: 'on'
+  - service: notify.ios_group_art_steff
+    data:
+      message: "Easter Lighting turned on."
+#
+#################################################################
+# Memorial Day Lights On
+#################################################################
+- id: memorial_lights_on_at_sunset
+  alias: Memorial Day Lights On at Sunset
+  initial_state: true
+  trigger:
+    platform: sun
+    event: sunset
+    offset: '00:00:05'
+  condition:
+  - condition: state
+    entity_id: input_boolean.enable_memorial_lighting
+    state: 'on'
+  action:
+  - service: script.turn_on
+    entity_id: script.memorial_day_script
+  - service: persistent_notification.create
+    data:
+      message: Memorial Day Lighting turned on.
+      title: Holiday Schedule Applied
+  - service: notify.lg_tv
+    data:
+      title: "Notification"
+      message: "Memorial Day Lighting turned on."
+  - condition: state
+    entity_id: input_boolean.enable_system_alerts
+    state: 'on'
+  - service: notify.ios_group_art_steff
+    data:
+      message: "Memorial Day Lighting turned on."
+#
+#################################################################
+# Flag Day Lights On
+#################################################################
+- id: flag_lights_on_at_sunset
+  alias: Flag Day Lights On at Sunset
+  initial_state: true
+  trigger:
+    platform: sun
+    event: sunset
+    offset: '00:00:05'
+  condition:
+  - condition: state
+    entity_id: input_boolean.enable_flag_day_lighting
+    state: 'on'
+  action:
+  - service: script.turn_on
+    entity_id: script.flag_day_script
+  - service: persistent_notification.create
+    data:
+      message: Flag Day Lighting turned on.
+      title: Holiday Schedule Applied
+  - service: notify.lg_tv
+    data:
+      title: "Notification"
+      message: "Flag Day Lighting turned on."
+  - condition: state
+    entity_id: input_boolean.enable_system_alerts
+    state: 'on'
+  - service: notify.ios_group_art_steff
+    data:
+      message: "Flag Day Lighting turned on."
+#
+#################################################################
+# July 4th Lights On
+#################################################################
+- id: independence_day_lights_on_at_sunset
+  alias: Independence Day Lights On at Sunset
+  initial_state: true
+  trigger:
+    platform: sun
+    event: sunset
+    offset: '00:00:05'
+  condition:
+  - condition: state
+    entity_id: input_boolean.enable_independence_lighting
+    state: 'on'
+  action:
+  - service: script.turn_on
+    entity_id: script.independence_day_script
+  - service: persistent_notification.create
+    data:
+      message: July 4th Lighting turned on.
+      title: Holiday Schedule Applied
+  - service: notify.lg_tv
+    data:
+      title: "Notification"
+      message: "July 4th Lighting turned on."
+  - condition: state
+    entity_id: input_boolean.enable_system_alerts
+    state: 'on'
+  - service: notify.ios_group_art_steff
+    data:
+      message: "July 4th Lighting turned on."
+#
+#################################################################
+# Labor Day Lights On
+#################################################################
+- id: labor_lights_on_at_sunset
+  alias: Labor Day Lights On at Sunset
+  initial_state: true
+  trigger:
+    platform: sun
+    event: sunset
+    offset: '00:00:05'
+  condition:
+  - condition: state
+    entity_id: input_boolean.enable_labor_lighting
+    state: 'on'
+  action:
+  - service: script.turn_on
+    entity_id: script.labor_day_script
+  - service: persistent_notification.create
+    data:
+      message: Labor Day Lighting turned on.
+      title: Holiday Schedule Applied
+  - service: notify.lg_tv
+    data:
+      title: "Notification"
+      message: "Labor Day Lighting turned on."
+  - condition: state
+    entity_id: input_boolean.enable_system_alerts
+    state: 'on'
+  - service: notify.ios_group_art_steff
+    data:
+      message: "Labor Day Lighting turned on."
+#
+#################################################################
+# Breast Cancer Day Lights On
+#################################################################
+- id: breast_cancer_day_lights_on_at_sunset
+  alias: Breast Cancer Day Lights On at Sunset
+  initial_state: true
+  trigger:
+    platform: sun
+    event: sunset
+    offset: '00:00:05'
+  condition:
+  - condition: state
+    entity_id: input_boolean.enable_cancer_lighting
+    state: 'on'
+  action:
+  - service: script.turn_on
+    entity_id: script.breast_cancer_script
+  - service: persistent_notification.create
+    data:
+      message: Breast Cancer Day Lighting turned on.
+      title: Holiday Schedule Applied
+  - service: notify.lg_tv
+    data:
+      title: "Notification"
+      message: "Breast Cancer Day Lighting turned on."
+  - condition: state
+    entity_id: input_boolean.enable_system_alerts
+    state: 'on'
+  - service: notify.ios_group_art_steff
+    data:
+      message: "Breast Cancer Day Lighting turned on."
+#
+#################################################################
+# Halloween Lights On
+#################################################################
+- id: halloween_lights_on_at_sunset
+  alias: Halloween Lights On at Sunset
+  initial_state: true
+  trigger:
+    platform: sun
+    event: sunset
+    offset: '00:00:05'
+  condition:
+  - condition: state
+    entity_id: input_boolean.enable_halloween_lighting
+    state: 'on'
+  action:
+  - service: script.turn_on
+    entity_id: script.halloween_script
+  - service: persistent_notification.create
+    data:
+      message: Halloween Lighting turned on.
+      title: Holiday Schedule Applied
+  - service: notify.lg_tv
+    data:
+      title: "Notification"
+      message: "Halloween Lighting turned on."
+  - condition: state
+    entity_id: input_boolean.enable_system_alerts
+    state: 'on'
+  - service: notify.ios_group_art_steff
+    data:
+      message: "Halloween Lighting turned on."
+#
+#################################################################
+# Thanksgiving Lights On
+#################################################################
+- id: thanksgiving_lights_on_at_sunset
+  alias: Thanksgiving Lights On at Sunset
+  initial_state: true
+  trigger:
+    platform: sun
+    event: sunset
+    offset: '00:00:05'
+  condition:
+  - condition: state
+    entity_id: input_boolean.enable_thanksgiving_lighting
+    state: 'on'
+  action:
+  - service: script.turn_on
+    entity_id: script.thanksgiving_script
+  - service: persistent_notification.create
+    data:
+      message: Thanksgiving Lighting turned on.
+      title: Holiday Schedule Applied
+  - service: notify.lg_tv
+    data:
+      title: "Notification"
+      message: "Thanksgiving Lighting turned on."
+  - condition: state
+    entity_id: input_boolean.enable_system_alerts
+    state: 'on'
+  - service: notify.ios_group_art_steff
+    data:
+      message: "Thanksgiving Lighting turned on."
+#
+#################################################################
+# Christmas Lights On
+#################################################################
+- id: christmas_lights_on_at_sunset
+  alias: Christmas Lights On at Sunset
+  initial_state: true
+  trigger:
+    platform: sun
+    event: sunset
+    offset: '00:00:05'
+  condition:
+  - condition: state
+    entity_id: input_boolean.enable_christmas_lighting
+    state: 'on'
+  action:
+  - service: script.turn_on
+    entity_id: script.christmas_script
+  - service: persistent_notification.create
+    data:
+      message: Christmas Lighting turned on.
+      title: Holiday Schedule Applied
+  - condition: state
+    entity_id: input_boolean.enable_system_alerts
+    state: 'on'
+  - service: notify.ios_group_art_steff
+    data:
+      message: "Christmas Lighting turned on."
+  - service: notify.lg_tv
+    data:
+      title: "Notification"
+      message: "Christmas Lighting turned on."
+#

@@ -1,0 +1,54 @@
+#########################################
+#  Weather Radar
+#########################################
+#
+title: Weather Radar
+id: v_weat_radar
+path: weather_radar
+icon: mdi:radar
+panel: true
+cards:
+- type: horizontal-stack
+  cards:
+# COL 1
+    - type: vertical-stack
+      cards:
+        - type: picture-entity
+          entity:  camera.reflectivity_radar
+          aspect_ratio: 90%
+          show_name: false
+          show_state: false
+#          tap_action:
+#            action: navigate
+#            navigation_path: https://www.wunderground.com/weather-radar/united-states-regional/fl/saint-petersburg
+#
+        - type: picture-entity
+          entity:  camera.atlantic_basin
+          aspect_ratio: 90%
+          show_name: false
+          show_state: false
+#          tap_action:
+#            action: navigate
+#            navigation_path: https://www.accuweather.com/en/us/florida/weather-radar
+#
+# COL 2
+    - type: vertical-stack
+      cards:
+        - type: picture-entity
+          entity:  camera.regional_radar
+          aspect_ratio: 90%
+          show_name: false
+          show_state: false
+#          tap_action:
+#            action: navigate
+#            navigation_path: https://www.wunderground.com/weather-radar/united-states/fl/jacksonville/jax/?region=pie
+#
+        - type: picture-entity
+          entity:  camera.nws_radar_mosaic
+          aspect_ratio: 90%
+          show_name: false
+          show_state: false
+#          tap_action:
+#            action: navigate
+#            navigation_path: https://radar.weather.gov/Conus/southeast.php
+#

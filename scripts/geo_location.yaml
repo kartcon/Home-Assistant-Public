@@ -1,0 +1,29 @@
+#################################################################
+## GEO-LOCATION SCRIPTS
+#################################################################
+#
+#################################################################
+# Script: Refresh GeoLocation
+# Called from [_______]
+# In file: [_______]
+#################################################################
+refresh_geolocation:
+  alias: Refresh Geolocation
+  sequence:
+#  - service: device_tracker.icloud_update
+#    data: {}
+  - service: homeassistant.update_entity
+    entity_id: device_tracker.art_ot1
+  - service: homeassistant.update_entity
+    entity_id: device_tracker.steff_ot2
+  - service: notify.mobile_app_arts_iphone_8
+    data:
+      message: "request_location_update"
+  - service: notify.mobile_app_steffs_iphone_8
+    data:
+      message: "request_location_update"
+  - service: persistent_notification.create
+    data:
+      message: "Your Geo-Location has been updated.."
+      title: "Success"
+#

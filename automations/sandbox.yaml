@@ -1,0 +1,117 @@
+#################################################################
+# Write to Log via Script
+#################################################################
+#- id: test1
+#  alias: Test1
+#    initial_state: true
+#  trigger:
+#  - platform: state
+#    entity_id: input_boolean.trigger_sandbox
+#    to: 'on'
+#  condition:
+#  - condition: state
+#    entity_id: input_boolean.enable_sandbox
+#    state: 'on'
+#  action:
+#  - service: script.write_to_log
+#    data:
+#      entity_id: script.write_to_log
+#      message: 'Automation triggered'
+# below line is required for testing purposes
+#  - delay: 0:00:02
+#  - service: input_boolean.turn_off
+#    entity_id: input_boolean.trigger_sandbox
+#
+#################################################################
+# Write to Log via Automation Test
+#################################################################
+# Sun Elevation as a trigger will fire every minute.
+# Not really a good trigger entity.
+#- id: sun_elevation_trigger_test
+#  alias: Sun Elevation Trigger Test
+#  initial_state: true
+#  trigger:
+#  - platform: state
+#    entity_id: sensor.sun_elevation
+#  action:
+#  - service: script.write_to_log
+#    data:
+#      entity_id: script.write_to_log
+#      message: 'Sun Elevation Automation triggered'
+#
+#################################################################
+# Write to Log via Automation Test
+#################################################################
+#- id: q_30_min_trigger_test
+#  alias: Q 30 min Trigger Test
+#  initial_state: true
+#  trigger:
+#  - platform: time_pattern
+#    minutes: /30
+#  action:
+#  - service: script.write_to_log
+#    data:
+#      entity_id: script.write_to_log
+#      message: 'Q 30 Min Automation triggered'
+#
+#
+#
+#- alias: 'Notifications Test'
+#  initial_state: true
+#  trigger:
+#  - platform: state
+#    entity_id: input_boolean.trigger_sandbox
+#    to: 'on'
+#  condition:
+#  - condition: state
+#    entity_id: input_boolean.enable_sandbox
+#    state: 'on'
+#  action:
+#
+#  - service: notify.ios_group_art_only
+#    data:
+#      message: "Arrived Home"
+#      data:
+#        push:
+#          category: "arrived"
+#
+# ----------------------------------
+# -- NON WORKING VERSION !!!
+#  - service: notify.alexa_media
+#    data:
+#      entity_id: media_player.office_echo
+#      message: "Hello World"
+# ----------------------------------
+# -- Working Simply TTS
+#  - service: notify.alexa_media
+#    data_template:
+#      target:
+#        - media_player.office_echo
+#      data:
+#        type: tts
+##      message: "{{ trigger.to_state.attributes.friendly_name }}."
+#      message: "Hello World"
+# -- Working Simply TTS with Tone alert
+#  - service: notify.alexa_media
+#    data:
+#      target:
+#        - media_player.office_echo
+#      data:
+#        type: announce
+#        #method: all
+#      message: "Hello World"
+# -- Working Pust Notication to both Art & Steffs phones
+#  - service: notify.alexa_media
+#    data:
+#      target:
+#        - media_player.office_echo
+#      data:
+#        type: push
+#      title: "I just wanted to say"
+#      message: "Hello World"
+# ----------------------------------
+#  - delay: 0:00:02
+#  - service: input_boolean.turn_off
+#    entity_id: input_boolean.trigger_sandbox
+#
+#

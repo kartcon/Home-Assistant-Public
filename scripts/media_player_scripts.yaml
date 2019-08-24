@@ -1,0 +1,33 @@
+#################################################################
+# MEDIA PLAYER SCRIPTS
+#################################################################
+#
+#################################################################
+# Turn on LG-TV
+# Called from [____]
+# In file: [____]
+#################################################################
+turn_on_lgtv:
+  alias: Turn on LGTV
+  sequence:
+  - service: switch.turn_on
+    entity_id: switch.sun_room_lg_tv
+  - wait_template: "{{ states.media_player.sun_room_lg_tv.state == 'playing' }}"
+    timeout: '00:01:00'
+    continue_on_timeout: 'false'
+  - service: media_player.volume_set
+    data:
+      entity_id: media_player.sun_room_lg_tv
+      volume_level: 0
+#
+#################################################################
+# Turn off LG-TV
+# Called from [____]
+# In file: [____]
+#################################################################
+turn_off_lgtv:
+  alias: Turn off LGTV
+  sequence:
+  - service: media_player.turn_off
+    entity_id: media_player.sun_room_lg_tv
+#

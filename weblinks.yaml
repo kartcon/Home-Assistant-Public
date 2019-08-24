@@ -1,0 +1,5 @@
+entities:
+  - name: Router
+    url: !secret router_url
+  - name: Configurator
+    url: !secret configurator_url

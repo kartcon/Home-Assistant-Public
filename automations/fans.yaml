@@ -1,0 +1,210 @@
+#################################################################
+## Fan AUTOMATIONS
+#################################################################
+#
+#################################################################
+# LR/SR Fans on at 06:00
+#################################################################
+- id: downstairs_fans_on_at_0600
+  alias: Downstairs Fans on at 06:00
+  initial_state: true
+  trigger:
+  - platform: time
+    at: '06:00:00'
+  condition: []
+  action:
+  - service: light.turn_on
+    data:
+      entity_id: light.lr_fan_115
+  - service: light.turn_on
+    data:
+      entity_id: light.sunroom_fan_204
+      brightness: 76
+#
+#################################################################
+# Sun Room Fan On - Low
+#################################################################
+- id: sunroom_fan_low
+  alias: Sunroom Fan Low
+  initial_state: true
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.dark_sky_temperature
+    above: 60
+    below: 80
+  condition:
+  - condition: time
+    after: '06:00:00'
+    before: '22:00:00'
+  action:
+  - service: light.turn_on
+    data:
+      entity_id: light.sunroom_fan_204
+      brightness: >
+          76
+  - delay: 0:00:10
+#  - service: persistent_notification.create
+#    data_template:
+#      title: "Sunroom Fan Low"
+#      message: >-
+#        At {{now().strftime("%m/%d/%Y %H:%M:%S")}} the Outside Temperature is {{ states.sensor.dark_sky_temperature.state }}º.
+#        Fan speed set to 30% ({{ states.light.sunroom_fan_204.attributes.brightness }}).
+  - service: script.write_to_log
+    data:
+      entity_id: light.sunroom_fan_204
+      message: 'Outside Temperature is {{ states.sensor.dark_sky_temperature.state }}º. Fan speed set to low ({{ states.light.sunroom_fan_204.attributes.brightness }})'
+#
+#################################################################
+# Sun Room Fan On - Med
+#################################################################
+- id: sunroom_fan_med
+  alias: Sunroom Fan Med
+  initial_state: true
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.dark_sky_temperature
+    above: 80
+    below: 95
+  condition:
+  - condition: time
+    after: '06:00:00'
+    before: '22:00:00'
+  action:
+  - service: light.turn_on
+    data:
+      entity_id: light.sunroom_fan_204
+      brightness: >
+          166
+  - delay: 0:00:10
+#  - service: persistent_notification.create
+#    data_template:
+#      title: "Sunroom Fan Med"
+#      message: >-
+#        At {{now().strftime("%m/%d/%Y %H:%M:%S")}} the Outside Temperature is {{ states.sensor.dark_sky_temperature.state }}º.
+#        Fan speed set to 65% ({{ states.light.sunroom_fan_204.attributes.brightness }}).
+  - service: script.write_to_log
+    data:
+      entity_id: light.sunroom_fan_204
+      message: 'Outside Temperature is {{ states.sensor.dark_sky_temperature.state }}º. Fan speed set to med ({{ states.light.sunroom_fan_204.attributes.brightness }})'
+#
+#################################################################
+# Sun Room Fan On - High
+#################################################################
+- id: sunroom_fan_high
+  alias: Sunroom Fan High
+  initial_state: true
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.dark_sky_temperature
+    above: 95
+  condition:
+  - condition: time
+    after: '06:00:00'
+    before: '22:00:00'
+  action:
+  - service: light.turn_on
+    data:
+      entity_id: light.sunroom_fan_204
+      brightness: >
+          255
+  - delay: 0:00:10
+#  - service: persistent_notification.create
+#    data_template:
+#      title: "Sunroom Fan High"
+#      message: >-
+#        At {{now().strftime("%m/%d/%Y %H:%M:%S")}} the Outside Temperature is {{ states.sensor.dark_sky_temperature.state }}º.
+#        Fan speed set to 100% ({{ states.light.sunroom_fan_204.attributes.brightness }}).
+  - service: script.write_to_log
+    data:
+      entity_id: light.sunroom_fan_204
+      message: 'Outside Temperature is {{ states.sensor.dark_sky_temperature.state }}º. Fan speed set to high ({{ states.light.sunroom_fan_204.attributes.brightness }})'
+#
+#################################################################
+# Bonus Room Fan On - Above 78
+#################################################################
+- id: Office_fan_on_above_78
+  alias: Office Fan on when above 78
+  initial_state: true
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.tstat2_temp
+    above: 78
+  condition:
+  - condition: time
+    after: '08:00:00'
+    before: '22:00:00'
+  action:
+  - service: light.turn_on
+    data:
+      entity_id: light.office_fan_224
+#  - service: persistent_notification.create
+#    data_template:
+#      title: "Office Fan ON"
+#      message: >-
+#        Office Temperature is {{ states.sensor.tstat2_temp.state }}º.
+  - service: script.write_to_log
+    data:
+      entity_id: light.office_fan_224
+      message: 'Outside Temperature is {{ states.sensor.dark_sky_temperature.state }}º. Office Fan turned on.'
+#
+#################################################################
+# Garage Fan On when outside temp >85
+#################################################################
+- id: garage_fan_on_above_85
+  alias: Garage Fan on when above 85
+  initial_state: true
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.dark_sky_temperature
+    above: 85
+#  - platform: template
+#    value_template: >
+#      {% if (states.sensor.dark_sky_temperature.state | float) > 85 %} true {% else %} false {% endif %}
+  condition: []
+  action:
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_fan_225
+#  - service: persistent_notification.create
+#    data_template:
+#      title: "Garage Fan ON"
+#      message: >-
+#        Outside Temperature is {{ states.sensor.dark_sky_temperature.state }}º.
+  - service: script.write_to_log
+    data:
+      entity_id: light.garage_fan_225
+      message: 'Outside Temperature is {{ states.sensor.dark_sky_temperature.state }}º. Garage Fan turned on.'
+#
+#################################################################
+# Garage Fan Off when outside temp <80 or dark
+#################################################################
+- id: garage_fan_off_below_80
+  alias: Garage Fan off below 80
+  initial_state: true
+  trigger:
+  - platform: sun
+    event: sunset
+  - platform: numeric_state
+    entity_id: sensor.dark_sky_temperature
+    below: 80
+#  - platform: template
+#    value_template: >
+#      {% if (states.sensor.dark_sky_temperature.state | float) < 80 %} true {% else %} false {% endif %}
+  condition:
+  - condition: state
+    entity_id: light.garage_fan_225
+    state: 'on'
+  action:
+  - service: light.turn_off
+    data:
+      entity_id: light.garage_fan_225
+#  - service: persistent_notification.create
+#    data_template:
+#      title: "Garage Fan OFF"
+#      message: >-
+#        Outside Temperature is {{ states.sensor.dark_sky_temperature.state }}º.
+  - service: script.write_to_log
+    data:
+      entity_id: light.garage_fan_225
+      message: 'Outside Temperature is {{ states.sensor.dark_sky_temperature.state }}º. Garage Fan turned off.'
+#

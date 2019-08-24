@@ -1,0 +1,162 @@
+#########################################
+#  Media Players
+#########################################
+#
+title: Media
+path: media_players
+id: media
+icon: mdi:cast-connected
+panel: true
+cards:
+- type: horizontal-stack
+  cards:
+# COL 1
+    - type: vertical-stack
+      cards:
+        - type: vertical-stack
+          cards:
+#         Card 1
+          - type: custom:mini-media-player
+            entity: media_player.sunroom_white
+            artwork: cover
+            tts:
+              platform: sonos
+              entity_id: media_player.sunroom_white
+            toggle_power: true
+            sonos:
+              show_group_count: true
+              entities:
+                - entity_id: media_player.sunroom_white
+                  name: Sunroom Sonos White
+                - entity_id: media_player.sunroom_black
+                  name: Sunroom Sonos Black
+                - entity_id: media_player.living_room
+                  name: Living Room Sonos
+#
+          - type: custom:mini-media-player
+            entity: media_player.sunroom_black
+            artwork: cover
+            tts:
+              platform: sonos
+              entity_id: media_player.sunroom_black
+            toggle_power: true
+            sonos:
+              show_group_count: true
+              entities:
+                - entity_id: media_player.sunroom_white
+                  name: Sunroom Sonos White
+                - entity_id: media_player.sunroom_black
+                  name: Sunroom Sonos Black
+                - entity_id: media_player.living_room
+                  name: Living Room Sonos
+#
+          - type: custom:mini-media-player
+            entity: media_player.living_room
+            artwork: cover
+#            tts:
+#              platform: sonos
+#              entity_id: media_player.living_room
+#            toggle_power: true
+            sonos:
+              show_group_count: true
+              entities:
+                - entity_id: media_player.sunroom_white
+                  name: Sunroom Sonos White
+                - entity_id: media_player.sunroom_black
+                  name: Sunroom Sonos Black
+                - entity_id: media_player.living_room
+                  name: Living Room Sonos
+#
+#          - type: picture-entity
+#            title: Front Doorr
+#            entity: camera.front_door_camera
+#            camera_image: camera.front_door_camera
+#
+# COL 2
+    - type: vertical-stack
+      cards:
+        - type: custom:mini-media-player
+          entity: media_player.sun_room_lg_tv
+#          artwork: none
+          artwork: full-cover
+          source: full
+          toggle_power: true
+          shortcuts:
+            columns: 2 # Max buttons per row
+            buttons:
+            # Change the source
+            - name: Power On
+              type: script
+              id: script.turn_on_lgtv
+            - name: Power Off
+              type: script
+              id: script.turn_off_lgtv
+            - name: XFinity
+              type: source
+              id: Xfinity
+            - name: Cameras
+              type: source
+              id: NVR Cameras
+            - name: Amazon
+              type: source
+              id: Amazon Prime Video
+            - name: Wii
+              type: source
+              id: Game Console
+          hide:
+            controls: false
+            power: true
+            power_state: false
+            icon_state: false
+#
+# COL 3
+    - type: vertical-stack
+      cards:
+        - type: custom:mini-media-player
+          entity: media_player.kitchen_echo
+          artwork: none
+          tts:
+            platform: alexa
+            entity_id: media_player.kitchen_echo
+          hide:
+            controls: false
+            source: true
+            power: true
+          toggle_power: false
+#
+        - type: custom:mini-media-player
+          entity: media_player.office_echo
+          artwork: none
+          tts:
+            platform: alexa
+            entity_id: media_player.office_echo
+          hide:
+            controls: false
+            source: true
+            power: true
+          toggle_power: false
+#
+        - type: custom:mini-media-player
+          entity: media_player.sunroom_echo_white
+          artwork: none
+          tts:
+            platform: alexa
+            entity_id: media_player.sunroom_echo_white
+          hide:
+            controls: false
+            source: true
+            power: true
+          toggle_power: false
+#
+        - type: custom:mini-media-player
+          entity: media_player.sunroom_echo_black
+          artwork: none
+          tts:
+            platform: alexa
+            entity_id: media_player.sunroom_echo_black
+          hide:
+            controls: false
+            source: true
+            power: true
+          toggle_power: false
+#

@@ -1,0 +1,162 @@
+################################################################################
+# The recorder component is responsible for storing details in a
+# database, which then are handled by the history component.
+################################################################################
+# The history component will track everything that is going on within
+# Home Assistant and allows the user to browse through it. It depends
+# on the recorder component for storing the data and uses the same database
+# setting. If any entities are excluded from being recorded, no history
+# will be available for these entities.
+################################################################################
+# The logbook component provides a different perspective on the history of your
+# house by showing all the changes that happened to your house in reverse
+# chronological order. It depends on the recorder component for storing the data.
+################################################################################
+#
+#recorder:
+  purge_interval: 1
+  purge_keep_days: 2
+  include:
+    domains:
+#      - alarm
+      - automation
+      - binary_sensor
+#      - camera
+#      - climate
+#      - device_tracker - excluded
+#      - group - excluded
+      - input_boolean
+#      - input_datetime
+#      - input_number
+#      - input_select
+      - light
+      - lock
+#      - media_player
+#      - scene
+#      - script
+      - sensor
+      - sun
+      - switch
+#      - updater
+#      - weblink
+#      - zone
+  exclude:
+    entities:
+      - automation.lr_cans_dim
+      - automation.update_arts_away_time
+      - automation.update_arts_home_time
+      - automation.update_steffs_away_time
+      - automation.update_steffs_home_time
+      - binary_sensor.cam1_motion_sensor_172
+      - binary_sensor.cam2_motion_sensor_174
+      - binary_sensor.cam3_motion_sensor_176
+      - binary_sensor.cam5_motion_sensor_178
+      - binary_sensor.cam7_motion_sensor_180
+      - binary_sensor.cam8_motion_sensor_182
+      - binary_sensor.ping_art
+      - binary_sensor.ping_steff
+      - sensor.arts_birthday_countdown
+#      - sensor.artsiphone8_calc_distance
+#      - sensor.artsiphone8_gps_accuracy
+#      - sensor.artsiphone8_info
+#      - sensor.artsiphone8_interval
+#      - sensor.artsiphone8_last_located
+#      - sensor.artsiphone8_last_update
+#      - sensor.artsiphone8_last_zone_name2
+#      - sensor.artsiphone8_last_zone_name3
+#      - sensor.artsiphone8_next_update
+#      - sensor.artsiphone8_poll_count
+#      - sensor.artsiphone8_travel_time
+#      - sensor.artsiphone8_waze_distance
+#      - sensor.artsiphone8_zone_name2
+#      - sensor.artsiphone8_zone_name3
+      - sensor.dark_sky_daily_summary
+      - sensor.dark_sky_minutely_summary
+      - sensor.dark_sky_hourly_summary
+      - sensor.dark_sky_summary_0
+      - sensor.dark_sky_summary_1
+      - sensor.dark_sky_summary_2
+      - sensor.date_time
+      - sensor.day_of_year
+      - sensor.days_in_current_month
+      - sensor.ipv4_address_en0
+      - sensor.last_boot
+      - sensor.load_15m
+      - sensor.load_1m
+      - sensor.load_5m
+      - sensor.memory_use_percent
+      - sensor.moon_icon
+      - sensor.next_sunrise
+      - sensor.next_sunset
+      - sensor.readable_date_long
+      - sensor.readable_date_short
+      - sensor.readable_full
+      - sensor.readable_time
+      - sensor.sjm_ipad_altitude
+      - sensor.sjm_ipad_badge
+      - sensor.sjm_ipad_battery
+      - sensor.sjm_ipad_battery_level
+      - sensor.sjm_ipad_battery_state
+      - sensor.sjm_ipad_battery_status
+      - sensor.sjm_ipad_calc_distance
+      - sensor.sjm_ipad_dir_of_travel
+      - sensor.sjm_ipad_distance
+      - sensor.sjm_ipad_gps_accuracy
+      - sensor.sjm_ipad_info
+      - sensor.sjm_ipad_interval
+      - sensor.sjm_ipad_last_located
+      - sensor.sjm_ipad_last_update
+      - sensor.sjm_ipad_last_zone_name2
+      - sensor.sjm_ipad_last_zone_name3
+      - sensor.sjm_ipad_poll_count
+      - sensor.sjm_ipad_travel_time
+      - sensor.sjm_ipad_waze_distance
+      - sensor.sjm_ipad_speed
+      - sensor.sjm_ipad_zone_name2
+      - sensor.sjm_ipad_zone_name3
+      - sensor.sjm_ipad_waze_distance
+      - sensor.sleepnumber_cc04b4013d81_art_sleepnumber
+      - sensor.sleepnumber_cc04b4013d81_steff_sleepnumber
+      - sensor.speedtest_download
+      - sensor.speedtest_ping
+      - sensor.speedtest_upload
+      - sensor.steffs_birthday_countdown
+#      - sensor.steffsiphone8_calc_distance
+#      - sensor.steffsiphone8_gps_accuracy
+#      - sensor.steffsiphone8_info
+#      - sensor.steffsiphone8_interval
+#      - sensor.steffsiphone8_last_located
+#      - sensor.steffsiphone8_last_update
+#      - sensor.steffsiphone8_last_zone_name2
+#      - sensor.steffsiphone8_last_zone_name3
+#      - sensor.steffsiphone8_next_update
+#      - sensor.steffsiphone8_poll_count
+#      - sensor.steffsiphone8_travel_time
+#      - sensor.steffsiphone8_waze_distance
+#      - sensor.steffsiphone8_zone_name2
+#      - sensor.steffsiphone8_zone_name3
+      - sensor.time
+      - sensor.time_of_day
+      - sensor.time_date
+      - sensor.uptime
+      - sensor.vera3_controller_189
+      - sensor.version_available
+      - sensor.version_current
+      - sensor.week_odd_even
+      - sensor.week_of_year
+      - switch.cam1_motion_sensor_172
+      - switch.cam2_motion_sensor_174
+      - switch.cam3_motion_sensor_176
+      - switch.cam5_motion_sensor_178
+      - switch.cam7_motion_sensor_180
+      - switch.cam8_motion_sensor_182
+      - switch.internet_connection_150
+      - switch.ip_address_107
+      - weather.dark_sky
+      - weblink.configurator
+      - weblink.router
+    domains:
+#      - device_tracker
+      - group
+#      - zone
+#

@@ -1,0 +1,173 @@
+#########################
+#    HA Uptime          #
+#########################
+- platform: uptime
+  name: Uptime
+  unit_of_measurement: hours
+#
+#########################
+#    HA Version         #
+#########################
+- platform: version
+  name: version_current
+- platform: version
+  name: version_available
+  source: hassio
+#  branch: stable
+#
+#########################
+#  External IP Address  #
+#########################
+- platform: rest
+  resource: https://api.ipify.org/?format=json
+  #resource: http://ip.jsontest.com
+  name: external_ip
+  value_template: '{{ value_json.ip }}'
+  scan_interval: 14400
+#
+#########################
+#    System Monitor     #
+#########################
+- platform: systemmonitor
+  resources:
+#    - type: ipv4_address
+#      arg: en0
+    - type: memory_use
+    - type: memory_free
+    - type: memory_use_percent
+    - type: load_1m
+    - type: load_5m
+    - type: load_15m
+    - type: last_boot
+    #########################
+    #  LAN IP Address  #
+    #########################
+    - type: ipv4_address
+      arg: en0
+#      friendly_name: LAN IP
+    #########################
+    #  WiFi IP Address  #
+    #########################
+    - type: ipv4_address
+      arg: en1
+#      friendly_name: WiFi IP
+#
+#########################
+#    Time and Date      #
+#########################
+- platform: time_date
+  display_options:
+    - 'time'
+    - 'date'
+    - 'date_time'
+#
+#########################
+#    File Size      #
+#########################
+#https://www.home-assistant.io/components/sensor.filesize/
+#- platform: filesize
+#  file_paths:
+#    - /config/home-assistant_v2.db
+#    - /config/home-assistant.log
+#
+#
+#Thanks to @ccostan for the code here.  Some Intresting HA stats
+- platform: template
+  sensors:
+    sensor_count:
+      entity_id: []
+      friendly_name: 'Number of Sensors'
+      value_template: >
+        {%- set domains = ['sensor'] -%}
+        {%- for domain in domains -%}
+          {%- for item in states[domain] -%}
+            {% if loop.first %}
+              {{loop.length}}
+            {% endif %}
+          {%- endfor -%}
+        {%- endfor -%}
+    automation_count:
+      entity_id: []
+      friendly_name: 'Number of Automations'
+      value_template: >
+        {%- set domains = ['automation'] -%}
+        {%- for domain in domains -%}
+          {%- for item in states[domain] -%}
+            {% if loop.first %}
+              {{loop.length}}
+            {% endif %}
+          {%- endfor -%}
+        {%- endfor -%}
+    script_count:
+      entity_id: []
+      friendly_name: 'Number of Scripts'
+      value_template: >
+        {%- set domains = ['script'] -%}
+        {%- for domain in domains -%}
+          {%- for item in states[domain] -%}
+            {% if loop.first %}
+              {{loop.length}}
+            {% endif %}
+          {%- endfor -%}
+        {%- endfor -%}
+    switch_count:
+      entity_id: []
+      friendly_name: 'Number of Switches'
+      value_template: >
+        {%- set domains = ['switch'] -%}
+        {%- for domain in domains -%}
+          {%- for item in states[domain] -%}
+            {% if loop.first %}
+              {{loop.length}}
+            {% endif %}
+          {%- endfor -%}
+        {%- endfor -%}
+    binary_sensor_count:
+      entity_id: []
+      friendly_name: 'Number of Binary Sensors'
+      value_template: >
+        {%- set domains = ['binary_sensor'] -%}
+        {%- for domain in domains -%}
+          {%- for item in states[domain] -%}
+            {% if loop.first %}
+              {{loop.length}}
+            {% endif %}
+          {%- endfor -%}
+        {%- endfor -%}
+    lights_count:
+      entity_id: []
+      friendly_name: 'Number of Lights'
+      value_template: >
+        {%- set domains = ['light'] -%}
+        {%- for domain in domains -%}
+          {%- for item in states[domain] -%}
+            {% if loop.first %}
+              {{loop.length}}
+            {% endif %}
+          {%- endfor -%}
+        {%- endfor -%}
+    tracker_count:
+      entity_id: []
+      friendly_name: 'Number of Devices'
+      value_template: >
+        {%- set domains = ['device_tracker'] -%}
+        {%- for domain in domains -%}
+          {%- for item in states[domain] -%}
+            {% if loop.first %}
+              {{loop.length}}
+            {% endif %}
+          {%- endfor -%}
+        {%- endfor -%}
+    zwave_count:
+      entity_id: []
+      friendly_name: 'Zwave Devices'
+      value_template: >
+        {%- set domains = ['zwave'] -%}
+        {%- for domain in domains -%}
+          {%- for item in states[domain] -%}
+            {% if loop.first %}
+              {{loop.length}}
+            {% endif %}
+          {%- endfor -%}
+        {%- endfor -%}
+#

@@ -1,0 +1,39 @@
+hass:
+  widget_type: navigate
+  title: Home Assistant
+  icon_inactive: mdi-home-assistant
+  icon_inactive_style:  "color: skyblue;"
+  dashboard: Hass
+
+vera:
+  widget_type: navigate
+  title: Vera
+  icon_inactive: mdi-vuejs
+  icon_inactive_style:  "color: green;"
+  dashboard: Vera
+
+rachio:
+  widget_type: navigate
+  title: Rachio
+  icon_inactive: mdi-language-r
+  icon_inactive_style:  "color: deepskyblue;"
+  dashboard: Rachio
+
+acurite:
+  widget_type: navigate
+  title: Acu-Rite
+  icon_inactive: mdi-near-me
+  icon_inactive_style:  "color: red;"
+  dashboard: Acurite
+
+sandbox:
+  widget_type: navigate
+  title: Sandbox
+  icon_inactive: fa-magic
+  icon_inactive_style:  "color: khaki;"
+  dashboard: Sandbox
+
+layout:
+  - hass (2x1), vera (2x1), rachio (2x1), acurite (2x1)
+  - 
+  - sandbox (2x1)

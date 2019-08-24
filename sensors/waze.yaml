@@ -1,0 +1,35 @@
+#########################
+#   Waze Travel Time    #
+#########################
+#- platform: waze_travel_time
+#  name: "Time to destination"
+#  origin: device_tracker.artsiphone8
+#  destination: sensor.dest_address
+#  region: 'US'
+#
+#- platform: template
+#  sensors:
+#     dest_address:
+#       value_template: >-
+#          {%- if is_state("input_select.destination", "Home")  -%}
+#            5124 Creek Crossing Drive, Jacksonville, FL 32226, USA
+#          {%- elif is_state("input_select.destination", "Shands")  -%}
+#            627 W 8th Street, Jacksonville, FL 32207, USA
+#          {%- elif is_state("input_select.destination", "Baptist")  -%}
+#            800 Prudential Dr, Jacksonville, FL 32207, USA
+#          {%- elif is_state("input_select.destination", "Memorial")  -%}
+#            3625 University Blvd S, Jacksonville, FL 32216, USA
+#          {%- elif is_state("input_select.destination", "Mayo")  -%}
+#            4500 San Pablo Rd S, Jacksonville, FL 32224, USA
+#          {%- elif is_state("input_select.destination", "Phoebe")  -%}
+#            910 N Jefferson St, Albany, GA 31701, USA
+#          {%- elif is_state("input_select.destination", "Flagler")  -%}
+#            400 Health Park Blvd, St. Augustine, FL 32086, USA
+#          {%- elif is_state("input_select.destination", "St Vincents")  -%}
+#            1 Shircliff Way, Jacksonville, FL 32204, USA
+#          {%- elif is_state("input_select.destination", "Mom & Dad")  -%}
+#            5425 Eagle Claw Drive, Port Orange, FL 32128, USA
+#          {%- else -%}
+#            Unknown
+#          {%- endif %}
+#

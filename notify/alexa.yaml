@@ -1,0 +1,67 @@
+# Alexa
+#
+- platform: alexa_media
+  name: alexa_media
+#
+# -- Working Simply TTS
+#  - service: notify.alexa_media
+#    data_template:
+#      target:
+#        - media_player.office_echo
+#      data:
+#        type: tts
+#      message: "{{ trigger.to_state.attributes.friendly_name }}."
+#      message: "Hello World"
+# -- Working Simply TTS with Tone alert
+#  - service: notify.alexa_media
+#    data:
+#      target:
+#        - media_player.office_echo
+#      data:
+#        type: announce
+#        #method: all
+#      message: "Hello World"
+# -- Working Pust Notication to both Art & Steffs phones
+#  - service: notify.alexa_media
+#    data:
+#      target:
+#        - media_player.office_echo
+#      data:
+#        type: push
+#      title: "I just wanted to say"
+#      message: "Hello World"
+# ----------------
+#
+# This link is were to grab the current custom_component .py files.
+# https://github.com/keatontaylor/alexa_media_player/tree/master/alexa_media
+# https://community.home-assistant.io/t/echo-devices-alexa-as-media-player-testers-needed/58639/2516
+# Call using:
+#    action:
+##       - service: media_player.alexa_tts
+##         data:
+##           entity_id: media_player.christopher_s_echo_dot
+##           message: "Hello World"
+#       - service: notify.alexa_media
+#         data:
+#           target:
+#             - media_player.christopher_s_echo_dot
+#           data:
+#             type: tts
+#           message: "Hello World"
+#       - service: notify.alexa_media
+#         data:
+#           target:
+#             - media_player.christopher_s_echo
+#           data:
+#             type: announce
+#             #method: all
+#           message: "Hello World"
+#       - service: notify.alexa_media
+#         data:
+#           target:
+#             - media_player.christopher_s_echo_dot
+#           data:
+#             type: push
+#           title: "I just wanted to say"
+#           message: "Hello World"
+

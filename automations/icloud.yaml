@@ -1,0 +1,50 @@
+#########################################################
+#   IPHONE/ICLOUD SELECTION AUTOMATIONS
+#########################################################
+#
+#########################################################
+#   Set Art iPhone Interval
+#########################################################
+- alias: Set Art iPhone Interval
+  id: set_art_iphone_interval
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: input_select.icloud_set_interval
+  action:
+  - service: device_tracker.icloud_set_interval
+    data_template:
+      account_name: arts_i_cloud
+      device_name: artsiphone8
+      interval: "{{ states.input_select.icloud_set_interval.state }}"
+#
+#########################################################
+#   iCloud Command
+#########################################################
+- alias: iCloud Command
+  id: icloud_command
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: input_select.icloud_commands
+  action:
+  - service: device_tracker.icloud_update
+    data_template:
+      account_name: arts_i_cloud
+      command: "{{ states.input_select.icloud_commands.state }}"
+#
+#########################################################
+#   Set iCloud Debug Command
+#########################################################
+- alias: iCloud Debug Command
+  id: icloud_debug_command
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: input_select.icloud_debug_commands
+  action:
+  - service: device_tracker.icloud_update
+    data_template:
+      account_name: arts_i_cloud
+      command: "{{ states.input_select.icloud_debug_commands.state }}"
+#

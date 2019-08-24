@@ -1,0 +1,248 @@
+#################################################################
+# SECURITY & LOCKS SCRIPTS
+#################################################################
+#
+#################################################################
+# Check Open Door Status
+# Called from [preset_alarm_to_armed_away, set_alarm_to_armed_away,
+# set_alarm_to_armed_home_weekday, set_alarm_to_armed_home_weekend
+# trigger_alarm_while_armed_away, trigger_alarm_while_armed_home]
+# In file: [automations/alarm_panel.yaml]
+#
+# This will notify if any doors/windows are open. It requires the
+# [group.door_sensors] to be 'on' to execute . It will still allow
+# you to arm the alarm while the zone is open.
+#################################################################
+#
+check_open_door_status:
+  alias: Check Open Door Status
+  sequence:
+  - service: script.write_to_log
+    data:
+      entity_id: alarm_control_panel.ha_alarm
+      message: 'Script - Check Open Door Status'
+  - condition: state
+    entity_id: group.door_sensors
+    state: 'on'
+  - service: script.write_to_log
+    data:
+      entity_id: alarm_control_panel.ha_alarm
+      message: >-
+        {{now().strftime("%m/%d/%Y %H:%M:%S")}}. The following door(s) caused a Zone Alert:
+        {% set sensors = [states.binary_sensor.front_door_31, states.binary_sensor.back_door_36, states.binary_sensor.garage_entry_door_39, states.binary_sensor.one_car_gar_sensor_66, states.binary_sensor.two_car_gar_sensor_65, states.binary_sensor.sliding_door_left_37, states.binary_sensor.sliding_door_right_38, states.binary_sensor.sunroom_east_34, states.binary_sensor.sunroom_west_35] %}
+        {%- for opendoor in sensors -%}
+          {%- if (opendoor.state_with_unit == "on") -%}
+            {{ opendoor.name | upper }},
+          {%- endif -%}
+        {% endfor %}
+  - service: persistent_notification.create
+    data_template:
+      title: "Security Zone Alert!"
+      message: >-
+        {{now().strftime("%m/%d/%Y %H:%M:%S")}}. The following door(s) caused a Zone Alert:
+        {% set sensors = [states.binary_sensor.front_door_31, states.binary_sensor.back_door_36, states.binary_sensor.garage_entry_door_39, states.binary_sensor.one_car_gar_sensor_66, states.binary_sensor.two_car_gar_sensor_65, states.binary_sensor.sliding_door_left_37, states.binary_sensor.sliding_door_right_38, states.binary_sensor.sunroom_east_34, states.binary_sensor.sunroom_west_35] %}
+        {%- for opendoor in sensors -%}
+          {%- if (opendoor.state_with_unit == "on") -%}
+            {{ opendoor.name | upper }},
+          {%- endif -%}
+        {% endfor %}
+  - service: notify.lg_tv
+    data_template:
+      title: "Security Zone Alert!"
+      message: >-
+        {{now().strftime("%m/%d/%Y %H:%M:%S")}}. The following door(s) caused a Zone Alert:
+        {% set sensors = [states.binary_sensor.front_door_31, states.binary_sensor.back_door_36, states.binary_sensor.garage_entry_door_39, states.binary_sensor.one_car_gar_sensor_66, states.binary_sensor.two_car_gar_sensor_65, states.binary_sensor.sliding_door_left_37, states.binary_sensor.sliding_door_right_38, states.binary_sensor.sunroom_east_34, states.binary_sensor.sunroom_west_35] %}
+        {%- for opendoor in sensors -%}
+          {%- if (opendoor.state_with_unit == "on") -%}
+            {{ opendoor.name | upper }},
+          {%- endif -%}
+        {% endfor %}
+  - condition: state
+    entity_id: input_boolean.enable_sensor_notifications
+    state: 'on'
+  - service: notify.ios_group_art_steff
+    data_template:
+      title: "Security Zone Alert!"
+      message: >-
+        {{now().strftime("%m/%d/%Y %H:%M:%S")}}. The following door(s) caused a Zone Alert:
+        {% set sensors = [states.binary_sensor.front_door_31, states.binary_sensor.back_door_36, states.binary_sensor.garage_entry_door_39, states.binary_sensor.one_car_gar_sensor_66, states.binary_sensor.two_car_gar_sensor_65, states.binary_sensor.sliding_door_left_37, states.binary_sensor.sliding_door_right_38, states.binary_sensor.sunroom_east_34, states.binary_sensor.sunroom_west_35] %}
+        {%- for opendoor in sensors -%}
+          {%- if (opendoor.state_with_unit == "on") -%}
+            {{ opendoor.name | upper }},
+          {%- endif -%}
+        {% endfor %}
+#
+#################################################################
+# Set Alarm Armed Away
+# Called from [Set Alarm to Armed Away]
+# In file: [automations/alarm_panel.yaml]
+#################################################################
+set_alarm_armed_away:
+  alias: Set Alarm Armed Away
+  sequence:
+  - service: alarm_control_panel.alarm_arm_away
+    data:
+      code: !secret alarm_code
+      entity_id: alarm_control_panel.ha_alarm
+  - service: script.write_to_log
+    data_template:
+      entity_id: alarm_control_panel.ha_alarm
+      message: >-
+        At {{now().strftime("%m/%d/%Y %H:%M:%S")}}, Script - Set Alarm Armed Away
+#
+#################################################################
+# Set Alarm Armed Home
+# Called from [Set Alarm to Armed Home Weekday, Set Alarm to Armed Home Weekend]
+# In file: [automations/alarm_panel.yaml]
+#################################################################
+set_alarm_armed_home:
+  alias: Set Alarm Armed Home
+  sequence:
+  - service: alarm_control_panel.alarm_arm_home
+    data:
+      code: !secret alarm_code
+      entity_id: alarm_control_panel.ha_alarm
+  - service: script.write_to_log
+    data_template:
+      entity_id: alarm_control_panel.ha_alarm
+      message: >-
+        At {{now().strftime("%m/%d/%Y %H:%M:%S")}}, Script - Set Alarm Armed Home
+#
+#################################################################
+# Set Alarm Disarmed
+# Called from [Set Alarm to Disarmed every morning, Set Alarm to Disarmed arriving Home]
+# In file: [automations/alarm_panel.yaml]
+#################################################################
+set_alarm_disarmed:
+  alias: Set Alarm Disarmed
+  sequence:
+  - service: switch.turn_off
+    entity_id: switch.siren_206
+  - service: alarm_control_panel.alarm_disarm
+    data:
+      code: !secret alarm_code
+      entity_id: alarm_control_panel.ha_alarm
+  - service: script.write_to_log
+    data_template:
+      entity_id: alarm_control_panel.ha_alarm
+      message: >-
+        At {{now().strftime("%m/%d/%Y %H:%M:%S")}}, Script - Set Alarm Disarmed
+#
+#################################################################
+# Pre Warning Siren
+# Called from [Pre Warn the Alarm Siren]
+# In file: [automations/alarm_panel.yaml]
+#################################################################
+pre_warning_siren:
+  alias: Pre Warning Siren
+  sequence:
+  - service: switch.turn_on
+    entity_id: switch.siren_206
+  - delay: '00:00:01'
+  - service: switch.turn_off
+    entity_id: switch.siren_206
+  - service: script.write_to_log
+    data_template:
+      entity_id: alarm_control_panel.ha_alarm
+      message: >-
+        At {{now().strftime("%m/%d/%Y %H:%M:%S")}}, Script - Pre Warning Siren
+#
+#################################################################
+# Lock Front Door
+# Called from [close_lock_ext_doors_at_2130]
+# In file: [automations/door_locks.yaml]
+#################################################################
+#
+lock_front_door:
+  alias: Lock Front Door
+  sequence:
+  - condition: state
+    entity_id: lock.front_door_bolt_241
+    state: 'unlocked'
+  - service: lock.lock
+    data:
+      entity_id:
+      - lock.front_door_bolt_241
+  - service: script.write_to_log
+    data_template:
+      entity_id: lock.front_door_bolt_241
+      message: >-
+        At {{now().strftime("%m/%d/%Y %H:%M:%S")}} Script - Front Door Locked!
+#
+#################################################################
+# Lock Back Door
+# Called from [close_lock_ext_doors_at_2130]
+# In file: [automations/door_locks.yaml]
+#################################################################
+#
+lock_back_door:
+  alias: Lock Back Door
+  sequence:
+  - condition: state
+    entity_id: lock.back_door_lock_61
+    state: 'unlocked'
+  - service: lock.lock
+    data:
+      entity_id:
+      - lock.back_door_lock_61
+  - service: script.write_to_log
+    data_template:
+      entity_id: lock.back_door_lock_61
+      message: >-
+        At {{now().strftime("%m/%d/%Y %H:%M:%S")}} Script - Back Door Locked!
+#
+#################################################################
+# Close Garage Door 1
+# Called from [close_garage_doors_at_sunset]
+# In file: [automations/door_locks.yaml]
+# Called from [close_lock_ext_doors_at_2130]
+# In file: [automations/door_locks.yaml]
+# Called from [close_garage_door_2_no_one_home]
+# In file: [automations/door_locks.yaml]
+# Called from [close_garage_door_in_rain]
+# In file: [automations/door_locks.yaml]
+#################################################################
+#
+close_garage_door1:
+  alias: Close Garage Door 1
+  sequence:
+  - condition: state
+    entity_id: lock.garage_controller_1_55
+    state: 'unlocked'
+  - service: lock.lock
+    data:
+      entity_id:
+      - lock.garage_controller_1_55
+  - service: script.write_to_log
+    data_template:
+      entity_id: lock.garage_controller_1_55
+      message: >-
+        At {{now().strftime("%m/%d/%Y %H:%M:%S")}} Script - Garage 1 Closed!
+#
+#################################################################
+# Close Garage Door 2
+# Called from [close_garage_doors_at_sunset]
+# Called from [close_lock_ext_doors_at_2130]
+# In file: [automations/door_locks.yaml]
+# Called from [close_garage_door_2_no_one_home]
+# In file: [automations/door_locks.yaml]
+# Called from [close_garage_door_in_rain]
+# In file: [automations/door_locks.yaml]
+#################################################################
+#
+close_garage_door2:
+  alias: Close Garage Door 2
+  sequence:
+  - condition: state
+    entity_id: lock.garage_controller_2_54
+    state: 'unlocked'
+  - service: lock.lock
+    data:
+      entity_id:
+      - lock.garage_controller_2_54
+  - service: script.write_to_log
+    data_template:
+      entity_id: lock.garage_controller_2_54
+      message: >-
+        At {{now().strftime("%m/%d/%Y %H:%M:%S")}} Script - Garage 2 Closed!
+#

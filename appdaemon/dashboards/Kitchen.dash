@@ -1,0 +1,77 @@
+#
+# Main arguments, all optional
+#
+title: Kitchen
+widget_dimensions: [120, 120]
+widget_margins: [5, 5]
+columns: 8
+
+kitcam3:
+  widget_type: camera
+  title: Kitchen
+  frame_style: ""
+  entity_picture: http://192.168.0.103:8103/videostream.cgi?username=admin&password=KCP8410
+#
+# Scenes
+
+kit_lights_on:
+  widget_type: scene
+  title: Kitchen Lights On
+  entity: scene.mm__kitchen_lights_on
+  icon_on: mdi-auto-fix
+  icon_off: mdi-auto-fix
+  icon_style_inactive:  "color: yellow;"
+
+kit_lights_off:
+  widget_type: scene
+  title: Kitchen Lights Off
+  entity: scene.mm__kitchen_lights_off
+  icon_on: mdi-auto-fix
+  icon_off: mdi-auto-fix
+  icon_style_inactive:  "color: yellow;"
+
+kit-motion:
+  widget_type: switch
+  title: Kitchen Room Motion
+  entity: binary_sensor.kit_motion_sensor_81
+  state_text: 1
+  state_map:
+    "on": 'Motion Detected'
+    "off": 'No Motion'
+  icon_on: mdi-run-fast
+  icon_off: mdi-walk
+
+kit-motion_sensor:
+  widget_type: switch
+  title: Living Room Motion
+  entity: switch.kit_motion_sensor_81
+  state_text: 1
+  state_map:
+    "on": 'Enabled'
+    "off": 'Bypassed'
+  icon_on: mdi-security
+  icon_off: mdi-shield-outline
+
+uc_lights_off:
+  widget_type: scene
+  title: U/C Lights Off
+  entity: scene.kit_uc_lights_off
+  icon_on: mdi-auto-fix
+  icon_off: mdi-auto-fix
+  icon_style_inactive:  "color: yellow;"
+
+uc_lights_override:
+  widget_type: scene
+  title: U/C Lights Override
+  entity: scene.kitchen_lights_override
+  icon_on: mdi-auto-fix
+  icon_off: mdi-auto-fix
+  icon_style_inactive:  "color: yellow;"
+
+layout:
+    - include: top_nav_small
+    - kitcam3(3x2), switch.kitchen_can_lights_49, light.kitchen_pendants_106, switch.kitchen_uc_lights_44, light.nook_uc_lights_116
+    - kit_lights_on, kit_lights_off, uc_lights_off, uc_lights_override
+    - sensor.kit_humidity_sensor_119, sensor.kit_light_sensor_227, sensor.kit_temp_sensor_117, kit-motion_sensor, kit-motion
+    - include: rooms_panel
+    - include: bottom_nav

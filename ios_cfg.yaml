@@ -1,0 +1,43 @@
+# IOS
+ios:
+  push:
+    categories:
+      - name: Alarm
+        identifier: 'alarm'
+        actions:
+          - identifier: 'SILENCEALARM'
+            title: 'Silence the Alarm'
+            activationMode: 'background'
+            authenticationRequired: true
+            destructive: false
+            behavior: 'default'
+          - identifier: 'DISMISS'
+            title: 'Dismiss'
+            activationMode: 'background'
+            authenticationRequired: yes
+            destructive: no
+            behavior: 'default'
+#  ---------------
+      - name: Arrived
+        identifier: 'arrived'
+        actions:
+          - identifier: 'UNLOCKFRONTDOOR'
+            title: 'Unlock Front Door'
+            activationMode: 'background'
+            authenticationRequired: yes
+            destructive: yes
+            behavior: 'default'
+          - identifier: 'OPENGARAGEDOOR'
+            title: 'Open Garage Door'
+            activationMode: 'background'
+            authenticationRequired: yes
+            destructive: yes
+            behavior: 'default'
+          - identifier: 'DISMISS'
+            title: 'Dismiss'
+            activationMode: 'background'
+            authenticationRequired: yes
+            destructive: no
+            behavior: 'default'
+#  ---------------
+#

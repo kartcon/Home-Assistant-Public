@@ -1,0 +1,21 @@
+#################################################################
+#     HOLIDAY BOOLEAN GROUP
+#################################################################
+#
+holiday_booleans:
+  name: Holiday
+  view: no
+  icon: mdi:toggle-switch
+  entities:
+    - input_boolean.enable_valentine_lighting
+    - input_boolean.enable_pattys_lighting
+    - input_boolean.enable_easter_lighting
+    - input_boolean.enable_memorial_lighting
+    - input_boolean.enable_flag_day_lighting
+    - input_boolean.enable_independence_lighting
+    - input_boolean.enable_labor_lighting
+    - input_boolean.enable_cancer_lighting
+    - input_boolean.enable_halloween_lighting
+    - input_boolean.enable_thanksgiving_lighting
+    - input_boolean.enable_christmas_lighting
+#

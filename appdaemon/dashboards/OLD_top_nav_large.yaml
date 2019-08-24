@@ -1,0 +1,96 @@
+# Row 1
+clock:
+    widget_type: clock
+
+sunrise:
+    widget_type: sensor
+    entity: sensor.sunrise
+    title: Next Sunrise
+    text: sensor.sunrise
+#    widget_style: "color: $yellow; font-size: 40%;"
+#    title_style: "color: $yellow; font-size: 100%;"
+#    text_style: "color: $yellow; font-size: 100%;"
+
+sunset:
+    widget_type: sensor
+    entity: sensor.sunset
+    title: Next Sunset
+    text: sensor.sunset
+#    widget_style: "font-size: 40%;"
+
+weather:
+    widget_type: weather
+    entity: weather.dark_sky
+    title: Todays Weather
+    title_style: "color: white;"
+    units: "&deg;F"
+
+art_presence:
+    widget_type: device_tracker
+    title: Art
+    device: artsiphone7
+    enable: 1
+    icon_on: fa-male
+    icon_off: fa-male
+    icon_style_active: "color: #4bcdea"
+
+steff_presence:
+    widget_type: device_tracker
+    title: Steff
+    device: steffsiphone7
+    enable: 1
+    icon_style_active: "color: #ea4b82"
+    icon_on: fa-female
+    icon_off: fa-female
+
+front_door_lock:
+    widget_type: lock
+    title: Front Door
+    entity: lock.front_door_bolt_241
+    icon_on: fa-lock
+    icon_off: fa-lock
+#    icon_style_active: $style_active_warn
+
+back_door_lock:
+    widget_type: lock
+    title: Back Door
+    entity: lock.back_door_lock_61
+    icon_on: fa-lock
+    icon_off: fa-lock
+#    icon_style_active: $style_active_warn
+
+# Row 2
+mode:
+    widget_type: sensor
+    title: House Mode
+    text_style: "text-transform: uppercase;font-size: 300%"
+    entity: input_select.house_mode
+
+alarm:
+    widget_type: label
+    title: Alarm Status
+#    widget_type: alarm
+#    entity: alarm_control_panel.ha_alarm
+#    state_style: "font-size: 250%;"
+#    title_style: "color: white;"
+
+garage_door_1:
+    widget_type: lock
+    title: Garage Door 1
+    entity: lock.garage_controller_1_55
+    icon_on: fa-car
+    icon_off: fa-car
+#    icon_style_active: $style_active_warn
+
+garage_door_2:
+    widget_type: lock
+    title: Garage Door 2
+    entity: lock.garage_controller_2_54
+    icon_on: fa-car
+    icon_off: fa-car
+#    icon_style_active: $style_active_warn
+
+layout:
+    - clock.clock(2x1), weather(2x2), art_presence, steff_presence, front_door_lock, back_door_lock
+    - sunrise(2x1), alarm(2x1), garage_door_1, garage_door_2
+    - sunset(2x1)

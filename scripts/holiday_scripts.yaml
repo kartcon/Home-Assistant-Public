@@ -1,0 +1,608 @@
+#################################################################
+## SEASONAL SCRIPTS
+#################################################################
+#
+#################################################################
+# Script: Reset All Holiday Booleans to OFF
+# Called from [reset_holiday_booleans_at_2355] 
+# In file: [automations/scheduled_events.yaml]
+#################################################################
+#
+reset_holiday_booleans:
+  alias: Reset Holiday Booleans
+  sequence:
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.enable_valentine_lighting
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.enable_pattys_lighting
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.enable_easter_lighting
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.enable_memorial_lighting
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.enable_flag_day_lighting
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.enable_independence_lighting
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.enable_labor_lighting
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.enable_cancer_lighting
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.enable_halloween_lighting
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.enable_thanksgiving_lighting
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.enable_christmas_lighting
+#
+#################################################################
+# SCRIPT: Valentines Day
+# Called from [id: season_is_valentine_day] 
+# In file: [automations/lights_holiday.yaml]
+#################################################################
+valentines_day_script:
+  alias: Valentines Day Script
+  sequence:
+  - service: light.turn_on
+    data:
+      entity_id: light.flux_led_strip
+      brightness: 30
+      rgb_color: [255,0,250]
+      # Red/Green cross fade
+  - service: light.turn_on
+    data:
+      entity_id: light.front_porch
+      brightness: 128
+      rgb_color: [83,255,126]
+  - service: light.turn_on
+    data:
+      entity_id: light.tv_left
+      brightness: 69
+      rgb_color: [255,218,245]
+      # lavender
+  - service: light.turn_on
+    data:
+      entity_id: light.tv_right
+      brightness: 69
+      rgb_color: [255,218,245]
+      # lavender
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_east
+      brightness: 93
+      rgb_color: [254,145,255]
+      # pink
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_center
+      brightness: 128
+      rgb_color: [255,0,253]
+      # pink
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_west
+      brightness: 93
+      rgb_color: [254,145,255]
+      # pink
+#
+#################################################################
+# SCRIPT: St Pattys Day
+# Called from [season_is_st_patty_day] 
+# In file: [automations/lights_holiday.yaml]
+#################################################################
+st_pattys_day_script:
+  alias: St Pattys Day Script
+  sequence:
+  - service: light.turn_on
+    data:
+      entity_id: light.flux_led_strip
+      brightness: 30
+      rgb_color: [0,255,0]
+  - service: light.turn_on
+    data:
+      entity_id: light.front_porch
+      brightness: 128
+      rgb_color: [83,255,126]
+  - service: light.turn_on
+    data:
+      entity_id: light.tv_left
+      brightness: 58
+      rgb_color: [132,255,177]
+  - service: light.turn_on
+    data:
+      entity_id: light.tv_right
+      brightness: 58
+      rgb_color: [132,255,177]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_east
+      brightness: 255
+      rgb_color: [0,255,0]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_center
+      brightness: 255
+      rgb_color: [255,255,255]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_west
+      brightness: 255
+      rgb_color: [0,255,0]
+#
+#################################################################
+# SCRIPT: Easter
+# Called from [season_is_easter] 
+# In file: [automations/lights_holiday.yaml]
+#################################################################
+easter_script:
+  alias: Easter Script
+  sequence:
+  - service: light.turn_on
+    data:
+      entity_id: light.flux_led_strip
+      brightness: 132
+      rgb_color: [255,32,255]
+  - service: light.turn_on
+    data:
+      entity_id: light.front_porch
+      brightness: 128
+      rgb_color: [255,131,191]
+  - service: light.turn_on
+    data:
+      entity_id: light.tv_left
+      brightness: 69
+      rgb_color: [127,243,255]
+  - service: light.turn_on
+    data:
+      entity_id: light.tv_right
+      brightness: 69
+      rgb_color: [127,243,255]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_east
+      brightness: 255
+      rgb_color: [255,131,191]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_center
+      brightness: 255
+      rgb_color: [255,201,0]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_west
+      brightness: 255
+      rgb_color: [255,131,191]
+#
+#################################################################
+# SCRIPT: Memorial Day
+# Called from [season_is_memorial_day] 
+# In file: [automations/lights_holiday.yaml]
+#################################################################
+memorial_day_script:
+  alias: Memorial Day Script
+  sequence:
+  - service: light.turn_on
+    data:
+      entity_id: light.flux_led_strip
+      brightness: 30
+      rgb_color: [255,0,0]
+  - service: light.turn_on
+    data:
+      entity_id: light.front_porch
+      brightness: 128
+      rgb_color: [0,129,255]
+  - service: light.turn_on
+    data:
+      entity_id: light.tv_left
+      brightness: 69
+      rgb_color: [116,91,255]
+  - service: light.turn_on
+    data:
+      entity_id: light.tv_right
+      brightness: 69
+      rgb_color: [255,49,82]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_east
+      brightness: 128
+      rgb_color: [255,0,0]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_center
+      brightness: 94
+      color_temp: 270
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_west
+      brightness: 93
+      rgb_color: [0,0,255]
+#
+#################################################################
+# SCRIPT: Flag Day
+# Called from [season_is_flag_day] 
+# In file: [automations/lights_holiday.yaml]
+#################################################################
+flag_day_script:
+  alias: Flag Day Script
+  sequence:
+  - service: light.turn_on
+    data:
+      entity_id: light.flux_led_strip
+      brightness: 30
+      rgb_color: [255,0,0]
+  - service: light.turn_on
+    data:
+      entity_id: light.front_porch
+      brightness: 128
+      rgb_color: [0,129,255]
+  - service: light.turn_on
+    data:
+      entity_id: light.tv_left
+      brightness: 69
+      rgb_color: [116,91,255]
+  - service: light.turn_on
+    data:
+      entity_id: light.tv_right
+      brightness: 69
+      rgb_color: [255,49,82]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_east
+      brightness: 128
+      rgb_color: [255,0,0]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_center
+      brightness: 94
+      color_temp: 270
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_west
+      brightness: 93
+      rgb_color: [0,0,255]
+#
+#################################################################
+# SCRIPT: Independence Day
+# Called from [season_is_independence_day] 
+# In file: [automations/lights_holiday.yaml]
+#################################################################
+independence_day_script:
+  alias: Independence Day Script
+  sequence:
+  - service: light.turn_on
+    data:
+      entity_id: light.flux_led_strip
+      brightness: 30
+      rgb_color: [255,0,0]
+  - service: light.turn_on
+    data:
+      entity_id: light.front_porch
+      brightness: 128
+      rgb_color: [0,129,255]
+  - service: light.turn_on
+    data:
+      entity_id: light.tv_left
+      brightness: 69
+      rgb_color: [116,91,255]
+  - service: light.turn_on
+    data:
+      entity_id: light.tv_right
+      brightness: 69
+      rgb_color: [255,49,82]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_east
+      brightness: 128
+      rgb_color: [255,0,0]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_center
+      brightness: 94
+      color_temp: 270
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_west
+      brightness: 93
+      rgb_color: [0,0,255]
+#
+#################################################################
+# SCRIPT: Labor Day
+# Called from [season_is_labor_day] 
+# In file: [automations/lights_holiday.yaml]
+#################################################################
+labor_day_script:
+  alias: Labor Day Script
+  sequence:
+  - service: light.turn_on
+    data:
+      entity_id: light.flux_led_strip
+      brightness: 30
+      rgb_color: [255,0,0]
+  - service: light.turn_on
+    data:
+      entity_id: light.front_porch
+      brightness: 128
+      rgb_color: [0,129,255]
+  - service: light.turn_on
+    data:
+      entity_id: light.tv_left
+      brightness: 69
+      rgb_color: [116,91,255]
+  - service: light.turn_on
+    data:
+      entity_id: light.tv_right
+      brightness: 69
+      rgb_color: [255,49,82]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_east
+      brightness: 128
+      rgb_color: [255,0,0]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_center
+      brightness: 94
+      color_temp: 270
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_west
+      brightness: 93
+      rgb_color: [0,0,255]
+#
+#################################################################
+# SCRIPT: Breast Cancer
+# Called from [season_is_breast_cancer] 
+# In file: [automations/lights_holiday.yaml]
+#################################################################
+breast_cancer_script:
+  alias: Breast Cancer Script
+  sequence:
+  - service: light.turn_on
+    data:
+      entity_id: light.flux_led_strip
+      brightness: 30
+      rgb_color: [255,0,253]
+  - service: light.turn_on
+    data:
+      entity_id: light.front_porch
+      brightness: 128
+      rgb_color: [83,255,126]
+  - service: light.turn_on
+    data:
+      entity_id: light.tv_left
+      brightness: 69
+      rgb_color: [255,0,253]
+  - service: light.turn_on
+    data:
+      entity_id: light.tv_right
+      brightness: 69
+      rgb_color: [255,0,253]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_east
+      brightness: 128
+      rgb_color: [255,0,253]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_center
+      brightness: 128
+      rgb_color: [255,0,253]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_west
+      brightness: 93
+      rgb_color: [255,0,253]
+#
+#################################################################
+# SCRIPT: Halloween
+# Called from [season_is_halloween] 
+# In file: [automations/lights_holiday.yaml]
+#################################################################
+halloween_script:
+  alias: Halloween Script
+  sequence:
+  - service: light.turn_on
+    data:
+      entity_id: light.flux_led_strip
+      brightness: 30
+      rgb_color: [255,0,250]
+  - service: light.turn_on
+    data:
+      entity_id: light.front_porch
+      brightness: 128
+      rgb_color: [83,255,126]
+  - service: light.turn_on
+    data:
+      entity_id: light.tv_left
+      brightness: 69
+      rgb_color: [255,85,0]
+  - service: light.turn_on
+    data:
+      entity_id: light.tv_right
+      brightness: 69
+      rgb_color: [255,85,0]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_east
+      brightness: 128
+      rgb_color: [255,85,0]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_center
+      brightness: 128
+      rgb_color: [85,0, 255]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_west
+      brightness: 93
+      rgb_color: [255,85,0]
+#
+#################################################################
+# SCRIPT: Thanksgiving
+# Called from [season_is_thansgiving] 
+# In file: [automations/lights_holiday.yaml]
+#################################################################
+thanksgiving_script:
+  alias: Thanksgiving Script
+  sequence:
+  - service: light.turn_on
+    data:
+      entity_id: light.flux_led_strip
+      brightness: 30
+      rgb_color: [255,36,0]
+  - service: light.turn_on
+    data:
+      entity_id: light.front_porch
+      brightness: 128
+      rgb_color: [83,255,126]
+  - service: light.turn_on
+    data:
+      entity_id: light.tv_left
+      brightness: 69
+      rgb_color: [255,36,0]
+  - service: light.turn_on
+    data:
+      entity_id: light.tv_right
+      brightness: 69
+      rgb_color: [255,36,0]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_east
+      brightness: 128
+      rgb_color: [255,36,0]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_center
+      brightness: 128
+      rgb_color: [253,255,0]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_west
+      brightness: 93
+      rgb_color: [255,36,0]
+#
+#################################################################
+# SCRIPT: Christmas
+# Called from [season_is_christmas] 
+# In file: [automations/lights_holiday.yaml]
+#################################################################
+christmas_script:
+  alias: Christmas Script
+  sequence:
+  - service: light.turn_on
+    data:
+      entity_id: group.christmas_lights
+  - service: light.turn_on
+    data:
+      entity_id: light.front_porch
+      brightness: 128
+      rgb_color: [83,255,126]
+  - service: light.turn_on
+    data:
+      entity_id: light.flux_led_strip
+      brightness: 30
+      rgb_color: [255,0,250]
+  - service: light.turn_on
+    data:
+      entity_id: light.tv_left
+      brightness: 69
+      rgb_color: [255,218,245]
+  - service: light.turn_on
+    data:
+      entity_id: light.tv_right
+      brightness: 69
+      rgb_color: [255,218,245]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_east
+      brightness: 128
+      rgb_color: [255,0,253]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_center
+      brightness: 128
+      rgb_color: [255,0,253]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_west
+      brightness: 128
+      rgb_color: [255,0,253]
+#
+#################################################################
+# Script: Test Lighting Script
+# Called from [color_testing] 
+# In file: [automations/sandbox.yaml]
+#################################################################
+#
+test_lighting_script:
+  alias: Test Lighting Script
+  sequence:
+  - service: light.turn_on
+    data:
+      entity_id: light.flux_led_strip
+      brightness: 30
+      rgb_color: [255,36,0]
+#      effect: rg_cross_fade
+#      transition: 5
+  - service: light.turn_on
+    data:
+      entity_id: light.front_porch
+      brightness: 128
+      rgb_color: [83,255,126]
+  - service: light.turn_on
+    data:
+      entity_id: light.tv_left
+      brightness: 69
+      rgb_color: [255,218,245]
+  - service: light.turn_on
+    data:
+      entity_id: light.tv_right
+      brightness: 69
+      rgb_color: [255,218,245]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_east
+      brightness: 128
+      rgb_color: [36,91,255]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_center
+      brightness: 128
+      rgb_color: [255,0,0]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_west
+      brightness: 128
+      rgb_color: [36,91,255]
+#
+#################################################################
+# Flux LED Light Strip Effects:
+#################################################################
+# effect_list:
+# random,colorloop,red_fade,green_fade,blue_fade,yellow_fade,cyan_fade,
+# purple_fade,white_fade,rg_cross_fade,rb_cross_fade,gb_cross_fade,
+# colorstrobe, red_strobe,green_strobe,blue_strobe,yellow_strobe,
+# cyan_strobe,purple_strobe,white_strobe,colorjump
+#
+#################################################################
+# LIFX LED Light Effects:
+#################################################################
+# effect_list:
+#lifx_effect_colorloop,lifx_effect_pulse,lifx_effect_stop
+#
+#################################################################
+# LIFX LED Lights Configs:
+#################################################################
+#
+# COLORS:
+#  - service: light.turn_on
+#    data:
+#      entity_id: light.garage_west
+#      brightness: 128
+#      rgb_color: [36,91,255]
+#
+# WHITES:
+#  - service: light.turn_on
+#    data:
+#      entity_id: light.garage_west
+#      brightness: 128
+#      color_temp: 285

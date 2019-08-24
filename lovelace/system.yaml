@@ -1,0 +1,124 @@
+#########################################
+#  View 9   SYSTEM
+#########################################
+#
+title: System
+path: system
+id: v_sys
+icon: mdi:server
+panel: true
+cards:
+- type: horizontal-stack
+  cards:
+# COL 1
+    - type: vertical-stack
+      cards:
+        - type: entities
+          title: Software
+          show_header_toggle: false
+          entities:
+            - entity: sensor.version_current
+              icon: mdi:update
+            - entity: sensor.version_available
+              icon: mdi:update
+#
+        - type: entities
+          title: Processor
+          show_header_toggle: false
+          entities:
+            - entity: sensor.uptime
+              icon: mdi:clock-out
+            - entity: sensor.last_boot
+              icon: mdi:calendar-clock
+#            - entity: sensor.since_last_boot
+#              icon: mdi:clock-end
+#
+        - type: entities
+          title: Connection
+          show_header_toggle: false
+          entities:
+            - entity: sensor.external_ip
+              icon: mdi:ip-network
+            - entity: sensor.ipv4_address_en0
+#              icon: mdi:lan
+            - entity: sensor.ipv4_address_en1
+#              icon: mdi:wifi
+#            - entity: sensor.speedtest_ping
+#              icon: mdi:speedometer
+#              secondary_info: last-changed
+#            - entity: sensor.speedtest_upload
+#              icon: mdi:package-up
+#            - entity: sensor.speedtest_download
+#              icon: mdi:package-down
+#            - entity: sensor.potential_breaking_changes
+#              icon: mdi:package-up
+#
+#        - type: entities
+#          title: Breaking Changes
+#          show_header_toggle: false
+#          entities:
+#            - entity: sensor.potential_breaking_changes_list
+#              icon: mdi:package-up
+#
+# COL 2
+    - type: vertical-stack
+      cards:
+        - type: entities
+          title: Memory
+          show_header_toggle: false
+          entities:
+            - entity: sensor.load_1m
+              icon: mdi:select-inverse
+              secondary_info: last-changed
+            - entity: sensor.load_5m
+              icon: mdi:select-inverse
+            - entity: sensor.load_15m
+              icon: mdi:select-inverse
+            - entity: sensor.memory_free
+              icon: mdi:select-inverse
+            - entity: sensor.memory_use
+              icon: mdi:select-inverse
+            - entity: sensor.memory_use_percent
+              icon: mdi:select-inverse
+#
+        - type: horizontal-stack
+          cards:
+          - type: entity-button
+            name: RUN SPEED TEST
+            icon: mdi:play-speed
+            tap_action: call-service
+            entity: script.refresh_speedtest
+            service: script.turn_on
+#
+          - type: entity-button
+            name: RUN MEMORY TEST
+            icon: mdi:play-speed
+            tap_action: call-service
+            entity: script.refresh_speedtest
+            service: script.turn_on
+
+# COL 3
+    - type: vertical-stack
+      cards:
+        - type: entities
+          title: Motion Detection
+          show_header_toggle: false
+          entities:
+            - entity: input_boolean.kit_motion_detected
+            - entity: input_datetime.last_kitchen_motion
+            - entity: input_select.kit_lights_auto_off
+#            - entity: input_number.lights_auto_off_slider
+            - entity: input_boolean.speak_kit_motion
+            - type: divider
+            - entity: input_boolean.lr_motion_detected
+            - entity: input_datetime.last_livingrm_motion
+            - entity: input_boolean.speak_lr_motion
+#
+        - type: entities
+          title: Schedules
+          show_header_toggle: false
+          entities:
+            - entity: input_datetime.recycle_alert_date
+            - entity: sensor.day_of_year
+            - entity: sensor.week_of_year
+#

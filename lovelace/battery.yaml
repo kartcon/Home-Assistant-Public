@@ -1,0 +1,198 @@
+#########################################
+#  View 8 BATTERY DEVICES
+#########################################
+#
+title: Batteries
+path: battery
+id: v_batt
+icon: mdi:battery
+panel: true
+cards:
+- type: horizontal-stack
+  cards:
+# COL 1
+    - type: vertical-stack
+      cards:
+        - type: gauge
+          title: Front Door Lock
+          entity: sensor.front_door_lock_batstat
+          unit: '%'
+          severity:
+            green: 70
+            yellow: 40
+            red: 10
+#
+        - type: gauge
+          title: Arts Iphone
+          entity: sensor.artsiphone8_battery
+          unit: '%'
+          severity:
+            green: 70
+            yellow: 40
+            red: 10
+#
+        - type: gauge
+          title: Arts SJM Ipad
+          entity: sensor.sjm_ipad_battery_level
+          unit: '%'
+          severity:
+            green: 70
+            yellow: 40
+            red: 10
+#
+        - type: gauge
+          title: BirdRm Motion Sensor
+          entity: sensor.birdrm1_motion_sensor_batstat
+          unit: '%'
+          severity:
+            green: 70
+            yellow: 40
+            red: 10
+#
+# COL 2
+    - type: vertical-stack
+      cards:
+        - type: gauge
+          title: Back Door Lock
+          entity: sensor.back_door_lock_batstat
+          unit: '%'
+          severity:
+            green: 70
+            yellow: 40
+            red: 10
+#
+        - type: gauge
+          title: Steffs Iphone
+          entity: sensor.steffsiphone8_battery
+          unit: '%'
+          severity:
+            green: 70
+            yellow: 40
+            red: 10
+#
+        - type: gauge
+          title: Steffs Ipad Mini
+          entity: sensor.steffs_ipad_mini_battery_level
+          unit: '%'
+          severity:
+            green: 70
+            yellow: 40
+            red: 10
+#
+        - type: gauge
+          title: SunRoom Motion Sensor
+          entity: sensor.sunroom_motion_sensor_batstat
+          unit: '%'
+          severity:
+            green: 70
+            yellow: 40
+            red: 10
+#
+# COL 3
+    - type: vertical-stack
+      cards:
+        - type: gauge
+          title: Front Door Sensor
+          entity: sensor.front_door_sensor_batstat
+          unit: '%'
+          severity:
+            green: 70
+            yellow: 40
+            red: 10
+#
+        - type: gauge
+          title: LR East Door Sensor
+          entity: sensor.lr_east_door_sensor_batstat
+          unit: '%'
+          severity:
+            green: 70
+            yellow: 40
+            red: 10
+#
+        - type: gauge
+          title: SR East Door Sensor
+          entity: sensor.sr_east_door_sensor_batstat
+          unit: '%'
+          severity:
+            green: 70
+            yellow: 40
+            red: 10
+#
+        - type: gauge
+          title: Kitchen Motion Sensor
+          entity: sensor.kitchen_motion_sensor_batstat
+          unit: '%'
+          severity:
+            green: 70
+            yellow: 40
+            red: 10
+#
+# COL 4
+    - type: vertical-stack
+      cards:
+        - type: gauge
+          title: Back Door Sensor
+          entity: sensor.back_door_sensor_batstat
+          unit: '%'
+          severity:
+            green: 70
+            yellow: 40
+            red: 10
+#
+        - type: gauge
+          title: LR West Door Sensor
+          entity: sensor.lr_west_door_sensor_batstat
+          unit: '%'
+          severity:
+            green: 70
+            yellow: 40
+            red: 10
+#
+        - type: gauge
+          title: SR West Door Sensor
+          entity: sensor.sr_west_door_sensor_batstat
+          unit: '%'
+          severity:
+            green: 70
+            yellow: 40
+            red: 10
+#
+        - type: gauge
+          title: LR Motion Sensor
+          entity: sensor.lr_motion_sensor_batstat
+          unit: '%'
+          severity:
+            green: 70
+            yellow: 40
+            red: 10
+#
+# COL 5
+    - type: vertical-stack
+      cards:
+        - type: gauge
+          title: Garage Entry Door Sensor
+          entity: sensor.garage_entry_door_sensor_batstat
+          unit: '%'
+          severity:
+            green: 70
+            yellow: 40
+            red: 10
+#
+        - type: gauge
+          title: Garage 1 Door Sensor
+          entity: sensor.one_car_garage_sensor_batstat
+          unit: '%'
+          severity:
+            green: 70
+            yellow: 40
+            red: 10
+#
+        - type: gauge
+          title: Garage 2 Door Sensor
+          entity: sensor.two_car_garage_sensor_batstat
+          unit: '%'
+          severity:
+            green: 70
+            yellow: 40
+            red: 10
+#

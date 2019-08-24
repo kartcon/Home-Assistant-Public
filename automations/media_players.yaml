@@ -1,0 +1,79 @@
+#################################################################
+## Media Player AUTOMATIONS
+#################################################################
+#
+#################################################################
+# Country on for Sydney @ 06:50
+#################################################################
+- id: sydney_music_on_0645
+  alias: Sydney Music on 0645
+  initial_state: true
+  trigger:
+    platform: time
+    at: '06:45:10'
+  condition:
+  - condition: time
+    weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+  - condition: state
+    entity_id: input_boolean.art_home
+    state: 'on'
+  action:
+  - service: media_player.volume_set
+    data:
+      entity_id: media_player.office_echo
+      volume_level: 0.4
+  - delay: '00:00:05'
+  - service: media_player.play_media
+    data:
+      entity_id: media_player.office_echo
+      media_content_id: "America's Country"
+      media_content_type: "TUNEIN"
+#    data:
+#      entity_id: media_player.bedroom_echo_dot
+#      media_content_id: 'Kinderling Kids Radio'
+#      media_content_type: 'TUNEIN'
+#
+#################################################################
+# Country off for Sydney @18:30
+#################################################################
+- id: sydney_music_off_1830
+  alias: Sydney Music of at 18:30
+  initial_state: true
+  trigger:
+    platform: time
+    at: '18:30:00'
+  condition:
+  - condition: state
+    entity_id: media_player.office_echo
+    state: 'playing'
+  action:
+  - service: media_player.media_pause
+    data:
+      entity_id: media_player.office_echo
+#
+#################################################################
+# LGTV Auto On at 19:00
+#################################################################
+- id: lgtv_auto_on_1900
+  alias: LGTV Auto On at 19:00
+  initial_state: true
+  trigger:
+    platform: time
+    at: '19:00:00'
+  condition: 
+  - condition: state
+    entity_id: media_player.sun_room_lg_tv
+    state: 'off'
+  - condition: state
+    entity_id: input_boolean.no_one_home
+    state: 'off'
+  action:
+  - service: script.turn_on
+    entity_id: script.turn_on_lgtv
+#
+#

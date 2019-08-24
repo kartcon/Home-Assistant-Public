@@ -1,0 +1,18 @@
+# IOS Group Art & Steff
+#
+- name: ios_group_art_steff
+  platform: group
+  services:
+    - service: ios_arts_iphone_8
+    - service: ios_steffs_iphone_8
+#
+- name: ios_group_art_only
+  platform: group
+  services:
+    - service: ios_arts_iphone_8
+#
+- name: ios_group_steff_only
+  platform: group
+  services:
+    - service: ios_steffs_iphone_8
+#

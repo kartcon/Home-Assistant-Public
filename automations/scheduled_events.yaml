@@ -1,0 +1,203 @@
+#################################################################
+## Scheduled Event Automations
+#################################################################
+#
+#########################################################
+#      NOTIFY IF ITS A HOLIDAY OR BIRTHDAY              #
+#########################################################
+- id: holiday_and_birthday_notification
+  alias: 'Holiday and Birthday Notification'
+  hide_entity: false
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id:
+        - sensor.todays_events
+  condition:
+    - condition: template
+      value_template: "{{ states('sensor.todays_events') != 'unknown' }}"
+    - condition: template
+      value_template: "{{ states.sensor.todays_events.state | trim != '' }}"
+  action:
+  - service: persistent_notification.create
+    data_template:
+      title: '{{ states.sensor.todays_events.state }}'
+      message: >-
+        Today is {{ states.sensor.todays_events.state }}.
+  - service: notify.ios_group_art_steff
+    data_template:
+      title: '{{ states.sensor.todays_events.state }}'
+      message: 'Today is {{ states.sensor.todays_events.state }}.'
+#
+#############################################################
+#  Trash Day - Every Thursday, Notify Wednesday at sunset
+#############################################################
+- id: take_out_the_trash
+  alias: 'Take out the trash'
+  initial_state: true
+  trigger:
+  - platform: homeassistant
+    event: start
+  - platform: sun
+    event: sunset
+  condition:
+    condition: time
+    weekday:
+      - wed
+  action:
+  - service: notify.alexa_media
+    data:
+      target: group.all_echo_dots
+      message: "Trash pick-up is tomorrow. Remember to put the container out to the road."
+      data:
+        type: announce
+        method: speak
+#  - service: notify.alexa_media
+#    data_template:
+#      target:
+#        - media_player.office_echo
+#      data:
+#        type: tts
+#      message: "Trash pick-up is tomorrow. Remember to put the container out to the road."
+  - service: script.sonos_say
+    data:
+      sonos_entity: media_player.sunroom_sonos
+      volume: 0.4
+      message: "Trash pick-up is tomorrow. Remember to put the container out to the road."
+      delay: '00:00:05'
+  - condition: state
+    entity_id: input_boolean.enable_system_alerts
+    state: 'on'
+  - service: notify.ios_group_art_steff
+    data:
+      message: "Reminder: Take out the Trash."
+  - service: script.turn_on
+    entity_id: script.blink_lights_tv
+  - delay: 0:00:03
+  - service: notify.lg_tv
+    data:
+      title: "Reminder"
+      message: "Trash pick-up is tomorrow."
+#
+#############################################################
+#  Recycling - Every other Monday, Notify Sunday at sunset
+#############################################################
+- id: take_out_the_recycling
+  alias: 'Take out the recycling'
+  initial_state: true
+  trigger:
+  - platform: sun
+    event: sunset
+  - platform: homeassistant
+    event: start
+  condition:
+    - condition: time
+      weekday:
+        - sun
+    - condition: state
+      entity_id: sensor.week_odd_even
+      state: 'Even Week'
+  action:
+  - service: notify.alexa_media
+    data:
+      target: group.all_echo_dots
+      message: "Recycling pick-up is tomorrow. Remember to put the container out to the road."
+      data:
+        type: announce
+        method: speak
+#  - service: notify.alexa_media
+#    data_template:
+#      target:
+#        - media_player.office_echo
+#      data:
+#        type: tts
+#      message: "Recycling pick-up is tomorrow. Remember to put the container out to the road."
+  - service: script.sonos_say
+    data:
+      sonos_entity: media_player.sunroom_sonos
+      volume: 0.4
+      message: "Recycling pick-up is tomorrow. Remember to put the container out to the road."
+      delay: '00:00:05'
+  - service: input_datetime.set_datetime
+    data_template:
+      entity_id: input_datetime.recycle_alert_date
+      date: '{{ (as_timestamp(now()) + (14*24*3600)) | timestamp_custom("%Y-%m-%d", True) }}'
+  - service: script.turn_on
+    entity_id: script.blink_lights_tv
+  - delay: 0:00:03
+  - service: notify.lg_tv
+    data:
+      title: "Reminder"
+      message: "Recycling pick-up is tomorrow."
+  - condition: state
+    entity_id: input_boolean.enable_system_alerts
+    state: 'on'
+  - service: notify.ios_group_art_steff
+    data:
+      message: "Reminder: Take out the recycling."
+#
+#################################################################
+# Reset Holiday Booleans at 11:55p
+#################################################################
+- id: reset_holiday_booleans_at_2355
+  alias: Reset Holiday Booleans at 2355
+  initial_state: true
+  trigger:
+    platform: time
+    at: '23:55:00'
+  condition: []
+  action:
+    service: script.turn_on
+    entity_id: script.reset_holiday_booleans
+#
+#############################################################
+#  Change Furnace Filter
+#############################################################
+- id: change_furnace_filter
+  alias: 'Change Furnace Filter'
+  initial_state: true
+  trigger:
+  - platform: homeassistant
+    event: start
+  - platform: sun
+    event: sunrise
+  condition:
+  - condition: time
+    weekday:
+    - sat
+  - condition: numeric_state
+    entity_id: sensor.dayofthemonth
+    below: 8
+  action:
+  - service: persistent_notification.create
+    data_template:
+      title: 'Remember to change the furnace filter.'
+      message: >-
+        It's the first Saturday of the month. Remember to change the furnace filter.
+  - service: notify.alexa_media
+    data:
+      target: group.all_echo_dots
+      message: "It's the first Saturday of the month. Remember to change the furnace filter."
+      data:
+        type: announce
+        method: speak
+#  - service: notify.alexa_media
+#    data_template:
+#      target:
+#        - media_player.office_echo
+#      data:
+#        type: tts
+#      message: "Trash pick-up is tomorrow. Remember to put the container out to the road."
+  - service: script.sonos_say
+    data:
+      sonos_entity: media_player.sunroom_sonos
+      volume: 0.4
+      message: "It's the first Saturday of the month. Remember to change the furnace filter."
+      delay: '00:00:05'
+  - condition: state
+    entity_id: input_boolean.enable_system_alerts
+    state: 'on'
+  - service: notify.ios_group_art_steff
+    data:
+      message: "Reminder: Change the furnace filter."
+#

@@ -1,0 +1,42 @@
+#################################################################
+## SANDBOX SCRIPTS
+#################################################################
+#
+#################################################################
+# Test Script
+# Called from [____]
+# In file: [____]
+#################################################################
+#
+test_script:
+  alias: Send Test Prowl Notification
+  sequence:
+  - alias: Test Script
+    data:
+      message: Test
+    service: notify.prowl
+  - data:
+      message: Test
+    service: notify.ios_arts_iphone_8
+  - data:
+      switch: holiday_lights_222
+    service: light.turn_on
+#
+push_art_only:
+  alias: Send Test Push Art Only
+  sequence:
+#  - alias: Test Script
+#    data:
+#      message: Test
+#    service: notify.ios_group_art_only
+  - service: notify.ios_arts_iphone_8
+    data:
+      title: "Test Message!"
+      message: "Test message, Art only."
+#  - service: notify.ios_group_art_only
+#    data_template:
+#      title: 'Art Leaves Home'
+#      message: 'Zone={{states.sensor.artsiphone8_zone.state}},
+#                Distance={{states.sensor.artsiphone8_distance.state}},
+#                From {{states.artsiphone8_zone.from_state.state}} to {{states.artsiphone8_zone.to_state.state}}'
+#

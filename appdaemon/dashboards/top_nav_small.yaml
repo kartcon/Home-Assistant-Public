@@ -1,0 +1,60 @@
+# Row 1
+clock:
+  widget_type: clock
+  show_seconds: 1
+  date_format_country: "us"
+  date_format_options:
+    weekday: "short"
+    day: "numeric"
+    month: "short"
+  time_style: "font-size: 220%; color: springgreen;"
+  date_style: "font-size: 170%; color: gold;"
+
+art_presence:
+  widget_type: device_tracker
+  title: Art
+  device: artsiphone8
+  enable: 0
+  icon_style_active: "color: #4bcdea"
+  icon_on: fa-male
+  icon_off: fa-male
+
+steff_presence:
+  widget_type: device_tracker
+  title: Steff
+  device: steffsiphone8
+  enable: 0
+  icon_style_active: "color: #ea4b82"
+  icon_on: fa-female
+  icon_off: fa-female
+
+front_door_lock:
+  widget_type: lock
+  title: Front Door
+  entity: lock.front_door_bolt_241
+  icon_on: mdi-lock-open
+  icon_off: mdi-lock
+
+back_door_lock:
+  widget_type: lock
+  title: Back Door
+  entity: lock.back_door_lock_61
+  icon_on: mdi-lock-open
+  icon_off: mdi-lock
+
+garage_door_1:
+  widget_type: lock
+  title: Garage Door 1
+  entity: lock.garage_controller_1_55
+  icon_on: mdi-garage-open
+  icon_off: mdi-garage
+
+garage_door_2:
+  widget_type: lock
+  title: Garage Door 2
+  entity: lock.garage_controller_2_54
+  icon_on: mdi-garage-open
+  icon_off: mdi-garage
+
+layout:
+    - clock (2x1), art_presence, steff_presence, front_door_lock, back_door_lock, garage_door_1, garage_door_2

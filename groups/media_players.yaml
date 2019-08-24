@@ -1,0 +1,29 @@
+#################################################################
+#     MEDIA PLAYERS
+#################################################################
+#
+all_echo_devices:
+  name: Climate
+  view: no
+  icon: mdi:home
+  entities:
+    - media_player.kitchen_echo
+    - media_player.office_echo
+    - media_player.sunroom_echo_black
+    - media_player.sunroom_echo_white
+#
+all_echo_dots:
+  name: Climate
+  view: no
+  icon: mdi:home
+  entities:
+    - media_player.kitchen_echo
+    - media_player.office_echo
+#
+#  - service: notify.alexa_media
+#    data:
+#      target: group.all_echo_dots
+#      message: "The garage door is still open."
+#      data:
+#        type: announce
+#        method: speak

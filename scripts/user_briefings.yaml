@@ -1,0 +1,114 @@
+#################################################################
+## USER BRIEFING SCRIPTS
+#################################################################
+#
+#################################################################
+# Briefing Announcement
+# Called from [art_weekday_briefing]
+# Called from [steff_weekday_briefing]
+# In file: [automations/user_briefings.yaml]
+#################################################################
+daily_briefing_alert:
+  alias: Daily Briefing Alert
+  sequence:
+  - service: notify.alexa_media
+    data_template:
+      target:
+        - media_player.kitchen_echo
+      data:
+        type: announce
+      message: >-
+        Your daily briefing is about to start.
+#
+#################################################################
+# Art Briefing One
+# Called from [art_weekday_briefing]
+# In file: [automations/user_briefings.yaml]
+#################################################################
+art_briefing_one:
+  alias: Art Briefing One
+  sequence:
+  - service: notify.alexa_media
+    data_template:
+      target:
+        - media_player.kitchen_echo
+      data:
+        type: tts
+      message: >-
+        Good {{states.sensor.time_of_day.state}} Art.
+        The time is {{states.sensor.readable_time.state.lstrip('0')}}.
+        Today is a {{states.sensor.dayoftheweek.state}} and the date is the {{states.sensor.dateofthemonth.state}} of {{states.sensor.month_name.state}}.
+        It's currently {{states.sensor.dark_sky_summary.state}} and {{states.sensor.dark_sky_temperature.state}} degrees at home.
+        Today will be {{states.sensor.dark_sky_hourly_summary.state|replace('.','')}}, with a high of {{states.sensor.dark_sky_daytime_high_temperature_0d.state|round(1)}} degrees and a low of {{states.sensor.dark_sky_overnight_low_temperature_0d.state|round(1)}} degrees.
+        {% if state_attr('weather.dark_sky', 'forecast')[0].precipitation | int > 0 %}
+          We may see {{state_attr('weather.dark_sky', 'forecast')[0].precipitation}} inches of rain today.
+        {% endif %}
+        Current winds are
+        {% set winbearing = ((state_attr('weather.dark_sky','forecast')[0].wind_bearing/45)|round +1) %}
+        {% set winddir = ['North', 'North East','East','South East','South','South West','West','North West']%}
+        {{ winddir[winbearing]}} at {{(states('sensor.dark_sky_wind_speed_0')|int)|round}}
+        {% if states('sensor.dark_sky_wind_gust_0d') | float > 0 %}
+          with gusts up to {{(states('sensor.dark_sky_wind_gust_0d')|int)|round}}
+        {% endif %}
+        miles per hour.
+        Sunrise
+        {% if states('sun.sun') == 'above_horizon' %}
+          was
+        {% else %}
+          is
+        {% endif %}
+        at {{ as_timestamp(states.sun.sun.attributes.next_rising) | timestamp_custom('%-I:%M %p') }}
+        and sunset will be at {{ as_timestamp(states.sun.sun.attributes.next_setting) | timestamp_custom('%-I:%M %p') }}.
+        Have a{{ [" pleasant", " great", " good", " cheerful", " delightful", "n enjoyable", " super", " wonderful", " satisfying"] | random }} day!
+#sensor.next_sunrise
+#sensor.next_sunset
+#################################################################
+# Steff Briefing One
+# Called from [steff_weekday_briefing]
+# In file: [automations/user_briefings.yaml]
+#################################################################
+steff_briefing_one:
+  alias: Steff Briefing One
+  sequence:
+  - service: notify.alexa_media
+    data_template:
+      target:
+        - media_player.kitchen_echo
+      data:
+        type: tts
+      message: >-
+        Good {{states.sensor.time_of_day.state}} Steff.
+        The time is {{states.sensor.readable_time.state.lstrip('0')}}.
+        Today is a {{states.sensor.dayoftheweek.state}} and the date is the {{states.sensor.dateofthemonth.state}} of {{states.sensor.month_name.state}}.
+        It's currently {{states.sensor.dark_sky_summary.state}} and {{states.sensor.dark_sky_temperature.state}} degrees at home.
+        Today will be {{states.sensor.dark_sky_hourly_summary.state|replace('.','')}}, with a high of {{states.sensor.dark_sky_daytime_high_temperature_0d.state|round(1)}} degrees and a low of {{states.sensor.dark_sky_overnight_low_temperature_0d.state|round(1)}} degrees.
+        {% if state_attr('weather.dark_sky', 'forecast')[0].precipitation | int > 0 %}
+          We may see {{state_attr('weather.dark_sky', 'forecast')[0].precipitation}} inches of rain today.
+        {% endif %}
+        Current winds are
+        {% set winbearing = ((state_attr('weather.dark_sky','forecast')[0].wind_bearing/45)|round +1) %}
+        {% set winddir = ['North', 'North East','East','South East','South','South West','West','North West']%}
+        {{ winddir[winbearing]}} at {{(states('sensor.dark_sky_wind_speed_0')|int)|round}}
+        {% if states('sensor.dark_sky_wind_gust_0d') | float > 0 %}
+          with gusts up to {{(states('sensor.dark_sky_wind_gust_0d')|int)|round}}
+        {% endif %}
+        miles per hour.
+        Sunrise
+        {% if states('sun.sun') == 'above_horizon' %}
+          was
+        {% else %}
+          is
+        {% endif %}
+        at {{ as_timestamp(states.sun.sun.attributes.next_rising) | timestamp_custom('%-I:%M %p') }}
+        and sunset will be at {{ as_timestamp(states.sun.sun.attributes.next_setting) | timestamp_custom('%-I:%M %p') }}.
+        Art is
+        {% if states('device_tracker.art_ot1') == 'home' %} at home.
+        {% elif states('device_tracker.art_ot1') == 'Shands' %} currently at Shands Hospital.
+        {% elif states('device_tracker.art_ot1') == 'Baptist' %} currently at Baptist Hospital.
+        {% elif states('device_tracker.art_ot1') == 'Memorial' %} currently at Memorial Hospital.
+        {% elif states('device_tracker.art_ot1') == 'St Vincents' %} currently at St Vincents Hospital.
+        {% else %}
+          away from home.
+        {% endif %}
+        Have a{{ [' pleasant', ' amiable', ' happy', ' cheerful', ' delightful', 'n enjoyable', ' lovely', ' pleasing', ' good'] | random }} day!
+#

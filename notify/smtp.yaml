@@ -1,0 +1,26 @@
+# SMTP G-Mail
+#
+#- name: GMail
+#  platform: smtp
+#  server: smtp.gmail.com
+#  port: 587
+#  timeout: 15
+#  encryption: starttls
+#  sender_name: Home Assistant
+#  sender: !secret smtp_art_gmail_sender
+#  username: !secret smtp_art_gmail_username
+#  password: !secret smtp_art_gmail_password
+#  recipient: !secret smtp_art_gmail_recipient
+#
+#- name: DontBug
+#  platform: smtp
+#  server: adary.lunarpages.com
+#  port: 143
+#  timeout: 15
+#  encryption: none
+#  sender_name: Home Assistant
+#  sender: !secret smtp_art_dontbug_sender
+#  username: !secret smtp_art_dontbug_username
+#  password: !secret smtp_art_dontbug_password
+#  recipient: !secret smtp_art_dontbug_recipient
+#

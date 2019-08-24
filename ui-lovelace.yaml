@@ -1,0 +1,99 @@
+# This is actually just a bootstrap for my Lovelace configuration.
+#
+# It loads all resources for Lovelace dynamically from subfolders
+# inside the `lovelace/views` directory.
+#
+# Views are actually include one by one, this to guarentee the order of
+# the tabs of the view in the UI.
+#
+title: My Home Assistant
+#
+# https://github.com/custom-components/custom_updater/wiki/How-it-works
+resources:
+#   ----------------------------------------------------------------------------
+# Birthday Card
+  - url: /local/birthday-card.js?v=1.072719
+    type: js
+    # https://github.com/erlsta/homeassistant-lovelace-birthday-reminder-card
+#   ----------------------------------------------------------------------------
+# Button Entity Row
+  - url: /community_plugin/button-entity-row/button-entity-row.js
+    type: js
+    # https://github.com/custom-cards/button-entity-row
+#   ----------------------------------------------------------------------------
+# Fan Control (Tasmota)
+  - url: /community_plugin/fan-control-entity-row/fan-control-entity-row.js
+    type: js
+#   ----------------------------------------------------------------------------
+# Light Entity Row Card
+  - url: /community_plugin/light-entity-row/light-entity-row.js
+    type: js
+#   ----------------------------------------------------------------------------
+# Markdown Mod Card
+  - url: /community_plugin/lovelace-markdown-mod/markdown-mod.js
+    type: js
+#   https://github.com/thomasloven/lovelace-markdown-mod
+#   ----------------------------------------------------------------------------
+# Mini Graph Card
+  - url: /community_plugin/mini-graph-card/mini-graph-card.js
+    type: module
+#   https://github.com/kalkih/mini-graph-card
+#   ----------------------------------------------------------------------------
+# Mini Media Player
+  - url: /community_plugin/mini-media-player/mini-media-player.js
+    type: module
+#   https://github.com/kalkih/mini-media-player
+#   ----------------------------------------------------------------------------
+# Monster Card
+  - url: /community_plugin/monster-card/monster-card.js
+    type: js
+#   https://github.com/ciotlosm/custom-lovelace/tree/master/monster-card
+#   ----------------------------------------------------------------------------
+# Slider Entity Row
+  - url: /community_plugin/lovelace-slider-entity-row/slider-entity-row.js
+    type: module
+#   https://github.com/thomasloven/lovelace-slider-entity-row
+#   ----------------------------------------------------------------------------
+# Surveillance Card
+  - url: /community_plugin/surveillance-card/surveillance-card.js
+    type: module
+#   https://github.com/custom-cards/surveillance-card
+#   ----------------------------------------------------------------------------
+#  - url: /customcards/github/thomasloven/card-tools.js?track=true
+#    type: js
+#    # https://github.com/thomasloven/lovelace-card-tools
+#   ----------------------------------------------------------------------------
+#  - url: /customcards/github/custom-cards/tracker-card.js?track=true
+#    type: module
+#    # https://github.com/custom-cards/tracker-card
+#   ----------------------------------------------------------------------------
+#
+#excluded_entities:
+#  - weblink.router
+#
+views:
+  - !include lovelace/mobile.yaml
+  - !include lovelace/home.yaml
+  - !include lovelace/rooms.yaml
+  - !include lovelace/hvac.yaml
+  - !include lovelace/security.yaml
+  - !include lovelace/cameras.yaml
+  - !include lovelace/floor_one.yaml
+  - !include lovelace/floor_two.yaml
+  - !include lovelace/users.yaml
+#  - !include lovelace/users2.yaml
+  - !include lovelace/traffic.yaml
+  - !include lovelace/weather.yaml
+  - !include lovelace/weather_radar.yaml
+  - !include lovelace/map.yaml
+  - !include lovelace/media_players.yaml
+  - !include lovelace/battery.yaml
+  - !include lovelace/system.yaml
+  - !include lovelace/config.yaml
+#  - !include lovelace/ic3.yaml
+#  - !include lovelace/sensors.yaml
+#  - !include lovelace/entities.yaml
+#  - !include lovelace/sandbox.yaml
+#  - !include lovelace/__security.yaml
+#  - !include lovelace/alarm_config.yaml
+#  - !include lovelace/camera2.yaml

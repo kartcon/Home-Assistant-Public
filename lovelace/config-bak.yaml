@@ -1,0 +1,91 @@
+#
+#########################################
+#  General SETTINGS
+#########################################
+#
+title: General Settings
+path: config
+id: v_gcfg
+icon: mdi:settings
+panel: true
+cards:
+- type: horizontal-stack
+  cards:
+# COL 1
+    - type: vertical-stack
+      cards:
+        - type: entities
+          title: Automations
+          show_header_toggle: false
+          entities:
+            - entity: input_boolean.enable_lr_slow_dim
+            - entity: input_boolean.enable_sr_slow_dim
+            - entity: input_boolean.enable_br1_slow_dim
+            - entity: input_boolean.enable_br2_slow_dim
+            - entity: input_boolean.enable_hassio_autobackup
+            - type: divider
+            - entity: input_boolean.enable_valentine_lighting
+            - entity: input_boolean.enable_pattys_lighting
+            - entity: input_boolean.enable_easter_lighting
+            - entity: input_boolean.enable_memorial_lighting
+            - entity: input_boolean.enable_flag_day_lighting
+            - entity: input_boolean.enable_independence_lighting
+            - entity: input_boolean.enable_labor_lighting
+            - entity: input_boolean.enable_cancer_lighting
+            - entity: input_boolean.enable_halloween_lighting
+            - entity: input_boolean.enable_thanksgiving_lighting
+            - entity: input_boolean.enable_christmas_lighting
+            
+# COL 2
+    - type: vertical-stack
+      cards:
+        - type: entities
+          title: Settings
+          show_header_toggle: false
+          entities:
+            - entity: input_select.season_holiday
+#            - entity: input_boolean.enable_push_notifications
+#            - entity: input_boolean.enable_prowl_notifications
+#            - entity: input_boolean.mode_privacy
+            - entity: input_boolean.enable_battery_notifications
+            - entity: input_boolean.enable_sensor_notifications
+            - entity: input_boolean.enable_system_alerts
+            - entity: input_boolean.enable_weather_alerts
+            - entity: input_boolean.zone_alerts
+            - entity: input_select.led_color
+            - entity: input_number.led_strip_brightness
+            - type: divider
+            - entity: input_boolean.enable_sandbox
+            - entity: input_boolean.trigger_sandbox
+# COL 3
+    - type: vertical-stack
+      cards:
+        - type: entities
+          title: Motion Detection
+          show_header_toggle: false
+          entities:
+            - entity: input_boolean.kit_motion_detected
+            - entity: input_datetime.last_kitchen_motion
+            - entity: input_select.kit_lights_auto_off
+#            - entity: input_number.lights_auto_off_slider
+            - entity: input_boolean.speak_kit_motion
+            - type: divider
+            - entity: input_boolean.lr_motion_detected
+            - entity: input_datetime.last_livingrm_motion
+            - entity: input_boolean.speak_lr_motion
+#
+        - type: entities
+          title: Schedules
+          show_header_toggle: false
+          entities:
+            - entity: input_datetime.recycle_alert_date
+            - entity: sensor.day_of_year
+            - entity: sensor.week_of_year
+#
+#            - entity: input_number.lights_lux_high_value
+#            - entity: input_number.lights_max_value
+#            - entity: input_number.lights_min_value
+#            - entity: input_number.lights_step_value
+#            - entity: input_select.indoor_camera_feed
+#            - entity: input_select.outdoor_camera_feed
+#

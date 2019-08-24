@@ -1,0 +1,514 @@
+#########################################
+#  View - FIRST FLOOR
+#########################################
+#
+title: First Floor
+path: floor_one
+id: v_first_floor
+icon: mdi:home-floor-1
+# panel: true
+cards:
+# Card 1
+  - type: markdown
+    content: >
+      ## First Floor
+# Card 2
+  - type: horizontal-stack
+    cards:
+      - type: entities
+        title: Inside
+        show_header_toggle: true
+        entities:
+          - light.kitchen_can_lights_49
+          - light.kitchen_pendants_106
+          - entity: light.kitchen_uc_lights_44
+            icon: mdi:led-strip
+          - entity: light.nook_uc_lights_116
+            icon: mdi:led-strip
+          - type: divider
+          - light.lr_can_lights_62
+          - entity: light.tv_left
+            icon: mdi:lightbulb
+          - entity: light.tv_right
+            icon: mdi:lightbulb
+          - entity: light.lr_fan_115
+            icon: mdi:fan
+          - type: divider
+          - light.mbr_can_lights_95
+          - light.mbr_bath_lights_94
+          - entity: light.mbr_shower_light_92
+            icon: mdi:lightbulb
+          - entity: light.mbr_bath_fan_93
+            icon: mdi:fan
+          - type: divider
+          - light.bird_room_1_light_52
+          - light.bird_room_2_light_53
+      - type: entities
+        title: Outside
+        show_header_toggle: true
+        entities:
+          - light.sunroom_lights_203
+          - entity: light.sunroom_fan_204
+            icon: mdi:fan
+          - entity: light.flux_led_strip
+            icon: mdi:led-strip
+          - type: divider
+          - light.pergola_lights_213
+          - light.hot_tub_lights_201
+          - entity: light.outdoor_switch_1_124
+            icon: mdi:fountain
+          - type: divider
+          - entity: light.sun_room_floods_202
+            icon: mdi:track-light
+          - entity: light.house_floods_105
+            icon: mdi:track-light
+          - type: divider
+          - light.front_porch
+          - light.garage_east
+          - light.garage_center
+          - light.garage_west
+          - entity: light.garage_fan_225
+            icon: mdi:fan
+          - type: divider
+          - entity: light.soffit_east_126
+            icon: mdi:power-socket-us
+          - entity: light.soffit_center_123
+            icon: mdi:power-socket-us
+# Card 3
+  - type: picture-elements
+    image: /local/floorplan/first_floor.png
+    elements:
+# KITCHEN
+      # Kitchen Under Counter Lights
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.kitchen_uc_lights_44
+        style:
+          top: 52%
+          left: 7%
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.nook_uc_lights_116
+        style:
+          top: 39%
+          left: 11%
+      # Kitchen Can Lights
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.kitchen_can_lights_49
+        style:
+          top: 50%
+          left: 11%
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.kitchen_can_lights_49
+        style:
+          top: 56%
+          left: 11%
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.kitchen_can_lights_49
+        style:
+          top: 62%
+          left: 11%
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.kitchen_can_lights_49
+        style:
+          top: 50%
+          left: 16%
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.kitchen_can_lights_49
+        style:
+          top: 56%
+          left: 16%
+ # Kitchen Temp
+      - type: state-label
+        entity: sensor.kit_temp_sensor_226
+        style:
+          top: 61%
+          left: 22%
+ # Kitchen Pendant Lights
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.kitchen_pendants_106
+        style:
+          top: 49%
+          left: 24%
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.kitchen_pendants_106
+        style:
+          top: 53%
+          left: 24%
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.kitchen_pendants_106
+        style:
+          top: 57%
+          left: 24%
+# LIVING ROOM
+      # LR Can Lights
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.lr_can_lights_62
+        style:
+          top: 45%
+          left: 43%
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.lr_can_lights_62
+        style:
+          top: 45%
+          left: 53%
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.lr_can_lights_62
+        style:
+          top: 55%
+          left: 43%
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.lr_can_lights_62
+        style:
+          top: 55%
+          left: 53%
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.tv_left
+        style:
+          top: 45%
+          left: 66%
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.tv_right
+        style:
+          top: 50%
+          left: 66%
+ # Living Room Temp
+      - type: state-label
+        entity: sensor.lr_temp_sensor_78
+        style:
+          top: 38%
+          left: 50%
+ # Thermostat 1
+      - type: state-label
+        entity: sensor.tstat1_temp
+        style:
+          top: 73%
+          left: 65%
+# LR Fan
+      - type: image
+        tap_action:
+          action: toggle
+        entity: light.lr_fan_115
+        state_image:
+          "on": /local/icons/fan.png
+          "off": /local/icons/fan-off.png
+        state_filter:
+          "on": brightness(0.8);
+          "off": brightness(0.2);
+        style:
+          top: 50%
+          left: 48%
+ # Master Bed
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.mbr_can_lights_95
+        style:
+          top: 24%
+          left: 72%
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.mbr_can_lights_95
+        style:
+          top: 24%
+          left: 89%
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.mbr_can_lights_95
+        style:
+          top: 34%
+          left: 72%
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.mbr_can_lights_95
+        style:
+          top: 34%
+          left: 89%
+ # Master Bath
+   # Art Vanity
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.mbr_bath_lights_94
+        style:
+          top: 50%
+          left: 92%
+   # Steff Vanity
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.mbr_bath_lights_94
+        style:
+          top: 56%
+          left: 81%
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.mbr_shower_light_92
+        style:
+          top: 45%
+          left: 92%
+      - type: image
+        tap_action:
+          action: toggle
+        entity: light.mbr_bath_fan_93
+        state_image:
+          "on": /local/icons/fan.png
+          "off": /local/icons/fan-off.png
+        state_filter:
+          "on": brightness(0.8);
+          "off": brightness(0.2);
+        style:
+          top: 51%
+          left: 85%
+# SUN ROOM
+     # SR Fan Lights
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.sunroom_lights_203
+        style:
+          top: 20%
+          left: 50%
+     # SR Fan
+      - type: image
+        tap_action:
+          action: toggle
+        entity: light.sunroom_fan_204
+        state_image:
+          "on": /local/icons/fan.png
+          "off": /local/icons/fan-off.png
+        state_filter:
+          "on": brightness(0.8);
+          "off": brightness(0.2);
+        style:
+          top: 13%
+          left: 50%
+      - type: image
+        tap_action:
+          action: toggle
+        entity: light.sunroom_fan_204
+        state_image:
+          "on": /local/icons/fan.png
+          "off": /local/icons/fan-off.png
+        state_filter:
+          "on": brightness(0.8);
+          "off": brightness(0.2);
+        style:
+          top: 27%
+          left: 50%
+     # Sun Room Temp
+      - type: state-label
+        entity: sensor.sun_room_temp_sensor_234
+        style:
+          top: 17%
+          left: 43%
+     # SR TV LEDs
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.flux_led_strip
+        style:
+          top: 26%
+          left: 64%
+#    BIRD ROOMS
+      # Birds Room 1 Lights
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.bird_room_1_light_52
+        style:
+          top: 87%
+          left: 82%
+      # Birds Room 2 Lights
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.bird_room_2_light_53
+        style:
+          top: 65%
+          left: 82%
+     # Bird Room 1 Temp
+      - type: state-label
+        entity: sensor.birdrm1_temp_sensor_237
+        style:
+          top: 90%
+          left: 77%
+#    OUTSIDE
+     # Pergola Side
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.pergola_lights_213
+        style:
+          top: 11%
+          left: 16%
+      - type: state-label
+        entity: sensor.dark_sky_temperature
+        style:
+          top: 17%
+          left: 15%
+     # Screen Room Side
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.hot_tub_lights_201
+        style:
+          top: 12%
+          left: 80%
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.outdoor_switch_1_124
+        style:
+          top: 19%
+          left: 91%
+     # Front Porch
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.front_porch
+        style:
+          top: 90%
+          left: 64%
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: lock.front_door_bolt_241
+        style:
+          top: 87%
+          left: 64%
+     # Garage
+      - type: image
+        tap_action:
+          action: toggle
+        entity: light.garage_fan_225
+        state_image:
+          "on": /local/icons/fan.png
+          "off": /local/icons/fan-off.png
+        state_filter:
+          "on": brightness(0.8);
+          "off": brightness(0.2);
+        style:
+          top: 85%
+          left: 24%
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.garage_west
+        style:
+          top: 96%
+          left: 57%
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.garage_center
+        style:
+          top: 96%
+          left: 24%
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.garage_east
+        style:
+          top: 96%
+          left: 6%
+
+
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: lock.garage_controller_1_55
+        style:
+          top: 92%
+          left: 15%
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: lock.garage_controller_2_54
+        style:
+          top: 92%
+          left: 40%
+
+
+     # Soffits
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.soffit_east_126
+        style:
+          top: 98%
+          left: 59%
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.soffit_center_123
+        style:
+          top: 98%
+          left: 4%
+     # Flood Lights
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.sun_room_floods_202
+        style:
+          top: 4%
+          left: 50%
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.house_floods_105
+        style:
+          top: 4%
+          left: 5%
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.house_floods_105
+        style:
+          top: 4%
+          left: 95%
+#
+#
+#      - type: service-button
+#        title: All lights off
+#        style:
+#          top: 90%
+#          left: 30%
+#        service: homeassistant.turn_off
+#        service_data:
+#          entity_id: group.all_lights
+#

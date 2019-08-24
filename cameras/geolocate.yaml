@@ -1,0 +1,32 @@
+# Camera Setup
+#
+##############################
+#     Generic Geo-Locate     #
+##############################
+#
+#- platform: generic
+#  name: Arts Location
+#  still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.artsiphone8.attributes.latitude }},{{ states.device_tracker.artsiphone8.attributes.longitude }}&zoom=13&size=500x500&maptype=roadmap&markers=color:blue%7Clabel:A%7C{{ states.device_tracker.artsiphone8.attributes.latitude }},{{ states.device_tracker.artsiphone8.attributes.longitude }}&key=AIzaSyD5-7gdVGxRIwJt1QpTdEd9zYdds1O20_k
+#  limit_refetch_to_url_change: false
+#
+#- platform: generic
+#  name: Steffs Location
+#  still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.steffsiphone8.attributes.latitude }},{{ states.device_tracker.steffsiphone8.attributes.longitude }}&zoom=13&size=500x500&maptype=roadmap&markers=color:purple%7Clabel:S%7C{{ states.device_tracker.steffsiphone8.attributes.latitude }},{{ states.device_tracker.steffsiphone8.attributes.longitude }}&key=AIzaSyD5-7gdVGxRIwJt1QpTdEd9zYdds1O20_k
+#  limit_refetch_to_url_change: false
+#
+- platform: generic
+  name: Arts Location
+  still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.art_ot1.attributes.latitude }},{{ states.device_tracker.art_ot1.attributes.longitude }}&zoom=13&size=500x500&maptype=roadmap&markers=color:blue%7Clabel:A%7C{{ states.device_tracker.art_ot1.attributes.latitude }},{{ states.device_tracker.art_ot1.attributes.longitude }}&key=AIzaSyD5-7gdVGxRIwJt1QpTdEd9zYdds1O20_k
+  limit_refetch_to_url_change: false
+#
+- platform: generic
+  name: Steffs Location
+  still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.steff_ot2.attributes.latitude }},{{ states.device_tracker.steff_ot2.attributes.longitude }}&zoom=13&size=500x500&maptype=roadmap&markers=color:purple%7Clabel:S%7C{{ states.device_tracker.steff_ot2.attributes.latitude }},{{ states.device_tracker.steff_ot2.attributes.longitude }}&key=AIzaSyD5-7gdVGxRIwJt1QpTdEd9zYdds1O20_k
+  limit_refetch_to_url_change: false
+#
+# Art - device_tracker.art_ot1
+# Steff - device_tracker.steff_ot2
+#
+# https://maps.googleapis.com/maps/api/staticmap?center=30.454788208007812,-81.53545595713102&zoom=13&size=500x500&maptype=roadmap&markers=color:blue%7Clabel:A%7C30.454788208007812,-81.53545595713102&key=AIzaSyD5-7gdVGxRIwJt1QpTdEd9zYdds1O20_k
+#
+# https://maps.googleapis.com/maps/api/staticmap?center=30.454742431640625,-81.53551982723319&zoom=13&size=500x500&maptype=roadmap&markers=color:purple%7Clabel:S%7C30.454742431640625,-81.53551982723319&key=AIzaSyD5-7gdVGxRIwJt1QpTdEd9zYdds1O20_k

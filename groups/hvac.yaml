@@ -1,0 +1,14 @@
+#################################################################
+#     HVAC
+#################################################################
+#
+climate:
+  name: Climate
+  view: no
+  icon: mdi:home
+  entities:
+    - climate.tstat_1_144
+    - climate.tstat_2_145
+    - sensor.lr_temp_sensor_78
+    - sensor.kit_temp_sensor_117
+#

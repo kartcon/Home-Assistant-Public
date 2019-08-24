@@ -1,0 +1,118 @@
+#############################################################
+#             Environmental Templates                       #
+#############################################################
+#
+############################
+#     Bayesian Rain        #
+############################
+- platform: template
+  sensors:
+    bayesian_rain:
+      value_template: "{{ ((states.binary_sensor.its_raining.attributes.probability) * 100) | int}}"
+      friendly_name: "Bayesian Rain Probability"
+      unit_of_measurement: '%'
+#
+#########################
+#      Daylight         #
+#########################
+- platform: template
+  sensors:
+    daylight:
+      value_template: >
+        {% set nr = as_timestamp(state_attr('sun.sun','next_rising')) %}
+        {% set ns = as_timestamp(state_attr('sun.sun','next_setting')) %}
+        {% if nr > ns %}
+          {% set nr = nr - 60*60*24 %}
+        {% endif %}
+        {{ (ns - nr)|timestamp_custom('%H:%M',false) }}
+      friendly_name: "Daylight Hours"
+#
+#########################
+#         Moon          #
+#########################
+- platform: moon
+#
+#########################
+#      Moon Icon        #
+#########################
+- platform: template
+  sensors:
+    moonphases:
+      entity_id: sensor.moon
+      friendly_name: 'Moon'
+      value_template: >
+        {{ states('sensor.moon').title().replace('_',' ') }}
+#        {{ set state = states.sensor.moon.state }}
+      entity_picture_template: >
+        {% set state = states('sensor.moon').title().replace('_','_') %}
+          {{ '/local/moon_icons/{}.png'.format(state) }}
+#
+############################
+#    PWS WeatherSensors    #
+############################
+#- platform: template
+#  pws_alert_type:
+#    value_template: "{{ (states.sensor.pws_alerts.attributes.description) }}"
+#    friendly_name: "Weather Alert Type"
+#  pws_alert_text:
+#    value_template: "{{ (states.sensor.pws_alerts.attributes.attribution) }}"
+#    friendly_name: "Weather Alert Text"
+#
+#########################
+#    Seasons            #
+#########################
+- platform: season
+  type: meteorological
+#
+#########################
+#  Sun/Sunrise/Sunset   #
+#########################
+- platform: template
+  sensors:
+    sun_elevation:
+      value_template: "{{ (states.sun.sun.attributes.elevation | round(2)) }}"
+      friendly_name: "Sun Elevation"
+    next_sunrise:
+      value_template: '{% set timestamp = as_timestamp(states.sun.sun.attributes.next_rising) | timestamp_custom("%b %d, %X") %} {{ timestamp.lstrip("0") }}'
+      friendly_name: "Next Sunrise"
+    next_sunset:
+      value_template: '{% set timestamp = as_timestamp(states.sun.sun.attributes.next_setting) | timestamp_custom("%b %d, %X") %} {{ timestamp.lstrip("0") }}'
+      friendly_name: "Next Sunset"
+#
+#########################
+#    Tides (NOAA)       #
+#########################
+#   NOAA fails on load
+#- platform: noaa_tides
+#  station_id: 8720198
+#
+#########################
+#  Tides (World Tides)  #
+#########################
+#- platform: worldtidesinfo
+#  api_key: !secret world_tide_api_key
+#
+#- platform: template
+#  next_low_tide:
+#    value_template: '{% set timestamp = as_timestamp(states.sensor.worldtidesinfo.attributes.low_tide_time_utc) | timestamp_custom("%b %d, %X") %} {{ timestamp.lstrip("0") }}'
+#    friendly_name: "Next Low Tide"
+#  next_high_tide:
+#    value_template: '{% set timestamp = as_timestamp(states.sensor.worldtidesinfo.attributes.high_tide_time_utc) | timestamp_custom("%b %d, %X") %} {{ timestamp.lstrip("0") }}'
+#    friendly_name: "Next High Tide"
+#
+#########################
+#     T-Stat Temps      #
+#########################
+- platform: template
+  sensors:
+    tstat1_temp:
+      value_template: "{{ (states.climate.tstat_1_144.attributes.current_temperature | round(0)) }}"
+      entity_id: climate.tstat_1_144
+      unit_of_measurement: "°F"
+      friendly_name: "Inside Temp 1"
+    tstat2_temp:
+      value_template: "{{ (states.climate.tstat_2_145.attributes.current_temperature | round(0)) }}"
+      entity_id: climate.tstat_2_145
+      unit_of_measurement: "°F"
+      friendly_name: "Inside Temp 2"
+#

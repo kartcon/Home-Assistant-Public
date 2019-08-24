@@ -1,0 +1,572 @@
+#################################################################
+## LIGHTING AUTOMATIONS (TRIGGERED EVENTS)
+#################################################################
+#
+#################################################################
+## KITCHEN
+#################################################################
+#
+#################################################################
+# Kitchen Motion Set Last Motion Time
+# Action: Toggle Input Boolean ON
+# Action: Update Last Motion Date-Time
+#################################################################
+- id: kit_motion_detected
+  alias: Kitchen Motion Detected
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: binary_sensor.kit_motion_sensor_81
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.kit_motion_detected
+  - service: input_datetime.set_datetime
+    data_template:
+      entity_id: input_datetime.last_kitchen_motion
+      time: '{{ now().strftime("%H:%M:%S") }}'
+      date: '{{ now().strftime("%Y-%m-%d") }}'
+#      time: '{{ (as_timestamp(now()) | timestamp_custom("%H:%M:%S", true)) }}'
+#      date: '{{ (as_timestamp(now()) | timestamp_custom("%Y-%m-%d", true)) }}'
+  - condition: state
+    entity_id: input_boolean.speak_kit_motion
+    state: 'on'
+  - service: notify.alexa_media
+    data_template:
+      target:
+        - media_player.kitchen_echo
+      data:
+        type: tts
+      message: "Kitchen Motion Sensor."
+#  - service: script.sonos_say
+#    data:
+#      sonos_entity: media_player.sunroom_sonos
+#      volume: 0.4
+#      message: "{{ trigger.to_state.attributes.friendly_name }}."
+#      delay: '00:00:05'
+#
+#################################################################
+# Kitchen Motion ReSet Toggle if > selected interval
+# Action: Toggle Input Boolean OFF
+#################################################################
+- id: kit_no_motion_detected
+  alias: Kitchen No Motion Detected
+  initial_state: true
+  trigger:
+    platform: time_pattern
+    minutes: '/5'
+    seconds: 0
+  condition:
+  - condition: template
+#    value_template: "{{ ((as_timestamp(now()) - (as_timestamp(states.input_datetime.last_kitchen_motion.state)))/60) > 30 }}"
+    value_template: "{{ ((as_timestamp(now()) - (as_timestamp(states.input_datetime.last_kitchen_motion.state)))/60) | float > (states.input_select.kit_lights_auto_off.state) | float }}"
+  - condition: time
+    after: '08:00:00'
+    before: '16:00:00'
+  - condition: state
+    entity_id: input_boolean.kit_motion_detected
+    state: 'on'
+  action:
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.kit_motion_detected
+#
+#################################################################
+# Kitchen Lights Auto-On between 8a-4p with Motion and Lux
+# Action: Turn Kitchen Lights ON
+#################################################################
+- id: kit_lights_on_with_motion_8_4
+  alias: Kitchen Lights On with Motion
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: input_boolean.kit_motion_detected
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: time
+    after: '08:00:00'
+    before: '16:00:00'
+  - condition: state
+    entity_id: light.kitchen_can_lights_49
+    state: 'off'
+  - condition: state
+    entity_id: input_boolean.kit_motion_detected
+    state: 'on'
+  - condition: numeric_state
+    entity_id: sensor.kit_light_sensor_227
+    below: 70
+  action:
+  - service: persistent_notification.create
+    data_template:
+      message: >-
+        Kitchen Lights Auto-On triggered at {{now().strftime("%m/%d/%Y %H:%M:%S")}}.
+        Last motion was at {{ states.input_datetime.last_kitchen_motion.state }}.
+        Kitchen Lux was at {{ states.sensor.kit_light_sensor_227.state }}.
+      title: Kitchen AUTO-ON Triggered
+  - service: light.turn_on
+    entity_id: group.kitchen
+  - service: notify.alexa_media
+    data_template:
+      target:
+        - media_player.kitchen_echo
+      data:
+        type: tts
+      message: "I've turned the light on for you."
+#  - service: script.sonos_say
+#    data:
+#      sonos_entity: media_player.sunroom_sonos
+#      volume: 0.4
+#      message: "I've turned the light on for you."
+#      delay: '00:00:05'
+#
+#################################################################
+# Kitchen Lights Auto-Off between 8a-4p without Motion and Lux
+# Action: Turn Kitchen Lights OFF
+#################################################################
+- id: kit_lights_off_without_motion_8_4
+  alias: Kitchen Lights Off without Motion
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: input_boolean.kit_motion_detected
+    from: 'on'
+    to: 'off'
+  condition:
+  - condition: time
+    after: '08:00:00'
+    before: '16:00:00'
+  - condition: numeric_state
+    entity_id: sensor.kit_light_sensor_227
+    above: 75
+  - condition: state
+    entity_id: light.kitchen_can_lights_49
+    state: 'on'
+#  - condition: state
+#    entity_id: light.kitchen_pendants_106
+#    state: 'on'
+  - condition: state
+    entity_id: input_boolean.no_one_home
+    state: 'off'
+  action:
+  - service: persistent_notification.create
+    data_template:
+      message: >-
+        Kitchen Lights Auto-Off triggered at {{now().strftime("%m/%d/%Y %H:%M:%S")}}.
+        Last motion was at {{ states.input_datetime.last_kitchen_motion.state }}.
+        Kitchen Lux was at {{ states.sensor.kit_light_sensor_227.state }}.
+      title: Kitchen AUTO-OFF Triggered
+  - service: light.turn_off
+    entity_id: light.kitchen_can_lights_49
+  - service: light.turn_off
+    entity_id: light.kitchen_pendants_106
+  - service: notify.alexa_media
+    data_template:
+      target:
+        - media_player.kitchen_echo
+      data:
+        type: tts
+      message: "I've turned the lights off to save energy."
+#  - service: script.sonos_say
+#    data:
+#      sonos_entity: media_player.sunroom_sonos
+#      volume: 0.4
+#      message: "I've turned the lights off to save energy."
+#      delay: '00:00:05'
+#
+#################################################################
+# Turn on Kitchen UCL's with Nook UCL
+#################################################################
+- id: kit_ucl_follows_nook_ucl_on
+  alias: Kitchen UCL follows Nook UCL On
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: light.nook_uc_lights_116
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: light.turn_on
+    data:
+      entity_id: light.kitchen_uc_lights_44
+#
+# This automation turns on/off the cupboard lights based
+# on the state of the kitchen ceiling light.
+#
+# It is turned on if the kitchen ceiling light is on and
+# at a minimum brightness level. Turned off otherwise.
+#
+# https://github.com/frenck/home-assistant-config/blob/master/config/automations/areas/kitchen/ceiling_cupboard.yaml
+- id: kit_ucl_follows_nook_ucl_on_two
+  alias: Kitchen UCL follows Nook UCL On Two
+  trigger:
+    platform: state
+    entity_id: light.nook_uc_lights_116
+  action:
+    service_template: >-
+      {%
+        if (
+          is_state('light.nook_uc_lights_116', 'on')
+          and (state_attr('light.nook_uc_lights_116', 'brightness')|int) > 115
+        )
+      %}
+        switch.turn_on
+      {% else %}
+        switch.turn_off
+      {% endif %}
+    entity_id: light.kitchen_uc_lights_44
+
+#################################################################
+# Turn off Kitchen UCL's with Nook UCL
+#################################################################
+- id: kit_ucl_follows_nook_ucl_off
+  alias: Kitchen UCL follows Nook UCL Off
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: light.nook_uc_lights_116
+    from: 'on'
+    to: 'off'
+#  - platform: numeric_state
+#    entity_id: light.nook_uc_lights_116
+#    value_template: "{{ states.light.nook_uc_lights_116.attributes.brightness }}"
+#    below: 60
+  condition: []
+  action:
+  - service: light.turn_off
+    data:
+      entity_id: light.kitchen_uc_lights_44
+#
+#################################################################
+# Turn on UCL's with Motion between 11p and 6a
+#################################################################
+- id: kit_ucls_on_after_2300
+  alias: Kitchen UCLs on after 23:00
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: binary_sensor.kit_motion_sensor_81, binary_sensor.lr_motion_sensor_67
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: time
+    after: '23:00:00'
+    before: '06:00:00'
+  action:
+  - service: light.turn_on
+    data:
+      entity_id: light.kitchen_uc_lights_44
+  - service: light.turn_on
+    data:
+      entity_id: light.nook_uc_lights_116
+      brightness: 127
+  - delay:
+      minutes: 2
+  - service: light.turn_off
+    data:
+      entity_id: light.kitchen_uc_lights_44
+  - service: light.turn_off
+    data:
+      entity_id: light.nook_uc_lights_116
+#
+#################################################################
+# Kitchen UC Lights On w Arrival Home
+# Action: Turn Kitchen Lights ON
+#################################################################
+- id: kit_ucls_on_arriving_home
+  alias: Kitchen UCLs on arriving home
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: lock.front_door_bolt_241
+    to: 'unlocked'
+  - platform: state
+    entity_id: lock.garage_controller_2_54
+    to: 'unlocked'
+  - platform: state
+    entity_id: binary_sensor.art_presence
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.steff_presence
+    to: 'on'
+  condition:
+  - condition: time
+    after: '08:00:00'
+    before: '23:00:00'
+  action:
+  - service: script.write_to_log
+    data:
+      entity_id: light.kitchen_uc_lights_44
+      message: Automation - Kitchen UCLs on arriving home
+  - service: light.turn_on
+    data:
+      entity_id: light.kitchen_uc_lights_44
+  - service: light.turn_on
+    data:
+      entity_id: light.nook_uc_lights_116
+#
+#################################################################
+## Living Room
+#################################################################
+#
+#################################################################
+# Living Room Motion Set Last Motion Time
+# Action: Toggle Input Boolean ON
+# Action: Update Last Motion Date-Time
+#################################################################
+- id: lr_motion_detected
+  alias: Living Room Motion Detected
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: binary_sensor.lr_motion_sensor_67
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.lr_motion_detected
+  - service: input_datetime.set_datetime
+    data_template:
+      entity_id: input_datetime.last_livingrm_motion
+      time: '{{ now().strftime("%H:%M:%S") }}'
+      date: '{{ now().strftime("%Y-%m-%d") }}'
+#      time: '{{ (as_timestamp(now()) | timestamp_custom("%H:%M:%S", true)) }}'
+#      date: '{{ (as_timestamp(now()) | timestamp_custom("%Y-%m-%d", true)) }}'
+  - condition: state
+    entity_id: input_boolean.speak_lr_motion
+    state: 'on'
+  - service: notify.alexa_media
+    data_template:
+      target:
+        - media_player.kitchen_echo
+      data:
+        type: tts
+      message: "Living Room Motion Sensor."
+#  - service: script.sonos_say
+#    data:
+#      sonos_entity: media_player.sunroom_sonos
+#      volume: 0.4
+#      message: "{{ trigger.to_state.attributes.friendly_name }}."
+#      delay: '00:00:05'
+#
+#################################################################
+# Living Room Motion ReSet Toggle if > 1 hour
+# Action: Toggle Input Boolean OFF
+#################################################################
+- id: lr_no_motion_detected
+  alias: LR No Motion Detected
+  initial_state: true
+  trigger:
+    platform: time_pattern
+    minutes: '/5'
+    seconds: 0
+  condition:
+  - condition: template
+    value_template: "{{ ((as_timestamp(now()) - (as_timestamp(states.input_datetime.last_livingrm_motion.state)))/60) > 60 }}"
+#    value_template: "{{ ((as_timestamp(now()) - (as_timestamp(states.input_datetime.last_livingrm_motion.state)))/60) | float > (states.input_select.kit_lights_auto_off.state) | float }}"
+  - condition: time
+    after: '08:00:00'
+    before: '16:00:00'
+  - condition: state
+    entity_id: input_boolean.lr_motion_detected
+    state: 'on'
+  action:
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.lr_motion_detected
+#
+#################################################################
+## Sun Room
+#################################################################
+#
+#################################################################
+## Master Bath
+#################################################################
+#
+#################################################################
+# MBath Fan on with Shower Light, 2 min delay
+#################################################################
+- id: mbath_fan_on_with_shower
+  alias: MBath Fan on in 2 with Shower Light
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: light.mbr_shower_light_92
+    to: 'on'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 30
+  condition: []
+  action:
+  - delay:
+      minutes: 1
+  - service: light.turn_on
+    entity_id: light.mbr_bath_fan_93
+#
+#################################################################
+# MBath Fan off after Shower Light off, 5 min delay
+#################################################################
+- id: mbath_fan_off_with_shower
+  alias: MBath Fan off in 5 with Shower Light
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: light.mbr_shower_light_92
+    to: 'off'
+  condition: []
+  action:
+  - delay:
+      minutes: 5
+  - service: light.turn_off
+    entity_id: light.mbr_bath_fan_93
+#  - service: light.turn_on
+#    data:
+#      entity_id: light.mbr_bath_lights_94
+#      brightness: 102
+#
+#################################################################
+## Outside
+#################################################################
+#
+#################################################################
+# Porch Light On when front door Unlocked, early morning
+#################################################################
+- id: porch_light_on_w_unlock_am
+  alias: Porch Light On w AM Unlock
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: lock.front_door_bolt_241
+    to: 'unlocked'
+  condition:
+  - condition: state
+    entity_id: sun.sun
+    state: 'below_horizon'
+  - condition: time
+    after: '02:00:00'
+    before: '08:00:00'
+  action:
+  - service: light.turn_on
+    entity_id: light.porch_light_46
+  - service: light.lifx_set_state
+    data:
+      entity_id: light.front_porch
+      power: true
+      brightness: 128
+      color_temp: 290
+  - delay:
+      minutes: 2
+  - service: light.lifx_set_state
+    data:
+      entity_id: light.front_porch
+      power: false
+#
+#################################################################
+# Porch Light On when front door Unlocked, night time
+#################################################################
+- id: porch_light_on_w_unlock_pm
+  alias: Porch Light On w PM Unlock
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: lock.front_door_bolt_241
+    to: 'unlocked'
+  condition:
+  - condition: state
+    entity_id: sun.sun
+    state: 'below_horizon'
+  - condition: time
+    after: '16:00:00'
+    before: '23:00:00'
+  action:
+  - service: light.turn_on
+    entity_id: light.porch_light_46
+  - service: light.lifx_set_state
+    data:
+      entity_id: light.front_porch
+      power: true
+      brightness: 128
+      color_temp: 290
+  - delay:
+      minutes: 5
+  - service: light.lifx_set_state
+    data:
+      entity_id: light.front_porch
+      power: true
+      brightness: 94
+      rgb_color: [255,239,0]
+#
+#################################################################
+## Whole House
+#################################################################
+#
+#################################################################
+# Lights off if between 8a-4p and No One Home
+#################################################################
+- id: lights_off_if_no_one_home_8_4
+  alias: Lights off when No One Home Day
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: input_boolean.no_one_home
+    to: 'on'
+  condition:
+  - condition: time
+    after: '08:00:00'
+    before: '16:00:00'
+  action:
+  - service: persistent_notification.create
+    data_template:
+      message: >-
+        Inside Lights Auto-Off triggered at {{now().strftime("%m/%d/%Y %H:%M:%S")}}.
+        Last Kitchen motion was at {{ states.input_datetime.last_kitchen_motion.state }}.
+        Last LR motion was at {{ states.input_datetime.last_livingrm_motion.state }}.
+      title: Lights OFF (8-4, No one home)
+  - service: light.turn_off
+    entity_id: group.inside_light_group
+    # This group does not include fans!
+#
+#################################################################
+## Unused
+#################################################################
+#
+#################################################################
+# Flux Light Strip ON with LGTV
+#################################################################
+#- id: flux_leds_on_with_lgtv
+#  alias: Flux LEDs on with LGTV
+#  initial_state: true
+#  trigger:
+#    platform: state
+#    entity_id: media_player.sun_room_lg_tv
+#    to: 'playing'
+#  condition: []
+#  action:
+#  - service: light.turn_on
+#    data:
+#      entity_id: light.flux_led_strip
+#      brightness: 28
+#      rgb_color: [0,0,255]
+#
+#################################################################
+# Flux Light Strip OFF with LGTV
+#################################################################
+#- id: flux_leds_off_with_lgtv
+#  alias: Flux LEDs off with LGTV
+#  initial_state: true
+#  trigger:
+#  - platform: state
+#    entity_id: media_player.sun_room_lg_tv
+#    to: 'off'
+#  - platform: state
+#    entity_id: media_player.sun_room_lg_tv
+#    to: 'paused'
+#  condition: []
+#  action:
+#  - service: light.turn_off
+#    data:
+#      entity_id: light.flux_led_strip
+#

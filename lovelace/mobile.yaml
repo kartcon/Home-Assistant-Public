@@ -1,0 +1,169 @@
+#########################################
+#  View 1 - HOME
+#########################################
+#
+title: Mobile
+path: mobile
+icon: mdi:cellphone
+id: v_mobile
+# panel: true
+cards:
+- type: vertical-stack
+  cards:
+  #  Card 1
+    - type: alarm-panel
+      title: Alarm Keypad
+      entity: alarm_control_panel.ha_alarm
+      states:
+        - arm_home
+        - arm_away
+    - type: entities
+      title: Alarm System
+      show_header_toggle: false
+      entities:
+        - type: divider
+        - entity: input_boolean.mode_guest
+        - entity: input_boolean.mode_vacation
+  #  Card 2
+    - type: entities
+      title: Lights
+      show_header_toggle: false
+      entities:
+        - entity: light.kitchen_can_lights_49
+          icon: mdi:blur-radial
+        - type: custom:slider-entity-row
+          entity: light.kitchen_pendants_106
+          icon: mdi:ceiling-light
+        - entity: light.kitchen_uc_lights_44
+          icon: mdi:led-strip
+        - type: custom:slider-entity-row
+          entity: light.lr_can_lights_62
+          icon: mdi:blur-radial
+        - entity: light.lr_fan_115
+          icon: mdi:fan
+        - type: custom:slider-entity-row
+          entity: light.sunroom_lights_203
+        - type: custom:slider-entity-row
+          entity: light.sunroom_fan_204
+          icon: mdi:fan
+        - type: custom:slider-entity-row
+          entity: light.bird_room_1_light_52
+        - type: custom:slider-entity-row
+          entity: light.bird_room_2_light_53
+        - entity: light.office_desk_lamp_27
+          icon: mdi:desk-lamp
+        - type: custom:slider-entity-row
+          entity: light.office_light_223
+          icon: mdi:ceiling-light
+        - entity: light.pergola_lights_213
+          icon: mdi:led-on
+        - entity: light.hot_tub_lights_201
+          icon: mdi:led-on
+        - entity: light.sun_room_floods_202
+          icon: mdi:track-light
+        - entity: light.front_porch
+          icon: mdi:ceiling-light
+        - entity: light.garage_east
+          icon: mdi:wall-sconce
+        - entity: light.garage_center
+          icon: mdi:wall-sconce
+        - entity: light.garage_west
+          icon: mdi:wall-sconce
+        - type: divider
+        - entity: light.garage_lights_48
+        - entity: light.porch_light_46
+  #  Card 3
+    - type: entities
+      title: Presence
+      show_name: true
+      show_header_toggle: false
+      entities:
+        - entity: binary_sensor.art_presence
+        - entity: binary_sensor.steff_presence
+        - type: divider
+        - entity: input_boolean.art_home
+        - entity: input_boolean.steff_home
+  #  Card 4
+    - type: glance
+      title: Locks
+      show_header_toggle: false
+      entities:
+        - lock.front_door_bolt_241
+        - lock.back_door_lock_61
+        - lock.garage_controller_1_55
+        - lock.garage_controller_2_54
+  #  Card 5
+    - type: thermostat
+      title: Downstairs
+      show_header_toggle: false
+      entity: climate.tstat_1_144
+    - type: thermostat
+      title: Upstairs
+      show_header_toggle: false
+      entity: climate.tstat_2_145
+  #  Card 6
+    - type: glance
+      title: Door Sensors
+      show_header_toggle: false
+      columns: 3
+      entities:
+        - entity: binary_sensor.front_door_31
+          icon: mdi:door
+          secondary_info: last-changed
+        - entity: binary_sensor.back_door_36
+          icon: mdi:door
+          secondary_info: last-changed
+        - entity: binary_sensor.garage_entry_door_39
+          icon: mdi:door
+          secondary_info: last-changed
+        - entity: binary_sensor.sliding_door_left_37
+          icon: mdi:door
+          secondary_info: last-changed
+        - entity: binary_sensor.sliding_door_right_38
+          icon: mdi:door
+          secondary_info: last-changed
+        - entity: binary_sensor.sunroom_east_34
+          icon: mdi:door
+          secondary_info: last-changed
+        - entity: binary_sensor.sunroom_west_35
+          icon: mdi:door
+          secondary_info: last-changed
+        - entity: binary_sensor.one_car_gar_sensor_66
+          icon: mdi:door
+          secondary_info: last-changed
+        - entity: binary_sensor.two_car_gar_sensor_65
+          icon: mdi:door
+          secondary_info: last-changed
+  #  Card 7
+    - type: entities
+      title: Zones Armed
+      show_header_toggle: true
+      entities:
+        - entity: switch.front_door_31
+          icon: mdi:door
+          secondary_info: last-changed
+        - entity: switch.back_door_36
+          icon: mdi:door
+          secondary_info: last-changed
+        - entity: switch.garage_entry_door_39
+          icon: mdi:door
+          secondary_info: last-changed
+        - entity: switch.sliding_door_left_37
+          icon: mdi:door
+          secondary_info: last-changed
+        - entity: switch.sliding_door_right_38
+          icon: mdi:door
+          secondary_info: last-changed
+        - entity: switch.sunroom_east_34
+          icon: mdi:door
+          secondary_info: last-changed
+        - entity: switch.sunroom_west_35
+          icon: mdi:door
+          secondary_info: last-changed
+        - entity: switch.one_car_gar_sensor_66
+          icon: mdi:door
+          secondary_info: last-changed
+        - entity: switch.two_car_gar_sensor_65
+          icon: mdi:door
+          secondary_info: last-changed
+#

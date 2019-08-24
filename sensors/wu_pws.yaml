@@ -1,0 +1,17 @@
+#########################
+#  Weather Underground  #
+#########################
+#- platform: wunderground
+#  api_key: !secret wunderground_key
+#  pws_id: !secret wunderground_pws_id
+#  monitored_conditions:
+#    - alerts
+#    - feelslike_f
+#    - precip_today_in
+#    - precip_1d_in
+#    - pressure_in
+#    - station_id
+#    - temp_f
+#    - weather
+#    - weather_1h
+#

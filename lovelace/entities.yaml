@@ -1,0 +1,60 @@
+#########################################
+#  SANDBOX
+#########################################
+#
+title: A/S/S
+path: entities
+id: v_ent
+icon: mdi:package-variant
+panel: true
+cards:
+- type: horizontal-stack
+  cards:
+# COL 1
+    - type: vertical-stack
+      cards:
+        - type: "custom:monster-card"
+          card:
+            title: All Automations
+            type: entities
+            show_header_toggle: false
+          filter:
+            include:
+              - domain: automation
+#
+# COL 2
+    - type: vertical-stack
+      cards:
+        - type: "custom:monster-card"
+          card:
+            title: All Scripts
+            type: entities
+            show_header_toggle: false
+          filter:
+            include:
+              - domain: script
+#
+        - type: "custom:monster-card"
+          card:
+            title: All Scenes
+            type: entities
+            show_header_toggle: false
+          filter:
+            include:
+              - domain: scene
+#
+# COL 3
+    - type: vertical-stack
+      cards:
+        - type: "custom:monster-card"
+          card:
+            title: Inputs
+            type: entities
+            show_header_toggle: false
+          filter:
+            include:
+              - domain: input_boolean
+              - domain: input_select
+              - domain: input_number
+              - domain: input_datetime
+#

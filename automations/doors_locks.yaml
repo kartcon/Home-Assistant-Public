@@ -1,0 +1,194 @@
+#################################################################
+## DOORS & LOCKS AUTOMATIONS
+#################################################################
+#
+#################################################################
+# Close Garage Doors at Sunset
+#################################################################
+- id: close_garage_doors_at_sunset
+  alias: Close Garage Doors at Sunset
+  initial_state: true
+  trigger:
+    platform: sun
+    event: sunset
+  condition: []
+  action:
+  - service: script.turn_on
+    entity_id: script.close_garage_door1
+  - service: script.turn_on
+    entity_id: script.close_garage_door2
+  - service: script.turn_on
+    entity_id: script.lock_front_door
+  - service: script.turn_on
+    entity_id: script.reset_two_car_gar_sensor
+  - service: script.turn_on
+    entity_id: script.blink_lights_tv
+  - delay: 0:00:03
+  - service: notify.lg_tv
+    data:
+      title: "Security Notification"
+      message: "The garage doors are closed."
+#
+#################################################################
+# Close/Lock All Exterior Doors at 21:30
+#################################################################
+- id: close_lock_ext_doors_at_2130
+  alias: Close Lock all Ext Doors at 2130
+  initial_state: true
+  trigger:
+    platform: time
+    at: '21:30:00'
+  condition: []
+  action:
+  - service: script.turn_on
+    entity_id: script.lock_front_door
+  - service: script.turn_on
+    entity_id: script.lock_back_door
+  - service: script.turn_on
+    entity_id: script.close_garage_door1
+  - service: script.turn_on
+    entity_id: script.close_garage_door2
+  - service: script.turn_on
+    entity_id: script.blink_lights_tv
+  - delay: 0:00:03
+  - service: notify.lg_tv
+    data:
+      title: "Security Notification"
+      message: "All perimeter doors are closed and locked."
+#
+#################################################################
+# Close Garage Door 1 if No One Home
+#################################################################
+- id: close_garage_door_1_no_one_home
+  alias: Close Garage Door 1 No One Home
+  trigger:
+    platform: state
+    entity_id: input_boolean.no_one_home
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: lock.garage_controller_1_55
+    state: 'unlocked'
+  action:
+  - service: script.turn_on
+    entity_id: script.close_garage_door1
+  - service: notify.ios_group_art_steff
+    data:
+      title: Garage Door 1 Closed
+      message: No One Home - Close Garage Door 1 Automation Triggered
+#
+#################################################################
+# Close Garage Door 2 if No One Home
+#################################################################
+- id: close_garage_door_2_no_one_home
+  alias: Close Garage Door 2 No One Home
+  trigger:
+    platform: state
+    entity_id: input_boolean.no_one_home
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: lock.garage_controller_2_54
+    state: 'unlocked'
+  action:
+  - service: script.turn_on
+    entity_id: script.close_garage_door2
+  - service: notify.ios_group_art_steff
+    data:
+      title: Garage Door 2 Closed
+      message: No One Home - Close Garage Door 2 Automation Triggered
+#
+#################################################################
+# Close Garage Doors if Raining
+#################################################################
+- id: close_garage_door_in_rain
+  alias: Close Garage Door In Rain
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.its_raining
+    to: 'on'
+    for:
+      minutes: 0
+      seconds: 30
+  - platform: numeric_state
+    entity_id: sensor.dark_sky_precip_probability_0
+    above: 90
+    for:
+      minutes: 10
+      seconds: 0
+  condition:
+  - condition: state
+    entity_id: input_boolean.close_garage_doors_in_rain
+    state: 'on'
+  action:
+  - service: script.turn_on
+    entity_id: script.close_garage_door1
+  - service: script.turn_on
+    entity_id: script.close_garage_door2
+  - condition: state
+    entity_id: lock.garage_controller_2_54
+    state: 'unlocked'
+  - service: notify.ios_group_art_steff
+    data:
+      title: Garage Door Closed
+      message: Rain - Close Garage Door Automation Triggered
+  - service: script.turn_on
+    entity_id: script.blink_lights_tv
+  - delay: 0:00:03
+  - service: notify.lg_tv
+    data:
+      title: "Weather Notification"
+      message: "The garage doors were closed due to rain."
+  - service: notify.alexa_media
+    data_template:
+      target:
+        - media_player.kitchen_echo
+      data:
+        type: tts
+      message: "I'ts getting ready to rain. I've closed the Garage Doors for you"
+#
+#################################################################
+# Update Front Door Sensor on Lock
+#################################################################
+- id: update_front_door_sensor_on_lock
+  alias: Update Front Door Sensor on Lock
+  trigger:
+    platform: state
+    entity_id: lock.front_door_bolt_241
+    to: 'locked'
+  condition:
+  - condition: state
+    entity_id: alarm_control_panel.ha_alarm
+    state: 'disarmed'
+  - condition: state
+    entity_id: binary_sensor.front_door_31
+    state: 'on'
+  action:
+  - service: script.turn_on
+    entity_id: script.reset_front_door_sensor
+  - service: homeassistant.update_entity
+    data:
+      entity_id: binary_sensor.front_door_31
+##################################################################
+# Update Garage Door 2 Sensor on Lock
+#################################################################
+- id: update_garage_door_2_sensor_on_lock
+  alias: Update Garage Door 2 Sensor on Lock
+  trigger:
+    platform: state
+    entity_id: lock.garage_controller_2_54
+    to: 'locked'
+  condition:
+  - condition: state
+    entity_id: alarm_control_panel.ha_alarm
+    state: 'disarmed'
+  - condition: state
+    entity_id: binary_sensor.two_car_gar_sensor_65
+    state: 'on'
+  action:
+  - service: script.turn_on
+    entity_id: script.reset_two_car_gar_sensor
+  - service: homeassistant.update_entity
+    data:
+      entity_id: binary_sensor.two_car_gar_sensor_65
+#

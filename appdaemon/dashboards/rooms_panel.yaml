@@ -1,0 +1,59 @@
+load_kitchen:
+    widget_type: navigate
+    title: Kitchen
+    icon_inactive: fa-coffee
+    dashboard: Kitchen
+    
+load_living:
+    widget_type: navigate
+    title: Living Room
+    icon_inactive: mdi-sofa
+    dashboard: LivingRoom
+
+load_bird:
+    widget_type: navigate
+    title: Birds
+    icon_inactive: mdi-twitter
+    dashboard: Birds
+
+load_master:
+    widget_type: navigate
+    title: Master
+    icon_inactive: fa-bed
+    dashboard: Master
+
+load_offgarfoy:
+    widget_type: navigate
+    title: Office, Garage & Foyer
+    icon_inactive: mdi-laptop
+    dashboard: OffGarFoy
+
+#load_garage:
+#    widget_type: navigate
+#    title: Garage
+#    icon_inactive: fa-car
+#    dashboard: Rooms
+
+load_outside:
+    widget_type: navigate
+    title: Outside
+    icon_inactive: fa-tree
+    dashboard: Outside
+
+#load_doors:
+#    widget_type: navigate
+#    title: Doors & Locks
+#    icon_inactive: fa-lock
+#    dashboard: Rooms
+#    #args:
+#    #  timeout: 3
+#    #  return: MainPanel
+    
+load_users:
+    widget_type: navigate
+    title: Users
+    icon_inactive: fa-users
+    dashboard: Users
+    
+layout:
+  - load_kitchen, load_living, load_bird, load_master, load_offgarfoy(1x1), load_outside
