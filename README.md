@@ -2,8 +2,7 @@ My Home Assistant Repo<br>
 <br>
 General Statistics:<br>
 Home Assistant v0.94.4<br>
-Z-Wave Controller: Vera Secure (Primary)<br>
-                   Vera 3 (Slave)<br>
+Z-Wave Controller: Vera Secure (Primary), Vera 3 (Slave)<br>
 1 2GIG Low Power RF Network<br>
 1 X-Finity Router w 3 Repeaters<br>
 22 Z-Wave On/Off Switches<br>
