@@ -1,0 +1,194 @@
+#########################################
+#  View 1 - HOME
+#########################################
+#
+title: Mobile
+path: mobile2
+icon: mdi:cellphone-settings-variant
+id: v_mobile2
+# panel: true
+cards:
+- type: vertical-stack
+  cards:
+  #  Card 1
+    - type: entities
+      title: Kitchen
+      show_header_toggle: true
+      entities:
+        - entity: light.kitchen_can_lights_49
+          icon: mdi:blur-radial
+        - type: custom:slider-entity-row
+          entity: light.kitchen_pendants_106
+          name: Pendants
+          icon: mdi:ceiling-light
+        - entity: light.kitchen_uc_lights_44
+          icon: mdi:led-strip
+        - type: custom:slider-entity-row
+          entity: light.nook_uc_lights_116
+          name: Nook
+          icon: mdi:led-strip
+  #  Card 2
+    - type: entities
+      title: Living Room
+      show_header_toggle: true
+      entities:
+        - type: custom:slider-entity-row
+          entity: light.lr_can_lights_62
+          name: Cans
+          icon: mdi:blur-radial
+        - entity: light.lr_fan_115
+          icon: mdi:fan
+        - entity: light.tv_left
+          icon: mdi:looks
+        - entity:  light.tv_right
+          icon: mdi:looks
+        - entity: light.entertainment_center_26
+          icon: mdi:ceiling-light
+        - type: custom:slider-entity-row
+          entity: light.china_cabinet_25
+          icon: mdi:ceiling-light
+  #  Card 3
+    - type: entities
+      title: Bird Rooms
+      show_header_toggle: true
+      entities:
+        - type: custom:slider-entity-row
+          entity: light.bird_room_1_light_52
+          name: Rm 1
+          icon: mdi:ceiling-light
+        - type: custom:slider-entity-row
+          entity: light.bird_room_2_light_53
+          name: Rm 2
+          icon: mdi:ceiling-light
+  #  Card 4
+    - type: entities
+      title: Sun Room
+      show_header_toggle: true
+      entities:
+        - type: custom:slider-entity-row
+          entity: light.sunroom_lights_203
+          name: Lights
+          icon: mdi:ceiling-light
+        - type: custom:slider-entity-row
+          entity: light.sunroom_fan_204
+          name: Fan
+          icon: mdi:fan
+        - type: "custom:button-entity-row"
+          buttons:
+          - service: light.turn_on
+            service_data:
+              entity_id: light.sunroom_fan_204
+              brightness: 76
+            name: "L"
+            icon: mdi:alpha-l-box
+            style:
+          - service: light.turn_on
+            service_data:
+              entity_id: light.sunroom_fan_204
+              brightness: 166
+            name: "M"
+            icon: mdi:alpha-m-box
+          - service: light.turn_on
+            service_data:
+              entity_id: light.sunroom_fan_204
+              brightness: 255
+            name: "H"
+            icon: mdi:alpha-h-box
+          - service: light.turn_on
+            service_data:
+              entity_id: light.sunroom_fan_204
+              brightness: 0
+            name: "Off"
+            icon: mdi:alpha-o-box
+        - entity:  light.flux_led_strip
+        - type: custom:slider-entity-row
+          entity:  light.flux_led_strip
+          full_row: true
+  #  Card 5
+    - type: entities
+      title: Outdoor Lights
+      show_header_toggle: true
+      entities:
+        - entity: light.pergola_lights_213
+          icon: mdi:led-on
+        - entity: light.hot_tub_lights_201
+          icon: mdi:led-on
+        - entity: light.sun_room_floods_202
+          icon: mdi:track-light
+        - entity: light.front_porch
+          icon: mdi:ceiling-light
+        - entity: light.garage_east
+          icon: mdi:wall-sconce
+        - entity: light.garage_center
+          icon: mdi:wall-sconce
+        - entity: light.garage_west
+          icon: mdi:wall-sconce
+#        - type: divider
+#        - entity: light.garage_lights_48
+#        - entity: light.porch_light_46
+  #  Card 6
+    - type: thermostat
+      title: Downstairs
+      show_header_toggle: false
+      entity: climate.tstat_1_144
+    - type: thermostat
+      title: Upstairs
+      show_header_toggle: false
+      entity: climate.tstat_2_145
+  #  Card 7
+    - type: entities
+      title: Automations
+      show_header_toggle: false
+      entities:
+        - entity: input_boolean.close_garage_doors_in_rain
+        - entity: input_select.kit_lights_auto_off
+        - type: divider
+        - entity: input_boolean.enable_br1_slow_dim
+        - entity: input_boolean.enable_br2_slow_dim
+        - entity: input_boolean.enable_lr_slow_dim
+        - entity: input_boolean.enable_sr_slow_dim
+  #  Card 8
+    - type: entities
+      title: Notifications
+      show_header_toggle: false
+      entities:
+        - entity: input_boolean.daily_briefing_art
+        - entity: input_boolean.daily_briefing_steff
+        - entity: input_boolean.enable_battery_notifications
+        - entity: input_boolean.enable_sensor_notifications
+        - entity: input_boolean.enable_system_alerts
+        - entity: input_boolean.enable_weather_alerts
+        - entity: input_boolean.zone_alerts
+  #  Card 9
+    - type: horizontal-stack
+      cards:
+        - type: entity-button
+          name: Refresh Geo-Locations
+          icon: mdi:google-maps
+          tap_action:
+            action: call-service
+            service: script.turn_on
+            service_data:
+              entity_id: script.refresh_geolocation
+          entity: script.refresh_geolocation
+#
+        - type: entity-button
+          name: Replay Art's Daily Briefing
+          icon: mdi:voice
+          tap_action:
+            action: call-service
+            service: script.turn_on
+            service_data:
+              entity_id: script.art_briefing_one
+          entity: script.art_briefing_one
+#
+        - type: entity-button
+          name: Replay Steff's Daily Briefing
+          icon: mdi:voice
+          tap_action:
+            action: call-service
+            service: script.turn_on
+            service_data:
+              entity_id: script.steff_briefing_one
+          entity: script.steff_briefing_one
+#

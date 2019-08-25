@@ -73,6 +73,7 @@ resources:
 #
 views:
   - !include lovelace/mobile.yaml
+  - !include lovelace/mobile2.yaml
   - !include lovelace/home.yaml
   - !include lovelace/rooms.yaml
   - !include lovelace/hvac.yaml
@@ -88,8 +89,8 @@ views:
   - !include lovelace/map.yaml
   - !include lovelace/media_players.yaml
   - !include lovelace/battery.yaml
-  - !include lovelace/system.yaml
   - !include lovelace/config.yaml
+  - !include lovelace/system.yaml
 #  - !include lovelace/ic3.yaml
 #  - !include lovelace/sensors.yaml
 #  - !include lovelace/entities.yaml

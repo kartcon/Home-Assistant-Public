@@ -12,9 +12,6 @@
   - platform: state
     entity_id: binary_sensor.kit_motion_sensor_81
     to: 'on'
-#  - platform: state
-#    entity_id: binary_sensor.lr_motion_sensor_67
-#    to: 'on'
   condition:
   - condition: state
     entity_id: input_boolean.daily_briefing_art
@@ -29,6 +26,11 @@
   - condition: time
     after: '06:30'
     before: '09:00'
+  - condition: state
+    entity_id: binary_sensor.sleepnumber_cc04b4013d81_art_is_in_bed
+    state: 'off'
+    for:
+      minutes: 3
   - condition: template
     # Only run if more than 6 hours (21,600 sec) since it last ran
     value_template: '{{(as_timestamp(now()) - as_timestamp(state_attr("automation.art_weekday_briefing", "last_triggered") | default(0)) | int > 21600 )}}'
@@ -49,9 +51,6 @@
   - platform: state
     entity_id: binary_sensor.kit_motion_sensor_81
     to: 'on'
-#  - platform: state
-#    entity_id: binary_sensor.lr_motion_sensor_67
-#    to: 'on'
   condition:
   - condition: state
     entity_id: input_boolean.daily_briefing_art
@@ -63,6 +62,11 @@
   - condition: time
     after: '06:30'
     before: '09:00'
+  - condition: state
+    entity_id: binary_sensor.sleepnumber_cc04b4013d81_art_is_in_bed
+    state: 'off'
+    for:
+      minutes: 3
   - condition: template
     # Only run if more than 6 hours (21,600 sec) since it last ran
     value_template: '{{(as_timestamp(now()) - as_timestamp(state_attr("automation.art_weekend_briefing", "last_triggered") | default(0)) | int > 21600 )}}'
@@ -83,9 +87,6 @@
   - platform: state
     entity_id: binary_sensor.kit_motion_sensor_81
     to: 'on'
-#  - platform: state
-#    entity_id: binary_sensor.lr_motion_sensor_67
-#    to: 'on'
   condition:
   - condition: state
     entity_id: input_boolean.daily_briefing_steff
@@ -100,6 +101,9 @@
   - condition: time
     after: '08:30'
     before: '09:30'
+  - condition: state
+    entity_id: binary_sensor.sleepnumber_cc04b4013d81_steff_is_in_bed
+    state: 'off'
   - condition: template
     # Only run if more than 6 hours (21,600 sec) since it last ran
     value_template: '{{(as_timestamp(now()) - as_timestamp(state_attr("automation.steff_weekday_briefing", "last_triggered") | default(0)) | int > 21600 )}}'
@@ -120,9 +124,6 @@
   - platform: state
     entity_id: binary_sensor.kit_motion_sensor_81
     to: 'on'
-#  - platform: state
-#    entity_id: binary_sensor.lr_motion_sensor_67
-#    to: 'on'
   condition:
   - condition: state
     entity_id: input_boolean.daily_briefing_steff
@@ -134,6 +135,11 @@
   - condition: time
     after: '08:30'
     before: '09:30'
+  - condition: state
+    entity_id: binary_sensor.sleepnumber_cc04b4013d81_steff_is_in_bed
+    state: 'off'
+    for:
+      minutes: 3
   - condition: template
     # Only run if more than 6 hours (21,600 sec) since it last ran
     value_template: '{{(as_timestamp(now()) - as_timestamp(state_attr("automation.steff_weekend_briefing", "last_triggered") | default(0)) | int > 21600 )}}'
@@ -159,12 +165,12 @@
     entity_id: input_boolean.enable_sandbox
     state: 'on'
   action:
-  - delay: 0:00:10
+#  - delay: 0:00:10
+#  - service: script.turn_on
+#    entity_id: script.daily_briefing_alert
+#  - delay: 0:00:05
   - service: script.turn_on
-    entity_id: script.daily_briefing_alert
-  - delay: 0:00:05
-  - service: script.turn_on
-    entity_id: script.art_briefing_one
+    entity_id: script.test_briefing_one
   - delay: 0:00:02
   - service: input_boolean.turn_off
     entity_id: input_boolean.trigger_sandbox

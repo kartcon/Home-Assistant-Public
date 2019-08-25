@@ -255,16 +255,6 @@
   - service: switch.turn_on
     data:
       entity_id: light.nook_uc_lights_116
-# --- Testing an Actionable Notification Here
-# --- See: https://www.home-assistant.io/docs/ecosystem/ios/notifications/actions/
-  - service: notify.ios_group_art_only
-    data:
-      message: "Arrived Home"
-      data:
-        push:
-          badge: 0
-          category: 'arrived'
-          sound: "US-EN-Alexa-Welcome-Home.wav"
 #
 #################################################################
 ## Trigger Alarm While in Armed Away Mode

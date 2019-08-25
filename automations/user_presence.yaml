@@ -57,6 +57,15 @@
     data_template:
       entity_id: input_number.ts_art_home
       value: '{{ (as_timestamp(now())) }}'
+  - service: notify.ios_group_art_only
+    data:
+      message: "Art Arrived Home"
+      data:
+        push:
+          badge: 0
+          category: 'arrived'
+          sound: "US-EN-Alexa-Welcome-Home.wav"
+
 #  - service: notify.ios_group_art_only
 #    data_template:
 #      title: "Art Presence at Home (UP1H)"
@@ -198,6 +207,23 @@
     data_template:
       entity_id: input_number.ts_steff_home
       value: '{{ (as_timestamp(now())) }}'
+  - service: notify.ios_group_steff_only
+    data:
+      message: "Steff Arrived Home"
+      data:
+        push:
+          badge: 0
+          category: 'arrived'
+          sound: "US-EN-Morgan-Freeman-Welcome-Home.wav"
+  - service: notify.ios_group_art_only
+    data:
+      message: "Steff Arrived Home"
+      data:
+        push:
+          badge: 0
+          category: 'arrived'
+          sound: "US-EN-Morgan-Freeman-Wife-Is-Arriving.wav"
+
 #  - service: notify.ios_group_art_only
 #    data_template:
 #      title: "Steff Presence at Home (UP2H)"

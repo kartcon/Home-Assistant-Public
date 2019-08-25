@@ -3,6 +3,33 @@
 #################################################################
 #
 #################################################################
+# Notify If LIFX Ligght Go Offline
+#################################################################
+- id: lifx_lights_unavailable
+  alias: 'LIFX Lights Unavailable'
+  initial_state: 'on'
+  trigger:
+    - platform: state
+      entity_id:
+        - light.tv_left
+        - light.tv_right
+        - light.garage_east
+        - light.garage_center
+        - light.garage_west
+        - light.front_porch
+      to: 'unavailable'
+      for: '00:05:00'
+  action:
+  - condition: state
+    entity_id: input_boolean.enable_system_alerts
+    state: 'on'
+  - service: persistent_notification.create
+    data_template:
+      title: LIFX Bulb Offline
+      message: >-
+        At {{now().strftime("%m/%d/%Y %H:%M:%S")}} the {{trigger.entity_id}} went offline.
+#
+#################################################################
 # Flux Light Strip Change Color on Input Select
 #################################################################
 - id: flux_lights_select_color

@@ -40,9 +40,7 @@ cards:
             - entity: sensor.external_ip
               icon: mdi:ip-network
             - entity: sensor.ipv4_address_en0
-#              icon: mdi:lan
             - entity: sensor.ipv4_address_en1
-#              icon: mdi:wifi
 #            - entity: sensor.speedtest_ping
 #              icon: mdi:speedometer
 #              secondary_info: last-changed
@@ -52,6 +50,22 @@ cards:
 #              icon: mdi:package-down
 #            - entity: sensor.potential_breaking_changes
 #              icon: mdi:package-up
+#
+        - type: horizontal-stack
+          cards:
+          - type: entity-button
+            name: RUN SPEED TEST
+            icon: mdi:play-speed
+            tap_action: call-service
+            entity: script.refresh_speedtest
+            service: script.turn_on
+#
+          - type: entity-button
+            name: RUN MEMORY TEST
+            icon: mdi:play-speed
+            tap_action: call-service
+            entity: script.refresh_speedtest
+            service: script.turn_on
 #
 #        - type: entities
 #          title: Breaking Changes
@@ -81,22 +95,16 @@ cards:
             - entity: sensor.memory_use_percent
               icon: mdi:select-inverse
 #
-        - type: horizontal-stack
-          cards:
-          - type: entity-button
-            name: RUN SPEED TEST
-            icon: mdi:play-speed
-            tap_action: call-service
-            entity: script.refresh_speedtest
-            service: script.turn_on
+        - type: entities
+          title: Sandbox
+          show_header_toggle: false
+          entities:
+            - entity: input_select.led_color
+            - entity: input_number.led_strip_brightness
+            - type: divider
+            - entity: input_boolean.enable_sandbox
+            - entity: input_boolean.trigger_sandbox
 #
-          - type: entity-button
-            name: RUN MEMORY TEST
-            icon: mdi:play-speed
-            tap_action: call-service
-            entity: script.refresh_speedtest
-            service: script.turn_on
-
 # COL 3
     - type: vertical-stack
       cards:

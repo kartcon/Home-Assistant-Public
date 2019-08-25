@@ -44,110 +44,110 @@
 #############################################################
 #   Geo Test Three ZONE=NOT_HOME
 #############################################################
-- alias: Geo Test Three
-  id: geo_test_three
-  trigger:
-  - platform: state
-    entity_id: device_tracker.art_ot1
-#    entity_id: sensor.artsiphone8_zone
-    to: 'not_home'
-  condition:
-  - condition: state
-    entity_id: input_boolean.enable_sandbox
-    state: 'on'
-  action:
-  - service: notify.ios_group_art_only
-    data_template:
-      title: "Geo Test Three"
-      message: "Trigger {{trigger.from_state.state}} to {{trigger.to_state.state}},
-                Zone={{states.sensor.artsiphone8_zone.state}}"
+#- alias: Geo Test Three
+#  id: geo_test_three
+#  trigger:
+#  - platform: state
+#    entity_id: device_tracker.art_ot1
+##    entity_id: sensor.artsiphone8_zone
+#    to: 'not_home'
+#  condition:
+#  - condition: state
+#    entity_id: input_boolean.enable_sandbox
+#    state: 'on'
+#  action:
+#  - service: notify.ios_group_art_only
+#    data_template:
+#      title: "Geo Test Three"
+#      message: "Trigger {{trigger.from_state.state}} to {{trigger.to_state.state}},
+#                Zone={{states.sensor.artsiphone8_zone.state}}"
 #
 #############################################################
 #   Geo Test Four ZONE<>NOT_HOME
 #############################################################
-- alias: Geo Test Four
-  id: geo_test_four
-  trigger:
-    platform: template
-    value_template: "{% if not is_state('device_tracker.art_ot1', 'not_home') %}true{% endif %}"
-#    value_template: "{% if not is_state('sensor.artsiphone8_zone', 'not_home') %}true{% endif %}"
-  condition:
-  - condition: state
-    entity_id: input_boolean.enable_sandbox
-    state: 'on'
-  action:
-  - service: notify.ios_group_art_only
-    data_template:
-      title: "Geo Test Four"
-      message: "Trigger {{trigger.from_state.state}} to {{trigger.to_state.state}},
-                Zone={{states.sensor.artsiphone8_zone.state}}"
+#- alias: Geo Test Four
+#  id: geo_test_four
+#  trigger:
+#    platform: template
+#    value_template: "{% if not is_state('device_tracker.art_ot1', 'not_home') %}true{% endif %}"
+##    value_template: "{% if not is_state('sensor.artsiphone8_zone', 'not_home') %}true{% endif %}"
+#  condition:
+#  - condition: state
+#    entity_id: input_boolean.enable_sandbox
+#    state: 'on'
+#  action:
+#  - service: notify.ios_group_art_only
+#    data_template:
+#      title: "Geo Test Four"
+#      message: "Trigger {{trigger.from_state.state}} to {{trigger.to_state.state}},
+#                Zone={{states.sensor.artsiphone8_zone.state}}"
 #
 #############################################################
 #   Geo Test Five ZONE=AWAY
 #############################################################
-- alias: Geo Test Five
-  id: geo_test_five
-  trigger:
-  - platform: state
-    entity_id: device_tracker.art_ot1
-#    entity_id: sensor.artsiphone8_zone
-    to: 'away'
-  condition:
-  - condition: state
-    entity_id: input_boolean.enable_sandbox
-    state: 'on'
-  action:
-  - service: notify.ios_group_art_only
-    data_template:
-      title: "Geo Test Five"
-      message: "Trigger {{trigger.from_state.state}} to {{trigger.to_state.state}},
-                Zone={{states.sensor.artsiphone8_zone.state}}"
+#- alias: Geo Test Five
+#  id: geo_test_five
+#  trigger:
+#  - platform: state
+#    entity_id: device_tracker.art_ot1
+##    entity_id: sensor.artsiphone8_zone
+#    to: 'away'
+#  condition:
+#  - condition: state
+#    entity_id: input_boolean.enable_sandbox
+#    state: 'on'
+#  action:
+#  - service: notify.ios_group_art_only
+#    data_template:
+#      title: "Geo Test Five"
+#      message: "Trigger {{trigger.from_state.state}} to {{trigger.to_state.state}},
+#                Zone={{states.sensor.artsiphone8_zone.state}}"
 #
 #############################################################
 #   Geo Test Six ZONE<>AWAY
 #############################################################
-- alias: Geo Test Six
-  id: geo_test_six
-  trigger:
-    platform: template
-    value_template: "{% if not is_state('device_tracker.art_ot1', 'away') %}true{% endif %}"
-#    value_template: "{% if not is_state('sensor.artsiphone8_zone', 'away') %}true{% endif %}"
-  condition:
-  - condition: state
-    entity_id: input_boolean.enable_sandbox
-    state: 'on'
-  action:
-  - service: notify.ios_group_art_only
-    data_template:
-      title: "Geo Test Six"
-      message: "Trigger {{trigger.from_state.state}} to {{trigger.to_state.state}},
-                Zone={{states.sensor.artsiphone8_zone.state}}"
+#- alias: Geo Test Six
+#  id: geo_test_six
+#  trigger:
+#    platform: template
+#    value_template: "{% if not is_state('device_tracker.art_ot1', 'away') %}true{% endif %}"
+##    value_template: "{% if not is_state('sensor.artsiphone8_zone', 'away') %}true{% endif %}"
+#  condition:
+#  - condition: state
+#    entity_id: input_boolean.enable_sandbox
+#    state: 'on'
+#  action:
+#  - service: notify.ios_group_art_only
+#    data_template:
+#      title: "Geo Test Six"
+#      message: "Trigger {{trigger.from_state.state}} to {{trigger.to_state.state}},
+#                Zone={{states.sensor.artsiphone8_zone.state}}"
 #
 #############################################################
 #   Geo Test Seven DISTANCE
 #############################################################
-- alias: Geo Test Seven
-  id: geo_test_seven
-  trigger:
-    platform: numeric_state
-    entity_id: sensor.artsiphone8_distance
-    above: 0.2
-    below: 0.5
-  condition:
-  - condition: state
-    entity_id: input_boolean.enable_sandbox
-    state: 'on'
+#- alias: Geo Test Seven
+#  id: geo_test_seven
+#  trigger:
+#    platform: numeric_state
+#    entity_id: sensor.artsiphone8_distance
+#    above: 0.2
+#    below: 0.5
+#  condition:
 #  - condition: state
-#    entity_id: sensor.artsiphone8_dir_of_travel
-#    state: 'away_from'
-  action:
-  - service: notify.ios_group_art_only
-    data_template:
-      title: "Geo Test Seven"
-      message: "Trigger {{trigger.from_state.state}} to {{trigger.to_state.state}},
-                Zone={{states.sensor.artsiphone8_zone.state}},
-                Direction={{states.sensor.artsiphone8_dir_of_travel.state}}"
-# 
+#    entity_id: input_boolean.enable_sandbox
+#    state: 'on'
+##  - condition: state
+##    entity_id: sensor.artsiphone8_dir_of_travel
+##    state: 'away_from'
+#  action:
+#  - service: notify.ios_group_art_only
+#    data_template:
+#      title: "Geo Test Seven"
+#      message: "Trigger {{trigger.from_state.state}} to {{trigger.to_state.state}},
+#                Zone={{states.sensor.artsiphone8_zone.state}},
+#                Direction={{states.sensor.artsiphone8_dir_of_travel.state}}"
+#
 #############################################################
 #   Geo Test Eight SPEED (0 hits in 1 week)
 #############################################################
@@ -170,7 +170,7 @@
 #                Zone={{states.sensor.artsiphone8_zone.state}},
 #                Direction={{states.sensor.artsiphone8_dir_of_travel.state}},
 #                Speed={{states.sensor.artsiphone8_speed.state}}"
-# 
+#
 #############################################################
 #   Geo Test Nine SPEED (0 hits in 1 week)
 #############################################################
@@ -197,59 +197,60 @@
 #############################################################
 #   Geo Test Ten Front Gate > Home
 #############################################################
-- alias: Geo Test Ten
-  id: geo_test_ten
-  trigger:
-  - platform: state
-    entity_id: device_tracker.art_ot1
-#    entity_id: sensor.artsiphone8_zone
-    from: 'front_gate'
-    to: 'home'
-  condition: 
-  - condition: time
-    after: '06:00:00'
-    before: '23:59:00'
-  action:
-  - service: notify.ios_group_art_only
-    data_template:
-      title: "Art Arrives Tidewater (GT10)"
-      message: "Zone: {{states.sensor.artsiphone8_zone.state}},
-                Distance: {{states.sensor.artsiphone8_distance.state}},
-                Trigger: {{trigger.from_state.state}} to {{trigger.to_state.state}},
-                From: {{states.sensor.artsiphone8_last_zone.state}} To: {{states.artsiphone8_zone.state}}"
-  - service: persistent_notification.create
-    data_template: 
-      title: "Art Arrives Tidewater (GT10)"
-      message: >-
-        {{now().strftime("%m/%d/%Y %H:%M:%S")}}. 
-        Trigger {{trigger.from_state.state}} to {{trigger.to_state.state}},
-        Zone={{states.sensor.artsiphone8_zone.state}}
+#- alias: Geo Test Ten
+#  id: geo_test_ten
+#  trigger:
+#  - platform: state
+#    entity_id: device_tracker.art_ot1
+##    entity_id: sensor.artsiphone8_zone
+#    from: 'front_gate'
+#    to: 'home'
+#  condition:
+#  - condition: time
+#    after: '06:00:00'
+#    before: '23:59:00'
+#  action:
+#  - service: notify.ios_group_art_only
+#    data_template:
+#      title: "Art Arrives Tidewater (GT10)"
+#      message: "Zone: {{states.sensor.artsiphone8_zone.state}},
+#                Distance: {{states.sensor.artsiphone8_distance.state}},
+#                Trigger: {{trigger.from_state.state}} to {{trigger.to_state.state}},
+#                From: {{states.sensor.artsiphone8_last_zone.state}} To: {{states.artsiphone8_zone.state}}"
+#  - service: persistent_notification.create
+#    data_template:
+#      title: "Art Arrives Tidewater (GT10)"
+#      message: >-
+#        {{now().strftime("%m/%d/%Y %H:%M:%S")}}.
+#        Trigger {{trigger.from_state.state}} to {{trigger.to_state.state}},
+#        Zone={{states.sensor.artsiphone8_zone.state}}
 #############################################################
 #   Geo Test Eleven Home > Front Gate
 #############################################################
-- alias: Geo Test Eleven
-  id: geo_test_eleven
-  trigger:
-  - platform: state
-    entity_id: sensor.artsiphone8_zone
-    from: 'home'
-    to: 'front_gate'
-  condition: 
-  - condition: time
-    after: '06:00:00'
-    before: '23:59:00'
-  action:
-  - service: notify.ios_group_art_only
-    data_template:
-      title: "Art Departs Tidewater (GT11)"
-      message: "Zone: {{states.sensor.artsiphone8_zone.state}},
-                Distance: {{states.sensor.artsiphone8_distance.state}},
-                Trigger: {{trigger.from_state.state}} to {{trigger.to_state.state}},
-                From: {{states.sensor.artsiphone8_last_zone.state}} To: {{states.artsiphone8_zone.state}}"
-  - service: persistent_notification.create
-    data_template: 
-      title: "Art Departs Tidewater (GT11)"
-      message: >-
-        {{now().strftime("%m/%d/%Y %H:%M:%S")}}. 
-        Trigger {{trigger.from_state.state}} to {{trigger.to_state.state}},
-        Zone={{states.sensor.artsiphone8_zone.state}}
+#- alias: Geo Test Eleven
+#  id: geo_test_eleven
+#  trigger:
+#  - platform: state
+#    entity_id: sensor.artsiphone8_zone
+#    from: 'home'
+#    to: 'front_gate'
+#  condition:
+#  - condition: time
+#    after: '06:00:00'
+#    before: '23:59:00'
+#  action:
+#  - service: notify.ios_group_art_only
+#    data_template:
+#      title: "Art Departs Tidewater (GT11)"
+#      message: "Zone: {{states.sensor.artsiphone8_zone.state}},
+#                Distance: {{states.sensor.artsiphone8_distance.state}},
+#                Trigger: {{trigger.from_state.state}} to {{trigger.to_state.state}},
+#                From: {{states.sensor.artsiphone8_last_zone.state}} To: {{states.artsiphone8_zone.state}}"
+#  - service: persistent_notification.create
+#    data_template:
+#      title: "Art Departs Tidewater (GT11)"
+#      message: >-
+#        {{now().strftime("%m/%d/%Y %H:%M:%S")}}.
+#        Trigger {{trigger.from_state.state}} to {{trigger.to_state.state}},
+#        Zone={{states.sensor.artsiphone8_zone.state}}
+#

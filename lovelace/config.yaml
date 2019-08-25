@@ -44,8 +44,6 @@ cards:
             - entity: input_boolean.enable_halloween_lighting
             - entity: input_boolean.enable_thanksgiving_lighting
             - entity: input_boolean.enable_christmas_lighting
-
-
 #
 # COL 3
     - type: vertical-stack
@@ -62,12 +60,3 @@ cards:
             - entity: input_boolean.enable_weather_alerts
             - entity: input_boolean.zone_alerts
 #
-        - type: entities
-          title: Sandbox
-          show_header_toggle: false
-          entities:
-            - entity: input_select.led_color
-            - entity: input_number.led_strip_brightness
-            - type: divider
-            - entity: input_boolean.enable_sandbox
-            - entity: input_boolean.trigger_sandbox
