@@ -34,7 +34,7 @@
 <li class="p1">43 Binary Sensors</li>
 <li class="p1">37 Lights</li>
 <li class="p1">56 Scripts</li>
-<li class="p1">136 Sensors</li>
+<li class="p1">138 Sensors</li>
 <li class="p1">43 Switches</li>
 <li class="p1">8 Device Trackers</li>
 </ul>
