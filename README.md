@@ -1,5 +1,11 @@
 <p>&nbsp;</p>
 <h2>My Home Assistant Repo</h2>
+
+
+GitHub forks:	GitHub forks badge	https://img.shields.io/github/forks/kartcon/Home-Assistant-Public
+GitHub stars:	GitHub stars badge	https://img.shields.io/github/stars/kartcon/Home-Assistant-Public
+GitHub license:	GitHub license badge	https://img.shields.io/github/license/kartcon/Home-Assistant-Public
+
 <h4>General Statistics:</h4>
 <ul>
 <li class="p1">Home Assistant v0.94.4</li>
