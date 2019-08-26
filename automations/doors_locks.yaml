@@ -57,6 +57,27 @@
       message: "All perimeter doors are closed and locked."
 #
 #################################################################
+# Lock the Front Door if No One Home
+#################################################################
+- id: lock_front_door_no_one_home
+  alias: Lock Front Door No One Home
+  trigger:
+    platform: state
+    entity_id: input_boolean.no_one_home
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: lock.front_door_bolt_241
+    state: 'unlocked'
+  action:
+  - service: script.turn_on
+    entity_id: script.lock_front_door
+  - service: notify.ios_group_art_steff
+    data:
+      title: Front Door Locked
+      message: No One Home - Lock Front Door Automation Triggered
+#
+#################################################################
 # Close Garage Door 1 if No One Home
 #################################################################
 - id: close_garage_door_1_no_one_home

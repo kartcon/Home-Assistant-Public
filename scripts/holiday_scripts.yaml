@@ -4,7 +4,7 @@
 #
 #################################################################
 # Script: Reset All Holiday Booleans to OFF
-# Called from [reset_holiday_booleans_at_2355] 
+# Called from [reset_holiday_booleans_at_2355]
 # In file: [automations/scheduled_events.yaml]
 #################################################################
 #
@@ -36,7 +36,7 @@ reset_holiday_booleans:
 #
 #################################################################
 # SCRIPT: Valentines Day
-# Called from [id: season_is_valentine_day] 
+# Called from [id: season_is_valentine_day]
 # In file: [automations/lights_holiday.yaml]
 #################################################################
 valentines_day_script:
@@ -86,7 +86,7 @@ valentines_day_script:
 #
 #################################################################
 # SCRIPT: St Pattys Day
-# Called from [season_is_st_patty_day] 
+# Called from [season_is_st_patty_day]
 # In file: [automations/lights_holiday.yaml]
 #################################################################
 st_pattys_day_script:
@@ -130,7 +130,7 @@ st_pattys_day_script:
 #
 #################################################################
 # SCRIPT: Easter
-# Called from [season_is_easter] 
+# Called from [season_is_easter]
 # In file: [automations/lights_holiday.yaml]
 #################################################################
 easter_script:
@@ -174,7 +174,7 @@ easter_script:
 #
 #################################################################
 # SCRIPT: Memorial Day
-# Called from [season_is_memorial_day] 
+# Called from [season_is_memorial_day]
 # In file: [automations/lights_holiday.yaml]
 #################################################################
 memorial_day_script:
@@ -218,7 +218,7 @@ memorial_day_script:
 #
 #################################################################
 # SCRIPT: Flag Day
-# Called from [season_is_flag_day] 
+# Called from [season_is_flag_day]
 # In file: [automations/lights_holiday.yaml]
 #################################################################
 flag_day_script:
@@ -262,7 +262,7 @@ flag_day_script:
 #
 #################################################################
 # SCRIPT: Independence Day
-# Called from [season_is_independence_day] 
+# Called from [season_is_independence_day]
 # In file: [automations/lights_holiday.yaml]
 #################################################################
 independence_day_script:
@@ -306,7 +306,7 @@ independence_day_script:
 #
 #################################################################
 # SCRIPT: Labor Day
-# Called from [season_is_labor_day] 
+# Called from [season_is_labor_day]
 # In file: [automations/lights_holiday.yaml]
 #################################################################
 labor_day_script:
@@ -350,7 +350,7 @@ labor_day_script:
 #
 #################################################################
 # SCRIPT: Breast Cancer
-# Called from [season_is_breast_cancer] 
+# Called from [season_is_breast_cancer]
 # In file: [automations/lights_holiday.yaml]
 #################################################################
 breast_cancer_script:
@@ -394,7 +394,7 @@ breast_cancer_script:
 #
 #################################################################
 # SCRIPT: Halloween
-# Called from [season_is_halloween] 
+# Called from [season_is_halloween]
 # In file: [automations/lights_holiday.yaml]
 #################################################################
 halloween_script:
@@ -438,7 +438,7 @@ halloween_script:
 #
 #################################################################
 # SCRIPT: Thanksgiving
-# Called from [season_is_thansgiving] 
+# Called from [season_is_thansgiving]
 # In file: [automations/lights_holiday.yaml]
 #################################################################
 thanksgiving_script:
@@ -482,7 +482,7 @@ thanksgiving_script:
 #
 #################################################################
 # SCRIPT: Christmas
-# Called from [season_is_christmas] 
+# Called from [season_is_christmas]
 # In file: [automations/lights_holiday.yaml]
 #################################################################
 christmas_script:
@@ -528,8 +528,51 @@ christmas_script:
       rgb_color: [255,0,253]
 #
 #################################################################
+# SCRIPT: Spring, Summer, Autumn, Winter
+# Returns the front porch light back to its predetermined color
+# after front door unlock or when date is a specific holiday.
+# Called from [id: porch_light_reset_color_pm]
+# In file: [automations/lights_triggered.yaml]
+#################################################################
+spring_script:
+  alias: Spring Script
+  sequence:
+  - service: light.turn_on
+    data:
+      entity_id: light.front_porch
+      brightness: 128
+      rgb_color: [83,255,126]
+#
+summer_script:
+  alias: Summer Script
+  sequence:
+  - service: light.turn_on
+    data:
+      entity_id: light.front_porch
+      brightness: 128
+      rgb_color: [83,255,126]
+#
+autumn_script:
+  alias: Autumn Script
+  sequence:
+  - service: light.turn_on
+    data:
+      entity_id: light.front_porch
+      brightness: 128
+      rgb_color: [83,255,126]
+#
+winter_script:
+  alias: Winter Script
+  sequence:
+  - service: light.turn_on
+    data:
+      entity_id: light.front_porch
+      brightness: 128
+      rgb_color: [83,255,126]
+#
+#################################################################
 # Script: Test Lighting Script
-# Called from [color_testing] 
+# Called from [color_testing]
 # In file: [automations/sandbox.yaml]
 #################################################################
 #
@@ -557,7 +600,7 @@ test_lighting_script:
     data:
       entity_id: light.tv_right
       brightness: 69
-      rgb_color: [255,218,245]
+      rgb_color: [83,255,126]
   - service: light.turn_on
     data:
       entity_id: light.garage_east

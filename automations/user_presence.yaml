@@ -38,6 +38,40 @@
         Zone={{states.device_tracker.art_ot1.state}}
 #
 #############################################################
+##  Art OwnTracks Away (OT1A)
+#############################################################
+#
+- id: art_owntracks_away
+  alias: 'Art OwnTracks Away'
+  initial_state: true
+  trigger:
+  - platform: template
+    value_template: "{% if not is_state('device_tracker.art_ot1', 'home') %}true{% endif %}"
+#  - platform: homeassistant
+#    event: start
+#    # Event can also be 'shutdown'
+  action:
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.art_home
+  - service: notify.ios_group_art_only
+    data_template:
+      title: "Art OwnTracks Away (OT1A)"
+      message: "OwnTracks: {{trigger.from_state.state}} to {{trigger.to_state.state}},
+                Zone={{states.device_tracker.art_ot1.state}}"
+#                Distance: {{states.sensor.artsiphone8_distance.state}},
+#                From: {{states.sensor.artsiphone8_last_zone.state}} To: {{states.artsiphone8_zone.state}}
+  - condition: state
+    entity_id: input_boolean.zone_alerts
+    state: 'on'
+  - service: persistent_notification.create
+    data_template:
+      title: Art OwnTracks Away (OT1A)
+      message: >-
+        At {{now().strftime("%m/%d/%Y %H:%M:%S")}},
+        OwnTracks: {{trigger.from_state.state}} to {{trigger.to_state.state}},
+        Zone={{states.device_tracker.art_ot1.state}}
+#
+#############################################################
 #   Art Presence at Home (UP1H)
 #############################################################
 - id: art_presence_home
@@ -82,40 +116,6 @@
 #        Zone: {{states.device_tracker.art_ot1.state}}
 #
 #############################################################
-##  Art OwnTracks Away (OT1A)
-#############################################################
-#
-- id: art_owntracks_away
-  alias: 'Art OwnTracks Away'
-  initial_state: true
-  trigger:
-  - platform: template
-    value_template: "{% if not is_state('device_tracker.art_ot1', 'home') %}true{% endif %}"
-#  - platform: homeassistant
-#    event: start
-#    # Event can also be 'shutdown'
-  action:
-  - service: input_boolean.turn_off
-    entity_id: input_boolean.art_home
-  - service: notify.ios_group_art_only
-    data_template:
-      title: "Art OwnTracks Away (OT1A)"
-      message: "OwnTracks: {{trigger.from_state.state}} to {{trigger.to_state.state}},
-                Zone={{states.device_tracker.art_ot1.state}}"
-#                Distance: {{states.sensor.artsiphone8_distance.state}},
-#                From: {{states.sensor.artsiphone8_last_zone.state}} To: {{states.artsiphone8_zone.state}}
-  - condition: state
-    entity_id: input_boolean.zone_alerts
-    state: 'on'
-  - service: persistent_notification.create
-    data_template:
-      title: Art OwnTracks Away (OT1A)
-      message: >-
-        At {{now().strftime("%m/%d/%Y %H:%M:%S")}},
-        OwnTracks: {{trigger.from_state.state}} to {{trigger.to_state.state}},
-        Zone={{states.device_tracker.art_ot1.state}}
-#
-#############################################################
 #   Art Presence is Away (UP1A)
 #############################################################
 - id: art_presence_away
@@ -150,7 +150,7 @@
 #        Presence: {{trigger.from_state.state}} to {{trigger.to_state.state}},
 #        Zone: {{states.device_tracker.art_ot1.state}}
 #
-# ====================================================================================================================================
+# =======================================================================================================================
 #
 #############################################################
 ##  Steff OwnTracks Home (OT2H)
@@ -188,58 +188,6 @@
         Zone={{states.device_tracker.steff_ot2.state}}
 #
 #############################################################
-#   Steff Presence at Home (UP2H)
-#############################################################
-- id: steff_presence_home
-  alias: Steff Presence Home
-  trigger:
-  - platform: state
-    entity_id: binary_sensor.steff_presence
-    to: 'on'
-#  condition:
-#  - condition: time
-#    after: '06:00:00'
-#    before: '23:59:00'
-  action:
-  - service: input_boolean.turn_on
-    entity_id: input_boolean.steff_home
-  - service: input_number.set_value
-    data_template:
-      entity_id: input_number.ts_steff_home
-      value: '{{ (as_timestamp(now())) }}'
-  - service: notify.ios_group_steff_only
-    data:
-      message: "Steff Arrived Home"
-      data:
-        push:
-          badge: 0
-          category: 'arrived'
-          sound: "US-EN-Morgan-Freeman-Welcome-Home.wav"
-  - service: notify.ios_group_art_only
-    data:
-      message: "Steff Arrived Home"
-      data:
-        push:
-          badge: 0
-          category: 'arrived'
-          sound: "US-EN-Morgan-Freeman-Wife-Is-Arriving.wav"
-
-#  - service: notify.ios_group_art_only
-#    data_template:
-#      title: "Steff Presence at Home (UP2H)"
-#      message: >-
-#        {{now().strftime("%m/%d/%Y %H:%M:%S")}}.
-#        Presence: {{trigger.from_state.state}} to {{trigger.to_state.state}},
-#        Zone: {{states.device_tracker.steff_ot2.state}}
-#  - service: persistent_notification.create
-#    data_template:
-#      title: "Steff Presence at Home (UP2H)"
-#      message: >-
-#        {{now().strftime("%m/%d/%Y %H:%M:%S")}}.
-#        Presence: {{trigger.from_state.state}} to {{trigger.to_state.state}},
-#        Zone: {{states.device_tracker.steff_ot2.state}}
-#
-#############################################################
 ##  Steff OwnTracks Away (OT2A)
 #############################################################
 #
@@ -272,6 +220,58 @@
         At {{now().strftime("%m/%d/%Y %H:%M:%S")}},
         OwnTracks: {{trigger.from_state.state}} to {{trigger.to_state.state}},
         Zone={{states.device_tracker.steff_ot2.state}}
+#
+#############################################################
+#   Steff Presence at Home (UP2H)
+#############################################################
+- id: steff_presence_home
+  alias: Steff Presence Home
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.steff_presence
+    to: 'on'
+#  condition:
+#  - condition: time
+#    after: '06:00:00'
+#    before: '23:59:00'
+  action:
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.steff_home
+  - service: input_number.set_value
+    data_template:
+      entity_id: input_number.ts_steff_home
+      value: '{{ (as_timestamp(now())) }}'
+  - service: notify.ios_group_steff_only
+    data:
+      message: "Steff Arrived Home"
+      data:
+        push:
+          badge: 0
+          category: 'arrived'
+          sound: "US-EN-Morgan-Freeman-Welcome-Home.wav"
+  - delay: '00:00:10'
+  - service: notify.ios_group_art_only
+    data:
+      message: "Steff Arrived Home"
+      data:
+        push:
+          badge: 0
+          category: 'arrived'
+          sound: "US-EN-Alexa-Wife-Is-Arriving.wav"
+#  - service: notify.ios_group_art_only
+#    data_template:
+#      title: "Steff Presence at Home (UP2H)"
+#      message: >-
+#        {{now().strftime("%m/%d/%Y %H:%M:%S")}}.
+#        Presence: {{trigger.from_state.state}} to {{trigger.to_state.state}},
+#        Zone: {{states.device_tracker.steff_ot2.state}}
+#  - service: persistent_notification.create
+#    data_template:
+#      title: "Steff Presence at Home (UP2H)"
+#      message: >-
+#        {{now().strftime("%m/%d/%Y %H:%M:%S")}}.
+#        Presence: {{trigger.from_state.state}} to {{trigger.to_state.state}},
+#        Zone: {{states.device_tracker.steff_ot2.state}}
 #
 #############################################################
 #   Steff Presence is Away (UP2A)
@@ -308,8 +308,6 @@
 #        Presence: {{trigger.from_state.state}} to {{trigger.to_state.state}},
 #        Zone: {{states.device_tracker.steff_ot2.state}}
 #
-# -----------------------------------------------------------------------------------------
-#
 #############################################################
 #   Person Logging
 #############################################################
@@ -329,3 +327,4 @@
       data_template:
         name: "Person: "
         message: "{{trigger.to_state.name}} changed from {{trigger.from_state.state}} to {{trigger.to_state.state}} by {{ trigger.to_state.attributes.source }}"
+#

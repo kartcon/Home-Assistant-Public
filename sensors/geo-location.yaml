@@ -38,6 +38,24 @@
       entity_picture_template: /local/avatars/Steffs_Avatar.png
 #
 ############################
+# Arts Direction of Travel #
+############################
+- platform: template
+  sensors:
+    art_travel_direction:
+      value_template: '{{state_attr("proximity.art_to_home","dir_of_travel")}}'
+      friendly_name: "Art's Travel Direction"
+#
+############################
+#Steffs Direction of Travel#
+############################
+- platform: template
+  sensors:
+    steff_travel_direction:
+      value_template: '{{state_attr("proximity.steff_to_home","dir_of_travel")}}'
+      friendly_name: "Steff's Travel Direction"
+#
+############################
 #      GPS Data Art        #
 ############################
 #

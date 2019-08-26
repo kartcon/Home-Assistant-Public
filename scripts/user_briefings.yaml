@@ -43,7 +43,7 @@ art_briefing_one:
         {% endif %}
         It's currently {{states.sensor.dark_sky_summary.state}} and {{states.sensor.dark_sky_temperature.state}} degrees at home.
         Today will be {{states.sensor.dark_sky_hourly_summary.state|replace('.','')}}, with a high of {{states.sensor.dark_sky_daytime_high_temperature_0d.state|round(1)}} degrees and a low of {{states.sensor.dark_sky_overnight_low_temperature_0d.state|round(1)}} degrees.
-        {% if state_attr('weather.dark_sky', 'forecast')[0].precipitation | int > 0 %}
+        {% if state_attr('weather.dark_sky', 'forecast')[0].precipitation > 0 %}
           We may see {{state_attr('weather.dark_sky', 'forecast')[0].precipitation}} inches of rain today.
         {% endif %}
         Current winds are
@@ -56,12 +56,17 @@ art_briefing_one:
         miles per hour.
         Sunrise
         {% if states('sun.sun') == 'above_horizon' %}
-          was
+          was at
         {% else %}
-          is
+          is at
         {% endif %}
-        at {{ as_timestamp(states.sun.sun.attributes.next_rising) | timestamp_custom('%-I:%M %p') }}
-        and sunset will be at {{ as_timestamp(states.sun.sun.attributes.next_setting) | timestamp_custom('%-I:%M %p') }}.
+        {{states.sensor.next_rising.state}}
+        and sunset will be at
+        {{states.sensor.next_setting.state}}.
+        {% if states('sensor.moon') == 'full_moon' %}
+          There will be a Full Moon tonight.
+        {% endif %}
+        The next {{states.sensor.noaa_tides.state|replace('at','is at')}}.
         Have a{{ [" pleasant", " great", " good", " cheerful", " delightful", "n enjoyable", " super", " wonderful", " satisfying"] | random }} day!
 #sensor.next_sunrise
 #sensor.next_sunset
@@ -88,7 +93,7 @@ steff_briefing_one:
         {% endif %}
         It's currently {{states.sensor.dark_sky_summary.state}} and {{states.sensor.dark_sky_temperature.state}} degrees at home.
         Today will be {{states.sensor.dark_sky_hourly_summary.state|replace('.','')}}, with a high of {{states.sensor.dark_sky_daytime_high_temperature_0d.state|round(1)}} degrees and a low of {{states.sensor.dark_sky_overnight_low_temperature_0d.state|round(1)}} degrees.
-        {% if state_attr('weather.dark_sky', 'forecast')[0].precipitation | int > 0 %}
+        {% if state_attr('weather.dark_sky', 'forecast')[0].precipitation > 0 %}
           We may see {{state_attr('weather.dark_sky', 'forecast')[0].precipitation}} inches of rain today.
         {% endif %}
         Current winds are
@@ -101,12 +106,17 @@ steff_briefing_one:
         miles per hour.
         Sunrise
         {% if states('sun.sun') == 'above_horizon' %}
-          was
+          was at
         {% else %}
-          is
+          is at
         {% endif %}
-        at {{ as_timestamp(states.sun.sun.attributes.next_rising) | timestamp_custom('%-I:%M %p') }}
-        and sunset will be at {{ as_timestamp(states.sun.sun.attributes.next_setting) | timestamp_custom('%-I:%M %p') }}.
+        {{states.sensor.next_rising.state}}
+        and sunset will be at
+        {{states.sensor.next_setting.state}}.
+        {% if states('sensor.moon') == 'full_moon' %}
+          There will be a Full Moon tonight.
+        {% endif %}
+        The next {{states.sensor.noaa_tides.state|replace('at','is at')}}.
         Art is
         {% if states('device_tracker.art_ot1') == 'home' %} at home.
         {% elif states('device_tracker.art_ot1') == 'Shands' %} currently at Shands Hospital.
@@ -141,7 +151,7 @@ test_briefing_one:
         {% endif %}
         It's currently {{states.sensor.dark_sky_summary.state}} and {{states.sensor.dark_sky_temperature.state}} degrees at home.
         Today will be {{states.sensor.dark_sky_hourly_summary.state|replace('.','')}}, with a high of {{states.sensor.dark_sky_daytime_high_temperature_0d.state|round(1)}} degrees and a low of {{states.sensor.dark_sky_overnight_low_temperature_0d.state|round(1)}} degrees.
-        {% if state_attr('weather.dark_sky', 'forecast')[0].precipitation | int > 0 %}
+        {% if state_attr('weather.dark_sky', 'forecast')[0].precipitation > 0 %}
           We may see {{state_attr('weather.dark_sky', 'forecast')[0].precipitation}} inches of rain today.
         {% endif %}
         Current winds are
@@ -154,10 +164,33 @@ test_briefing_one:
         miles per hour.
         Sunrise
         {% if states('sun.sun') == 'above_horizon' %}
-          was
+          was at
         {% else %}
-          is
+          is at
         {% endif %}
-        at {{ as_timestamp(states.sun.sun.attributes.next_rising) | timestamp_custom('%-I:%M %p') }}
-        and sunset will be at {{ as_timestamp(states.sun.sun.attributes.next_setting) | timestamp_custom('%-I:%M %p') }}.
+        {{states.sensor.next_rising.state}}
+        and sunset will be at
+        {{states.sensor.next_setting.state}}.
+        {% if states('sensor.moon') == 'full_moon' %}
+          There will be a Full Moon tonight.
+        {% endif %}
+        The next {{states.sensor.noaa_tides.state|replace('at','is at')}}.
         Have a{{ [" pleasant", " great", " good", " cheerful", " delightful", "n enjoyable", " super", " wonderful", " satisfying"] | random }} day!
+#
+#
+#        {% if state_attr('weather.dark_sky', 'forecast')[0].precipitation > 0 %}
+#          We may see {{state_attr('weather.dark_sky', 'forecast')[0].precipitation}} inches of rain today.
+#        {% endif %}
+#
+#        {% if states('sensor.moon') == 'full_moon' %}
+#          There will be a Full Moon tonight.
+#        {% endif %}
+#        The next {{states.sensor.noaa_tides.state|replace('at','is at')}}
+#
+# ------ Unused criteria for daily briefings -----
+# {% if state_attr('weather.dark_sky', 'forecast')[0].precipitation | int > 0 %}
+# sensor.next_sunrise
+# sensor.next_sunset
+# sensor.noaa_tides
+# new_moon, waxing_crescent, first_quarter, waxing_gibbous, full_moon, waning_gibbous, last_quarter, waning_crescent
+# ------ Unused criteria for daily briefings -----

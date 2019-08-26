@@ -178,7 +178,7 @@
 #      prob_given_false: 0.30
 #
 - platform: 'bayesian'
-  device_class: 'moisture'
+#  device_class: 'moisture'
   prior: 0.10
   name: 'Its Raining'
   probability_threshold: 0.85

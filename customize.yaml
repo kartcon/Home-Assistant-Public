@@ -157,3 +157,5 @@ sensor.ipv4_address_en1:
   icon: mdi:wifi
 sensor.external_ip:
   friendly_name: External IP address
+sensor.noaa_tides:
+  icon: mdi:waves

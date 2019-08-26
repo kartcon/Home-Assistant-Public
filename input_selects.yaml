@@ -50,7 +50,7 @@
 #      - Pause steffsiphone8
 #      - Resume steffsiphone8
     icon: mdi:apple-keyboard-command
-  
+
   icloud_set_interval:
     name: iCloud Polling Interval
     options:
@@ -139,7 +139,7 @@
       - Easter
       - Memorial Day
       - Flag Day
-      - July 4th
+      - Independence Day
       - Labor Day
       - Breast Cancer
       - Halloween

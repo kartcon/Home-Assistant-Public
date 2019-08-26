@@ -62,7 +62,7 @@ cards:
 #                  secondary_info: last-changed
 #                attributes:
 #                  source_type: gps
-
+#
 #       Card 2-2
         - type: entities
           title: Sun
@@ -76,17 +76,16 @@ cards:
             - entity: sensor.daylight
               icon: mdi:weather-sunny
 #
-#        - type: glance
-#          title: Sun
-#          show_name: true
-#          columns: 3
-#          entities:
-#            - entity: sun.sun
-#              icon: mdi:theme-light-dark
-#            - entity: sensor.next_sunrise
-#              icon: mdi:weather-sunset-up
-#            - entity: sensor.next_sunset
-#              icon: mdi:weather-sunset-down
+#       Card 2-2
+        - type: entities
+          title: Tides
+          show_header_toggle: false
+          entities:
+            - entity: sensor.noaa_tides
+            - entity: sensor.low_tide_height
+              icon: mdi:slope-downhill
+            - entity: sensor.high_tide_height
+              icon: mdi:slope-uphill
 #
 #       Card 2-3-1
         - type: horizontal-stack

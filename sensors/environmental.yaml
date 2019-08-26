@@ -75,16 +75,32 @@
     next_sunrise:
       value_template: '{% set timestamp = as_timestamp(states.sun.sun.attributes.next_rising) | timestamp_custom("%b %d, %X") %} {{ timestamp.lstrip("0") }}'
       friendly_name: "Next Sunrise"
+    next_rising:
+      value_template: '{% set timestamp = as_timestamp(states.sun.sun.attributes.next_rising) | timestamp_custom("%-I:%M %p") %} {{ timestamp.lstrip("0") }}'
+      friendly_name: "Next Sunrise"
     next_sunset:
       value_template: '{% set timestamp = as_timestamp(states.sun.sun.attributes.next_setting) | timestamp_custom("%b %d, %X") %} {{ timestamp.lstrip("0") }}'
+      friendly_name: "Next Sunset"
+    next_setting:
+      value_template: '{% set timestamp = as_timestamp(states.sun.sun.attributes.next_setting) | timestamp_custom("%-I:%M %p") %} {{ timestamp.lstrip("0") }}'
       friendly_name: "Next Sunset"
 #
 #########################
 #    Tides (NOAA)       #
 #########################
 #   NOAA fails on load
-#- platform: noaa_tides
-#  station_id: 8720198
+- platform: noaa_tides
+  station_id: 8720198
+- platform: template
+  sensors:
+    high_tide_height:
+      value_template: '{{state_attr("sensor.noaa_tides","high_tide_height")}}'
+      friendly_name: "High Tide Height"
+- platform: template
+  sensors:
+    low_tide_height:
+      value_template: '{{state_attr("sensor.noaa_tides","low_tide_height")}}'
+      friendly_name: "Low Tide Height"
 #
 #########################
 #  Tides (World Tides)  #

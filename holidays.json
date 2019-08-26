@@ -2,9 +2,9 @@
   "MAJOR_US": {
     "static": {
       "1/1": "New Year's Day",
-      "1/7": "Matt's Birthday",
+      "1/7": "Matt's Birthday"
       "2/2": "Groundhog Day",
-      "2/14": "Valentine's Day & Chopper's Birthday",
+      "2/14": "Valentine's Day and Chopper's Birthday",
       "3/14": "Pi Day",
       "3/17": "St. Patrick's Day",
       "3/30": "Mom's Birthday",
@@ -21,8 +21,8 @@
       "7/4": "Independence Day",
       "7/28": "Sunbeam's Birthday",
       "8/1": "Rufus's Birthday",
-      "8/28": "Alex & Gretchen's Anniversary",
-      "8/31": "Pheobe's Birthday & Matt & Mandi's Anniversary",
+      "9/18": "Alex & Gretchen's Anniversary",
+      "8/31": "Pheobe's Birthday and Matt & Mandi's Anniversary",
       "9/1": "Sami's Birthday",
       "9/18": "Art & Steff's Anniversary",
       "9/20": "Steff's Birthday",
@@ -35,7 +35,7 @@
       "12/22": "Tim's Birthday",
       "12/24": "Christmas Eve",
       "12/25": "Christmas Day",
-      "12/31": "New Year's Eve & Mom & Dad's Anniversary"
+      "12/31": "New Year's Eve and Mom & Dad's Anniversary"
     },
     "dynamic": {
       "2/18/2019": "Presidents' Day",
@@ -123,4 +123,3 @@
     }
   }
 }
-
