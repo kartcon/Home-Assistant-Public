@@ -550,7 +550,7 @@ summer_script:
     data:
       entity_id: light.front_porch
       brightness: 128
-      rgb_color: [83,255,126]
+      rgb_color: [255,239,0]
 #
 autumn_script:
   alias: Autumn Script

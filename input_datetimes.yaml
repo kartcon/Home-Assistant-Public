@@ -22,6 +22,11 @@
     has_date: true
     has_time: false
 #
+  recycle_pickup_date:
+    name: Recycle Pick Up Date
+    has_date: true
+    has_time: false
+#
   last_kitchen_motion:
     name: Last Kitchen Motion
     has_date: true

@@ -122,6 +122,10 @@
     data_template:
       entity_id: input_datetime.recycle_alert_date
       date: '{{ (as_timestamp(now()) + (14*24*3600)) | timestamp_custom("%Y-%m-%d", True) }}'
+  - service: input_datetime.set_datetime
+    data_template:
+      entity_id: input_datetime.recycle_pickup_date
+      date: '{{ (as_timestamp(now()) + (15*24*3600)) | timestamp_custom("%Y-%m-%d", True) }}'
   - service: script.turn_on
     entity_id: script.blink_lights_tv
   - delay: 0:00:03

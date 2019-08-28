@@ -4,8 +4,8 @@
 #
 #################################################################
 # Script: Update_Tstats_Script
-# Called from [hvac_auto_updated] 
-# Called from [hvac_mode_changed, hvac_phase_changed] 
+# Called from [hvac_auto_updated]
+# Called from [hvac_mode_changed, hvac_phase_changed]
 # In file: [/automation/hvac.yaml]
 #################################################################
 update_tstats_script:
@@ -13,16 +13,13 @@ update_tstats_script:
   sequence:
 #  - delay:
 #      seconds: 30
-#
 #  - service: persistent_notification.create
 #    data_template:
 #      title: "HVAC Status Changed"
 #      message: >-
 #        Thermostat presets changed to {{states('input_select.thermostat_phase')}} {{states('input_select.thermostat_mode')}} mode.
-#
   - delay:
       seconds: 10
-#
   - service: climate.set_operation_mode
     data_template:
       entity_id: climate.tstat_1_144
@@ -34,10 +31,8 @@ update_tstats_script:
         {% else %}
           auto
         {% endif %}
-#
   - delay:
       seconds: 10
-#
   - service: climate.set_operation_mode
     data_template:
       entity_id: climate.tstat_2_145
@@ -49,10 +44,8 @@ update_tstats_script:
         {% else %}
           auto
         {% endif %}
-#
   - delay:
       seconds: 10
-#
   - service: climate.set_temperature
     data_template:
       entity_id: climate.tstat_1_144
@@ -92,10 +85,8 @@ update_tstats_script:
         {% else %}
           75
         {% endif %}
-#
   - delay:
       seconds: 10
-#
   - service: climate.set_temperature
     data_template:
       entity_id: climate.tstat_2_145
@@ -135,10 +126,8 @@ update_tstats_script:
         {% else %}
           75
         {% endif %}
-#
 #  - delay:
 #      seconds: 20
-#
 #  - service: persistent_notification.create
 #    data_template:
 #      title: "HVAC Settings Changed"

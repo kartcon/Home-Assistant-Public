@@ -23,47 +23,6 @@ cards:
         - type: weather-forecast
           entity: weather.dark_sky
 #       Card 1-2
-        - type: picture
-          image: https://cdn.tegna-media.com/wtlv/weather/7Day_forecast.jpg
-#       Card 1-3
-        - type: picture
-          image: https://wave.marineweather.net/itide/tides/png/fl_clapboard_creek.png?x=1543758223
-# COL 2
-#       Card 2-1
-    - type: vertical-stack
-      cards:
-        - type: glance
-          title: Device Trackers
-          show_name: true
-          columns: 4
-          entities:
-            - entity: device_tracker.art_ot1
-              icon: mdi:crosshairs-gps
-#            - entity: device_tracker.arts_iphone_8
-#              icon: mdi:cellphone-iphone
-            - entity: device_tracker.sjm_ipad
-              icon: mdi:tablet-ipad
-            - entity: device_tracker.steff_ot2
-              icon: mdi:crosshairs-gps
-#            - entity: device_tracker.steffs_iphone_8
-#              icon: mdi:cellphone-iphone
-            - entity: device_tracker.steffs_ipad_mini
-              icon: mdi:tablet-ipad
-#
-#        - type: custom:monster-card
-#          card:
-#            type: glance
-#            title: GPS Tracker
-#            columns: 3
-#          filter:
-#            include:
-#              - domain: device_tracker
-#                options:
-#                  secondary_info: last-changed
-#                attributes:
-#                  source_type: gps
-#
-#       Card 2-2
         - type: entities
           title: Sun
           show_header_toggle: false
@@ -75,19 +34,7 @@ cards:
               icon: mdi:weather-sunset-down
             - entity: sensor.daylight
               icon: mdi:weather-sunny
-#
-#       Card 2-2
-        - type: entities
-          title: Tides
-          show_header_toggle: false
-          entities:
-            - entity: sensor.noaa_tides
-            - entity: sensor.low_tide_height
-              icon: mdi:slope-downhill
-            - entity: sensor.high_tide_height
-              icon: mdi:slope-uphill
-#
-#       Card 2-3-1
+#       Card 1-3-1
         - type: horizontal-stack
           cards:
 #          - type: vertical-stack
@@ -112,8 +59,7 @@ cards:
             show:
               legend: false
               extrema: false
-#
-#       Card 2-3-2
+#       Card 1-3-2
           - type: picture-entity
             entity: sensor.moonphases
             name: Moon Phase
@@ -130,7 +76,63 @@ cards:
               "Last Quarter": /local/moon_icons/last_quarter.png
               "Waning Crescent": /local/moon_icons/waning_crescent.png
 #
+# COL 2
+    - type: vertical-stack
+      cards:
+#       Card 2-1
+        - type: picture
+          image: https://cdn.tegna-media.com/wtlv/weather/7Day_forecast.jpg
+#       Card 2-2
+        - type: entities
+          title: Tides
+          show_header_toggle: false
+          entities:
+            - entity: sensor.noaa_tides
+            - entity: sensor.low_tide_height
+              icon: mdi:slope-downhill
+            - entity: sensor.high_tide_height
+              icon: mdi:slope-uphill
+#       Card 2-3
+        - type: picture
+          image: https://wave.marineweather.net/itide/tides/png/fl_clapboard_creek.png?x=1543758223
+#
 # COL 3
-    - type: "custom:birthday-card"
-      title: "Birthdays & Anniversaries"
-      numberofdays: 365
+#   Card 3-1
+    - type: vertical-stack
+      cards:
+      - type: glance
+        title: Device Trackers
+        show_name: true
+        columns: 4
+        entities:
+          - entity: device_tracker.art_ot1
+            icon: mdi:crosshairs-gps
+#            - entity: device_tracker.arts_iphone_8
+#              icon: mdi:cellphone-iphone
+          - entity: device_tracker.sjm_ipad
+            icon: mdi:tablet-ipad
+          - entity: device_tracker.steff_ot2
+            icon: mdi:crosshairs-gps
+#            - entity: device_tracker.steffs_iphone_8
+#              icon: mdi:cellphone-iphone
+          - entity: device_tracker.steffs_ipad_mini
+            icon: mdi:tablet-ipad
+#     Card 3-2
+      - type: "custom:birthday-card"
+        title: "Birthdays & Anniversaries"
+        numberofdays: 60
+# {{states.input_select.days_to_display.state}}
+# {{ states('input_select.days_to_display') }}
+# {{ states('input_number.led_strip_brightness') }}
+#        - type: custom:monster-card
+#          card:
+#            type: glance
+#            title: GPS Tracker
+#            columns: 3
+#          filter:
+#            include:
+#              - domain: device_tracker
+#                options:
+#                  secondary_info: last-changed
+#                attributes:
+#                  source_type: gps
