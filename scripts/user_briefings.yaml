@@ -39,7 +39,16 @@ art_briefing_one:
         Good {{states.sensor.time_of_day.state}} Art.
         {# Time #}
         The time is {{states.sensor.readable_time.state.lstrip('0')}}.
-        Today is a {{states.sensor.dayoftheweek.state}} and the date is the {{states.sensor.dateofthemonth.state}} of {{states.sensor.month_name.state}}.
+        Today is a
+        {% if states.sensor.payday.state == 'True' %}
+        payday
+        {% endif %}
+        {{states.sensor.dayoftheweek.state}}
+        and the date is the {{states.sensor.dateofthemonth.state}} of {{states.sensor.month_name.state}}.
+        {# Birds #}
+        {% if states.sensor.weigh_birds.state == 'true' %}
+        It's time to weigh the birds again.
+        {% endif %}
         {# Birthday/Holiday #}
         {% if states.sensor.todays_events.state != 'unknown' %}
           {% if states.sensor.todays_events.state != '' %}
@@ -61,6 +70,10 @@ art_briefing_one:
           with gusts up to {{(states('sensor.dark_sky_wind_gust_0d')|int)|round}}
         {% endif %}
         miles per hour.
+        {# NWS Warnings #}
+          {% if states.sensor.weatheralerts.state != '' %}
+            The National Weather Service has issued a {{states.sensor.weatheralerts.state}} for today.
+          {% endif %}
         {# Sunrise/Sunset #}
         Sunrise
         {% if states('sun.sun') == 'above_horizon' %}
@@ -108,7 +121,16 @@ steff_briefing_one:
         Good {{states.sensor.time_of_day.state}} Steff.
         {# Time #}
         The time is {{states.sensor.readable_time.state.lstrip('0')}}.
-        Today is a {{states.sensor.dayoftheweek.state}} and the date is the {{states.sensor.dateofthemonth.state}} of {{states.sensor.month_name.state}}.
+        Today is a
+        {% if states.sensor.payday.state == 'True' %}
+        payday
+        {% endif %}
+        {{states.sensor.dayoftheweek.state}}
+        and the date is the {{states.sensor.dateofthemonth.state}} of {{states.sensor.month_name.state}}.
+        {# Birds #}
+        {% if states.sensor.weigh_birds.state == 'true' %}
+        It's time to weigh the birds again.
+        {% endif %}
         {# Birthday/Holiday #}
         {% if states.sensor.todays_events.state != 'unknown' %}
           {% if states.sensor.todays_events.state != '' %}
@@ -130,6 +152,10 @@ steff_briefing_one:
           with gusts up to {{(states('sensor.dark_sky_wind_gust_0d')|int)|round}}
         {% endif %}
         miles per hour.
+        {# NWS Warnings #}
+          {% if states.sensor.weatheralerts.state != '' %}
+            The National Weather Service has issued a {{states.sensor.weatheralerts.state}} for today.
+          {% endif %}
         {# Sunrise/Sunset #}
         Sunrise
         {% if states('sun.sun') == 'above_horizon' %}
@@ -186,7 +212,16 @@ test_briefing_one:
         Good {{states.sensor.time_of_day.state}} Art.
         {# Time #}
         The time is {{states.sensor.readable_time.state.lstrip('0')}}.
-        Today is a {{states.sensor.dayoftheweek.state}} and the date is the {{states.sensor.dateofthemonth.state}} of {{states.sensor.month_name.state}}.
+        Today is a
+        {% if states.sensor.payday.state == 'True' %}
+        payday
+        {% endif %}
+        {{states.sensor.dayoftheweek.state}}
+        and the date is the {{states.sensor.dateofthemonth.state}} of {{states.sensor.month_name.state}}.
+        {# Birds #}
+        {% if states.sensor.weigh_birds.state == 'true' %}
+        It's time to weigh the birds again.
+        {% endif %}
         {# Birthday/Holiday #}
         {% if states.sensor.todays_events.state != 'unknown' %}
           {% if states.sensor.todays_events.state != '' %}
@@ -208,6 +243,10 @@ test_briefing_one:
           with gusts up to {{(states('sensor.dark_sky_wind_gust_0d')|int)|round}}
         {% endif %}
         miles per hour.
+        {# NWS Warnings #}
+          {% if states.sensor.weatheralerts.state != '' %}
+            The National Weather Service has issued a {{states.sensor.weatheralerts.state}} for today.
+          {% endif %}
         {# Sunrise/Sunset #}
         Sunrise
         {% if states('sun.sun') == 'above_horizon' %}
@@ -256,4 +295,6 @@ test_briefing_two:
 # input_datetime.recycle_alert_date        2019-09-08
 # input_datetime.recycle_pickup_date       2019-09-09
 # sensor.date                              2019-08-26
-#
+# sensor.weatheralerts                     text
+# sensor.weigh_birds                       true/False
+# sensor.payday                            true/false
