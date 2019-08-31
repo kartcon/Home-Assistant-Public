@@ -120,55 +120,6 @@
       message: No One Home - Close Garage Door 2 Automation Triggered
 #
 #################################################################
-# Close Garage Doors if Raining
-#################################################################
-- id: close_garage_door_in_rain
-  alias: Close Garage Door In Rain
-  trigger:
-  - platform: state
-    entity_id: binary_sensor.its_raining
-    to: 'on'
-    for:
-      minutes: 0
-      seconds: 30
-  - platform: numeric_state
-    entity_id: sensor.dark_sky_precip_probability_0
-    above: 90
-    for:
-      minutes: 10
-      seconds: 0
-  condition:
-  - condition: state
-    entity_id: input_boolean.close_garage_doors_in_rain
-    state: 'on'
-  action:
-  - service: script.turn_on
-    entity_id: script.close_garage_door1
-  - service: script.turn_on
-    entity_id: script.close_garage_door2
-  - condition: state
-    entity_id: lock.garage_controller_2_54
-    state: 'unlocked'
-  - service: notify.ios_group_art_steff
-    data:
-      title: Garage Door Closed
-      message: Rain - Close Garage Door Automation Triggered
-  - service: script.turn_on
-    entity_id: script.blink_lights_tv
-  - delay: 0:00:03
-  - service: notify.lg_tv
-    data:
-      title: "Weather Notification"
-      message: "The garage doors were closed due to rain."
-  - service: notify.alexa_media
-    data_template:
-      target:
-        - media_player.kitchen_echo
-      data:
-        type: tts
-      message: "I'ts getting ready to rain. I've closed the Garage Doors for you"
-#
-#################################################################
 # Update Front Door Sensor on Lock
 #################################################################
 - id: update_front_door_sensor_on_lock

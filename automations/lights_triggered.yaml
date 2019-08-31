@@ -98,15 +98,15 @@
     entity_id: sensor.kit_light_sensor_227
     below: 70
   action:
-  - service: persistent_notification.create
-    data_template:
-      message: >-
-        Kitchen Lights Auto-On triggered at {{now().strftime("%m/%d/%Y %H:%M:%S")}}.
-        Last motion was at {{ states.input_datetime.last_kitchen_motion.state }}.
-        Kitchen Lux was at {{ states.sensor.kit_light_sensor_227.state }}.
-      title: Kitchen AUTO-ON Triggered
   - service: light.turn_on
     entity_id: group.kitchen
+#  - service: persistent_notification.create
+#    data_template:
+#      title: Kitchen AUTO-ON Triggered
+#      message: >-
+#        Kitchen Lights Auto-On triggered at {{now().strftime("%m/%d/%Y %H:%M:%S")}}.
+#        Last motion was at {{ states.input_datetime.last_kitchen_motion.state }}.
+#        Kitchen Lux was at {{ states.sensor.kit_light_sensor_227.state }}.
   - service: notify.alexa_media
     data_template:
       target:
@@ -133,6 +133,7 @@
     entity_id: input_boolean.kit_motion_detected
     from: 'on'
     to: 'off'
+    for: "00:20:00"
   condition:
   - condition: time
     after: '08:00:00'
@@ -150,17 +151,17 @@
     entity_id: input_boolean.no_one_home
     state: 'off'
   action:
-  - service: persistent_notification.create
-    data_template:
-      message: >-
-        Kitchen Lights Auto-Off triggered at {{now().strftime("%m/%d/%Y %H:%M:%S")}}.
-        Last motion was at {{ states.input_datetime.last_kitchen_motion.state }}.
-        Kitchen Lux was at {{ states.sensor.kit_light_sensor_227.state }}.
-      title: Kitchen AUTO-OFF Triggered
   - service: light.turn_off
     entity_id: light.kitchen_can_lights_49
   - service: light.turn_off
     entity_id: light.kitchen_pendants_106
+#  - service: persistent_notification.create
+#    data_template:
+#      message: >-
+#        Kitchen Lights Auto-Off triggered at {{now().strftime("%m/%d/%Y %H:%M:%S")}}.
+#        Last motion was at {{ states.input_datetime.last_kitchen_motion.state }}.
+#        Kitchen Lux was at {{ states.sensor.kit_light_sensor_227.state }}.
+#      title: Kitchen AUTO-OFF Triggered
   - service: notify.alexa_media
     data_template:
       target:
@@ -435,7 +436,7 @@
 # Porch Light On when front door Unlocked, early morning
 #################################################################
 - id: porch_light_on_w_unlock_am
-  alias: Porch Light On w AM Unlock
+  alias: Porch Light On w Unlock AM
   initial_state: true
   trigger:
     platform: state
@@ -468,7 +469,7 @@
 # Porch Light On when front door Unlocked, night time
 #################################################################
 - id: porch_light_on_w_unlock_pm
-  alias: Porch Light On w PM Unlock
+  alias: Porch Light On w Unlock PM
   initial_state: true
   trigger:
     platform: state
@@ -529,7 +530,7 @@
 # Lights off if between 8a-4p and No One Home
 #################################################################
 - id: lights_off_if_no_one_home_8_4
-  alias: Lights off when No One Home Day
+  alias: Lights off when No One Home 8-4
   initial_state: true
   trigger:
     platform: state
@@ -540,13 +541,13 @@
     after: '08:00:00'
     before: '16:00:00'
   action:
-  - service: persistent_notification.create
-    data_template:
-      message: >-
-        Inside Lights Auto-Off triggered at {{now().strftime("%m/%d/%Y %H:%M:%S")}}.
-        Last Kitchen motion was at {{ states.input_datetime.last_kitchen_motion.state }}.
-        Last LR motion was at {{ states.input_datetime.last_livingrm_motion.state }}.
-      title: Lights OFF (8-4, No one home)
+#  - service: persistent_notification.create
+#    data_template:
+#      message: >-
+#        Inside Lights Auto-Off triggered at {{now().strftime("%m/%d/%Y %H:%M:%S")}}.
+#        Last Kitchen motion was at {{ states.input_datetime.last_kitchen_motion.state }}.
+#        Last LR motion was at {{ states.input_datetime.last_livingrm_motion.state }}.
+#      title: Lights OFF (8-4, No one home)
   - service: light.turn_off
     entity_id: group.inside_light_group
     # This group does not include fans!

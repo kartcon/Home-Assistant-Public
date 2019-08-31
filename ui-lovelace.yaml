@@ -29,6 +29,11 @@ resources:
   - url: /community_plugin/light-entity-row/light-entity-row.js
     type: js
 #   ----------------------------------------------------------------------------
+# Light Entity Row Card
+  - type: module
+    url: /local/light-with-profiles.js
+    # https://github.com/tcarlsen/lovelace-light-with-profiles
+#   ----------------------------------------------------------------------------
 # Markdown Mod Card
   - url: /community_plugin/lovelace-markdown-mod/markdown-mod.js
     type: js

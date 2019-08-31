@@ -99,7 +99,7 @@
     - thu
     - fri
   - condition: time
-    after: '08:30'
+    after: '08:00'
     before: '09:30'
   - condition: state
     entity_id: binary_sensor.sleepnumber_cc04b4013d81_steff_is_in_bed
@@ -133,7 +133,7 @@
     - sat
     - sun
   - condition: time
-    after: '08:30'
+    after: '08:00'
     before: '09:30'
   - condition: state
     entity_id: binary_sensor.sleepnumber_cc04b4013d81_steff_is_in_bed

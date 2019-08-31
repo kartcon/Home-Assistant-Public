@@ -1,4 +1,13 @@
 #################################################################
+# WEATHER ALERT AUTOMATIONS
+#################################################################
+#
+#################################################################
+# Active Weather Alert
+#################################################################
+# HERE (sensor.weatheralerts)
+#
+#################################################################
 # WEATHER RELATED AUTOMATIONS
 #################################################################
 #
@@ -9,9 +18,20 @@
   alias: Its Raining
   initial_state: true
   trigger:
-    platform: state
-    entity_id: input_select.current_condition
-    to: 'Rainy'
+  - platform: state
+    entity_id: binary_sensor.its_raining
+    to: 'on'
+    for:
+      minutes: 0
+      seconds: 30
+  - platform: numeric_state
+    entity_id: sensor.dark_sky_precip_probability_0
+    above: 90
+    for:
+      minutes: 10
+#    platform: state
+#    entity_id: input_select.current_condition
+#    to: 'Rainy'
   condition: []
   action:
   - service: script.turn_on

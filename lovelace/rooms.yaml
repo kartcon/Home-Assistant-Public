@@ -112,6 +112,19 @@ cards:
 # COL 3
     - type: vertical-stack
       cards:
+#
+#        - type: 'custom:light-with-profiles'
+#          title: Sun Room
+#          entities:
+#            - entity: light.sunroom_fan_204
+#              profiles:
+#                - name: bright
+#                  icon: 'mdi:brightness-5'
+#                - name: dimmed
+#                  icon: 'mdi:brightness-4'
+#                - name: nightlight
+#                  icon: 'mdi:brightness-3'
+#
         - type: entities
           title: Sun Room
           show_header_toggle: true

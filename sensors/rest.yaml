@@ -1,0 +1,60 @@
+#########################
+#    REST Sensors       #
+#########################
+#  *******************************************************************************
+- platform: rest
+  resource: https://raw.githubusercontent.com/kartcon/Home-Assistant-Public/master/holidays.json
+  name: todays_events
+  scan_interval: 14400
+  value_template: >
+    {% set today = now().month  ~ '/' ~ now().day  %}
+    {% set holiday =  value_json.MAJOR_US.static[ today ] %}
+    {% if holiday | trim == "" %}
+      {% set today = now().month  ~ '/' ~ now().day ~ '/' ~ now().year %}
+      {% set holiday =  value_json.MAJOR_US.dynamic[ today ] %}
+    {% endif %}
+    {{ holiday }}
+#
+#  *******************************************************************************
+- platform: rest
+  resource: https://raw.githubusercontent.com/kartcon/Home-Assistant-Public/master/json_files/weigh_birds.json
+  name: weigh_birds
+  scan_interval: 14400
+  value_template: >
+    {% set today = now().month  ~ '/' ~ now().day ~ '/' ~ now().year %}
+    {% set weighday =  value_json.WEIGH_DAY.dynamic[ today ] %}
+    {{ weighday }}
+#
+#  *******************************************************************************
+#- platform: rest
+#  resource: https://raw.githubusercontent.com/SilvrrGIT/HomeAssistant/master/www/days.json
+#  name: events_silvrr
+#  scan_interval: 14400
+#  value_template: >
+#    {% set today = now().month  ~ '/' ~ now().day  %}
+#    {% set holiday =  value_json.MAJOR_US.static[ today ] %}
+#    {% if holiday | trim == "" %}
+#      {% set today = now().month  ~ '/' ~ now().day ~ '/' ~ now().year %}
+#      {% set holiday =  value_json.MAJOR_US.dynamic[ today ] %}
+#    {% endif %}
+#    {{ holiday }}
+#
+#  *******************************************************************************
+#- platform: rest
+#  resource: https://raw.githubusercontent.com/CCOSTAN/Home-AssistantConfig/master/config/json_data/holidays.json
+#  name: events_ccostan
+#  scan_interval: 14400
+#  value_template: >
+#    {% set today = now().month  ~ '/' ~ now().day  %}
+#    {% set holiday =  value_json.MAJOR_US.static[ today ] %}
+#    {% if holiday | trim == "" %}
+#      {% set today = now().month  ~ '/' ~ now().day ~ '/' ~ now().year %}
+#      {% set holiday =  value_json.MAJOR_US.dynamic[ today ] %}
+#    {% endif %}
+#    {{ holiday }}
+#
+# ------------------------
+# FULL PATH: /Users/artdavis/.homeassistant/www/holidays.json
+# PROJECT PATH: www/holidays.json
+# ------------------------
+#

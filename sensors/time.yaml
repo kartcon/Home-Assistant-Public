@@ -51,7 +51,7 @@
         {% set day = now().day %}
         {% set index = 3 if day // 10 == 1 or day % 10 == 0 else (day % 10) - 1 %}
         {{ day~'th' if index > 2 else day~suffix[index] }}
-      friendly_name: "Day of the Month"
+      friendly_name: "Date of the Month"
       # Returns: 18th
     day_of_year:
       entity_id: sensor.time

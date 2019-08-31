@@ -88,7 +88,6 @@
 #########################
 #    Tides (NOAA)       #
 #########################
-#   NOAA fails on load
 - platform: noaa_tides
   station_id: 8720198
 - platform: template
@@ -131,4 +130,10 @@
       entity_id: climate.tstat_2_145
       unit_of_measurement: "°F"
       friendly_name: "Inside Temp 2"
+#
+#########################
+#  Weather.gov Alerts   #
+#########################
+- platform: weatheralerts
+  sameid: '012031'
 #

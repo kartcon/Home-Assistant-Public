@@ -3,9 +3,9 @@
 #################################################################
 #
 all_echo_devices:
-  name: Climate
+  name: All Echo Devices
   view: no
-  icon: mdi:home
+  icon: mdi:amazon-alexa
   entities:
     - media_player.kitchen_echo
     - media_player.office_echo
@@ -13,9 +13,9 @@ all_echo_devices:
     - media_player.sunroom_echo_white
 #
 all_echo_dots:
-  name: Climate
+  name: All Echo Dots
   view: no
-  icon: mdi:home
+  icon: mdi:hockey-puck
   entities:
     - media_player.kitchen_echo
     - media_player.office_echo

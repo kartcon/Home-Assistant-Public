@@ -82,7 +82,7 @@ art_briefing_one:
         Today is Thursday. The trash bin needs to be out to the road.
         {% endif %}
         {# Recycling Day #}
-        {% if states.sensor.date.state == states.input_datetime.recycle_alert_date.state %}
+        {% if states.sensor.date.state == states.input_datetime.recycle_pickup_date.state %}
         Today is Monday. The recycling bin needs to be out to the road.
         {% endif %}
         {# Closing #}
@@ -156,6 +156,14 @@ steff_briefing_one:
         {% else %}
           away from home.
         {% endif %}
+        {# Trash Day #}
+        {% if states.sensor.dayoftheweek.state == 'Thursday' %}
+        Today is Thursday. The trash bin needs to be out to the road.
+        {% endif %}
+        {# Recycling Day #}
+        {% if states.sensor.date.state == states.input_datetime.recycle_pickup_date.state %}
+        Today is Monday. The recycling bin needs to be out to the road.
+        {% endif %}
         {# Closing #}
         Have a{{ [' pleasant', ' amiable', ' happy', ' cheerful', ' delightful', 'n enjoyable', ' lovely', ' pleasing', ' good'] | random }} day!
 #
@@ -216,12 +224,14 @@ test_briefing_one:
         {% endif %}
         {# Tides #}
         The next {{states.sensor.noaa_tides.state|replace('at','is at')}}.
+        {# High Tide Warningss #}
+        {# End High Tide Warningss #}
         {# Trash Day #}
         {% if states.sensor.dayoftheweek.state == 'Thursday' %}
         Today is Thursday. The trash bin needs to be out to the road.
         {% endif %}
         {# Recycling Day #}
-        {% if states.sensor.date.state == states.input_datetime.recycle_alert_date.state %}
+        {% if states.sensor.date.state == states.input_datetime.recycle_pickup_date.state %}
         Today is Monday. The recycling bin needs to be out to the road.
         {% endif %}
         {# Closing #}
@@ -244,5 +254,6 @@ test_briefing_two:
       message: Hello
 #
 # input_datetime.recycle_alert_date        2019-09-08
+# input_datetime.recycle_pickup_date       2019-09-09
 # sensor.date                              2019-08-26
 #
