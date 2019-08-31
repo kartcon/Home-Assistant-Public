@@ -4,13 +4,13 @@
       "1/1": "New Year's Day",
       "1/7": "Matt's Birthday",
       "2/2": "Groundhog Day",
-      "2/14": "Valentine's Day and Chopper's Birthday",
+      "2/14": "Valentine's Day, and Chopper's Birthday",
       "3/14": "Pi Day",
       "3/17": "St. Patrick's Day",
       "3/30": "Mom's Birthday",
       "4/1": "April Fool's Day",
       "4/16": "Art's Birthday",
-      "4/22": "Dad's Birthday and Earth Day",
+      "4/22": "Dad's Birthday, and Earth Day",
       "5/5": "Cinco de Mayo",
       "5/14": "Sydney's Birthday",
       "5/25": "Skylar's Birthday",
@@ -22,7 +22,7 @@
       "7/28": "Sunbeam's Birthday",
       "8/1": "Rufus's Birthday",
       "8/28": "Alex and Gretchen's Anniversary",
-      "8/31": "Pheobe's Birthday and Matt and Mandi's Anniversary",
+      "8/31": "Phoebe's Birthday, and Matt and Mandi's Anniversary",
       "9/1": "Sami's Birthday",
       "9/18": "Art and Steff's Anniversary",
       "9/20": "Steff's Birthday",
@@ -35,7 +35,7 @@
       "12/22": "Tim's Birthday",
       "12/24": "Christmas Eve",
       "12/25": "Christmas Day",
-      "12/31": "New Year's Eve and Mom and Dad's Anniversary"
+      "12/31": "New Year's Eve, and Mom and Dad's Anniversary"
     },
     "dynamic": {
       "2/18/2019": "Presidents' Day",

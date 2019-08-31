@@ -3,7 +3,7 @@
 #########################
 #  *******************************************************************************
 - platform: rest
-  resource: https://raw.githubusercontent.com/kartcon/Home-Assistant-Public/master/holidays.json
+  resource: https://raw.githubusercontent.com/kartcon/Home-Assistant-Public/master/json_files/holidays.json
   name: todays_events
   scan_interval: 14400
   value_template: >
