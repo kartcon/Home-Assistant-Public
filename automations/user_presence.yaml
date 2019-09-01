@@ -91,6 +91,7 @@
     data_template:
       entity_id: input_number.ts_art_home
       value: '{{ (as_timestamp(now())) }}'
+  - delay: '00:00:10'
   - service: notify.ios_group_art_only
     data:
       message: "Art Arrived Home"
@@ -241,6 +242,7 @@
     data_template:
       entity_id: input_number.ts_steff_home
       value: '{{ (as_timestamp(now())) }}'
+  - delay: '00:00:10'
   - service: notify.ios_group_steff_only
     data:
       message: "Steff Arrived Home"

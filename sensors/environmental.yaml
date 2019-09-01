@@ -136,4 +136,5 @@
 #########################
 - platform: weatheralerts
   sameid: '012031'
+  friendly_name: "NWS Weather Alert"
 #

@@ -21,6 +21,8 @@ cards:
               icon: mdi:update
             - entity: sensor.version_available
               icon: mdi:update
+            - entity: sensor.hacs
+#              icon: mdi:update
 #
         - type: entities
           title: Connection
@@ -30,15 +32,15 @@ cards:
               icon: mdi:ip-network
             - entity: sensor.ipv4_address_en0
             - entity: sensor.ipv4_address_en1
-#            - entity: sensor.speedtest_ping
-#              icon: mdi:speedometer
-#              secondary_info: last-changed
-#            - entity: sensor.speedtest_upload
-#              icon: mdi:package-up
-#            - entity: sensor.speedtest_download
-#              icon: mdi:package-down
-#            - entity: sensor.potential_breaking_changes
-#              icon: mdi:package-up
+            - entity: sensor.speedtest_ping
+              icon: mdi:speedometer
+              secondary_info: last-changed
+            - entity: sensor.speedtest_upload
+              icon: mdi:package-up
+            - entity: sensor.speedtest_download
+              icon: mdi:package-down
+            - entity: sensor.potential_breaking_changes
+              icon: mdi:package-up
 #
         - type: entities
           title: Sandbox

@@ -26,6 +26,19 @@
   scan_interval: 14400
 #
 #########################
+#    Speed Test         #
+#########################
+# https://www.home-assistant.io/components/speedtestdotnet/
+- speedtestdotnet:
+  scan_interval:
+    hours: 6
+    minutes: 0
+  monitored_conditions:
+    - ping
+    - download
+    - upload
+#
+#########################
 #    System Monitor     #
 #########################
 - platform: systemmonitor
@@ -138,7 +151,7 @@
       entity_id: []
       friendly_name: 'Number of Input Dates'
       value_template: >
-        {%- set domains = ['datetime'] -%}
+        {%- set domains = ['input_datetime'] -%}
         {%- for domain in domains -%}
           {%- for item in states[domain] -%}
             {% if loop.first %}

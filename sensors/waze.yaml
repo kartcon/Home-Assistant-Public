@@ -33,3 +33,50 @@
 #            Unknown
 #          {%- endif %}
 #
+# Travel Times
+- platform: waze_travel_time
+  name: Home to Baptist
+  origin: zone.home
+  destination: zone.baptist
+  region: 'US'
+- platform: waze_travel_time
+  name: Home to Flagler
+  origin: zone.home
+  destination: zone.flagler
+  region: 'US'
+- platform: waze_travel_time
+  name: Home to Mayo Clinic
+  origin: zone.home
+  destination: zone.mayo
+  region: 'US'
+- platform: waze_travel_time
+  name: Home to Memorial
+  origin: zone.home
+  destination: zone.memorial
+  region: 'US'
+- platform: waze_travel_time
+  name: Home to Phoebe Ga
+  origin: zone.home
+  destination: zone.phoebe
+  region: 'US'
+- platform: waze_travel_time
+  name: Home to Mom & Dad
+  origin: zone.home
+  destination: zone.mom_dad
+  region: 'US'
+- platform: waze_travel_time
+  name: Home to Shands Jax
+  origin: zone.home
+  destination: zone.shands_jax
+  region: 'US'
+- platform: waze_travel_time
+  name: Home to Shands North
+  origin: zone.home
+  destination: zone.shands_north
+  region: 'US'
+- platform: waze_travel_time
+  name: Home to St Vincents
+  origin: zone.home
+  destination: zone.st_vincents
+  region: 'US'
+#

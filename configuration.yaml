@@ -184,17 +184,6 @@ sleepiq:
   password: !secret sleepiq_pw
 #
 #  ---------------
-# Speed Test
-#speedtestdotnet:
-#  scan_interval:
-#    hours: 6
-#    minutes: 0
-#  monitored_conditions:
-#    - ping
-#    - download
-#    - upload
-#
-#  ---------------
 # Vera Setup
 vera:
   vera_controller_url: !secret vera_url
