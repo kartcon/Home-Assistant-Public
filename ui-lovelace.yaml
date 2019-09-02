@@ -16,23 +16,9 @@ resources:
     type: js
     # https://github.com/erlsta/homeassistant-lovelace-birthday-reminder-card
 #   ----------------------------------------------------------------------------
-# Button Entity Row
-  - url: /community_plugin/button-entity-row/button-entity-row.js
-    type: js
-    # https://github.com/custom-cards/button-entity-row
-#   ----------------------------------------------------------------------------
-# Fan Control (Tasmota)
-  - url: /community_plugin/fan-control-entity-row/fan-control-entity-row.js
-    type: js
-#   ----------------------------------------------------------------------------
 # Light Entity Row Card
   - url: /community_plugin/light-entity-row/light-entity-row.js
     type: js
-#   ----------------------------------------------------------------------------
-# Light Entity Row Card
-  - type: module
-    url: /local/light-with-profiles.js
-    # https://github.com/tcarlsen/lovelace-light-with-profiles
 #   ----------------------------------------------------------------------------
 # Markdown Mod Card
   - url: /community_plugin/lovelace-markdown-mod/markdown-mod.js
@@ -64,13 +50,17 @@ resources:
     type: module
 #   https://github.com/custom-cards/surveillance-card
 #   ----------------------------------------------------------------------------
-#  - url: /customcards/github/thomasloven/card-tools.js?track=true
-#    type: js
-#    # https://github.com/thomasloven/lovelace-card-tools
+  - url: /local/github/thomasloven/card-tools.js?track=true
+    type: js
+    # https://github.com/thomasloven/lovelace-card-tools
 #   ----------------------------------------------------------------------------
-#  - url: /customcards/github/custom-cards/tracker-card.js?track=true
-#    type: module
-#    # https://github.com/custom-cards/tracker-card
+  - url: /local/github/thomasloven/layout-card.js?track=true
+    type: js
+#   https://github.com/thomasloven/lovelace-layout-card
+#   ----------------------------------------------------------------------------
+# Travel Time Card
+  - url: /community_plugin/travel-time-card/travel-time-card.js
+    type: js
 #   ----------------------------------------------------------------------------
 #
 #excluded_entities:
@@ -89,6 +79,7 @@ views:
   - !include lovelace/users.yaml
 #  - !include lovelace/users2.yaml
   - !include lovelace/traffic.yaml
+#  - !include lovelace/traffic-bak.yaml
   - !include lovelace/weather.yaml
   - !include lovelace/weather_radar.yaml
   - !include lovelace/map.yaml

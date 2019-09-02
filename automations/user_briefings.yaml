@@ -152,26 +152,20 @@
 #
 #############################################################
 ##  Test Briefing
+##  See automations/sandbox.yaml
 #############################################################
-- id: test_briefing
-  alias: Test Briefing
-  initial_state: true
-  trigger:
-  - platform: state
-    entity_id: input_boolean.trigger_sandbox
-    to: 'on'
-  condition:
-  - condition: state
-    entity_id: input_boolean.enable_sandbox
-    state: 'on'
-  action:
-#  - delay: 0:00:10
+#- id: test_briefing
+#  alias: Test Briefing
+#  initial_state: true
+#  trigger:
+#  - platform: state
+#    entity_id: switch.momentary_sandbox_1
+#    to: 'on'
+#  condition:
+#  - condition: state
+#    entity_id: input_boolean.enable_sandbox
+#    state: 'on'
+#  action:
 #  - service: script.turn_on
-#    entity_id: script.daily_briefing_alert
-#  - delay: 0:00:05
-  - service: script.turn_on
-    entity_id: script.test_briefing_one
-  - delay: 0:00:02
-  - service: input_boolean.turn_off
-    entity_id: input_boolean.trigger_sandbox
+#    entity_id: script.test_briefing_one
 #

@@ -200,25 +200,25 @@
 # at a minimum brightness level. Turned off otherwise.
 #
 # https://github.com/frenck/home-assistant-config/blob/master/config/automations/areas/kitchen/ceiling_cupboard.yaml
-- id: kit_ucl_follows_nook_ucl_on_two
-  alias: Kitchen UCL follows Nook UCL On Two
-  trigger:
-    platform: state
-    entity_id: light.nook_uc_lights_116
-  action:
-    service_template: >-
-      {%
-        if (
-          is_state('light.nook_uc_lights_116', 'on')
-          and (state_attr('light.nook_uc_lights_116', 'brightness')|int) > 115
-        )
-      %}
-        switch.turn_on
-      {% else %}
-        switch.turn_off
-      {% endif %}
-    entity_id: light.kitchen_uc_lights_44
-
+#- id: kit_ucl_follows_nook_ucl_on_two
+#  alias: Kitchen UCL follows Nook UCL On Two
+#  trigger:
+#    platform: state
+#    entity_id: light.nook_uc_lights_116
+#  action:
+#    service_template: >-
+#      {%
+#        if (
+#          is_state('light.nook_uc_lights_116', 'on')
+#          and (state_attr('light.nook_uc_lights_116', 'brightness')|int) > 115
+#        )
+#      %}
+#        switch.turn_on
+#      {% else %}
+#        switch.turn_off
+#      {% endif %}
+#    entity_id: light.kitchen_uc_lights_44
+#
 #################################################################
 # Turn off Kitchen UCL's with Nook UCL
 #################################################################

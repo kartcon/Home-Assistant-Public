@@ -112,19 +112,6 @@ cards:
 # COL 3
     - type: vertical-stack
       cards:
-#
-#        - type: 'custom:light-with-profiles'
-#          title: Sun Room
-#          entities:
-#            - entity: light.sunroom_fan_204
-#              profiles:
-#                - name: bright
-#                  icon: 'mdi:brightness-5'
-#                - name: dimmed
-#                  icon: 'mdi:brightness-4'
-#                - name: nightlight
-#                  icon: 'mdi:brightness-3'
-#
         - type: entities
           title: Sun Room
           show_header_toggle: true
@@ -133,53 +120,19 @@ cards:
               entity: light.sunroom_lights_203
               name: Lights
               icon: mdi:ceiling-light
-            - type: custom:slider-entity-row
-#            - type: entity
-              entity: light.sunroom_fan_204
-              name: Fan
+            - entity: light.sunroom_fan_204
               icon: mdi:fan
-            - type: "custom:button-entity-row"
-              buttons:
-              - service: light.turn_on
-                service_data:
-                  entity_id: light.sunroom_fan_204
-                  brightness: 76
-                name: "L"
-                icon: mdi:alpha-l-box
-                style:
-#                  - color: white
-#                 icon_color: yellow
-              - service: light.turn_on
-                service_data:
-                  entity_id: light.sunroom_fan_204
-                  brightness: 166
-                name: "M"
-                icon: mdi:alpha-m-box
-#                 icon_color: blue
-              - service: light.turn_on
-                service_data:
-                  entity_id: light.sunroom_fan_204
-                  brightness: 255
-                name: "H"
-                icon: mdi:alpha-h-box
-#                 icon_color: red
-              - service: light.turn_on
-                service_data:
-                  entity_id: light.sunroom_fan_204
-                  brightness: 0
-                name: "Off"
-                icon: mdi:alpha-o-box
-#                 icon_color: grey
-#            - type: custom:fan-control-entity-row
-#              entity: light.sunroom_fan_204
-#              name: Fan
-#              icon: mdi:fan
-#              customTheme: false
-            - entity:  light.flux_led_strip
+            - type: custom:slider-entity-row
+              entity: light.sunroom_fan_204
+              name: Fan %
+              icon: mdi:fan
+            - entity: light.flux_led_strip
+              icon: mdi:led-strip-variant
             - type: custom:slider-entity-row
               entity:  light.flux_led_strip
-#              icon: mdi:led-strip
-              full_row: true
+              name: LED %
+              icon: mdi:led-strip-variant
+#              full_row: true
 #
         - type: entities
           title: Bonus Room

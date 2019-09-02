@@ -134,7 +134,7 @@
 #########################
 #  Weather.gov Alerts   #
 #########################
-- platform: weatheralerts
-  sameid: '012031'
-  friendly_name: "NWS Weather Alert"
+# See REST sensors for weather data
+#- platform: weatheralerts
+#  sameid: '012031'
 #

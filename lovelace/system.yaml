@@ -32,22 +32,25 @@ cards:
               icon: mdi:ip-network
             - entity: sensor.ipv4_address_en0
             - entity: sensor.ipv4_address_en1
-            - entity: sensor.speedtest_ping
-              icon: mdi:speedometer
-              secondary_info: last-changed
-            - entity: sensor.speedtest_upload
-              icon: mdi:package-up
-            - entity: sensor.speedtest_download
-              icon: mdi:package-down
             - entity: sensor.potential_breaking_changes
               icon: mdi:package-up
+#            - entity: sensor.speedtest_ping
+#              icon: mdi:speedometer
+#              secondary_info: last-changed
+#            - entity: sensor.speedtest_upload
+#              icon: mdi:package-up
+#            - entity: sensor.speedtest_download
+#              icon: mdi:package-down
 #
         - type: entities
           title: Sandbox
           show_header_toggle: false
           entities:
             - entity: input_boolean.enable_sandbox
-            - entity: input_boolean.trigger_sandbox
+            - entity: switch.momentary_sandbox_1
+            - entity: switch.momentary_sandbox_2
+            - entity: switch.momentary_sandbox_3
+#            - entity: input_boolean.trigger_sandbox
 #
 #
 #        - type: entities
@@ -68,8 +71,7 @@ cards:
               icon: mdi:clock-out
             - entity: sensor.last_boot
               icon: mdi:calendar-clock
-#            - entity: sensor.since_last_boot
-#              icon: mdi:clock-end
+            - entity: switch.momentary_unscheduled_restart
 #
         - type: entities
           title: Memory

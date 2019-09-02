@@ -36,10 +36,10 @@
   alias: 'Take out the trash'
   initial_state: true
   trigger:
-  - platform: homeassistant
-    event: start
   - platform: sun
     event: sunset
+#  - platform: homeassistant
+#    event: start
   condition:
     condition: time
     weekday:
@@ -88,8 +88,8 @@
   trigger:
   - platform: sun
     event: sunset
-  - platform: homeassistant
-    event: start
+#  - platform: homeassistant
+#    event: start
   condition:
     - condition: time
       weekday:
@@ -161,10 +161,10 @@
   alias: 'Change Furnace Filter'
   initial_state: true
   trigger:
-  - platform: homeassistant
-    event: start
   - platform: sun
     event: sunrise
+#  - platform: homeassistant
+#    event: start
   condition:
   - condition: time
     weekday:

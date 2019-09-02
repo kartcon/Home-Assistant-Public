@@ -159,3 +159,5 @@ sensor.external_ip:
   friendly_name: External IP address
 sensor.noaa_tides:
   icon: mdi:waves
+light.flux_led_strip:
+  friendly_name: LED Light strip

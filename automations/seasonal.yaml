@@ -3,90 +3,150 @@
 #################################################################
 #  Season is Spring
 #############################################################
-- id: season_is_spring
-  alias: Season is Spring
-  initial_state: true
-  trigger:
-  - platform: homeassistant
-    event: start
-  - platform: time
-    at: '01:00:00'
-  condition:
-  - condition: state
-    entity_id: sensor.season
-    state: 'spring'
-  action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.season_holiday
-        option: Spring
+#- id: season_is_spring
+#  alias: Season is Spring
+#  initial_state: true
+#  trigger:
+#  - platform: homeassistant
+#    event: start
+#  - platform: time
+#    at: '01:00:00'
+#  condition:
+#  - condition: state
+#    entity_id: sensor.season
+#    state: 'spring'
+#  action:
+#    - service: input_select.select_option
+#      data:
+#        entity_id: input_select.season_holiday
+#        option: Spring
 #
 #################################################################
 #  Season is Summer
 #############################################################
-- id: season_is_summer
-  alias: Season is Summer
-  initial_state: true
-  trigger:
-  - platform: homeassistant
-    event: start
-  - platform: time
-    at: '01:00:00'
-  condition:
-  - condition: state
-    entity_id: sensor.season
-    state: 'summer'
-  action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.season_holiday
-        option: Summer
+#- id: season_is_summer
+#  alias: Season is Summer
+#  initial_state: true
+#  trigger:
+#  - platform: homeassistant
+#    event: start
+#  - platform: time
+#    at: '01:00:00'
+#  condition:
+#  - condition: state
+#    entity_id: sensor.season
+#    state: 'summer'
+#  action:
+#    - service: input_select.select_option
+#      data:
+#        entity_id: input_select.season_holiday
+#        option: Summer
 #
 #################################################################
 #  Season is Autumn
 #############################################################
-- id: season_is_autumn
-  alias: Season is Autumn
-  initial_state: true
-  trigger:
-  - platform: homeassistant
-    event: start
-  - platform: time
-    at: '01:00:00'
-  condition:
-  - condition: state
-    entity_id: sensor.season
-    state: 'autumn'
-  action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.season_holiday
-        option: Autumn
+#- id: season_is_autumn
+#  alias: Season is Autumn
+#  initial_state: true
+#  trigger:
+#  - platform: homeassistant
+#    event: start
+#  - platform: time
+#    at: '01:00:00'
+#  condition:
+#  - condition: state
+#    entity_id: sensor.season
+#    state: 'autumn'
+#  action:
+#    - service: input_select.select_option
+#      data:
+#        entity_id: input_select.season_holiday
+#        option: Autumn
 #
 #############################################################
 #  Season is Winter
 #############################################################
-- id: season_is_winter
-  alias: Season is Winter
+#- id: season_is_winter
+#  alias: Season is Winter
+#  initial_state: true
+#  trigger:
+#  - platform: homeassistant
+#    event: start
+#  - platform: time
+#    at: '01:00:00'
+#  condition:
+#  - condition: state
+#    entity_id: sensor.season
+#    state: 'winter'
+#  action:
+#    - service: input_select.select_option
+#      data:
+#        entity_id: input_select.season_holiday
+#        option: Winter
+#
+#################################################################
+#  Select Current Season
+#############################################################
+- id: select_current_season
+  alias: Select Current Season
   initial_state: true
   trigger:
   - platform: homeassistant
     event: start
   - platform: time
     at: '01:00:00'
-  condition:
-  - condition: state
-    entity_id: sensor.season
-    state: 'winter'
   action:
     - service: input_select.select_option
+      data_template:
+        entity_id: input_select.season_holiday
+        option: >-
+          {% if is_state('sensor.season', 'spring')  %}
+            Spring
+          {% elif is_state('sensor.season', 'summer') %}
+            Summer
+          {% elif is_state('sensor.season', 'autumn') %}
+            Autumn
+          {% else %}
+            Winter
+          {% endif %}
+    - service: script.write_to_log
       data:
         entity_id: input_select.season_holiday
-        option: Winter
+        message: Automation - Set Season to {{ states.input_select.season_holiday.state }}
 #
 #################################################################
 # HOLIDAY AUTOMATIONS
 #################################################################
+#
+#################################################################
+# New Years Day (Jan 1)
+#################################################################
+- id: season_is_new_years_day
+  alias: Season is New Years Day
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: switch.momentary_unscheduled_restart
+    to: 'on'
+    for: '00:00:03'
+  - platform: time
+    at: '01:01:03'
+  condition:
+  - condition: template
+    value_template: '{{ ( now().month == 2 and now().day >= 7 ) and ( now().month == 2 and now().day <= 14 )}}'
+  action:
+  - service: input_boolean.turn_on
+    data:
+      entity_id:
+      - input_boolean.enable_new_years_lighting
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.season_holiday
+      option: New Years Day
+  - service: script.write_to_log
+    data:
+      entity_id: input_select.season_holiday
+      message: Automation - Select New Years Day
 #
 #################################################################
 # Valentines Day (Feb 7 - Feb 14)
@@ -95,10 +155,12 @@
   alias: Season is Valentines Day
   initial_state: true
   trigger:
-  - platform: homeassistant
-    event: start
+  - platform: state
+    entity_id: switch.momentary_unscheduled_restart
+    to: 'on'
+    for: '00:00:06'
   - platform: time
-    at: '01:01:00'
+    at: '01:01:06'
   condition:
   - condition: template
     value_template: '{{ ( now().month == 2 and now().day >= 7 ) and ( now().month == 2 and now().day <= 14 )}}'
@@ -111,6 +173,10 @@
     data:
       entity_id: input_select.season_holiday
       option: Valentines Day
+  - service: script.write_to_log
+    data:
+      entity_id: input_select.season_holiday
+      message: Automation - Select Valentines Day
 #
 #################################################################
 # St Pattys Day (Mar 10 - Mar 17)
@@ -119,20 +185,16 @@
   alias: Season is St Pattys Day
   initial_state: true
   trigger:
-  - platform: homeassistant
-    event: start
+  - platform: state
+    entity_id: switch.momentary_unscheduled_restart
+    to: 'on'
+    for: '00:00:09'
   - platform: time
-    at: '01:01:00'
+    at: '01:01:09'
   condition:
   - condition: template
     value_template: '{{ ( now().month == 3 and now().day >= 7 ) and ( now().month == 3 and now().day <= 17 )}}'
   action:
-#
-  - service: script.write_to_log
-    data:
-      entity_id: 'automation.season_is_st_pattys_day'
-      message: 'Automation triggered!'
-#
   - service: input_boolean.turn_on
     data:
       entity_id:
@@ -141,6 +203,10 @@
     data:
       entity_id: input_select.season_holiday
       option: St Pattys Day
+  - service: script.write_to_log
+    data:
+      entity_id: input_select.season_holiday
+      message: Automation - Select St Pattys Day
 #
 #################################################################
 # Easter    -- VARIABLE DATE
@@ -149,10 +215,12 @@
   alias: Season is Easter
   initial_state: true
   trigger:
-  - platform: homeassistant
-    event: start
+  - platform: state
+    entity_id: switch.momentary_unscheduled_restart
+    to: 'on'
+    for: '00:00:12'
   - platform: time
-    at: '01:01:00'
+    at: '01:01:12'
   condition:
     condition: or
     conditions:
@@ -175,6 +243,10 @@
     data:
       entity_id: input_select.season_holiday
       option: Easter
+  - service: script.write_to_log
+    data:
+      entity_id: input_select.season_holiday
+      message: Automation - Select Easter
 # 2019 Sunday	April 21, 2019
 # 2020 Sunday	April 12, 2020
 # 2021 Sunday	April 4, 2021
@@ -195,10 +267,12 @@
   alias: Season is Memorial Day
   initial_state: true
   trigger:
-  - platform: homeassistant
-    event: start
+  - platform: state
+    entity_id: switch.momentary_unscheduled_restart
+    to: 'on'
+    for: '00:00:15'
   - platform: time
-    at: '01:01:00'
+    at: '01:01:15'
   condition:
     condition: or
     conditions:
@@ -221,6 +295,10 @@
     data:
       entity_id: input_select.season_holiday
       option: Memorial Day
+  - service: script.write_to_log
+    data:
+      entity_id: input_select.season_holiday
+      message: Automation - Select Memorial Day
 #2019 May 27
 #2020 May 25
 #2021 May 31
@@ -236,10 +314,12 @@
   alias: Season is Flag Day
   initial_state: true
   trigger:
-  - platform: homeassistant
-    event: start
+  - platform: state
+    entity_id: switch.momentary_unscheduled_restart
+    to: 'on'
+    for: '00:00:18'
   - platform: time
-    at: '01:01:00'
+    at: '01:01:18'
   condition:
   - condition: template
     value_template: '{{ ( now().month == 6 and now().day == 14 ) }}'
@@ -253,6 +333,10 @@
     data:
       entity_id: input_select.season_holiday
       option: Flag Day
+  - service: script.write_to_log
+    data:
+      entity_id: input_select.season_holiday
+      message: Automation - Select Flag Day
 #
 #################################################################
 # July 4th (Jul 2 - July 6)
@@ -261,10 +345,12 @@
   alias: Season is Independence Day
   initial_state: true
   trigger:
-  - platform: homeassistant
-    event: start
+  - platform: state
+    entity_id: switch.momentary_unscheduled_restart
+    to: 'on'
+    for: '00:00:21'
   - platform: time
-    at: '01:01:00'
+    at: '01:01:21'
   condition:
   - condition: template
     value_template: '{{ ( now().month == 7 and now().day >= 2 ) and ( now().month == 7 and now().day <= 6 ) }}'
@@ -276,7 +362,11 @@
   - service: input_select.select_option
     data:
       entity_id: input_select.season_holiday
-      option: July 4th
+      option: Independence Day
+  - service: script.write_to_log
+    data:
+      entity_id: input_select.season_holiday
+      message: Automation - Select Independence Day
 #
 #################################################################
 # Labor Day (3 day weekend)
@@ -286,10 +376,12 @@
   alias: Season is Labor Day
   initial_state: true
   trigger:
-  - platform: homeassistant
-    event: start
+  - platform: state
+    entity_id: switch.momentary_unscheduled_restart
+    to: 'on'
+    for: '00:00:24'
   - platform: time
-    at: '01:01:00'
+    at: '01:01:24'
   condition:
     condition: or
     conditions:
@@ -312,6 +404,10 @@
     data:
       entity_id: input_select.season_holiday
       option: Labor Day
+  - service: script.write_to_log
+    data:
+      entity_id: input_select.season_holiday
+      message: Automation - Select Labor Day
 #2019 September 2
 #2020 September 7
 #2021 September 6
@@ -327,10 +423,12 @@
   alias: Season is Breast Cancer
   initial_state: true
   trigger:
-  - platform: homeassistant
-    event: start
+  - platform: state
+    entity_id: switch.momentary_unscheduled_restart
+    to: 'on'
+    for: '00:00:27'
   - platform: time
-    at: '01:01:00'
+    at: '01:01:27'
   condition:
   - condition: template
     value_template: '{{ ( now().month == 10 and now().day >= 1 ) and ( now().month == 10 and now().day <= 9 ) }}'
@@ -343,6 +441,10 @@
     data:
       entity_id: input_select.season_holiday
       option: Breast Cancer
+  - service: script.write_to_log
+    data:
+      entity_id: input_select.season_holiday
+      message: Automation - Select Breast Cancer Day
 #
 #################################################################
 # Halloween Season (Oct 10 - Nov 3)
@@ -351,10 +453,12 @@
   alias: Season is Halloween
   initial_state: true
   trigger:
-  - platform: homeassistant
-    event: start
+  - platform: state
+    entity_id: switch.momentary_unscheduled_restart
+    to: 'on'
+    for: '00:00:30'
   - platform: time
-    at: '01:01:00'
+    at: '01:01:30'
   condition:
   - condition: template
     value_template: '{{ ( now().month == 10 and now().day >= 10 ) and ( now().month == 11 and now().day <= 3 ) }}'
@@ -367,6 +471,10 @@
     data:
       entity_id: input_select.season_holiday
       option: Halloween
+  - service: script.write_to_log
+    data:
+      entity_id: input_select.season_holiday
+      message: Automation - Select Halloween
 #
 ##################################################################
 # Thanksgiving Season (Nov 4 - Nov 30)
@@ -375,10 +483,12 @@
   alias: Season is Thanksgiving
   initial_state: true
   trigger:
-  - platform: homeassistant
-    event: start
+  - platform: state
+    entity_id: switch.momentary_unscheduled_restart
+    to: 'on'
+    for: '00:00:33'
   - platform: time
-    at: '01:01:00'
+    at: '01:01:33'
   condition:
   - condition: template
     value_template: '{{ ( now().month == 11 and now().day >= 4 ) and ( now().month == 11 and now().day <= 30 ) }}'
@@ -391,6 +501,10 @@
     data:
       entity_id: input_select.season_holiday
       option: Thanksgiving
+  - service: script.write_to_log
+    data:
+      entity_id: input_select.season_holiday
+      message: Automation - Select Thanksgiving
 #
 ##################################################################
 # Christmas Season (Dec 1 - Jan 7)
@@ -399,10 +513,12 @@
   alias: Season is Christmas
   initial_state: true
   trigger:
-  - platform: homeassistant
-    event: start
+  - platform: state
+    entity_id: switch.momentary_unscheduled_restart
+    to: 'on'
+    for: '00:00:36'
   - platform: time
-    at: '01:01:00'
+    at: '01:01:36'
   condition:
   - condition: template
     value_template: '{{ ( now().month == 12 and now().day >= 1 ) and ( now().month == 1 and now().day <= 7 ) }}'
@@ -415,4 +531,8 @@
     data:
       entity_id: input_select.season_holiday
       option: Christmas
+  - service: script.write_to_log
+    data:
+      entity_id: input_select.season_holiday
+      message: Automation - Select Christmas
 #

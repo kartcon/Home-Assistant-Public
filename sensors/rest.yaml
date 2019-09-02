@@ -2,6 +2,8 @@
 #    REST Sensors       #
 #########################
 #  *******************************************************************************
+#  Get event data for Birthday/Holiday schedule from GitHub repository
+#  *******************************************************************************
 - platform: rest
   resource: https://raw.githubusercontent.com/kartcon/Home-Assistant-Public/master/json_files/holidays.json
   name: todays_events
@@ -16,6 +18,8 @@
     {{ holiday }}
 #
 #  *******************************************************************************
+#  Get event data for Bird Weight schedule from GitHub repository
+#  *******************************************************************************
 - platform: rest
   resource: https://raw.githubusercontent.com/kartcon/Home-Assistant-Public/master/json_files/weigh_birds.json
   name: weigh_birds
@@ -28,9 +32,10 @@
 #  *******************************************************************************
 #  US Weather Service Emergency Data
 #  https://community.home-assistant.io/t/severe-weather-alerts-from-the-us-national-weather-service/71853
+#  *******************************************************************************
 - platform: rest
-  resource: https://api.weather.gov/alerts/active?zone=FLZ125,FLC031
-  name: NWS Alert Events
+  resource: https://api.weather.gov/alerts/active?zone=FLZ125
+  name: NWS Alert Event
   value_template: >
     {% if value_json.features[0] is defined %}
       {{ value_json['features'][0]['properties'].event }}
@@ -42,18 +47,17 @@
   headers:
     User-Agent: Homeassistant
     Accept: application/geo+json
-  scan_interval: 300
+  scan_interval: 60
 #
 #  *******************************************************************************
 #  US Weather Service Emergency Data
 #  https://community.home-assistant.io/t/severe-weather-alerts-from-the-us-national-weather-service/71853
+#  *******************************************************************************
 - platform: rest
   resource: https://api.weather.gov/alerts/active/count
   name: NWS Alert Count
   value_template: >
     {% if value_json.zones.FLZ125 is defined %}
-      {{ value_json.zones.ORZ604 }}
-    {% elif value_json.zones.ORC039 is defined %}
       {{ value_json.zones.FLZ125 }}
     {% else %}
       0
@@ -61,9 +65,10 @@
   headers:
     User-Agent: Homeassistant
     Accept: application/ld+json
-  scan_interval: 300
-#
+  scan_interval: 60
 #  *******************************************************************************
 #  See also: sensors/environmental.yaml - Weather.gov Alerts
 #  *******************************************************************************
+#    {% elif value_json.zones.FLC031 is defined %}
+#      {{ value_json.zones.FLC031 }}
 #

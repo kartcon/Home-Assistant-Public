@@ -1,26 +1,58 @@
 #################################################################
-# Write to Log via Script
+# Execute an Automation via the Sandbox
 #################################################################
-#- id: test1
-#  alias: Test1
-#    initial_state: true
-#  trigger:
-#  - platform: state
-#    entity_id: input_boolean.trigger_sandbox
-#    to: 'on'
-#  condition:
-#  - condition: state
-#    entity_id: input_boolean.enable_sandbox
-#    state: 'on'
-#  action:
-#  - service: script.write_to_log
-#    data:
-#      entity_id: script.write_to_log
-#      message: 'Automation triggered'
-# below line is required for testing purposes
-#  - delay: 0:00:02
-#  - service: input_boolean.turn_off
-#    entity_id: input_boolean.trigger_sandbox
+- id: sandbox_test_1
+  alias: Sandbox Test 1
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: switch.momentary_sandbox_1
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: input_boolean.enable_sandbox
+    state: 'on'
+  action:
+  - service: script.turn_on
+    entity_id: script.test_briefing_one
+#
+#################################################################
+# Execute an Automation via the Sandbox
+#################################################################
+- id: sandbox_test_2
+  alias: Sandbox Test 2
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: switch.momentary_sandbox_2
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: input_boolean.enable_sandbox
+    state: 'on'
+  action:
+  - service: rest_command.ask_alexa
+    data:
+      message: "Set a 10 minute timer in the office"
+#
+#################################################################
+# Execute an Automation via the Sandbox
+#################################################################
+- id: sandbox_test_3
+  alias: Sandbox Test 3
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: switch.momentary_sandbox_3
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: input_boolean.enable_sandbox
+    state: 'on'
+  action:
+  - service: rest_command.ask_alexa
+    data:
+      message: "Play my wake up playlist in the bedroom"
 #
 #################################################################
 # Write to Log via Automation Test
@@ -60,7 +92,7 @@
 #  initial_state: true
 #  trigger:
 #  - platform: state
-#    entity_id: input_boolean.trigger_sandbox
+#    entity_id: switch.momentary_sandbox_run
 #    to: 'on'
 #  condition:
 #  - condition: state
@@ -110,8 +142,7 @@
 #      title: "I just wanted to say"
 #      message: "Hello World"
 # ----------------------------------
-#  - delay: 0:00:02
-#  - service: input_boolean.turn_off
-#    entity_id: input_boolean.trigger_sandbox
-#
+##  - delay: 0:00:02
+##  - service: input_boolean.turn_off
+##    entity_id: input_boolean.trigger_sandbox
 #

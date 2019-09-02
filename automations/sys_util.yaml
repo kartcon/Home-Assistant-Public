@@ -13,12 +13,40 @@
   trigger:
     platform: homeassistant
     event: start
+  condition:
+  - condition: time
+    after: '00:00:00'
+    before: '01:00:00'
   action:
   - service: persistent_notification.create
     data_template:
       message: >-
         At {{now().strftime("%m/%d/%Y %H:%M:%S")}} Home Assistant has started.
       title: "HomeAssistant Startup"
+#
+#############################################################
+#   Home Assistant Unscheduled Restart
+#############################################################
+#
+- id: home_assistant_unscheduled_restart
+  alias: Home Assistant Startup
+  initial_state: true
+  hide_entity: true
+  trigger:
+    platform: homeassistant
+    event: start
+  condition:
+  - condition: time
+    after: '01:00:00'
+    before: '23:59:50'
+  action:
+  - service: input_boolean.turn_on
+    entity_id: switch.momentary_unscheduled_restart
+  - service: persistent_notification.create
+    data_template:
+      message: >-
+        At {{now().strftime("%m/%d/%Y %H:%M:%S")}} Home Assistant has restarted.
+      title: "HomeAssistant Restarted"
   - service: notify.lg_tv
     data:
       title: "HomeAssistant Startup"
@@ -31,8 +59,8 @@
     before: '23:30:00'
   - service: notify.ios_group_art_only
     data:
-      title: "HomeAssistant Startup"
-      message: "Home Assistant has started."
+      title: "HomeAssistant Restarted"
+      message: "Home Assistant has restarted."
 #
 #############################################################
 #   MONITOR DOWNLOAD SPEED

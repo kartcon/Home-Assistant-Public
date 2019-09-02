@@ -127,6 +127,11 @@
 ##############################################################
 # Seasonal Toggles
 ##############################################################
+  enable_new_years_lighting:
+    name: New Years Day Lighting
+    initial: off
+    icon: mdi:calendar-star
+
   enable_valentine_lighting:
     name: Valentines Day Lighting
     initial: off

@@ -1,0 +1,85 @@
+#################################################################
+## LIGHTING SCENES
+#################################################################
+#
+#################################################################
+# SCENE: Inside Lights On More Gloomy
+# Called from [its_gloomy_outside]
+# In file: [scripts/weather_scripts.yaml]
+#################################################################
+- name: inside_lights_on_more_gloomy
+  entities:
+    light.china_cabinet_25:
+      state: 'on'
+      brightness: 51
+    light.entertainment_center_26:
+      state: 'on'
+    light.lr_can_lights_62:
+      state: 'on'
+      brightness: 230
+    light.office_light_223:
+      state: 'on'
+      brightness: 153
+    light.office_desk_lamp_27:
+      state: 'on'
+    light.sunroom_lights_203:
+      state: 'on'
+      brightness: 153
+    light.bird_room_1_light_52:
+      state: 'on'
+      brightness: 51
+    light.bird_room_2_light_53:
+      state: 'on'
+      brightness: 51
+#
+#################################################################
+# SCENE: Inside Lights Off Less Gloomy
+# Called from [its_brighter_outside]
+# In file: [scripts/weather_scripts.yaml]
+#################################################################
+- name: inside_lights_off_less_gloomy
+  entities:
+    light.china_cabinet_25:
+      state: 'off'
+    light.entertainment_center_26:
+      state: 'off'
+    light.lr_can_lights_62:
+      state: 'off'
+    light.office_light_223:
+      state: 'off'
+    light.office_desk_lamp_27:
+      state: 'off'
+    light.sunroom_lights_203:
+      state: 'off'
+    light.bird_room_1_light_52:
+      state: 'off'
+    light.bird_room_2_light_53:
+      state: 'off'
+
+#- name: Romantic
+#  entities:
+#    light.tv_back_light: true
+#    light.ceiling:
+#      state: true
+#      xy_color: [0.33, 0.66]
+#      brightness: 200
+#- name: Movies
+#  entities:
+#    light.tv_back_light:
+#      state: true
+#      brightness: 100
+#    light.ceiling: false
+#    media_player.sony_bravia_tv:
+#      source: HDMI 1
+#- name: month_standard_colors
+#  entities:
+#    group.outdoor_front_lights:
+#      state: 'on'
+#      color_name: 'Gold'
+#- name: front_full_brightness
+#  entities:
+#    group.outdoor_front_lights:
+#      state: 'on'
+#      color_name: 'White'
+#      brightness: 250
+#

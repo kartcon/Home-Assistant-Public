@@ -1,0 +1,38 @@
+##############################################################
+##   SWITCH Component                                       ##
+##############################################################
+#
+##############################################################
+# The wake_on_lan component enables the ability to send magic
+# packets to Wake on LAN capable devices, to turn them on.
+##############################################################
+- platform: wake_on_lan
+  mac_address: "EC-F4-51-97-E8-DD"
+  name: sun_room_lg_tv
+#
+##############################################################
+# Momentary Switch Component for Home Assistant
+# A simple switch component that once turned on will turn itself off.
+# https://github.com/twrecked/hass-momentary
+##############################################################
+- platform: momentary
+  name: Sandbox 1
+  on_for: 2
+  allow_off: False
+#  ---------------
+- platform: momentary
+  name: Sandbox 2
+  on_for: 2
+  allow_off: False
+#  ---------------
+- platform: momentary
+  name: Sandbox 3
+  on_for: 2
+  allow_off: False
+#  ---------------
+- platform: momentary
+  name: Unscheduled Restart
+  on_for: 300
+  allow_off: True
+#  ---------------
+#

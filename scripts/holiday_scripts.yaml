@@ -12,6 +12,8 @@ reset_holiday_booleans:
   alias: Reset Holiday Booleans
   sequence:
   - service: input_boolean.turn_off
+    entity_id: input_boolean.enable_new_years_lighting
+  - service: input_boolean.turn_off
     entity_id: input_boolean.enable_valentine_lighting
   - service: input_boolean.turn_off
     entity_id: input_boolean.enable_pattys_lighting
@@ -33,6 +35,56 @@ reset_holiday_booleans:
     entity_id: input_boolean.enable_thanksgiving_lighting
   - service: input_boolean.turn_off
     entity_id: input_boolean.enable_christmas_lighting
+#
+#################################################################
+# SCRIPT: New Years Day
+# Called from [id: season_is_new_years_day]
+# In file: [automations/lights_holiday.yaml]
+#################################################################
+new_years_day_script:
+  alias: New Years Day Script
+  sequence:
+  - service: light.turn_on
+    data:
+      entity_id: light.flux_led_strip
+      brightness: 30
+      rgb_color: [255,0,250]
+      # Red/Green cross fade
+  - service: light.turn_on
+    data:
+      entity_id: light.front_porch
+      brightness: 128
+      rgb_color: [83,255,126]
+  - service: light.turn_on
+    data:
+      entity_id: light.tv_left
+      brightness: 69
+      rgb_color: [255,218,245]
+      # lavender
+  - service: light.turn_on
+    data:
+      entity_id: light.tv_right
+      brightness: 69
+      rgb_color: [255,218,245]
+      # lavender
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_east
+      brightness: 93
+      rgb_color: [254,145,255]
+      # pink
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_center
+      brightness: 128
+      rgb_color: [255,0,253]
+      # pink
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_west
+      brightness: 93
+      rgb_color: [254,145,255]
+      # pink
 #
 #################################################################
 # SCRIPT: Valentines Day
