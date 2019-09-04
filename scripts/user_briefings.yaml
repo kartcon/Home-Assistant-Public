@@ -71,8 +71,8 @@ art_briefing_one:
         {% endif %}
         miles per hour.
         {# NWS Warnings #}
-          {% if states.sensor.weatheralerts.state != '' %}
-            The National Weather Service has issued a {{states.sensor.weatheralerts.state}} for today.
+          {% if states.sensor.nws_alert_event.state != '' %}
+            The National Weather Service has issued a {{states.sensor.nws_alert_event.state}} for today.
           {% endif %}
         {# Sunrise/Sunset #}
         Sunrise
@@ -98,10 +98,13 @@ art_briefing_one:
         {% if states.sensor.date.state == states.input_datetime.recycle_pickup_date.state %}
         Today is Monday. The recycling bin needs to be out to the road.
         {% endif %}
+        {# Holiday Lighting #}
+        {% if (states.sensor.season.state != (states.input_select.season_holiday.state)|lower()) %}
+        Remember to look for the {{ states.input_select.season_holiday.state }} lighting theme later tonight.
+        {% endif %}
         {# Closing #}
         Have a{{ [" pleasant", " great", " good", " cheerful", " delightful", "n enjoyable", " super", " wonderful", " satisfying"] | random }} day!
-#sensor.next_sunrise
-#sensor.next_sunset
+#
 #################################################################
 # Steff Briefing One
 # Called from [steff_weekday_briefing]
@@ -153,8 +156,8 @@ steff_briefing_one:
         {% endif %}
         miles per hour.
         {# NWS Warnings #}
-          {% if states.sensor.weatheralerts.state != '' %}
-            The National Weather Service has issued a {{states.sensor.weatheralerts.state}} for today.
+          {% if states.sensor.nws_alert_event.state != '' %}
+            The National Weather Service has issued a {{states.sensor.nws_alert_event.state}} for today.
           {% endif %}
         {# Sunrise/Sunset #}
         Sunrise
@@ -173,14 +176,15 @@ steff_briefing_one:
         {# Tides #}
         The next {{states.sensor.noaa_tides.state|replace('at','is at')}}.
         {# Arts Location #}
+        {% if states('device_tracker.art_ot1') != 'home' %}
         Art is
-        {% if states('device_tracker.art_ot1') == 'home' %} at home.
-        {% elif states('device_tracker.art_ot1') == 'Shands' %} currently at Shands Hospital.
-        {% elif states('device_tracker.art_ot1') == 'Baptist' %} currently at Baptist Hospital.
-        {% elif states('device_tracker.art_ot1') == 'Memorial' %} currently at Memorial Hospital.
-        {% elif states('device_tracker.art_ot1') == 'St Vincents' %} currently at St Vincents Hospital.
-        {% else %}
-          away from home.
+          {% if states('device_tracker.art_ot1') == 'Shands' %} currently at Shands Hospital.
+          {% elif states('device_tracker.art_ot1') == 'Baptist' %} currently at Baptist Hospital.
+          {% elif states('device_tracker.art_ot1') == 'Memorial' %} currently at Memorial Hospital.
+          {% elif states('device_tracker.art_ot1') == 'St Vincents' %} currently at St Vincents Hospital.
+          {% else %}
+            away from home.
+          {% endif %}
         {% endif %}
         {# Trash Day #}
         {% if states.sensor.dayoftheweek.state == 'Thursday' %}
@@ -189,6 +193,10 @@ steff_briefing_one:
         {# Recycling Day #}
         {% if states.sensor.date.state == states.input_datetime.recycle_pickup_date.state %}
         Today is Monday. The recycling bin needs to be out to the road.
+        {% endif %}
+        {# Holiday Lighting #}
+        {% if (states.sensor.season.state != (states.input_select.season_holiday.state)|lower()) %}
+        Remember to look for the {{ states.input_select.season_holiday.state }} lighting theme later tonight.
         {% endif %}
         {# Closing #}
         Have a{{ [' pleasant', ' amiable', ' happy', ' cheerful', ' delightful', 'n enjoyable', ' lovely', ' pleasing', ' good'] | random }} day!
@@ -244,8 +252,8 @@ test_briefing_one:
         {% endif %}
         miles per hour.
         {# NWS Warnings #}
-          {% if states.sensor.weatheralerts.state != '' %}
-            The National Weather Service has issued a {{states.sensor.weatheralerts.state}} for today.
+          {% if states.sensor.nws_alert_event.state != '' %}
+            The National Weather Service has issued a {{states.sensor.nws_alert_event.state}} for today.
           {% endif %}
         {# Sunrise/Sunset #}
         Sunrise
@@ -273,6 +281,10 @@ test_briefing_one:
         {% if states.sensor.date.state == states.input_datetime.recycle_pickup_date.state %}
         Today is Monday. The recycling bin needs to be out to the road.
         {% endif %}
+        {# Holiday Lighting #}
+        {% if (states.sensor.season.state != (states.input_select.season_holiday.state)|lower()) %}
+        Remember to look for the {{ states.input_select.season_holiday.state }} lighting theme later tonight.
+        {% endif %}
         {# Closing #}
         Have a{{ [" pleasant", " great", " good", " cheerful", " delightful", "n enjoyable", " super", " wonderful", " satisfying"] | random }} day!
 #
@@ -298,3 +310,5 @@ test_briefing_two:
 # sensor.weatheralerts                     text
 # sensor.weigh_birds                       true/False
 # sensor.payday                            true/false
+# input_select.season_holiday              season or holiday name
+# sensor.season                            one of the 4 seasons

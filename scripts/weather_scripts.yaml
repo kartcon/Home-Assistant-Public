@@ -4,48 +4,100 @@
 #
 #################################################################
 # Its Raining
-# Called from [its_raining] 
+# Called from [its_raining]
 # In file: [/automations/weather.yaml]
 #################################################################
 its_raining:
   alias: Its Raining
   sequence:
-  - service: script.turn_on
-    entity_id: script.close_garage_door1
-  - service: script.turn_on
-    entity_id: script.close_garage_door2
   - service: persistent_notification.create
     data_template:
       message: >-
         At {{now().strftime("%m/%d/%Y %H:%M")}} its raining.
-      title: PWS Weather Notification
+      title: Weather Notification
   - condition: state
     entity_id: input_boolean.enable_weather_alerts
     state: 'on'
   - service: notify.ios_group_art_steff
     data:
       message: "At {{now().strftime('%m/%d/%Y %H:%M')}} its raining."
-      title: PWS Weather Notification
+      title: Weather Notification
+#
+#  - service: script.turn_on
+#    data_template:
+#      entity_id: >-
+#        {% if is_state('input_boolean.close_garage_doors_in_rain' , 'on') %}
+#          script.close_garage_door1
+#        {% endif %}
+#  - service: script.turn_on
+#    data_template:
+#      entity_id: >-
+#        {% if is_state('input_boolean.close_garage_doors_in_rain' , 'on') %}
+#          script.close_garage_door2
+#        {% endif %}
+#  - service: script.turn_on
+#    data_template:
+#      entity_id: >-
+#        {% if is_state('input_boolean.close_garage_doors_in_rain' , 'on') %}
+#          script.morning
+#        {% elif is_state("input_select.mode", "Day") %}
+#          script.day
+#        {% elif is_state("input_select.mode", "Evening") %}
+#          script.evening
+#        {% elif is_state("input_select.mode", "Night") %}
+#          script.night
+#        {% endif %}
 #
 #################################################################
-# Its Gloomy Raining
-# Called from [its_gloomy] 
+# Its Gloomy Outside
+# Called from [its_more_gloomy]
 # In file: [/automations/weather.yaml]
 #################################################################
-its_gloomy_raining:
-  alias: Its Gloomy Raining
+its_gloomy_outside:
+  alias: Its Gloomy Outside
   sequence:
-  - service: script.turn_on
-    entity_id: script.inside_lights_on_before_sunset
+  - service: scene.turn_on
+    entity_id: scene.inside_lights_on_more_gloomy
+#  - service: script.turn_on
+#    entity_id: script.inside_lights_on_before_sunset
   - service: persistent_notification.create
     data_template:
       message: >-
         At {{now().strftime("%m/%d/%Y %H:%M")}} its rainy and gloomy.
-      title: PWS Weather Notification
-  - service: script.sonos_say
-    data:
-      sonos_entity: media_player.sunroom_sonos
-      volume: 0.4
+      title: Weather Notification
+  - service: notify.alexa_media
+    data_template:
+      target: group.all_echo_dots
+      data:
+        type: tts
       message: "Its raining and gloomy outside so I've turned the lights on to brighten things up."
-      delay: '00:00:05'
+#  - service: script.sonos_say
+#    data:
+#      sonos_entity: media_player.sunroom_sonos
+#      volume: 0.4
+#      message: "Its raining and gloomy outside so I've turned the lights on to brighten things up."
+#      delay: '00:00:05'
 #
+#################################################################
+# Its Brighter Outside
+# Called from [its_less_gloomy]
+# In file: [/automations/weather.yaml]
+#################################################################
+its_brighter_outside:
+  alias: Its Brighter Outside
+  sequence:
+  - service: scene.turn_on
+    entity_id: scene.inside_lights_off_less_gloomy
+#  - service: script.turn_on
+#    entity_id: script.inside_lights_on_before_sunset
+  - service: persistent_notification.create
+    data_template:
+      message: >-
+        At {{now().strftime("%m/%d/%Y %H:%M")}} its rainy and gloomy.
+      title: Weather Notification
+  - service: notify.alexa_media
+    data_template:
+      target: group.all_echo_dots
+      data:
+        type: tts
+      message: "Its brightened up outside so I've turned the lights off."

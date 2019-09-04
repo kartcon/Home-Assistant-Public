@@ -14,7 +14,7 @@ cards:
     - type: vertical-stack
       cards:
         - type: picture-entity
-          entity:  camera.reflectivity_radar
+          entity: camera.reflectivity_radar
           aspect_ratio: 90%
           show_name: false
           show_state: false
@@ -23,7 +23,16 @@ cards:
 #            navigation_path: https://www.wunderground.com/weather-radar/united-states-regional/fl/saint-petersburg
 #
         - type: picture-entity
-          entity:  camera.atlantic_basin
+          entity: camera.atlantic_basin
+          aspect_ratio: 90%
+          show_name: false
+          show_state: false
+#          tap_action:
+#            action: navigate
+#            navigation_path: https://www.accuweather.com/en/us/florida/weather-radar
+#
+        - type: picture-entity
+          entity: camera.hurricane_cone
           aspect_ratio: 90%
           show_name: false
           show_state: false
@@ -35,7 +44,7 @@ cards:
     - type: vertical-stack
       cards:
         - type: picture-entity
-          entity:  camera.regional_radar
+          entity: camera.regional_radar
           aspect_ratio: 90%
           show_name: false
           show_state: false
@@ -44,7 +53,16 @@ cards:
 #            navigation_path: https://www.wunderground.com/weather-radar/united-states/fl/jacksonville/jax/?region=pie
 #
         - type: picture-entity
-          entity:  camera.nws_radar_mosaic
+          entity: camera.nws_radar_mosaic
+          aspect_ratio: 90%
+          show_name: false
+          show_state: false
+#          tap_action:
+#            action: navigate
+#            navigation_path: https://radar.weather.gov/Conus/southeast.php
+#
+        - type: picture-entity
+          entity: camera.national_map
           aspect_ratio: 90%
           show_name: false
           show_state: false

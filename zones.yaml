@@ -8,7 +8,7 @@
 - name: Front Gate
   latitude: 30.459045
   longitude: -81.531359
-  radius: 200
+  radius: 150
   icon: mdi:boom-gate
 #
 - name: Shands Jax
@@ -25,8 +25,8 @@
 #
 - name: Baptist
   latitude: 30.3158
-  longitude: -81.6649
-  radius: 100
+  longitude: -81.6638
+  radius: 150
   icon: mdi:hospital
 #
 - name: Memorial

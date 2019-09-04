@@ -3,6 +3,65 @@
 #############################################################
 #
 ############################
+#    Air Quality Sensor    #
+############################
+# https://www.home-assistant.io/components/airvisual/
+- platform: airvisual
+  api_key: !secret airvisual_api_key
+  monitored_conditions:
+    - us
+  show_on_map: false
+  scan_interval: 1800
+  latitude: 30.4758
+  longitude: 81.5869
+#  city: Jacksonville
+#  state: Florida
+#  country: USA
+# ?lat=30.4758&lng=-81.5869&zoomLevel=10
+#
+############################
+#    Pollutant Types       #
+############################
+- platform: template
+  sensors:
+    pollutant_type:
+      value_template: >-
+        {% if is_state('sensor.us_main_pollutant', 'PM2.5') %}
+          Fine Particulate Matter
+        {% elif  is_state('sensor.us_main_pollutant', 'PM10') %}
+          Particulate Matter
+        {% elif  is_state('sensor.us_main_pollutant', 'O') %}
+          Ozone Pollution
+        {% elif  is_state('sensor.us_main_pollutant', 'SO2') %}
+          Sulfur Dioxide
+        {% elif  is_state('sensor.us_main_pollutant', 'CO') %}
+          Carbon Monoxide
+        {% else %}
+          Unknown
+        {% endif %}
+      icon_template: >-
+        {% if is_state('sensor.us_main_pollutant', 'PM2.5') %}
+          mdi:scatter-plot
+        {% elif  is_state('sensor.us_main_pollutant', 'PM10') %}
+          mdi:scatter-plot-outline
+        {% elif  is_state('sensor.us_main_pollutant', 'O') %}
+          mdi:atom-variant
+        {% elif  is_state('sensor.us_main_pollutant', 'SO2') %}
+          mdi:radioactive
+        {% elif  is_state('sensor.us_main_pollutant', 'CO') %}
+          mdi:rhombus-split
+        {% else %}
+          mdi:chemical-weapon
+        {% endif %}
+      friendly_name: "Pollutant Type"
+#
+# Particulate (<= 2.5 μm)   PM2.5   Fine Particulate Matter
+# Particulate (<= 10 μm)    PM10    Particulate Matter
+# Ozone                     O       Ozone Pollution
+# Sulpher Dioxide           SO2     Sulfur Dioxide (SO2)
+# Carbon Monoxide           CO      Carbon Monoxide (CO)
+#
+############################
 #     Bayesian Rain        #
 ############################
 - platform: template

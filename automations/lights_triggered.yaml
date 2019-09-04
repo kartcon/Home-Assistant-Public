@@ -177,70 +177,6 @@
 #      delay: '00:00:05'
 #
 #################################################################
-# Turn on Kitchen UCL's with Nook UCL
-#################################################################
-- id: kit_ucl_follows_nook_ucl_on
-  alias: Kitchen UCL follows Nook UCL On
-  initial_state: true
-  trigger:
-  - platform: state
-    entity_id: light.nook_uc_lights_116
-    from: 'off'
-    to: 'on'
-  condition: []
-  action:
-  - service: light.turn_on
-    data:
-      entity_id: light.kitchen_uc_lights_44
-#
-# This automation turns on/off the cupboard lights based
-# on the state of the kitchen ceiling light.
-#
-# It is turned on if the kitchen ceiling light is on and
-# at a minimum brightness level. Turned off otherwise.
-#
-# https://github.com/frenck/home-assistant-config/blob/master/config/automations/areas/kitchen/ceiling_cupboard.yaml
-#- id: kit_ucl_follows_nook_ucl_on_two
-#  alias: Kitchen UCL follows Nook UCL On Two
-#  trigger:
-#    platform: state
-#    entity_id: light.nook_uc_lights_116
-#  action:
-#    service_template: >-
-#      {%
-#        if (
-#          is_state('light.nook_uc_lights_116', 'on')
-#          and (state_attr('light.nook_uc_lights_116', 'brightness')|int) > 115
-#        )
-#      %}
-#        switch.turn_on
-#      {% else %}
-#        switch.turn_off
-#      {% endif %}
-#    entity_id: light.kitchen_uc_lights_44
-#
-#################################################################
-# Turn off Kitchen UCL's with Nook UCL
-#################################################################
-- id: kit_ucl_follows_nook_ucl_off
-  alias: Kitchen UCL follows Nook UCL Off
-  initial_state: true
-  trigger:
-  - platform: state
-    entity_id: light.nook_uc_lights_116
-    from: 'on'
-    to: 'off'
-#  - platform: numeric_state
-#    entity_id: light.nook_uc_lights_116
-#    value_template: "{{ states.light.nook_uc_lights_116.attributes.brightness }}"
-#    below: 60
-  condition: []
-  action:
-  - service: light.turn_off
-    data:
-      entity_id: light.kitchen_uc_lights_44
-#
-#################################################################
 # Turn on UCL's with Motion between 11p and 6a
 #################################################################
 - id: kit_ucls_on_after_2300
@@ -263,8 +199,7 @@
     data:
       entity_id: light.nook_uc_lights_116
       brightness: 127
-  - delay:
-      minutes: 2
+  - delay: '00:02:00'
   - service: light.turn_off
     data:
       entity_id: light.kitchen_uc_lights_44
@@ -592,4 +527,68 @@
 #  - service: light.turn_off
 #    data:
 #      entity_id: light.flux_led_strip
+#
+#################################################################
+# Turn on Kitchen UCL's with Nook UCL
+#################################################################
+#- id: kit_ucl_follows_nook_ucl_on
+#  alias: Kitchen UCL follows Nook UCL On
+#  initial_state: true
+#  trigger:
+#  - platform: state
+#    entity_id: light.nook_uc_lights_116
+#    from: 'off'
+#    to: 'on'
+#  condition: []
+#  action:
+#  - service: light.turn_on
+#    data:
+#      entity_id: light.kitchen_uc_lights_44
+#
+# This automation turns on/off the cupboard lights based
+# on the state of the kitchen ceiling light.
+#
+# It is turned on if the kitchen ceiling light is on and
+# at a minimum brightness level. Turned off otherwise.
+#
+# https://github.com/frenck/home-assistant-config/blob/master/config/automations/areas/kitchen/ceiling_cupboard.yaml
+#- id: kit_ucl_follows_nook_ucl_on_two
+#  alias: Kitchen UCL follows Nook UCL On Two
+#  trigger:
+#    platform: state
+#    entity_id: light.nook_uc_lights_116
+#  action:
+#    service_template: >-
+#      {%
+#        if (
+#          is_state('light.nook_uc_lights_116', 'on')
+#          and (state_attr('light.nook_uc_lights_116', 'brightness')|int) > 115
+#        )
+#      %}
+#        switch.turn_on
+#      {% else %}
+#        switch.turn_off
+#      {% endif %}
+#    entity_id: light.kitchen_uc_lights_44
+#
+#################################################################
+# Turn off Kitchen UCL's with Nook UCL
+#################################################################
+#- id: kit_ucl_follows_nook_ucl_off
+#  alias: Kitchen UCL follows Nook UCL Off
+#  initial_state: true
+#  trigger:
+#  - platform: state
+#    entity_id: light.nook_uc_lights_116
+#    from: 'on'
+#    to: 'off'
+##  - platform: numeric_state
+##    entity_id: light.nook_uc_lights_116
+##    value_template: "{{ states.light.nook_uc_lights_116.attributes.brightness }}"
+##    below: 60
+#  condition: []
+#  action:
+#  - service: light.turn_off
+#    data:
+#      entity_id: light.kitchen_uc_lights_44
 #

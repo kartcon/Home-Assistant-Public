@@ -3,6 +3,28 @@
 #################################################################
 #
 #############################################################
+#   Restart Home Assistant Daily at 0030
+#############################################################
+#
+- id: restart_home_assistant
+  alias: Restart Home Assistant
+  initial_state: true
+  trigger:
+  - platform: time
+    at: '00:30:00'
+  condition:
+    - condition: template
+      value_template: "{% if ((states.sensor.uptime.state) | float) > 2 %}True{% else %}False{% endif %}"
+  action:
+  - service: persistent_notification.create
+    data_template:
+      title: "Home Assistant Restarted"
+      message: >-
+        At {{now().strftime("%m/%d/%Y %H:%M:%S")}}.
+  - delay: '00:00:15'
+  - service: homeassistant.restart
+#
+#############################################################
 #   Home Assistant Startup
 #############################################################
 #
@@ -15,14 +37,14 @@
     event: start
   condition:
   - condition: time
-    after: '00:00:00'
-    before: '01:00:00'
+    after: '00:30:00'
+    before: '00:40:00'
   action:
   - service: persistent_notification.create
     data_template:
+      title: "Home Assistant Startup"
       message: >-
         At {{now().strftime("%m/%d/%Y %H:%M:%S")}} Home Assistant has started.
-      title: "HomeAssistant Startup"
 #
 #############################################################
 #   Home Assistant Unscheduled Restart
@@ -40,13 +62,13 @@
     after: '01:00:00'
     before: '23:59:50'
   action:
-  - service: input_boolean.turn_on
+  - service: switch.turn_on
     entity_id: switch.momentary_unscheduled_restart
   - service: persistent_notification.create
     data_template:
+      title: "Home Assistant Unscheduled Restart"
       message: >-
         At {{now().strftime("%m/%d/%Y %H:%M:%S")}} Home Assistant has restarted.
-      title: "HomeAssistant Restarted"
   - service: notify.lg_tv
     data:
       title: "HomeAssistant Startup"
@@ -59,8 +81,8 @@
     before: '23:30:00'
   - service: notify.ios_group_art_only
     data:
-      title: "HomeAssistant Restarted"
-      message: "Home Assistant has restarted."
+      title: "Home Assistant Restarted"
+      message: "Home Assistant unscheduled restarted."
 #
 #############################################################
 #   MONITOR DOWNLOAD SPEED
@@ -76,9 +98,9 @@
   action:
   - service: persistent_notification.create
     data_template:
+      title: "Internet Speed Alert"
       message: >-
         At {{now().strftime("%m/%d/%Y %H:%M:%S")}} the download speed has dropped below 30 Mbit/s.
-      title: "Internet Speed Alert"
   - condition: state
     entity_id: input_boolean.enable_system_alerts
     state: 'on'
@@ -138,9 +160,9 @@
     state: 'on'
   - service: persistent_notification.create
     data_template:
+      title: "New IP Address"
       message: >
         "Your External IP changed from {{ trigger.from_state.state }} to {{ trigger.to_state.state }}"
-      title: "New IP Address"
   - service:  notify.ios_group_art_only
     data_template:
       title: "IP Address Changed"
@@ -159,12 +181,12 @@
   action:
   - service: persistent_notification.create
     data_template:
+      title: New device
       message: >
         New device:
         {{trigger.event.data.host_name}}
         ({{trigger.event.data.entity_id}})
         Mac: {{trigger.event.data.mac}}
-      title: New device
 #        New device:
 #        {{trigger.event.data.entity_id}}
   - condition: state
@@ -174,28 +196,6 @@
     data_template:
       title: "New Device"
       message: "A new device was detected on the network."
-#
-#############################################################
-#   Restart Home Assistant Daily at 0030
-#############################################################
-#
-- id: restart_home_assistant
-  alias: Restart Home Assistant
-  initial_state: true
-  trigger:
-  - platform: time
-    at: '00:30:00'
-  condition:
-    - condition: template
-      value_template: "{% if ((states.sensor.uptime.state) | float) > 8 %}True{% else %}False{% endif %}"
-  action:
-  - service: persistent_notification.create
-    data_template:
-      title: "Home Assistant Restarted"
-      message: >-
-        At {{now().strftime("%m/%d/%Y %H:%M:%S")}}.
-  - delay: '00:00:15'
-  - service: homeassistant.restart
 #
 ##########################################################
 ## Notify if wifi device goes offline

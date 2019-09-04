@@ -5,6 +5,10 @@
 #####################
 #
 - platform: generic
+  name: National Map
+  still_image_url: https://www.wpc.ncep.noaa.gov/noaa/noaad1.gif?1567603167
+#
+- platform: generic
   name: Seven Day Forecast
   still_image_url: https://cdn.tegna-media.com/wtlv/weather/7Day_forecast.jpg
 #
@@ -25,10 +29,14 @@
   still_image_url: https://radar.weather.gov/Conus/Loop/southeast_loop.gif
 #
 - platform: generic
-  name: Tide Times
-  still_image_url: https://media.news4jax.com/photo/MAP/5277628/5277628_Position5.JPG
-#
-- platform: generic
   name: Tide Graph
   still_image_url: https://wave.marineweather.net/itide/tides/png/fl_clapboard_creek.png?x=1543758223
+#
+- platform: generic
+  name: Hurricane Cone
+  still_image_url: https://www.nhc.noaa.gov/storm_graphics/AT05/refresh/AL052019_5day_cone_no_line_and_wind+png/215101_5day_cone_no_line_and_wind.png
+#
+- platform: generic
+  name: National Map
+  still_image_url: https://www.wpc.ncep.noaa.gov/noaa/noaad1.gif?1567603167
 #

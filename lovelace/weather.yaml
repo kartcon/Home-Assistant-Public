@@ -44,6 +44,25 @@ cards:
             - entity: sensor.dark_sky_summary_0d
             - entity: sensor.dark_sky_nearest_storm_distance
 #
+#       Card 1-2
+        - type: custom:monster-card
+          card:
+            type: entities
+            show_header_toggle: false
+            title: National Weather Service Alerts
+          filter:
+            include:
+              - entity_id: "sensor.nws_*"
+#
+        - type: entities
+          title: Air Quality
+          show_header_toggle: false
+          entities:
+            - entity: sensor.us_air_quality_index
+            - entity: sensor.us_air_pollution_level
+            - entity: sensor.us_main_pollutant
+            - entity: sensor.pollutant_type
+#
 # COL 2
     - type: vertical-stack
       cards:
@@ -56,3 +75,4 @@ cards:
           filter:
             include:
               - entity_id: "*dark_sky*"
+#

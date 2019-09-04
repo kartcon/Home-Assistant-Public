@@ -136,7 +136,7 @@ alexa_media:
 # https://community.home-assistant.io/t/send-commands-to-alexa/75301
 rest_command:
   ask_alexa:
-    url: https://virtual-device.bespoken.io/process?message="{{ message }}"&user_id=alexa-eac852d3-5b4b-4d09-9535-3d02f3accadc'
+    url: https://virtual-device.bespoken.io/process?message="{{ message }}"&user_id=alexa-eac852d3-5b4b-4d09-9535-3d02f3accadc
 #
 #  ---------------
 # Google (Maps,Calendar, ect)
@@ -203,7 +203,7 @@ sleepiq:
 vera:
   vera_controller_url: !secret vera_url
   # Optional to exclude devices - this is a list of vera device ids
-  exclude: [ 7, 13, 14, 47, 57, 86, 87, 109, 110, 133, 134, 135, 136, 140, 147, 155, 189, 205]
+  exclude: [ 7, 13, 14, 47, 57, 86, 87, 109, 110, 133, 134, 135, 136, 140, 147, 155, 172, 174, 176, 178, 180, 182, 189, 205]
   # Optional to import switches as lights - this is a list of vera device ids
   lights: [25, 26, 27, 29, 44, 46, 48, 49, 52, 53, 62, 92, 93, 94, 95, 105, 106, 115, 123, 124, 126, 201, 202, 203, 204, 213, 222, 224, 225]
 #
