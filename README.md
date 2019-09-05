@@ -5,7 +5,8 @@
 [![GitHub Last Commit][last-commit-shield]][commits]
 [![GitHub Activity][commits-shield]][commits]
 [![HA Version][ha-version-shield]][home-assistant]
-[![GitHub Stars][stars-shield]][stars]
+[![GitHub Stars]][https://img.shields.io/github/stars/kartcon/Home-Assistant-Public.svg?style=plasticr]
+[![Build Status](https://travis-ci.org/joch/home-assistant-config.svg?branch=master)](https://travis-ci.org/joch/home-assistant-config)
 
 This is my [Home Assistant](https://home-assistant.io) configuration. The goal is to minimize manual control and leave as much as possible to automation. The configuration constantly evolves, so be sure to star the project to keep up with the updates.
 ## Hardware
@@ -139,3 +140,7 @@ SOFTWARE.
 [ha-version]: https://img.shields.io/badge/Home%20Assistant-0.98.2-blue.svg
 [forks]:	https://img.shields.io/github/forks/kartcon/Home-Assistant-Public
 
+
+https://img.shields.io/github/last-commit/CCOSTAN/Home-AssistantConfig.svg?style=plasticr
+
+[stars]: https://github.com/klaasnicolaas/Student-homeassistant-config/stargazers
