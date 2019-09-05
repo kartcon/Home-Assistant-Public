@@ -30,11 +30,11 @@
 </ul>
 <h4 class="p1">H/A Stats:</h4>
 <ul>
-<li class="p1">176 Automations</li>
-<li class="p1">43 Binary Sensors</li>
+<li class="p1">173 Automations</li>
+<li class="p1">38 Binary Sensors</li>
 <li class="p1">37 Lights</li>
-<li class="p1">56 Scripts</li>
-<li class="p1">138 Sensors</li>
-<li class="p1">43 Switches</li>
+<li class="p1">65 Scripts</li>
+<li class="p1">174 Sensors</li>
+<li class="p1">41 Switches</li>
 <li class="p1">8 Device Trackers</li>
 </ul>
