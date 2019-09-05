@@ -38,3 +38,14 @@
 <li class="p1">41 Switches</li>
 <li class="p1">8 Device Trackers</li>
 </ul>
+## Status Information
+
+| [![Gitlab CI][gitlabci-shield]][gitlabci] | [![GitHub Last Commit][last-commit-shield]][commits]|
+|:---:|:---:|
+| This shows whether the configuration in this repo is valid | This shows how up to date this repo is |
+| [![GitHub issues][issues-shield]][issues] | [![HA Version][ha-version-shield]][home-assistant] |
+| I now use the issues as a TODO list | This is the version that I am currently running with Home Assistant |
+| [![Uptime Robot status][uptime-shield]][uptime-robot] | [![GitHub Activity][commits-shield]][commits] |
+| I use Uptime Robot to monitor my instance from outside in case of crashes | Shows how active I am with this repo annually |
+| [![GitHub Stars][stars-shield]][stars] | [![Buy Me A Fanta][paypal-shield]][paypal] |
+| Please :star: this repo if you find it useful, like these people have | If this config was very helpfull, you could buy a fanta :tropical_drink: for me :smile: |
