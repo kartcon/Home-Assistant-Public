@@ -2,13 +2,8 @@
 
 ## Status Information
 
-[![GitHub Last Commit][last-commit-shield]][commits]
-[![GitHub Activity][commits-shield]][commits]
-[![HA Version]](home-assistant)
-[![GitHub Stars]](https://img.shields.io/github/stars/kartcon/Home-Assistant-Public.svg?style=plasticr)
-
-
 This is my [Home Assistant](https://home-assistant.io) configuration. The goal is to minimize manual control and leave as much as possible to automation. The configuration constantly evolves, so be sure to star the project to keep up with the updates.
+
 ## Hardware
 
 The following is a list of hardware deployed in the home, grouped by device types. Z-Wave is the platform of choice unless there is no alternative.
@@ -36,68 +31,68 @@ The following is a list of hardware deployed in the home, grouped by device type
 
 ### LED Lighting
 
-5 LIFX Bulbs
-1 LED Light Strip
+- 5 LIFX Bulbs
+- 1 LED Light Strip
 
 ### Door Locks
 
-2 Z-Wave Deadbolts
+- 2 Z-Wave Deadbolts
 
 ### Thermostats
 
-2 Z-Wave Thermostats
+- 2 Z-Wave Thermostats
 
 ### Window & Door Sensors
 
-9 433Mhz Door/Window Sensors
+- 9 433Mhz Door/Window Sensors
 
 ### Garage Door Controllers
 
-2 Z-Wave Garage Door Controllers
+- 2 Z-Wave Garage Door Controllers
 
 ### Multi-Sensors
 
-4 Z-Wave 4in1 Multi Sensors
+- 4 Z-Wave 4in1 Multi Sensors
 
 ### Multimedia Components
 
-4 Echo Dots
-2 Sonos One Speakers
-1 LG Smart TV
-1 Sony Smart TV
+- 4 Echo Dots
+- 2 Sonos One Speakers
+- 1 LG Smart TV
+- 1 Sony Smart TV
 
 ### Cameras
 
-4 ONVIF Exterior POE Canmeras
-8 Foscam Indoor WiFi Camersa
+- 4 ONVIF Exterior POE Canmeras
+- 8 Foscam Indoor WiFi Camersa
 
 ### Irrigation Control
 
-1 Rachio 8 Zone Irrigation Controller
+- 1 Rachio 8 Zone Irrigation Controller
 
 ### Doorbells & Sirens
 
-1 Aeon Z-Wave Siren
-1 Aeon Z-Wave Door Bell
+- 1 Aeon Z-Wave Siren
+- 1 Aeon Z-Wave Door Bell
 
 ## Screenshots
 
 Note that these screenshots are provided in a best-effort manner, and may not reflect the current state of the configuration.
 
-![Home](/local/images/Home.png)
-![Rooms](/local/images/Rooms.png)
-![HVAC](/local/images/HVAC.png)
-![Security](/local/images/Security.png)
-![Floor One](/local/images/Floor One.png)
-![Floor Two](/local/images/Floor Two.png)
-![Users](/local/images/Users.png)
-![Traffic](/local/images/Traffic.png)
-![Radar](/local/images/Radar.png)
-![Map](/local/images/Map.png)
-![Media Players](/local/images/Media Players.png)
-![Battery](/local/Battery.png)
-![Config](/local/images/Config.png)
-![System](/local/images/System.png)
+![Home](/screen_shots/Home.png)
+![Rooms](/screen_shots/Rooms.png)
+![HVAC](/screen_shots/HVAC.png)
+![Security](/screen_shots/Security.png)
+![Floor One](/screen_shots/Floor One.png)
+![Floor Two](/screen_shots/Floor Two.png)
+![Users](/screen_shots/Users.png)
+![Traffic](/screen_shots/Traffic.png)
+![Radar](/screen_shots/Radar.png)
+![Map](/screen_shots/Map.png)
+![Media Players](/screen_shots/Media Players.png)
+![Battery](/screen_shots/Battery.png)
+![Config](/screen_shots/Config.png)
+![System](/screen_shots/System.png)
 
 ## Links
 
@@ -140,3 +135,9 @@ SOFTWARE.
 [ha-version]: https://img.shields.io/badge/Home%20Assistant-0.98.2-blue.svg
 [forks]:	https://img.shields.io/github/forks/kartcon/Home-Assistant-Public
 [home-assistant]: https://home-assistant.io
+
+
+[![GitHub Last Commit][last-commit-shield]][commits]
+[![GitHub Activity][commits-shield]][commits]
+[![HA Version]](home-assistant)
+[![GitHub Stars]](https://img.shields.io/github/stars/kartcon/Home-Assistant-Public.svg?style=plasticr)
