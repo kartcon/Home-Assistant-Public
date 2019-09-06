@@ -1,12 +1,21 @@
 # Home Assistant Config
 
 ## Project Information
+![GitHub last commit](https://img.shields.io/github/last-commit/kartcon/Home-Assistant-Public?style=plastic)
+![GitHub stars](https://img.shields.io/github/stars/kartcon/Home-Assistant-Public?style=plastic)
+![GitHub followers](https://img.shields.io/github/followers/kartcon?style=plastic)
+![GitHub watchers](https://img.shields.io/github/watchers/kartcon/Home-Assistant-Public?style=plastic)
 
 This is my current [Home Assistant](https://home-assistant.io) configuration. The primary goal of this project is to automate as much as possible, so that the homeowners can go about their daily activity and not have to think about the mundane things like turning lights on and off, searching for a front door key or closing and locking perimeter access points. The automation needs to work invisibly, with little or no prompting and should enhance everyday life, not encumber it technological challenges. This journey began in 2011 with just a few switches and outlets and has become an everyday part of our lives.
 
 Although we use almost no voice command routines, we find ourselves talking to, and about, Vera, Alexa and Home Assistant (yet unnamed) as active participants in our home. Sort of like having a butler or personal assistant at our beck and call, lurking somewhere in the shadows; there when you need them but otherwise unseen. Its not uncommon to hear my wife say "Thank you" to no one in particular when the lights come on as we enter the room.
 
 This configuration constantly evolves, so be sure to :star: this repository to keep abreast of the updates. It changes almost daily and becomes more efficient as the core systems continue to improve.
+
+![GitHub commit activity](https://img.shields.io/github/commit-activity/w/kartcon/Home-Assistant-Public?style=plastic)
+![GitHub repo size](https://img.shields.io/github/repo-size/kartcon/Home-Assistant-Public?style=plastic)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/kartcon/Home-Assistant-Public?style=plastic)
+![GitHub issues](https://img.shields.io/github/issues/kartcon/Home-Assistant-Public?style=plastic)
 
 ## Hardware
 
@@ -84,6 +93,10 @@ Note that these screenshots are provided in a best-effort manner, and may not re
 ![Config](/screen_shots/Config.png)
 ![System](/screen_shots/System.png)
 
+## By the Numbers
+Everybody loves stats. Its how we relate to how big, bad or powerful things are. Its our chance to brag, just a little, about what we're proud of. So here's what makes this system Big, Bad Ass and Powerful.
+- 173	Automations, 38	Binary Sensors, 15 Cameras, 2	Climate Sensors,44 Input Booleans, 7 Input Dates, 23 Input Numbers, 13 Input Selects, 37 Lights, 4 Locks, 16, Media Players, 2 Persons, 65 Scripts, 174 Sensors, 41 Switches, 8 Device Trackers, 13 Zones, ____ lines of YAML code.
+
 ## Links
 - [Home Assistant Homepage](<https://home-assistant.io/>)
 - [Home Assistant Forums](<https://community.home-assistant.io/>)
@@ -93,6 +106,7 @@ Note that these screenshots are provided in a best-effort manner, and may not re
 - [Official Home Assistant Demo](<https://home-assistant.io/demo/>)
 
 ## License
+![GitHub](https://img.shields.io/github/license/kartcon/Home-Assistant-Public)
 MIT License
 
 Copyright (c) 2019 Art Davis
@@ -114,18 +128,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-
-[commits]: https://img.shields.io/github/commit-activity/y/kartcon/Home-Assistant-Public
-[last-commit]: https://img.shields.io/github/last-commit/kartcon/Home-Assistant-Public
-[stars]: https://img.shields.io/github/stars/kartcon/Home-Assistant-Public
-[license]: https://img.shields.io/github/license/kartcon/Home-Assistant-Public
-[ha-version]: https://img.shields.io/badge/Home%20Assistant-0.98.2-blue.svg
-[forks]:	https://img.shields.io/github/forks/kartcon/Home-Assistant-Public
-[home-assistant]: https://home-assistant.io
-
-
-[![GitHub Last Commit][last-commit-shield]][commits]
-[![GitHub Activity][commits-shield]][commits]
-[![HA Version]](home-assistant)
-[![GitHub Stars]](https://img.shields.io/github/stars/kartcon/Home-Assistant-Public.svg?style=plasticr)
