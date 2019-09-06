@@ -2,11 +2,17 @@
 
 ## Project Information
 
-This is my [Home Assistant](https://home-assistant.io) configuration. The goal is to minimize manual control and leave as much as possible to automation. The configuration constantly evolves, so be sure to star the project to keep up with the updates.
+This is my [Home Assistant](https://home-assistant.io) configuration. The primary goal of this project is to automate as much as possible, so that the homeowners can go about their daily activity and not have to think about the mundane things like turning lights off, searching for a front door key or closing and locking perimeter access points. The automation needs to work invisibly, with little or no prompting and should enhance everyday life, not encumber it technological challenges.
+
+We find ourselves talking to, and about, Vera, Alexa and Home Assistant (yet unnamed) as active participants in our home. Sort of like having a butler or personal assistant at our beck and call. Lurking somewhere in the shadows; there when you need them but otherwise unseen.
+
+The configuration constantly evolves, so be sure to :star: this repository to keep abreast of the updates. It evolves daily and becomes more efficient and streamlined.
 
 ## Hardware
 
-The following is a list of hardware deployed in the home, grouped by device types. Z-Wave is the platform of choice unless there is no alternative.
+The following is a list of hardware deployed in this home automation project. Z-Wave is the platform of choice unless there is no alternative.
+
+- Apple I-Mac, running macOS Mojave on a 2.7 GHz Intel Core i5 processor with 8 GB RAM and a 500 GB SSHD
 
 ### Network
 
@@ -24,15 +30,15 @@ The following is a list of hardware deployed in the home, grouped by device type
 
 ### Switches & Outlets
 
-- On/Off Switches (22)
-- Dimmable Switches (11)
-- Z-Wave Outlets (10)
-- Exterior Outlets (2)
+- On/Off Switches (22) [GE/Jasco] (https://byjasco.com/products/category/home-automation/z-wave-home-automation)
+- Dimmable Switches (11) [GE/Jasco] (https://byjasco.com/products/category/home-automation/z-wave-home-automation)
+- Z-Wave Outlets (10) [GE/Jasco] (https://byjasco.com/products/category/home-automation/z-wave-home-automation)
+- Exterior Outlets (2) [GE/Jasco] (https://byjasco.com/products/category/home-automation/z-wave-home-automation)
 
 ### LED Lighting
 
-- LIFX Bulbs (5)
-- LED Light Strip (1)
+- LIFX Bulbs (5) [LIFX] (https://www.lifx.com/)
+- LED Light Strip (1) [SuperNight WiFi] (https://www.amazon.com/gp/product/B00DTOAWZ2/ref=ppx_yo_dt_b_asin_title_o03_s00?ie=UTF8&psc=1)
 
 ### Door Locks
 
