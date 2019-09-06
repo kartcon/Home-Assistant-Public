@@ -30,15 +30,15 @@ The following is a list of hardware deployed in this home automation project. Z-
 
 ### Switches & Outlets
 
-- On/Off Switches (22) [GE/Jasco] (https://byjasco.com/products/category/home-automation/z-wave-home-automation)
-- Dimmable Switches (11) [GE/Jasco] (https://byjasco.com/products/category/home-automation/z-wave-home-automation)
-- Z-Wave Outlets (10) [GE/Jasco] (https://byjasco.com/products/category/home-automation/z-wave-home-automation)
-- Exterior Outlets (2) [GE/Jasco] (https://byjasco.com/products/category/home-automation/z-wave-home-automation)
+- On/Off Switches (22) [GE/Jasco](https://byjasco.com/products/category/home-automation/z-wave-home-automation)
+- Dimmable Switches (11) [GE/Jasco](https://byjasco.com/products/category/home-automation/z-wave-home-automation)
+- Z-Wave Outlets (10) [GE/Jasco](https://byjasco.com/products/category/home-automation/z-wave-home-automation)
+- Exterior Outlets (2) [GE/Jasco](https://byjasco.com/products/category/home-automation/z-wave-home-automation)
 
 ### LED Lighting
 
-- LIFX Bulbs (5) [LIFX] (https://www.lifx.com/)
-- LED Light Strip (1) [SuperNight WiFi] (https://www.amazon.com/gp/product/B00DTOAWZ2/ref=ppx_yo_dt_b_asin_title_o03_s00?ie=UTF8&psc=1)
+- LIFX Bulbs (5) [LIFX](https://www.lifx.com/)
+- LED Light Strip (1) [SuperNight WiFi](https://www.amazon.com/gp/product/B00DTOAWZ2/ref=ppx_yo_dt_b_asin_title_o03_s00?ie=UTF8&psc=1)
 
 ### Door Locks
 
