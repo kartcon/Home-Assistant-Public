@@ -1,6 +1,6 @@
 # Home Assistant Config
 
-## Status Information
+## Project Information
 
 This is my [Home Assistant](https://home-assistant.io) configuration. The goal is to minimize manual control and leave as much as possible to automation. The configuration constantly evolves, so be sure to star the project to keep up with the updates.
 
@@ -18,7 +18,7 @@ The following is a list of hardware deployed in the home, grouped by device type
 
 ### Mobile Devices
 
-- Phones(2): [iPhone 8](https://www.apple.com)
+- Phones (2): [iPhone 8](https://www.apple.com)
 - Tablet: [iPad](https://www.apple.com)
 - Tablet: [iPad Mini](https://www.apple.com)
 
@@ -31,49 +31,38 @@ The following is a list of hardware deployed in the home, grouped by device type
 
 ### LED Lighting
 
-- 5 LIFX Bulbs
-- 1 LED Light Strip
+- LIFX Bulbs (5)
+- LED Light Strip (1)
 
 ### Door Locks
 
-- 2 Z-Wave Deadbolts
-
-### Thermostats
-
-- 2 Z-Wave Thermostats
+- Z-Wave Deadbolts (2)
 
 ### Window & Door Sensors
 
-- 9 433Mhz Door/Window Sensors
-
-### Garage Door Controllers
-
-- 2 Z-Wave Garage Door Controllers
-
-### Multi-Sensors
-
-- 4 Z-Wave 4in1 Multi Sensors
+- 433Mhz Door/Window Sensors (9)
 
 ### Multimedia Components
 
-- 4 Echo Dots
-- 2 Sonos One Speakers
-- 1 LG Smart TV
-- 1 Sony Smart TV
+- Echo Dots (2)
+- Sonos One Speakers (2)
+- LG Smart TV (1)
+- Sony Smart TV (1)
 
 ### Cameras
 
-- 4 ONVIF Exterior POE Canmeras
-- 8 Foscam Indoor WiFi Camersa
+- ONVIF Exterior POE Cameras (4)
+- Foscam Indoor WiFi Cameras (8)
 
-### Irrigation Control
+### Other Components
 
-- 1 Rachio 8 Zone Irrigation Controller
-
-### Doorbells & Sirens
-
-- 1 Aeon Z-Wave Siren
-- 1 Aeon Z-Wave Door Bell
+- Z-Wave Thermostats (2)
+- Rachio 8 Zone Irrigation Controller (1)
+- Sleep Number Smart Mattress (1)
+- Aeon Z-Wave Siren (1)
+- Aeon Z-Wave Door Bell (1)
+- Z-Wave Garage Door Controllers (2)
+- Z-Wave 4in1 Multi Sensors (4)
 
 ## Screenshots
 
