@@ -25,10 +25,14 @@ Although we use almost no voice command routines, we find ourselves talking to, 
 
 This configuration constantly evolves, so be sure to :star: this repository to keep abreast of the updates. It changes almost daily and becomes more efficient as the core systems continue to improve.
 
-![GitHub commit activity](https://img.shields.io/github/commit-activity/w/kartcon/Home-Assistant-Public?style=plastic)
-![GitHub repo size](https://img.shields.io/github/repo-size/kartcon/Home-Assistant-Public?style=plastic)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/kartcon/Home-Assistant-Public?style=plastic)
-![GitHub issues](https://img.shields.io/github/issues/kartcon/Home-Assistant-Public?style=plastic)
+<div align="center">
+<img src="https://img.shields.io/github/commit-activity/w/kartcon/Home-Assistant-Public?style=plastic">
+<img src="https://img.shields.io/github/repo-size/kartcon/Home-Assistant-Public?style=plastic">
+<img src="https://img.shields.io/github/languages/code-size/kartcon/Home-Assistant-Public?style=plastic">
+<a href="https://github.com/kartcon/Home-Assistant-Public/issues">
+  <img src="https://img.shields.io/github/issues/kartcon/Home-Assistant-Public?style=plastic">
+</a>
+</div>
 
 ## Hardware
 
