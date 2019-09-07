@@ -7,6 +7,28 @@
 ![GitHub watchers](https://img.shields.io/github/watchers/kartcon/Home-Assistant-Public?style=plastic)
 ![version](https://img.shields.io/badge/Home%20Assistant-98.1-blue?style=plastic)
 
+<div align="center">
+<a href="https://github.com/kartcon/Home-Assistant-Public/commits/master">
+  <img src="https://img.shields.io/github/last-commit/kartcon/Home-Assistant-Public?style=plastic">
+</a>
+
+<a href="https://github.com/kartcon/Home-Assistant-Public/stargazers">
+  <img src="https://img.shields.io/github/stars/kartcon/Home-Assistant-Public?style=plastic">
+</a>
+
+<a href="https://github.com/kartcon/Home-Assistant-Public/followers">
+  <img src="https://img.shields.io/github/followers/kartcon?style=plastic">
+</a>
+
+<a href="https://github.com/kartcon/Home-Assistant-Public/watchers">
+  <img src="https://img.shields.io/github/watchers/kartcon/Home-Assistant-Public?style=plastic">
+</a>
+
+<a href="https://github.com/kartcon/Home-Assistant-Public">
+  <img src="https://img.shields.io/badge/Home%20Assistant-98.1-blue?style=plastic">
+</a>
+</div>
+
 This is my current [Home Assistant](https://home-assistant.io) configuration. The primary goal of this project is to automate as much as possible, so that the homeowners can go about their daily activity and not have to think about the mundane things like turning lights on and off, searching for a front door key or closing and locking perimeter access points. The automation needs to work invisibly, with little or no prompting and should enhance everyday life, not encumber it technological challenges. This journey began in 2011 with just a few switches and outlets and has become an everyday part of our lives.
 
 Although we use almost no voice command routines, we find ourselves talking to, and about, Vera, Alexa and Home Assistant (yet unnamed) as active participants in our home. Sort of like having a butler or personal assistant at our beck and call, lurking somewhere in the shadows; there when you need them but otherwise unseen. Its not uncommon to hear my wife say "Thank you" to no one in particular when the lights come on as we enter the room.
