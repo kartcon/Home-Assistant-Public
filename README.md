@@ -1,29 +1,19 @@
 # Home Assistant Config
 
 ## Project Information
-![GitHub last commit](https://img.shields.io/github/last-commit/kartcon/Home-Assistant-Public?style=plastic)
-![GitHub stars](https://img.shields.io/github/stars/kartcon/Home-Assistant-Public?style=plastic)
-![GitHub followers](https://img.shields.io/github/followers/kartcon?style=plastic)
-![GitHub watchers](https://img.shields.io/github/watchers/kartcon/Home-Assistant-Public?style=plastic)
-![version](https://img.shields.io/badge/Home%20Assistant-98.1-blue?style=plastic)
-
 <div align="center">
 <a href="https://github.com/kartcon/Home-Assistant-Public/commits/master">
   <img src="https://img.shields.io/github/last-commit/kartcon/Home-Assistant-Public?style=plastic">
 </a>
-
 <a href="https://github.com/kartcon/Home-Assistant-Public/stargazers">
   <img src="https://img.shields.io/github/stars/kartcon/Home-Assistant-Public?style=plastic">
 </a>
-
 <a href="https://github.com/kartcon/Home-Assistant-Public/followers">
   <img src="https://img.shields.io/github/followers/kartcon?style=plastic">
 </a>
-
 <a href="https://github.com/kartcon/Home-Assistant-Public/watchers">
   <img src="https://img.shields.io/github/watchers/kartcon/Home-Assistant-Public?style=plastic">
 </a>
-
 <a href="https://github.com/kartcon/Home-Assistant-Public">
   <img src="https://img.shields.io/badge/Home%20Assistant-98.1-blue?style=plastic">
 </a>
