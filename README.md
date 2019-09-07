@@ -8,7 +8,7 @@
 <a href="https://github.com/kartcon/Home-Assistant-Public/stargazers">
   <img src="https://img.shields.io/github/stars/kartcon/Home-Assistant-Public?style=plastic">
 </a>
-<a href="https://github.com/kartcon/Home-Assistant-Public/followers">
+<a href="https://github.com/kartcon?tab=followers">
   <img src="https://img.shields.io/github/followers/kartcon?style=plastic">
 </a>
 <a href="https://github.com/kartcon/Home-Assistant-Public/watchers">
