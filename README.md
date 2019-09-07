@@ -5,6 +5,7 @@
 ![GitHub stars](https://img.shields.io/github/stars/kartcon/Home-Assistant-Public?style=plastic)
 ![GitHub followers](https://img.shields.io/github/followers/kartcon?style=plastic)
 ![GitHub watchers](https://img.shields.io/github/watchers/kartcon/Home-Assistant-Public?style=plastic)
+![version](https://img.shields.io/badge/Home%20Assistant-98.1-blue?style=plastic)
 
 This is my current [Home Assistant](https://home-assistant.io) configuration. The primary goal of this project is to automate as much as possible, so that the homeowners can go about their daily activity and not have to think about the mundane things like turning lights on and off, searching for a front door key or closing and locking perimeter access points. The automation needs to work invisibly, with little or no prompting and should enhance everyday life, not encumber it technological challenges. This journey began in 2011 with just a few switches and outlets and has become an everyday part of our lives.
 
@@ -23,7 +24,7 @@ The following is a list of hardware deployed in this home automation project. Z-
 
 ### Computer
 - Apple I-Mac, running macOS Mojave on a 2.7 GHz Intel Core i5 processor with 8 GB RAM and a 500 GB SSHD
-- 6TB Raid Array [LaCie](https://www.amazon.com/gp/product/B003YUEF0E/ref=ppx_yo_dt_b_asin_title_o00_s02?ie=UTF8&psc=1)
+- 6TB NAS Raid Array [LaCie](https://www.amazon.com/gp/product/B003YUEF0E/ref=ppx_yo_dt_b_asin_title_o00_s02?ie=UTF8&psc=1)
 
 ### Network
 - Primary Z-wave hub: [Vera Secure](https://getvera.com/products/verasecure)
@@ -45,7 +46,7 @@ The following is a list of hardware deployed in this home automation project. Z-
 - Exterior Outlets (2) [GE/Jasco](https://byjasco.com/products/category/home-automation/z-wave-home-automation)
 
 ### LED Lighting
-- LIFX Bulbs (5) [LIFX](https://www.lifx.com/)
+- RGBW Bulbs (5) [LIFX](https://www.lifx.com/)
 - LED Light Strip (1) [SuperNight WiFi](https://www.amazon.com/gp/product/B00DTOAWZ2/ref=ppx_yo_dt_b_asin_title_o03_s00?ie=UTF8&psc=1)
 
 ### Door Locks
