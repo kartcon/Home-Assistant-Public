@@ -28,7 +28,7 @@ The following is a list of hardware deployed in this home automation project. Z-
 ### Network
 - Primary Z-wave hub: [Vera Secure](https://getvera.com/products/verasecure)
 - Secondary Z-wave hub: [Vera 3](https://getvera.com/collections/controllers)
-- Low Power RF Network: [2GIG](https://getvera.com/products/verasecure)
+- Low Power RF Network: [433MHz](https://www.vesternet.com/pages/vera-controller-comparison)
 - Wifi: [X-Finity Router](https://www.xfinity.com/learn/internet-service/wifi)
 - Extenders(3): [X-Fi Pods](https://www.xfinity.com/learn/internet-service/wifi/xfi-pod-3pack)
 - Zone Controller [Leviton](https://www.amazon.com/gp/product/B004KN87OE/ref=ppx_yo_dt_b_asin_title_o07_s00?ie=UTF8&psc=1)
@@ -95,7 +95,7 @@ Note that these screenshots are provided in a best-effort manner, and may not re
 
 ## By the Numbers
 Everybody loves stats. Its how we relate to how big, bad or powerful things are. Its our chance to brag, just a little, about what we're proud of. So here's what makes this system Big, Bad Ass and Powerful.
-- 173	Automations, 38	Binary Sensors, 15 Cameras, 2	Climate Sensors,44 Input Booleans, 7 Input Dates, 23 Input Numbers, 13 Input Selects, 37 Lights, 4 Locks, 16, Media Players, 2 Persons, 65 Scripts, 174 Sensors, 41 Switches, 8 Device Trackers, 13 Zones, ____ lines of YAML code.
+- 173	Automations, 38	Binary Sensors, 15 Cameras, 2	Climate Sensors, 44 Input Booleans, 7 Input Dates, 23 Input Numbers, 13 Input Selects, 37 Lights, 4 Locks, 16 Media Players, 2 Persons, 65 Scripts, 174 Sensors, 41 Switches, 8 Device Trackers, 13 Zones and more than 17,000 lines of YAML code.
 
 ## Links
 - [Home Assistant Homepage](<https://home-assistant.io/>)
