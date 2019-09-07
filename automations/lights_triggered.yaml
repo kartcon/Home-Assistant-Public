@@ -183,8 +183,10 @@
   alias: Kitchen UCLs on after 23:00
   initial_state: true
   trigger:
-    platform: state
-    entity_id: binary_sensor.kit_motion_sensor_81, binary_sensor.lr_motion_sensor_67
+  - platform: state
+    entity_id:
+    - binary_sensor.kit_motion_sensor_81
+#    - binary_sensor.lr_motion_sensor_67
     from: 'off'
     to: 'on'
   condition:
@@ -192,21 +194,29 @@
     after: '23:00:00'
     before: '06:00:00'
   action:
-  - service: light.turn_on
-    data:
-      entity_id: light.kitchen_uc_lights_44
-  - service: light.turn_on
-    data:
-      entity_id: light.nook_uc_lights_116
-      brightness: 127
-  - delay: '00:02:00'
-  - service: light.turn_off
-    data:
-      entity_id: light.kitchen_uc_lights_44
-  - service: light.turn_off
-    data:
-      entity_id: light.nook_uc_lights_116
-#
+  - service: script.cancel
+    entity_id: script.ucl_temp_nightlights
+  - service: script.ucl_temp_nightlights
+#  - service: light.turn_on
+#    data:
+#      entity_id: light.kitchen_uc_lights_44
+#  - service: light.turn_on
+#    data:
+#      entity_id: light.nook_uc_lights_116
+#      brightness: 127
+#  - delay: '00:02:00'
+#  - service: light.turn_off
+#    data:
+#      entity_id: light.kitchen_uc_lights_44
+#  - service: light.turn_off
+#    data:
+#      entity_id: light.nook_uc_lights_116
+#  -----------------------------------------
+#  There is an issue with using a delay in an automation that could possibly be re-triggered while the actions are
+#  still running from a previous trigger. Basically, if the automation triggers and starts running the actions, then
+#  hits a delay step, and while the delay is still pending the trigger happens again, the automation will actually
+#  immediately skip the rest of the delay and pick up with the next action step.
+#  https://community.home-assistant.io/t/delay-function-in-automations/92224
 #################################################################
 # Kitchen UC Lights On w Arrival Home
 # Action: Turn Kitchen Lights ON

@@ -92,31 +92,31 @@ updater:
 #  ---------------
 #
 # Included files
-alarm_control_panel: !include alarm_cp.yaml
+alarm_control_panel: !include includes/alarm_cp.yaml
 automation: !include_dir_merge_list automations
-binary_sensor: !include binary_sensors.yaml
+binary_sensor: !include includes/binary_sensors.yaml
 camera: !include_dir_merge_list cameras
-device_tracker: !include device_trackers.yaml
+device_tracker: !include includes/device_trackers.yaml
 group: !include_dir_merge_named groups
-history: !include history_cfgs.yaml
-ios: !include ios_cfg.yaml
-##http: !include http_cfgs.yaml
+history: !include includes/history_cfgs.yaml
+ios: !include includes/ios_cfg.yaml
+##http: !include includes/http_cfgs.yaml
 ##input_boolean: !include_dir_merge_named input_boolean
-input_boolean: !include input_booleans.yaml
-input_datetime: !include input_datetimes.yaml
-input_number: !include input_numbers.yaml
-input_select: !include input_selects.yaml
-light: !include lights.yaml
-media_player: !include media_players.yaml
+input_boolean: !include includes/input_booleans.yaml
+input_datetime: !include includes/input_datetimes.yaml
+input_number: !include includes/input_numbers.yaml
+input_select: !include includes/input_selects.yaml
+light: !include includes/lights.yaml
+media_player: !include includes/media_players.yaml
 notify: !include_dir_merge_list notify
-proximity: !include proximity.yaml
-recorder: !include recorders.yaml
+proximity: !include includes/proximity.yaml
+recorder: !include includes/recorders.yaml
 scene: !include_dir_list scenes
 script: !include_dir_merge_named scripts
 sensor: !include_dir_merge_list sensors
-switch: !include switches.yaml
-weblink: !include weblinks.yaml
-zone: !include zones.yaml
+switch: !include includes/switches.yaml
+weblink: !include includes/weblinks.yaml
+zone: !include includes/zones.yaml
 #
 # ******************************************************************************
 #    Additional Components - alphabetically listed

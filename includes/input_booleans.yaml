@@ -131,7 +131,7 @@
     name: New Years Day Lighting
     initial: off
     icon: mdi:calendar-star
-
+#
   enable_valentine_lighting:
     name: Valentines Day Lighting
     initial: off
@@ -186,6 +186,11 @@
     name: Christmas Lighting
     initial: off
     icon: mdi:gift
+#
+  enable_new_years_eve_lighting:
+    name: New Years Eve Lighting
+    initial: off
+    icon: mdi:party-popper
 #
 ##############################################################
 # Security Toggles

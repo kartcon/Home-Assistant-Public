@@ -71,8 +71,10 @@ art_briefing_one:
         {% endif %}
         miles per hour.
         {# NWS Warnings #}
-          {% if states.sensor.nws_alert_event.state != '' %}
-            The National Weather Service has issued a {{states.sensor.nws_alert_event.state}} for today.
+          {% if states.sensor.nws_alert_count.state > 0 %}
+            {% if states.sensor.nws_alert_event.state != 'None' %}
+              The National Weather Service has issued a {{states.sensor.nws_alert_event.state}} for today.
+            {% endif %}
           {% endif %}
         {# Sunrise/Sunset #}
         Sunrise
@@ -156,8 +158,10 @@ steff_briefing_one:
         {% endif %}
         miles per hour.
         {# NWS Warnings #}
-          {% if states.sensor.nws_alert_event.state != '' %}
-            The National Weather Service has issued a {{states.sensor.nws_alert_event.state}} for today.
+          {% if states.sensor.nws_alert_count.state > 0 %}
+            {% if states.sensor.nws_alert_event.state != 'None' %}
+              The National Weather Service has issued a {{states.sensor.nws_alert_event.state}} for today.
+            {% endif %}
           {% endif %}
         {# Sunrise/Sunset #}
         Sunrise
@@ -252,8 +256,10 @@ test_briefing_one:
         {% endif %}
         miles per hour.
         {# NWS Warnings #}
-          {% if states.sensor.nws_alert_event.state != '' %}
-            The National Weather Service has issued a {{states.sensor.nws_alert_event.state}} for today.
+          {% if states.sensor.nws_alert_count.state > 0 %}
+            {% if states.sensor.nws_alert_event.state != 'None' %}
+              The National Weather Service has issued a {{states.sensor.nws_alert_event.state}} for today.
+            {% endif %}
           {% endif %}
         {# Sunrise/Sunset #}
         Sunrise

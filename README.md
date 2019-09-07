@@ -1,6 +1,11 @@
 # Home Assistant Config
 
 ## Project Information
+![GitHub last commit](https://img.shields.io/github/last-commit/kartcon/Home-Assistant-Public?style=plastic)
+![GitHub stars](https://img.shields.io/github/stars/kartcon/Home-Assistant-Public?style=plastic)
+![GitHub followers](https://img.shields.io/github/followers/kartcon?style=plastic)
+![GitHub watchers](https://img.shields.io/github/watchers/kartcon/Home-Assistant-Public?style=plastic)
+![version](https://img.shields.io/badge/Home%20Assistant-98.1-blue?style=plastic)
 
 This is my current [Home Assistant](https://home-assistant.io) configuration. The primary goal of this project is to automate as much as possible, so that the homeowners can go about their daily activity and not have to think about the mundane things like turning lights on and off, searching for a front door key or closing and locking perimeter access points. The automation needs to work invisibly, with little or no prompting and should enhance everyday life, not encumber it technological challenges. This journey began in 2011 with just a few switches and outlets and has become an everyday part of our lives.
 
@@ -8,18 +13,23 @@ Although we use almost no voice command routines, we find ourselves talking to, 
 
 This configuration constantly evolves, so be sure to :star: this repository to keep abreast of the updates. It changes almost daily and becomes more efficient as the core systems continue to improve.
 
+![GitHub commit activity](https://img.shields.io/github/commit-activity/w/kartcon/Home-Assistant-Public?style=plastic)
+![GitHub repo size](https://img.shields.io/github/repo-size/kartcon/Home-Assistant-Public?style=plastic)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/kartcon/Home-Assistant-Public?style=plastic)
+![GitHub issues](https://img.shields.io/github/issues/kartcon/Home-Assistant-Public?style=plastic)
+
 ## Hardware
 
 The following is a list of hardware deployed in this home automation project. Z-Wave is the technology of choice unless there are no other alternatives.
 
 ### Computer
 - Apple I-Mac, running macOS Mojave on a 2.7 GHz Intel Core i5 processor with 8 GB RAM and a 500 GB SSHD
-- 6TB Raid Array [LaCie](https://www.amazon.com/gp/product/B003YUEF0E/ref=ppx_yo_dt_b_asin_title_o00_s02?ie=UTF8&psc=1)
+- 6TB NAS Raid Array [LaCie](https://www.amazon.com/gp/product/B003YUEF0E/ref=ppx_yo_dt_b_asin_title_o00_s02?ie=UTF8&psc=1)
 
 ### Network
 - Primary Z-wave hub: [Vera Secure](https://getvera.com/products/verasecure)
 - Secondary Z-wave hub: [Vera 3](https://getvera.com/collections/controllers)
-- Low Power RF Network: [2GIG](https://getvera.com/products/verasecure)
+- Low Power RF Network: [433MHz](https://www.vesternet.com/pages/vera-controller-comparison)
 - Wifi: [X-Finity Router](https://www.xfinity.com/learn/internet-service/wifi)
 - Extenders(3): [X-Fi Pods](https://www.xfinity.com/learn/internet-service/wifi/xfi-pod-3pack)
 - Zone Controller [Leviton](https://www.amazon.com/gp/product/B004KN87OE/ref=ppx_yo_dt_b_asin_title_o07_s00?ie=UTF8&psc=1)
@@ -36,7 +46,7 @@ The following is a list of hardware deployed in this home automation project. Z-
 - Exterior Outlets (2) [GE/Jasco](https://byjasco.com/products/category/home-automation/z-wave-home-automation)
 
 ### LED Lighting
-- LIFX Bulbs (5) [LIFX](https://www.lifx.com/)
+- RGBW Bulbs (5) [LIFX](https://www.lifx.com/)
 - LED Light Strip (1) [SuperNight WiFi](https://www.amazon.com/gp/product/B00DTOAWZ2/ref=ppx_yo_dt_b_asin_title_o03_s00?ie=UTF8&psc=1)
 
 ### Door Locks
@@ -84,6 +94,10 @@ Note that these screenshots are provided in a best-effort manner, and may not re
 ![Config](/screen_shots/Config.png)
 ![System](/screen_shots/System.png)
 
+## By the Numbers
+Everybody loves stats. Its how we relate to how big, bad or powerful things are. Its our chance to brag, just a little, about what we're proud of. So here's what makes this system Big, Bad Ass and Powerful.
+- 173	Automations, 38	Binary Sensors, 15 Cameras, 2	Climate Sensors, 44 Input Booleans, 7 Input Dates, 23 Input Numbers, 13 Input Selects, 37 Lights, 4 Locks, 16 Media Players, 2 Persons, 65 Scripts, 174 Sensors, 41 Switches, 8 Device Trackers, 13 Zones and more than 17,000 lines of YAML code.
+
 ## Links
 - [Home Assistant Homepage](<https://home-assistant.io/>)
 - [Home Assistant Forums](<https://community.home-assistant.io/>)
@@ -93,6 +107,7 @@ Note that these screenshots are provided in a best-effort manner, and may not re
 - [Official Home Assistant Demo](<https://home-assistant.io/demo/>)
 
 ## License
+![GitHub](https://img.shields.io/github/license/kartcon/Home-Assistant-Public)
 MIT License
 
 Copyright (c) 2019 Art Davis
@@ -114,18 +129,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-
-[commits]: https://img.shields.io/github/commit-activity/y/kartcon/Home-Assistant-Public
-[last-commit]: https://img.shields.io/github/last-commit/kartcon/Home-Assistant-Public
-[stars]: https://img.shields.io/github/stars/kartcon/Home-Assistant-Public
-[license]: https://img.shields.io/github/license/kartcon/Home-Assistant-Public
-[ha-version]: https://img.shields.io/badge/Home%20Assistant-0.98.2-blue.svg
-[forks]:	https://img.shields.io/github/forks/kartcon/Home-Assistant-Public
-[home-assistant]: https://home-assistant.io
-
-
-[![GitHub Last Commit][last-commit-shield]][commits]
-[![GitHub Activity][commits-shield]][commits]
-[![HA Version]](home-assistant)
-[![GitHub Stars]](https://img.shields.io/github/stars/kartcon/Home-Assistant-Public.svg?style=plasticr)

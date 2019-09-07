@@ -9,16 +9,16 @@
   alias: 'LIFX Lights Unavailable'
   initial_state: 'on'
   trigger:
-    - platform: state
-      entity_id:
-        - light.tv_left
-        - light.tv_right
-        - light.garage_east
-        - light.garage_center
-        - light.garage_west
-        - light.front_porch
-      to: 'unavailable'
-      for: '00:05:00'
+  - platform: state
+    entity_id:
+      - light.tv_left
+      - light.tv_right
+      - light.garage_east
+      - light.garage_center
+      - light.garage_west
+      - light.front_porch
+    to: 'unavailable'
+    for: '00:05:00'
   action:
   - condition: state
     entity_id: input_boolean.enable_system_alerts
@@ -118,7 +118,7 @@
 #  initial_state: true
 #  trigger:
 #  - platform: state
-#    entity_id: input_boolean.trigger_sandbox
+#    entity_id: switch.momentary_sandbox_run
 #    to: 'on'
 #  condition:
 #  - condition: state
@@ -130,7 +130,7 @@
 #  - service: script.turn_on
 #    entity_id: script.blink_lights_tv
 ##    entity_id: script.test_lighting_script
-#  - service: input_boolean.turn_off
-#  - delay: 0:00:02
-#    entity_id: input_boolean.trigger_sandbox
+##  - service: input_boolean.turn_off
+##  - delay: 0:00:02
+##    entity_id: input_boolean.trigger_sandbox
 #

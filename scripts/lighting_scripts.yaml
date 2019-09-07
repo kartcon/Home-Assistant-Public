@@ -3,6 +3,39 @@
 #################################################################
 #
 #################################################################
+# UCL Temp Nightlights
+# Called from [kit_ucls_on_after_2300]
+# In file: [lights_triggered.yaml]
+# Both are triggered by an [entity button] card
+#################################################################
+ucl_temp_nightlights:
+  alias: UCL Temp Nightlights
+  sequence:
+   - service: light.turn_on
+     data:
+       entity_id: light.kitchen_uc_lights_44
+   - service: light.turn_on
+     data:
+       entity_id: light.nook_uc_lights_116
+       brightness: 127
+   - delay: '00:02:00'
+   - service: light.turn_off
+     data:
+       entity_id: light.kitchen_uc_lights_44
+   - service: light.turn_off
+     data:
+       entity_id: light.nook_uc_lights_116
+
+
+
+
+
+
+
+
+
+
+#################################################################
 # SCRIPT: Inside Lights On 1 Hour before Sunset
 # Called from [Interior lights on 1 hour before sunset]
 # In file: [Lights_time.yaml]

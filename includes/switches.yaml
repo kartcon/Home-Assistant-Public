@@ -35,4 +35,4 @@
   on_for: 300
   allow_off: True
 #  ---------------
-#
+#  switch.momentary_unscheduled_restart
