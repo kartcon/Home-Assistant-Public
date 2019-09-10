@@ -25,6 +25,11 @@ Although we use almost no voice command routines, we find ourselves talking to, 
 
 This configuration constantly evolves, so be sure to :star: this repository to keep abreast of the updates. It changes almost daily and becomes more efficient as the core systems continue to improve.
 
+![GitHub commit activity](https://img.shields.io/github/commit-activity/w/kartcon/Home-Assistant-Public?style=plastic)
+![GitHub repo size](https://img.shields.io/github/repo-size/kartcon/Home-Assistant-Public?style=plastic)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/kartcon/Home-Assistant-Public?style=plastic)
+![GitHub issues](https://img.shields.io/github/issues/kartcon/Home-Assistant-Public?style=plastic)
+
 <div align="center">
 <img src="https://img.shields.io/github/commit-activity/w/kartcon/Home-Assistant-Public?style=plastic">
 <img src="https://img.shields.io/github/repo-size/kartcon/Home-Assistant-Public?style=plastic">
@@ -121,6 +126,14 @@ Everybody loves stats. Its how we relate to how big, bad or powerful things are.
 - [Other Featured Home Assistant Configurations](<https://home-assistant.io/cookbook/>)
 - [Home Assistant GitHub Source Repository](<https://github.com/home-assistant/home-assistant>)
 - [Official Home Assistant Demo](<https://home-assistant.io/demo/>)
+
+## Special Thanks
+Without the help and guidance of the countless folks who are way better at this than myself, this project would have never progressed to where it is today. Below are just some of the folks who have freely contributed their code to help others. There mere many others that simply motivated me. Thanks to all.
+
+| [CCOSTAN](<https://github.com/CCOSTAN/Home-AssistantConfig>) | [SilvrrGIT](<https://github.com/SilvrrGIT/HomeAssistantg>) |
+| [arsaboo](<https://github.com/arsaboo/homeassistant-config>) | [geekofweek](<https://github.com/geekofweek/homeassistant>) |
+| [frenck](<https://github.com/frenck/home-assistant-config>) | [bruhautomation](<https://github.com/bruhautomation/BRUH3-Home-Assistant-Configuration>) |
+| [stanvx](<https://github.com/stanvx/Home-Assistant-Configuration>) | [DubhAd](<https://github.com/DubhAd/Home-AssistantConfign>) |
 
 ## License
 ![GitHub](https://img.shields.io/github/license/kartcon/Home-Assistant-Public)
