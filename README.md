@@ -1,11 +1,23 @@
 # Home Assistant Config
 
 ## Project Information
-![GitHub last commit](https://img.shields.io/github/last-commit/kartcon/Home-Assistant-Public?style=plastic)
-![GitHub stars](https://img.shields.io/github/stars/kartcon/Home-Assistant-Public?style=plastic)
-![GitHub followers](https://img.shields.io/github/followers/kartcon?style=plastic)
-![GitHub watchers](https://img.shields.io/github/watchers/kartcon/Home-Assistant-Public?style=plastic)
-![version](https://img.shields.io/badge/Home%20Assistant-98.1-blue?style=plastic)
+<div align="center">
+<a href="https://github.com/kartcon/Home-Assistant-Public/commits/master">
+  <img src="https://img.shields.io/github/last-commit/kartcon/Home-Assistant-Public?style=plastic">
+</a>
+<a href="https://github.com/kartcon/Home-Assistant-Public/stargazers">
+  <img src="https://img.shields.io/github/stars/kartcon/Home-Assistant-Public?style=plastic">
+</a>
+<a href="https://github.com/kartcon?tab=followers">
+  <img src="https://img.shields.io/github/followers/kartcon?style=plastic">
+</a>
+<a href="https://github.com/kartcon/Home-Assistant-Public/watchers">
+  <img src="https://img.shields.io/github/watchers/kartcon/Home-Assistant-Public?style=plastic">
+</a>
+<a href="https://github.com/kartcon/Home-Assistant-Public">
+  <img src="https://img.shields.io/badge/Home%20Assistant-98.1-blue?style=plastic">
+</a>
+</div>
 
 This is my current [Home Assistant](https://home-assistant.io) configuration. The primary goal of this project is to automate as much as possible, so that the homeowners can go about their daily activity and not have to think about the mundane things like turning lights on and off, searching for a front door key or closing and locking perimeter access points. The automation needs to work invisibly, with little or no prompting and should enhance everyday life, not encumber it technological challenges. This journey began in 2011 with just a few switches and outlets and has become an everyday part of our lives.
 
@@ -13,10 +25,14 @@ Although we use almost no voice command routines, we find ourselves talking to, 
 
 This configuration constantly evolves, so be sure to :star: this repository to keep abreast of the updates. It changes almost daily and becomes more efficient as the core systems continue to improve.
 
-![GitHub commit activity](https://img.shields.io/github/commit-activity/w/kartcon/Home-Assistant-Public?style=plastic)
-![GitHub repo size](https://img.shields.io/github/repo-size/kartcon/Home-Assistant-Public?style=plastic)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/kartcon/Home-Assistant-Public?style=plastic)
-![GitHub issues](https://img.shields.io/github/issues/kartcon/Home-Assistant-Public?style=plastic)
+<div align="center">
+<img src="https://img.shields.io/github/commit-activity/w/kartcon/Home-Assistant-Public?style=plastic">
+<img src="https://img.shields.io/github/repo-size/kartcon/Home-Assistant-Public?style=plastic">
+<img src="https://img.shields.io/github/languages/code-size/kartcon/Home-Assistant-Public?style=plastic">
+<a href="https://github.com/kartcon/Home-Assistant-Public/issues">
+  <img src="https://img.shields.io/github/issues/kartcon/Home-Assistant-Public?style=plastic">
+</a>
+</div>
 
 ## Hardware
 
