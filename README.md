@@ -123,7 +123,7 @@ Everybody loves stats. Its how we relate to how big, bad or powerful things are.
 - [Official Home Assistant Demo](<https://home-assistant.io/demo/>)
 
 ## Special Thanks
-Without the help and guidance of the countless folks who are way better at this than myself, this project would have never progressed to where it is today. Below are just some of the folks who have freely contributed their code to help others. There mere many others that simply motivated me. Thanks to all.
+Without the help and guidance of the countless folks who are way better at this than myself, this project would have never progressed to where it is today. Below are just some of the folks who have freely contributed their code to help others. There were many others that simply motivated me. Thanks to all.
 
 | [CCOSTAN](<https://github.com/CCOSTAN/Home-AssistantConfig>) | [SilvrrGIT](<https://github.com/SilvrrGIT/HomeAssistantg>)
 | [arsaboo](<https://github.com/arsaboo/homeassistant-config>) | [geekofweek](<https://github.com/geekofweek/homeassistant>)
