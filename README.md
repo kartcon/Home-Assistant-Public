@@ -125,9 +125,9 @@ Everybody loves stats. Its how we relate to how big, bad or powerful things are.
 ## Special Thanks
 Without the help and guidance of the countless folks who are way better at this than myself, this project would have never progressed to where it is today. Below are just some of the folks who have freely contributed their code to help others. There mere many others that simply motivated me. Thanks to all.
 
-| [CCOSTAN](<https://github.com/CCOSTAN/Home-AssistantConfig>) | [SilvrrGIT](<https://github.com/SilvrrGIT/HomeAssistantg>) |
-| [arsaboo](<https://github.com/arsaboo/homeassistant-config>) | [geekofweek](<https://github.com/geekofweek/homeassistant>) |
-| [frenck](<https://github.com/frenck/home-assistant-config>) | [bruhautomation](<https://github.com/bruhautomation/BRUH3-Home-Assistant-Configuration>) |
+| [CCOSTAN](<https://github.com/CCOSTAN/Home-AssistantConfig>) | [SilvrrGIT](<https://github.com/SilvrrGIT/HomeAssistantg>)
+| [arsaboo](<https://github.com/arsaboo/homeassistant-config>) | [geekofweek](<https://github.com/geekofweek/homeassistant>)
+| [frenck](<https://github.com/frenck/home-assistant-config>) | [bruhautomation](<https://github.com/bruhautomation/BRUH3-Home-Assistant-Configuration>) 
 | [stanvx](<https://github.com/stanvx/Home-Assistant-Configuration>) | [DubhAd](<https://github.com/DubhAd/Home-AssistantConfign>) |
 
 ## License
