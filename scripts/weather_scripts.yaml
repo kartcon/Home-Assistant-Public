@@ -23,31 +23,6 @@ its_raining:
       message: "At {{now().strftime('%m/%d/%Y %H:%M')}} its raining."
       title: Weather Notification
 #
-#  - service: script.turn_on
-#    data_template:
-#      entity_id: >-
-#        {% if is_state('input_boolean.close_garage_doors_in_rain' , 'on') %}
-#          script.close_garage_door1
-#        {% endif %}
-#  - service: script.turn_on
-#    data_template:
-#      entity_id: >-
-#        {% if is_state('input_boolean.close_garage_doors_in_rain' , 'on') %}
-#          script.close_garage_door2
-#        {% endif %}
-#  - service: script.turn_on
-#    data_template:
-#      entity_id: >-
-#        {% if is_state('input_boolean.close_garage_doors_in_rain' , 'on') %}
-#          script.morning
-#        {% elif is_state("input_select.mode", "Day") %}
-#          script.day
-#        {% elif is_state("input_select.mode", "Evening") %}
-#          script.evening
-#        {% elif is_state("input_select.mode", "Night") %}
-#          script.night
-#        {% endif %}
-#
 #################################################################
 # Its Gloomy Outside
 # Called from [its_more_gloomy]

@@ -90,6 +90,16 @@
       # Returns: Odd
 #          Even Week (Week# {{ as_timestamp(today) | timestamp_custom('%U', true) }})
 #          Odd Week (Week# {{ as_timestamp(today) | timestamp_custom('%U', true) }})
+    payday:
+      entity_id: sensor.date
+      value_template: >-
+        {% if states.sensor.week_odd_even.state == "Odd Week" and states.sensor.dayoftheweek.state == "Friday" %}
+          True
+        {%- else -%}
+          False
+        {% endif %}
+      friendly_name: "Pay Day"
+      # Returns: True/False
 #
 #############################################################
 #             Users Home/Away Calculations                  #

@@ -26,7 +26,7 @@
     - nearest_storm_distance
 #    - ozone
 #    - precip_type
-#    - precip_intensity
+    - precip_intensity
     - precip_probability
 #    - precip_accumulation
 #    - pressure

@@ -69,42 +69,32 @@ cards:
           entity: light.sunroom_lights_203
           name: Lights
           icon: mdi:ceiling-light
+        - entity: light.sunroom_fan_204
+          icon: mdi:fan
         - type: custom:slider-entity-row
           entity: light.sunroom_fan_204
-          name: Fan
+          name: Fan %
           icon: mdi:fan
-        - type: "custom:button-entity-row"
-          buttons:
-          - service: light.turn_on
-            service_data:
-              entity_id: light.sunroom_fan_204
-              brightness: 76
-            name: "L"
-            icon: mdi:alpha-l-box
-            style:
-          - service: light.turn_on
-            service_data:
-              entity_id: light.sunroom_fan_204
-              brightness: 166
-            name: "M"
-            icon: mdi:alpha-m-box
-          - service: light.turn_on
-            service_data:
-              entity_id: light.sunroom_fan_204
-              brightness: 255
-            name: "H"
-            icon: mdi:alpha-h-box
-          - service: light.turn_on
-            service_data:
-              entity_id: light.sunroom_fan_204
-              brightness: 0
-            name: "Off"
-            icon: mdi:alpha-o-box
-        - entity:  light.flux_led_strip
+        - entity: light.flux_led_strip
+          icon: mdi:led-strip-variant
         - type: custom:slider-entity-row
           entity:  light.flux_led_strip
-          full_row: true
+          name: LED %
+          icon: mdi:led-strip-variant
   #  Card 5
+    - type: entities
+      title: Bonus Room
+      show_header_toggle: true
+      entities:
+        - entity: light.office_desk_lamp_27
+          icon: mdi:desk-lamp
+        - type: custom:slider-entity-row
+          entity: light.office_light_223
+          name: Light
+          icon: mdi:ceiling-light
+        - entity: light.office_fan_224
+          icon: mdi:fan
+  #  Card 6
     - type: entities
       title: Outdoor Lights
       show_header_toggle: true
@@ -126,7 +116,7 @@ cards:
 #        - type: divider
 #        - entity: light.garage_lights_48
 #        - entity: light.porch_light_46
-  #  Card 6
+  #  Card 7
     - type: thermostat
       title: Downstairs
       show_header_toggle: false
@@ -135,7 +125,7 @@ cards:
       title: Upstairs
       show_header_toggle: false
       entity: climate.tstat_2_145
-  #  Card 7
+  #  Card 8
     - type: entities
       title: Automations
       show_header_toggle: false
@@ -147,7 +137,7 @@ cards:
         - entity: input_boolean.enable_br2_slow_dim
         - entity: input_boolean.enable_lr_slow_dim
         - entity: input_boolean.enable_sr_slow_dim
-  #  Card 8
+  #  Card 9
     - type: entities
       title: Notifications
       show_header_toggle: false
@@ -159,7 +149,7 @@ cards:
         - entity: input_boolean.enable_system_alerts
         - entity: input_boolean.enable_weather_alerts
         - entity: input_boolean.zone_alerts
-  #  Card 9
+  #  Card 10
     - type: horizontal-stack
       cards:
         - type: entity-button

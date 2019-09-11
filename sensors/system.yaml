@@ -26,19 +26,6 @@
   scan_interval: 14400
 #
 #########################
-#    Speed Test         #
-#########################
-# https://www.home-assistant.io/components/speedtestdotnet/
-- speedtestdotnet:
-  scan_interval:
-    hours: 6
-    minutes: 0
-  monitored_conditions:
-    - ping
-    - download
-    - upload
-#
-#########################
 #    System Monitor     #
 #########################
 - platform: systemmonitor

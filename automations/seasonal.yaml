@@ -119,7 +119,7 @@
 #################################################################
 #
 #################################################################
-# New Years Day (Jan 1)
+# New Years Day (Jan 1,2)
 #################################################################
 - id: season_is_new_years_day
   alias: Season is New Years Day
@@ -133,7 +133,7 @@
     at: '01:01:03'
   condition:
   - condition: template
-    value_template: '{{ ( now().month == 2 and now().day >= 7 ) and ( now().month == 2 and now().day <= 14 )}}'
+    value_template: '{{ ( now().month == 1 and now().day >= 1 ) and ( now().month == 1 and now().day <= 2 )}}'
   action:
   - service: input_boolean.turn_on
     data:
@@ -225,15 +225,15 @@
     condition: or
     conditions:
     - condition: template
-      value_template: '{{ ( now().year == 2019 and now().month == 4 and now().day >= 14 ) and ( now().year == 2019 and now().month == 4 and now().day <= 21 ) }}'
+      value_template: "{{ (states.sensor.date.state >= '2019-4-14') and (states.sensor.date.state <= '2019-4-21') }}"
     - condition: template
-      value_template: '{{ ( now().year == 2020 and now().month == 4 and now().day >= 5 ) and ( now().year == 2020 and now().month == 4 and now().day <= 12 ) }}'
+      value_template: "{{ (states.sensor.date.state >= '2020-4-5') and (states.sensor.date.state <= '2020-4-12') }}"
     - condition: template
-      value_template: '{{ ( now().year == 2021 and now().month == 3 and now().day >= 28 ) and ( now().year == 2021 and now().month == 4 and now().day <= 4 ) }}'
+      value_template: "{{ (states.sensor.date.state >= '2021-3-28') and (states.sensor.date.state <= '2021-4-4') }}"
     - condition: template
-      value_template: '{{ ( now().year == 2022 and now().month == 4 and now().day >= 10 ) and ( now().year == 2022 and now().month == 4 and now().day <= 17 ) }}'
+      value_template: "{{ (states.sensor.date.state >= '2022-4-10') and (states.sensor.date.state <= '2022-4-17') }}"
     - condition: template
-      value_template: '{{ ( now().year == 2023 and now().month == 4 and now().day >= 2 ) and ( now().year == 2023 and now().month == 4 and now().day <= 9 ) }}'
+      value_template: "{{ (states.sensor.date.state >= '2023-4-2') and (states.sensor.date.state <= '2023-4-9') }}"
   action:
   - service: input_boolean.turn_on
     data:
@@ -277,15 +277,15 @@
     condition: or
     conditions:
     - condition: template
-      value_template: '{{ ( now().year == 2019 and now().month == 5 and now().day >= 25 ) and ( now().year == 2019 and now().month == 5 and now().day <= 27 ) }}'
+      value_template: "{{ (states.sensor.date.state >= '2019-5-25') and (states.sensor.date.state <= '2019-5-27') }}"
     - condition: template
-      value_template: '{{ ( now().year == 2020 and now().month == 5 and now().day >= 23 ) and ( now().year == 2020 and now().month == 5 and now().day <= 25 ) }}'
+      value_template: "{{ (states.sensor.date.state >= '2020-5-23') and (states.sensor.date.state <= '2020-5-25') }}"
     - condition: template
-      value_template: '{{ ( now().year == 2021 and now().month == 5 and now().day >= 29 ) and ( now().year == 2021 and now().month == 5 and now().day <= 31 ) }}'
+      value_template: "{{ (states.sensor.date.state >= '2021-5-29') and (states.sensor.date.state <= '2021-5-31') }}"
     - condition: template
-      value_template: '{{ ( now().year == 2022 and now().month == 5 and now().day >= 28 ) and ( now().year == 2022 and now().month == 5 and now().day <= 30 ) }}'
+      value_template: "{{ (states.sensor.date.state >= '2022-5-28') and (states.sensor.date.state <= '2022-5-30') }}"
     - condition: template
-      value_template: '{{ ( now().year == 2023 and now().month == 5 and now().day >= 27 ) and ( now().year == 2023 and now().month == 5 and now().day <= 29 ) }}'
+      value_template: "{{ (states.sensor.date.state >= '2023-5-27') and (states.sensor.date.state <= '2023-5-29') }}"
   action:
   - service: input_boolean.turn_on
     data:
@@ -379,22 +379,22 @@
   - platform: state
     entity_id: switch.momentary_unscheduled_restart
     to: 'on'
-    for: '00:00:24'
+#    for: '00:00:24'
   - platform: time
     at: '01:01:24'
   condition:
     condition: or
     conditions:
     - condition: template
-      value_template: '{{ ( now().year == 2019 and now().month == 8 and now().day >= 31 ) and ( now().year == 2019 and now().month == 9 and now().day <= 2 ) }}'
+      value_template: "{{ (states.sensor.date.state >= '2019-8-31') and (states.sensor.date.state <= '2019-9-2') }}"
     - condition: template
-      value_template: '{{ ( now().year == 2020 and now().month == 9 and now().day >= 5 ) and ( now().year == 2020 and now().month == 9 and now().day <= 7 ) }}'
+      value_template: "{{ (states.sensor.date.state >= '2020-9-5') and (states.sensor.date.state <= '2020-9-7') }}"
     - condition: template
-      value_template: '{{ ( now().year == 2021 and now().month == 9 and now().day >= 4 ) and ( now().year == 2021 and now().month == 9 and now().day <= 6 ) }}'
+      value_template: "{{ (states.sensor.date.state >= '2021-9-4') and (states.sensor.date.state <= '2021-9-6') }}"
     - condition: template
-      value_template: '{{ ( now().year == 2022 and now().month == 9 and now().day >= 3 ) and ( now().year == 2022 and now().month == 9 and now().day <= 5 ) }}'
+      value_template: "{{ (states.sensor.date.state >= '2022-9-3') and (states.sensor.date.state <= '2020-9-5') }}"
     - condition: template
-      value_template: '{{ ( now().year == 2023 and now().month == 9 and now().day >= 2 ) and ( now().year == 2023 and now().month == 9 and now().day <= 4 ) }}'
+      value_template: "{{ (states.sensor.date.state >= '2023-9-2') and (states.sensor.date.state <= '2023-9-4') }}"
   action:
   - service: input_boolean.turn_on
     data:
@@ -520,8 +520,12 @@
   - platform: time
     at: '01:01:36'
   condition:
-  - condition: template
-    value_template: '{{ ( now().month == 12 and now().day >= 1 ) and ( now().month == 1 and now().day <= 7 ) }}'
+    condition: or
+    conditions:
+      - condition: template
+        value_template: '{{ ( now().month == 12 and now().day >= 1 ) and ( now().month == 12 and now().day <= 30 ) }}'
+      - condition: template
+        value_template: '{{ ( now().month == 1 and now().day >= 3 ) and ( now().month == 1 and now().day <= 7 ) }}'
   action:
   - service: input_boolean.turn_on
     data:
@@ -535,4 +539,34 @@
     data:
       entity_id: input_select.season_holiday
       message: Automation - Select Christmas
+#
+#################################################################
+# New Years Eve (Dec 31)
+#################################################################
+- id: season_is_new_years_eve
+  alias: Season is New Years Eve
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: switch.momentary_unscheduled_restart
+    to: 'on'
+    for: '00:00:39'
+  - platform: time
+    at: '01:01:39'
+  condition:
+  - condition: template
+    value_template: '{{ ( now().month == 12 and now().day == 31 ) }}'
+  action:
+  - service: input_boolean.turn_on
+    data:
+      entity_id:
+      - input_boolean.enable_new_years_eve_lighting
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.season_holiday
+      option: New Years Eve
+  - service: script.write_to_log
+    data:
+      entity_id: input_select.season_holiday
+      message: Automation - Select New Years Eve
 #

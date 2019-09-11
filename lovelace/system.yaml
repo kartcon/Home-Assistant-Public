@@ -91,21 +91,51 @@ cards:
             - entity: sensor.memory_use_percent
               icon: mdi:select-inverse
 #
-        - type: horizontal-stack
-          cards:
-          - type: entity-button
-            name: RUN SPEED TEST
-            icon: mdi:play-speed
-            tap_action: call-service
-            entity: script.refresh_speedtest
-            service: script.turn_on
-#
-          - type: entity-button
-            name: RUN MEMORY TEST
-            icon: mdi:play-speed
-            tap_action: call-service
-            entity: script.refresh_speedtest
-            service: script.turn_on
+        - type: glance
+          title: Counters
+          show_name: true
+          columns: 4
+          entities:
+            - entity: sensor.automation_count
+              name: Automations
+            - entity: sensor.binary_sensor_count
+              name: Binary Sensors
+            - entity: sensor.script_count
+              name: Scripts
+            - entity: sensor.sensor_count
+              name: Sensors
+            - entity: sensor.lights_count
+#            - entity: sensor.camera_count
+#              icon: mdi:tablet-ipad
+#              name: Cameras
+#            - entity: sensor.climate_count
+#              icon: mdi:crosshairs-gps
+#              name: Climate
+#            - entity: sensor.input_boolean_count
+#              icon: mdi:cellphone-iphone
+#              name: Input Boolean
+#            - entity: sensor.input_date_count
+#              icon: mdi:tablet-ipad
+#              name: Input Date
+#            - entity: sensor.input_number_count
+#              name: Input Number
+#            - entity: sensor.input_select_count
+#              name: Input Selects
+#            - entity: sensor.input_date_count
+#              name: Dates
+#            - entity: sensor.media_player_count
+#              name: Media Players
+#            - entity: sensor.persons_count
+#              name: Persons
+              name: Lights
+            - entity: sensor.locks_count
+              name: Locks
+            - entity: sensor.switch_count
+              name: Switches
+#            - entity: sensor.tracker_count
+#              name: Trackers
+#            - entity: sensor.zone_count
+#              name: Zones
 #
 # COL 3
     - type: vertical-stack
@@ -130,4 +160,20 @@ cards:
             - entity: input_datetime.recycle_pickup_date
             - entity: sensor.day_of_year
             - entity: sensor.week_of_year
+#
+        - type: horizontal-stack
+          cards:
+          - type: entity-button
+            name: RUN SPEED TEST
+            icon: mdi:play-speed
+            tap_action: call-service
+            entity: script.refresh_speedtest
+            service: script.turn_on
+#
+          - type: entity-button
+            name: RUN MEMORY TEST
+            icon: mdi:play-speed
+            tap_action: call-service
+            entity: script.refresh_speedtest
+            service: script.turn_on
 #

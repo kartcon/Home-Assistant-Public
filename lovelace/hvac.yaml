@@ -123,13 +123,8 @@ cards:
             name: Sunroom
           - entity: sensor.temperature_sensor_237
             name: Bird Rm1
-      - type: picture
-        image: https://cdn.tegna-media.com/wtlv/weather/7Day_forecast.jpg
-#      - type: thermostat
-#        id: v_hvac_c6
-#        title: Upstairs
-#        show_header_toggle: false
-#        entity: climate.tstat_2_145
+#      - type: picture
+#        image: https://cdn.tegna-media.com/wtlv/weather/7Day_forecast.jpg
       - type: glance
         title: Temp & Humidity Sensors
         columns: 3
@@ -140,3 +135,9 @@ cards:
          - sensor.lr_temp_sensor_78
          - sensor.lr_humidity_sensor_80
          - sensor.lr_light_sensor_79
+         - sensor.sun_room_temp_sensor_234
+         - sensor.sun_room_hum_sensor_236
+         - sensor.sun_room_lite_sensor_235
+         - sensor.birdrm1_temp_sensor_237
+         - sensor.birdrm1_hum_sensor_239
+         - sensor.birdrm1_lite_sensor_238

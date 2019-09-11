@@ -1,0 +1,37 @@
+#################################################################
+# WEATHER ALERT AUTOMATIONS
+#################################################################
+#
+#################################################################
+# Active Weather Alert
+#################################################################
+- alias: NWS Announcement Weather Alert
+  trigger:
+  - platform: state
+    entity_id: sensor.nws_alert_count
+  condition:
+    condition: and
+    conditions:
+    - condition: template
+      value_template: '{{states.sensor.nws_alert_count.state | int > 0}}'
+      ## Added a time condition because I don't want a non-emergency alert waking me up
+    - condition: template
+      # Only run if more than 4 hours (14,400 sec) since it last ran
+      value_template: '{{(as_timestamp(now()) - as_timestamp(state_attr("automation.weather_alerts", "last_triggered") | default(0)) | int > 14000 )}}'
+    - condition: or
+      conditions:
+        - condition: time
+          after: '09:00:00'
+          before: '23:00:00'
+        - condition: template
+          value_template: >
+            {{ 'Warning' in states.sensor.nws_alert_event.state }}
+  action:
+  - service: notify.alexa_media
+    data_template:
+      target: group.all_echo_dots
+      data:
+        type: tts
+      message: "The National Weather Service has issued a
+      {{ states.sensor.nws_alert_event.state }} for your area.
+      It expires at {{ as_timestamp(state_attr('sensor.nws_alert_event', 'features')[0].properties.expires)| timestamp_custom('%-I:%M %p on %-m-%-d-%Y') }}."

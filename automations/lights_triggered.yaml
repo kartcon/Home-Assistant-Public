@@ -186,7 +186,7 @@
   - platform: state
     entity_id:
     - binary_sensor.kit_motion_sensor_81
-#    - binary_sensor.lr_motion_sensor_67
+    - binary_sensor.lr_motion_sensor_67
     from: 'off'
     to: 'on'
   condition:
@@ -194,9 +194,10 @@
     after: '23:00:00'
     before: '06:00:00'
   action:
-  - service: script.cancel
+  - service: script.turn_off
     entity_id: script.ucl_temp_nightlights
-  - service: script.ucl_temp_nightlights
+  - service: script.turn_on
+    entity_id: script.ucl_temp_nightlights
 #  - service: light.turn_on
 #    data:
 #      entity_id: light.kitchen_uc_lights_44

@@ -25,16 +25,7 @@ ucl_temp_nightlights:
    - service: light.turn_off
      data:
        entity_id: light.nook_uc_lights_116
-
-
-
-
-
-
-
-
-
-
+#
 #################################################################
 # SCRIPT: Inside Lights On 1 Hour before Sunset
 # Called from [Interior lights on 1 hour before sunset]

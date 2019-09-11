@@ -45,6 +45,7 @@ cards:
             - entity: input_boolean.enable_halloween_lighting
             - entity: input_boolean.enable_thanksgiving_lighting
             - entity: input_boolean.enable_christmas_lighting
+            - entity: input_boolean.enable_new_years_eve_lighting
 #
 # COL 3
     - type: vertical-stack

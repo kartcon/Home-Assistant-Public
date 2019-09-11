@@ -8,10 +8,28 @@ id: v_traf
 icon: mdi:car-multiple
 panel: true
 cards:
-- type: horizontal-stack
-  cards:
-    - type: iframe
-      id: v_traf_c1
-      url: https://interactive.wusa9.com/doapp/trafficsmap-mobile.aspx?lat=30.3485&lon=-81.6644&zoom=11
-      aspect_ratio: 60%
-#
+  - type: custom:layout-card
+    layout: horizontal
+    column_num: 2
+#    max_columns: 2
+    max_width: [25%, 75%]
+    cards:
+      - type: 'custom:travel-time-card'
+        entities:
+          - entity: sensor.to_home
+          - entity: sensor.to_baptist
+          - entity: sensor.to_memorial
+          - entity: sensor.to_shands_jax
+          - entity: sensor.to_shands_north
+          - entity: sensor.to_st_vincents
+          - entity: sensor.to_mayo_clinic
+          - entity: sensor.to_flagler
+          - entity: sensor.to_phoebe_ga
+          - entity: sensor.to_mom_dad
+        columns: ['name', 'duration']
+        # columns: ['name', 'duration', 'distance', 'route']
+        map: google
+      - type: iframe
+        id: v_traf_c1
+        url: https://interactive.wusa9.com/doapp/trafficsmap-mobile.aspx?lat=30.3485&lon=-81.6644&zoom=10
+        aspect_ratio: 77%

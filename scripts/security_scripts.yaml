@@ -226,8 +226,6 @@ close_garage_door1:
 # In file: [automations/door_locks.yaml]
 # Called from [close_garage_door_2_no_one_home]
 # In file: [automations/door_locks.yaml]
-# Called from [close_garage_door_in_rain]
-# In file: [automations/door_locks.yaml]
 #################################################################
 #
 close_garage_door2:
@@ -236,35 +234,13 @@ close_garage_door2:
   - condition: state
     entity_id: lock.garage_controller_2_54
     state: 'unlocked'
-  - condition: state
-    entity_id: input_boolean.close_garage_doors_in_rain
-    state: 'on'
   - service: lock.lock
     data:
       entity_id:
       - lock.garage_controller_2_54
-  - service: notify.ios_group_art_steff
-    data:
-      title: Garage Door Closed
-      message: Rain - Close Garage Door2 Script Triggered
-  - service: notify.alexa_media
-    data_template:
-      target: group.all_echo_dots
-#      target:
-#        - media_player.kitchen_echo
-      data:
-        type: tts
-      message: "I'ts getting ready to rain. I've closed the Garage Doors for you"
   - service: script.write_to_log
     data_template:
       entity_id: lock.garage_controller_2_54
       message: >-
         At {{now().strftime("%m/%d/%Y %H:%M:%S")}} Script - Garage 2 Closed!
-  - service: script.turn_on
-    entity_id: script.blink_lights_tv
-  - delay: 0:00:03
-  - service: notify.lg_tv
-    data:
-      title: "Weather Notification"
-      message: "The garage doors were closed due to rain."
 #

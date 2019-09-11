@@ -20,10 +20,10 @@ update_tstats_script:
 #        Thermostat presets changed to {{states('input_select.thermostat_phase')}} {{states('input_select.thermostat_mode')}} mode.
   - delay:
       seconds: 10
-  - service: climate.set_operation_mode
+  - service: climate.set_hvac_mode
     data_template:
       entity_id: climate.tstat_1_144
-      operation_mode: >-
+      hvac_mode: >-
         {% if states('input_select.thermostat_mode') == 'Heat' %}
           heat
         {% elif states('input_select.thermostat_mode') == 'Cool' %}
@@ -33,10 +33,10 @@ update_tstats_script:
         {% endif %}
   - delay:
       seconds: 10
-  - service: climate.set_operation_mode
+  - service: climate.set_hvac_mode
     data_template:
       entity_id: climate.tstat_2_145
-      operation_mode: >-
+      hvac_mode: >-
         {% if states('input_select.thermostat_mode') == 'Heat' %}
           heat
         {% elif states('input_select.thermostat_mode') == 'Cool' %}
@@ -133,8 +133,8 @@ update_tstats_script:
 #      title: "HVAC Settings Changed"
 #      message: >-
 #        Thermostat settings changed to:
-#        Downstairs: {{states('input_select.thermostat_phase')}} {{(states.climate.tstat_1_144.attributes.operation_mode)}} at {{(states.climate.tstat_1_144.attributes.temperature)}} degrees.
-#        Upstairs: {{states('input_select.thermostat_phase')}} {{(states.climate.tstat_2_145.attributes.operation_mode)}} at {{(states.climate.tstat_2_145.attributes.temperature)}} degrees.
+#        Downstairs: {{states('input_select.thermostat_phase')}} {{(states.climate.tstat_1_144.attributes.hvac_mode)}} at {{(states.climate.tstat_1_144.attributes.temperature)}} degrees.
+#        Upstairs: {{states('input_select.thermostat_phase')}} {{(states.climate.tstat_2_145.attributes.hvac_mode)}} at {{(states.climate.tstat_2_145.attributes.temperature)}} degrees.
 #        Thermostat Mode Changed to {{ trigger.to_state.state }}.
 #        Thermostat presets changed to {{states('input_select.thermostat_phase')}} {{states('input_select.thermostat_mode')}} mode.
 #

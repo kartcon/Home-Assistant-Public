@@ -52,13 +52,6 @@
       data:
         type: announce
         method: speak
-#  - service: notify.alexa_media
-#    data_template:
-#      target:
-#        - media_player.office_echo
-#      data:
-#        type: tts
-#      message: "Trash pick-up is tomorrow. Remember to put the container out to the road."
   - service: script.sonos_say
     data:
       sonos_entity: media_player.sunroom_sonos
@@ -105,27 +98,20 @@
       data:
         type: announce
         method: speak
-#  - service: notify.alexa_media
-#    data_template:
-#      target:
-#        - media_player.office_echo
-#      data:
-#        type: tts
-#      message: "Recycling pick-up is tomorrow. Remember to put the container out to the road."
   - service: script.sonos_say
     data:
       sonos_entity: media_player.sunroom_sonos
       volume: 0.4
       message: "Recycling pick-up is tomorrow. Remember to put the container out to the road."
       delay: '00:00:05'
-  - service: input_datetime.set_datetime
-    data_template:
-      entity_id: input_datetime.recycle_alert_date
-      date: '{{ (as_timestamp(now()) + (14*24*3600)) | timestamp_custom("%Y-%m-%d", True) }}'
-  - service: input_datetime.set_datetime
-    data_template:
-      entity_id: input_datetime.recycle_pickup_date
-      date: '{{ (as_timestamp(now()) + (15*24*3600)) | timestamp_custom("%Y-%m-%d", True) }}'
+#  - service: input_datetime.set_datetime
+#    data_template:
+#      entity_id: input_datetime.recycle_alert_date
+#      date: '{{ (as_timestamp(now()) + (14*24*3600)) | timestamp_custom("%Y-%m-%d", True) }}'
+#  - service: input_datetime.set_datetime
+#    data_template:
+#      entity_id: input_datetime.recycle_pickup_date
+#      date: '{{ (as_timestamp(now()) + (15*24*3600)) | timestamp_custom("%Y-%m-%d", True) }}'
   - service: script.turn_on
     entity_id: script.blink_lights_tv
   - delay: 0:00:03
@@ -139,6 +125,32 @@
   - service: notify.ios_group_art_steff
     data:
       message: "Reminder: Take out the recycling."
+#
+#############################################################
+#  Recycling - Reset next PickUp Date
+#############################################################
+- id: reset_recycling_pickup_date
+  alias: 'Reset recycling pickup date'
+  initial_state: true
+  trigger:
+  - platform: sun
+    event: sunset
+  condition:
+    - condition: time
+      weekday:
+        - mon
+    - condition: state
+      entity_id: sensor.week_odd_even
+      state: 'Even Week'
+  action:
+  - service: input_datetime.set_datetime
+    data_template:
+      entity_id: input_datetime.recycle_alert_date
+      date: '{{ (as_timestamp(now()) + (13*24*3600)) | timestamp_custom("%Y-%m-%d", True) }}'
+  - service: input_datetime.set_datetime
+    data_template:
+      entity_id: input_datetime.recycle_pickup_date
+      date: '{{ (as_timestamp(now()) + (14*24*3600)) | timestamp_custom("%Y-%m-%d", True) }}'
 #
 #################################################################
 # Reset Holiday Booleans at 11:55p

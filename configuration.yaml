@@ -101,13 +101,13 @@ group: !include_dir_merge_named groups
 history: !include includes/history_cfgs.yaml
 ios: !include includes/ios_cfg.yaml
 ##http: !include includes/http_cfgs.yaml
-##input_boolean: !include_dir_merge_named input_boolean
 input_boolean: !include includes/input_booleans.yaml
 input_datetime: !include includes/input_datetimes.yaml
 input_number: !include includes/input_numbers.yaml
 input_select: !include includes/input_selects.yaml
 light: !include includes/lights.yaml
 media_player: !include includes/media_players.yaml
+mqtt: !include includes/mqtt_cfgs.yaml
 notify: !include_dir_merge_list notify
 proximity: !include includes/proximity.yaml
 recorder: !include includes/recorders.yaml
@@ -189,6 +189,11 @@ sleepiq:
 #  ---------------
 # Speed Test
 # https://www.home-assistant.io/components/speedtestdotnet/
+speedtestdotnet:
+  monitored_conditions:
+    - ping
+    - download
+    - upload
 #- speedtestdotnet:
 #  scan_interval:
 #    hours: 6

@@ -32,8 +32,8 @@
       - light
       - lock
 #      - media_player
-#      - scene
-#      - script
+      - scene
+      - script
       - sensor
       - sun
       - switch

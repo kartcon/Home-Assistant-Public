@@ -1,0 +1,11 @@
+################################################################################
+# CloudMQTT is a hosted private MQTT instance that is free for up to 10
+# connected devices. This is enough to get started with for example OwnTracks
+# and give you a taste of what is possible.
+################################################################################
+#
+  broker: !secret cloudmqtt_server
+  port: !secret cloudmqtt_port
+  username: !secret cloudmqtt_user
+  password: !secret cloudmqtt_password
+#
