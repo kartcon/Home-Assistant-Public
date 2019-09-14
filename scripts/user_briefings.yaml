@@ -213,6 +213,10 @@ steff_briefing_one:
 test_briefing_one:
   alias: Test Briefing One
   sequence:
+  - service: media_player.volume_set
+    data:
+      entity_id: media_player.office_echo
+      volume_level: '0.3'
   - service: notify.alexa_media
     data_template:
       target:

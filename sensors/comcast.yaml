@@ -1,0 +1,56 @@
+#########################
+#    Command Line       #
+#########################
+#
+#- platform: command_line
+#  command: date +"%d"
+#  name: Day Of Current Month
+#  scan_interval: 3600
+#
+#- platform: command_line
+#  command: cal $(date +"%m %Y") | awk 'NF {DAYS = $NF}; END {print DAYS}'
+#  name: Days In Current Month
+#  scan_interval: 3600
+
+- platform: file
+  name: Comcast Utilization
+  file_path: /Users/artdavis/.homeassistant/json_files/comcast_usage.json
+# /Users/artdavis/.homeassistant/json_files/comcast_usage.json
+#  file_path: '/.homeassistant/json_files/comcast_usage.json'
+# file_path: /home/homeassistant/.homeassistant/comcast/comcast_usage.json
+  value_template: >
+    {% if value_json is defined %}
+      {% if value_json.used | int == 0 and value_json.total | int == 0 %}
+        stats unavailable
+      {% else %}
+        {{ value_json.used | int }} / {{ value_json.total | int }} GB ({{ ((value_json.used /  value_json.total)*100) | round(1) }}%)
+      {% endif %}
+    {% else %}
+      undefined
+    {% endif %}
+
+- platform: file
+  name: Comcast Avg GB Current
+  file_path: /Users/artdavis/.homeassistant/json_files/comcast_usage.json
+  value_template: >
+    {% if value_json is defined %}
+      {% if value_json.used | int == 0 and value_json.total | int == 0 %}
+        stats unavailable
+      {% else %}
+       {{ ((value_json.used | int) / (states.sensor.dayofthemonth.state | int)) | round(1) }} GB per day
+      {% endif %}
+    {% endif %}
+
+- platform: file
+  name: Comcast Avg GB Left
+  file_path: /Users/artdavis/.homeassistant/json_files/comcast_usage.json
+  value_template: >
+    {% if value_json is defined %}
+      {% if value_json.used | int == 0 and value_json.total | int == 0 %}
+        stats unavailable
+      {% else %}
+        {{ (((value_json.total | int) - (value_json.used | int)) / ((states.sensor.sensor.days_in_current_month.state | int ) - (states.sensor.sensor.dayofthemonth.state | int))) | round(1) }} GB per day
+      {% endif %}
+    {% else %}
+      undefined
+    {% endif %}

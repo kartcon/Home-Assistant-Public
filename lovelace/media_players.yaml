@@ -115,48 +115,52 @@ cards:
         - type: custom:mini-media-player
           entity: media_player.kitchen_echo
           artwork: none
+          toggle_power: false
+          hide:
+            controls: false
+            volume: false
+            source: true
+            power: true
           tts:
             platform: alexa
             entity_id: media_player.kitchen_echo
-          hide:
-            controls: false
-            source: true
-            power: true
-          toggle_power: false
 #
         - type: custom:mini-media-player
           entity: media_player.office_echo
           artwork: none
+          toggle_power: false
+          hide:
+            controls: false
+            volume: false
+            source: true
+            power: true
           tts:
             platform: alexa
             entity_id: media_player.office_echo
-          hide:
-            controls: false
-            source: true
-            power: true
-          toggle_power: false
 #
         - type: custom:mini-media-player
           entity: media_player.sunroom_echo_white
           artwork: none
+          toggle_power: false
+          hide:
+            controls: false
+            volume: false
+            source: true
+            power: true
           tts:
             platform: alexa
             entity_id: media_player.sunroom_echo_white
-          hide:
-            controls: false
-            source: true
-            power: true
-          toggle_power: false
 #
         - type: custom:mini-media-player
           entity: media_player.sunroom_echo_black
           artwork: none
+          toggle_power: false
+          hide:
+            controls: false
+            volume: false
+            source: true
+            power: true
           tts:
             platform: alexa
             entity_id: media_player.sunroom_echo_black
-          hide:
-            controls: false
-            source: true
-            power: true
-          toggle_power: false
 #

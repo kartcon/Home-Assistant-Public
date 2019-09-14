@@ -19,6 +19,9 @@ homeassistant:
   # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   customize: !include customize.yaml
   time_zone: !secret timezone
+  whitelist_external_dirs:
+    - /Users/artdavis/.homeassistant/json_files
+#
 #  ---------------
 # 0.90 setup see:
 # https://github.com/CCOSTAN/Home-AssistantConfig/blob/master/config/configuration.yaml
@@ -158,7 +161,7 @@ hacs:
 #  ---------------
 # Own Tracks
 owntracks:
-  max_gps_accuracy: 65
+  max_gps_accuracy: 50
   events_only: false
 #  waypoints: true
 #
@@ -181,6 +184,13 @@ rachio:
   api_key: !secret rachio_api_key
 #
 #  ---------------
+# Shell Commands
+shell_command:
+  query_comcast_data_usage: 'python /python_scripts/comcast.py'
+#  image_classify: bash /home/homeassistant/.homeassistant/shell_scripts/image_classification.sh "{{camera}}"
+#  facebox: bash /home/homeassistant/.homeassistant/shell_scripts/facebox.sh "{{camera}}"
+#
+#  ---------------
 # Sleep IQ Bed
 sleepiq:
   username: !secret sleepiq_un
@@ -189,15 +199,7 @@ sleepiq:
 #  ---------------
 # Speed Test
 # https://www.home-assistant.io/components/speedtestdotnet/
-speedtestdotnet:
-  monitored_conditions:
-    - ping
-    - download
-    - upload
-#- speedtestdotnet:
-#  scan_interval:
-#    hours: 6
-#    minutes: 0
+#speedtestdotnet:
 #  monitored_conditions:
 #    - ping
 #    - download

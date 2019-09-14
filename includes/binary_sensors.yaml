@@ -25,12 +25,12 @@
 #
 - platform: ping
   name: Ping Sunroom Sonos
-  host: !secret sonos_sunroom_url
+  host: !secret sonos_black_url
   scan_interval: 300
 #
 - platform: ping
   name: Ping Bedroom Sonos
-  host: !secret sonos_bedroom_url
+  host: !secret sonos_white_url
   scan_interval: 300
 #
 - platform: ping
