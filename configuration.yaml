@@ -184,6 +184,18 @@ rachio:
   api_key: !secret rachio_api_key
 #
 #  ---------------
+# Remote Home Assistant
+# https://github.com/lukas-hetzenecker/home-assistant-remote
+remote_homeassistant:
+  instances:
+  - host: 192.168.0.51
+    port: 8123
+    secure: true
+#    access_token: !secret access_token
+#    api_password: !secret http_password
+    entity_prefix: "rpi3_"
+#
+#  ---------------
 # Shell Commands
 shell_command:
   query_comcast_data_usage: 'python /python_scripts/comcast.py'

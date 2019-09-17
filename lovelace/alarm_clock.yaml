@@ -1,0 +1,139 @@
+#########################################
+#  View - ALARM CLOCK
+#########################################
+#
+title: Alarm Clock
+path: alarm_clock
+id: v_alarm_clock
+icon: mdi:alarm-check
+# panel: true
+cards:
+#   Card 1
+- type: vertical-stack
+  cards:
+  - type: markdown
+    content: >
+      ## Today is [[ sensor.readable_date_long.state ]].
+  - type: markdown
+    content: >
+      ## It's [[ sensor.readable_time.state ]]
+  - type: entities
+    title: Alarm Clock
+    show_header_toggle: false
+    entities:
+    - entity: input_boolean.alarm_clock_enabled
+    - entity: input_boolean.weekdays_alarm_on
+    - entity: input_boolean.weekends_alarm_on
+#
+  - type: conditional
+    conditions:
+    - entity: input_boolean.alarm_clock_enabled
+      state: "on"
+    - entity: input_boolean.weekdays_alarm_on
+      state: "on"
+    card:
+      type: entities
+      title: Monday
+      show_header_toggle: false
+      entities:
+#      - entity: input_boolean.monday_alarm_on
+#        name: Enabled
+      - entity: input_datetime.monday_alarm_time
+        name: Set Time
+#
+  - type: conditional
+    conditions:
+    - entity: input_boolean.alarm_clock_enabled
+      state: "on"
+    - entity: input_boolean.weekdays_alarm_on
+      state: "on"
+    card:
+      type: entities
+      title: Tuesday
+      show_header_toggle: false
+      entities:
+#      - entity: input_boolean.tuesday_alarm_on
+#        name: Enabled
+      - entity: input_datetime.tuesday_alarm_time
+        name: Set Time
+#
+  - type: conditional
+    conditions:
+    - entity: input_boolean.alarm_clock_enabled
+      state: "on"
+    - entity: input_boolean.weekdays_alarm_on
+      state: "on"
+    card:
+      type: entities
+      title: Wednesday
+      show_header_toggle: false
+      entities:
+#      - entity: input_boolean.wednesday_alarm_on
+#        name: Enabled
+      - entity: input_datetime.wednesday_alarm_time
+        name: Set Time
+#
+  - type: conditional
+    conditions:
+    - entity: input_boolean.alarm_clock_enabled
+      state: "on"
+    - entity: input_boolean.weekdays_alarm_on
+      state: "on"
+    card:
+      type: entities
+      title: Thursday
+      show_header_toggle: false
+      entities:
+#      - entity: input_boolean.thursday_alarm_on
+#        name: Enabled
+      - entity: input_datetime.thursday_alarm_time
+        name: Set Time
+#
+  - type: conditional
+    conditions:
+    - entity: input_boolean.alarm_clock_enabled
+      state: "on"
+    - entity: input_boolean.weekdays_alarm_on
+      state: "on"
+    card:
+      type: entities
+      title: Friday
+      show_header_toggle: false
+      entities:
+#      - entity: input_boolean.friday_alarm_on
+#        name: Enabled
+      - entity: input_datetime.friday_alarm_time
+        name: Set Time
+#
+  - type: conditional
+    conditions:
+    - entity: input_boolean.alarm_clock_enabled
+      state: "on"
+    - entity: input_boolean.weekends_alarm_on
+      state: "on"
+    card:
+      type: entities
+      title: Saturday
+      show_header_toggle: false
+      entities:
+#      - entity: input_boolean.saturday_alarm_on
+#        name: Enabled
+      - entity: input_datetime.saturday_alarm_time
+        name: Set Time
+#
+  - type: conditional
+    conditions:
+    - entity: input_boolean.alarm_clock_enabled
+      state: "on"
+    - entity: input_boolean.weekends_alarm_on
+      state: "on"
+    card:
+      type: entities
+      title: Sunday
+      show_header_toggle: false
+      entities:
+#      - entity: input_boolean.sunday_alarm_on
+#        name: Enabled
+      - entity: input_datetime.sunday_alarm_time
+        name: Set Time
+#

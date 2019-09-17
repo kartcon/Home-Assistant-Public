@@ -87,6 +87,7 @@ views:
   - !include lovelace/battery.yaml
   - !include lovelace/config.yaml
   - !include lovelace/system.yaml
+  - !include lovelace/alarm_clock.yaml
 #  - !include lovelace/ic3.yaml
 #  - !include lovelace/sensors.yaml
 #  - !include lovelace/entities.yaml

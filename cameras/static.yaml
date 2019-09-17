@@ -33,8 +33,8 @@
   still_image_url: https://wave.marineweather.net/itide/tides/png/fl_clapboard_creek.png?x=1543758223
 #
 - platform: generic
-  name: Hurricane Cone
-  still_image_url: https://www.nhc.noaa.gov/storm_graphics/AT05/refresh/AL052019_5day_cone_no_line_and_wind+png/215101_5day_cone_no_line_and_wind.png
+  name: Tropical Outlook
+  still_image_url: https://www.nhc.noaa.gov/xgtwo/two_atl_5d0.png
 #
 - platform: generic
   name: National Map

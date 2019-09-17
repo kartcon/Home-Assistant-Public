@@ -182,7 +182,7 @@
     weekday:
     - sat
   - condition: numeric_state
-    entity_id: sensor.dayofthemonth
+    entity_id: sensor.day_of_the_month
     below: 8
   action:
   - service: persistent_notification.create
@@ -216,22 +216,4 @@
   - service: notify.ios_group_art_steff
     data:
       message: "Reminder: Change the furnace filter."
-##
-#############################################################
-#  Query Comcast Data Usage
-#############################################################
-- id: query_comcast_data_usage
-  alias: 'Query Comcast Data Usage'
-  initial_state: true
-  trigger:
-     platform: time_pattern
-     hours: '/6'
-     minutes: 0
-     seconds: 0
-  action:
-    service: shell_command.query_comcast_data_usage
-#
-#  "used": "5",
-#  "total": "10",
-#  "unit": "Gb"
 #

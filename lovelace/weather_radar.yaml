@@ -32,7 +32,7 @@ cards:
 #            navigation_path: https://www.accuweather.com/en/us/florida/weather-radar
 #
         - type: picture-entity
-          entity: camera.hurricane_cone
+          entity: camera.tropical_outlook
           aspect_ratio: 90%
           show_name: false
           show_state: false

@@ -28,6 +28,16 @@ daily_briefing_alert:
 art_briefing_one:
   alias: Art Briefing One
   sequence:
+  - service: media_player.volume_set
+    data_template:
+      entity_id: media_player.kitchen_echo
+      volume_level: >-
+        {% set current_hour = strptime(states('sensor.time'), "%H:%M").hour | int %}
+        {% if current_hour < 8 %}
+          0.3
+        {% else %}
+          0.5
+        {% endif %}
   - service: notify.alexa_media
     data_template:
       target:
@@ -43,8 +53,8 @@ art_briefing_one:
         {% if states.sensor.payday.state == 'True' %}
         payday
         {% endif %}
-        {{states.sensor.dayoftheweek.state}}
-        and the date is the {{states.sensor.dateofthemonth.state}} of {{states.sensor.month_name.state}}.
+        {{states.sensor.day_of_the_week.state}}
+        and the date is the {{states.sensor.date_of_the_month.state}} of {{states.sensor.month_name.state}}.
         {# Birds #}
         {% if states.sensor.weigh_birds.state == 'true' %}
         It's time to weigh the birds again.
@@ -93,7 +103,7 @@ art_briefing_one:
         {# Tides #}
         The next {{states.sensor.noaa_tides.state|replace('at','is at')}}.
         {# Trash Day #}
-        {% if states.sensor.dayoftheweek.state == 'Thursday' %}
+        {% if states.sensor.day_of_the_week.state == 'Thursday' %}
         Today is Thursday. The trash bin needs to be out to the road.
         {% endif %}
         {# Recycling Day #}
@@ -106,6 +116,10 @@ art_briefing_one:
         {% endif %}
         {# Closing #}
         Have a{{ [" pleasant", " great", " good", " cheerful", " delightful", "n enjoyable", " super", " wonderful", " satisfying"] | random }} day!
+  - service: media_player.volume_set
+    data:
+      entity_id: media_player.kitchen_echo
+      volume_level: '0.5'
 #
 #################################################################
 # Steff Briefing One
@@ -115,6 +129,20 @@ art_briefing_one:
 steff_briefing_one:
   alias: Steff Briefing One
   sequence:
+  - service: media_player.volume_set
+    data_template:
+      entity_id: media_player.kitchen_echo
+      volume_level: >-
+        {% set current_hour = strptime(states('sensor.time'), "%H:%M").hour | int %}
+        {% if current_hour < 8 %}
+          0.3
+        {% else %}
+          0.5
+        {% endif %}
+#  - service: media_player.volume_set
+#    data:
+#      entity_id: media_player.kitchen_echo
+#      volume_level: '0.5'
   - service: notify.alexa_media
     data_template:
       target:
@@ -130,8 +158,8 @@ steff_briefing_one:
         {% if states.sensor.payday.state == 'True' %}
         payday
         {% endif %}
-        {{states.sensor.dayoftheweek.state}}
-        and the date is the {{states.sensor.dateofthemonth.state}} of {{states.sensor.month_name.state}}.
+        {{states.sensor.day_of_the_week.state}}
+        and the date is the {{states.sensor.date_of_the_month.state}} of {{states.sensor.month_name.state}}.
         {# Birds #}
         {% if states.sensor.weigh_birds.state == 'true' %}
         It's time to weigh the birds again.
@@ -191,7 +219,7 @@ steff_briefing_one:
           {% endif %}
         {% endif %}
         {# Trash Day #}
-        {% if states.sensor.dayoftheweek.state == 'Thursday' %}
+        {% if states.sensor.day_of_the_week.state == 'Thursday' %}
         Today is Thursday. The trash bin needs to be out to the road.
         {% endif %}
         {# Recycling Day #}
@@ -204,6 +232,10 @@ steff_briefing_one:
         {% endif %}
         {# Closing #}
         Have a{{ [' pleasant', ' amiable', ' happy', ' cheerful', ' delightful', 'n enjoyable', ' lovely', ' pleasing', ' good'] | random }} day!
+  - service: media_player.volume_set
+    data:
+      entity_id: media_player.kitchen_echo
+      volume_level: '0.5'
 #
 #################################################################
 # Test Briefing One
@@ -214,9 +246,15 @@ test_briefing_one:
   alias: Test Briefing One
   sequence:
   - service: media_player.volume_set
-    data:
+    data_template:
       entity_id: media_player.office_echo
-      volume_level: '0.3'
+      volume_level: >-
+        {% set current_hour = strptime(states('sensor.time'), "%H:%M").hour | int %}
+        {% if current_hour < 8 %}
+          0.3
+        {% else %}
+          0.5
+        {% endif %}
   - service: notify.alexa_media
     data_template:
       target:
@@ -232,8 +270,8 @@ test_briefing_one:
         {% if states.sensor.payday.state == 'True' %}
         payday
         {% endif %}
-        {{states.sensor.dayoftheweek.state}}
-        and the date is the {{states.sensor.dateofthemonth.state}} of {{states.sensor.month_name.state}}.
+        {{states.sensor.day_of_the_week.state}}
+        and the date is the {{states.sensor.date_of_the_month.state}} of {{states.sensor.month_name.state}}.
         {# Birds #}
         {% if states.sensor.weigh_birds.state == 'true' %}
         It's time to weigh the birds again.
@@ -284,7 +322,7 @@ test_briefing_one:
         {# High Tide Warningss #}
         {# End High Tide Warningss #}
         {# Trash Day #}
-        {% if states.sensor.dayoftheweek.state == 'Thursday' %}
+        {% if states.sensor.day_of_the_week.state == 'Thursday' %}
         Today is Thursday. The trash bin needs to be out to the road.
         {% endif %}
         {# Recycling Day #}
@@ -297,6 +335,10 @@ test_briefing_one:
         {% endif %}
         {# Closing #}
         Have a{{ [" pleasant", " great", " good", " cheerful", " delightful", "n enjoyable", " super", " wonderful", " satisfying"] | random }} day!
+  - service: media_player.volume_set
+    data:
+      entity_id: media_player.office_echo
+      volume_level: '0.5'
 #
 #################################################################
 # Test Briefing Two
@@ -322,3 +364,18 @@ test_briefing_two:
 # sensor.payday                            true/false
 # input_select.season_holiday              season or holiday name
 # sensor.season                            one of the 4 seasons
+#
+#  - service: media_player.volume_set
+#    data:
+#      entity_id: media_player.office_echo
+#      volume_level: '0.5'
+# -------
+#        {% set level =
+#           states('sensor.alarmclock_radio_volume')|float +
+#           states('input_number.increase_volume')|float %}
+#        {% if level < 1 %} {{ level }}
+#        {% else %} 0.5
+#        {% endif %}
+# ------
+#        {% else %}
+#          0.5

@@ -10,22 +10,14 @@
   - platform: state
     entity_id: sensor.nws_alert_count
   condition:
-    condition: and
-    conditions:
-    - condition: template
-      value_template: '{{states.sensor.nws_alert_count.state | int > 0}}'
-      ## Added a time condition because I don't want a non-emergency alert waking me up
-    - condition: template
-      # Only run if more than 4 hours (14,400 sec) since it last ran
-      value_template: '{{(as_timestamp(now()) - as_timestamp(state_attr("automation.weather_alerts", "last_triggered") | default(0)) | int > 14000 )}}'
-    - condition: or
-      conditions:
-        - condition: time
-          after: '09:00:00'
-          before: '23:00:00'
-        - condition: template
-          value_template: >
-            {{ 'Warning' in states.sensor.nws_alert_event.state }}
+  - condition: template
+    value_template: '{{states.sensor.nws_alert_count.state | int > 0}}'
+  - condition: time
+    after: '09:00:00'
+    before: '23:00:00'
+  - condition: template
+    # Only run if more than 4 hours (14,400 sec) since it last ran
+    value_template: '{{(as_timestamp(now()) - as_timestamp(state_attr("automation.weather_alerts", "last_triggered") | default(0)) | int > 14000 )}}'
   action:
   - service: notify.alexa_media
     data_template:

@@ -3,6 +3,49 @@
 ##############################################################
 #
 ##############################################################
+##       Alarm Clock Variables                              ##
+##############################################################
+  alarm_clock_enabled:
+    name: Alarm Enabled
+    icon: mdi:alarm-check
+#
+  weekdays_alarm_on:
+    name: Alarm Weekdays
+    icon: mdi:alarm-check
+#
+  weekends_alarm_on:
+    name: Alarm Weekends
+    icon: mdi:alarm-check
+#
+  sunday_alarm_on:
+    name: Sunday
+    icon: mdi:alarm-check
+#
+  monday_alarm_on:
+    name: Monday
+    icon: mdi:alarm-check
+#
+  tuesday_alarm_on:
+    name: Tuesday
+    icon: mdi:alarm-check
+#
+  wednesday_alarm_on:
+    name: Wednesday
+    icon: mdi:alarm-check
+#
+  thursday_alarm_on:
+    name: Thursday
+    icon: mdi:alarm-check
+#
+  friday_alarm_on:
+    name: Friday
+    icon: mdi:alarm-check
+#
+  saturday_alarm_on:
+    name: Saturday
+    icon: mdi:alarm-check
+#
+##############################################################
 # Geolocation Toggles
 ##############################################################
   art_home:

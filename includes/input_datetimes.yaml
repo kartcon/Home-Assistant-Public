@@ -37,3 +37,49 @@
     has_date: true
     has_time: true
 #
+##############################################################
+##       Alarm Clock Variables                              ##
+##############################################################
+#
+  monday_alarm_time:
+    name: Monday
+    has_date: false
+    has_time: true
+    icon: mdi:alarm-check
+#
+  tuesday_alarm_time:
+    name: Tuesday
+    has_date: false
+    has_time: true
+    icon: mdi:alarm-check
+#
+  wednesday_alarm_time:
+    name: Wednesday
+    has_date: false
+    has_time: true
+    icon: mdi:alarm-check
+#
+  thursday_alarm_time:
+    name: Thursday
+    has_date: false
+    has_time: true
+    icon: mdi:alarm-check
+#
+  friday_alarm_time:
+    name: Friday
+    has_date: false
+    has_time: true
+    icon: mdi:alarm-check
+#
+  saturday_alarm_time:
+    name: Saturday
+    has_date: false
+    has_time: true
+    icon: mdi:alarm-check
+#
+  sunday_alarm_time:
+    name: Sunday
+    has_date: false
+    has_time: true
+    icon: mdi:alarm-check
+#
