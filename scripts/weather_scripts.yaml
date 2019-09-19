@@ -68,7 +68,7 @@ its_brighter_outside:
   - service: persistent_notification.create
     data_template:
       message: >-
-        At {{now().strftime("%m/%d/%Y %H:%M")}} its rainy and gloomy.
+        At {{now().strftime("%m/%d/%Y %H:%M")}} its brightened up outside.
       title: Weather Notification
   - service: notify.alexa_media
     data_template:

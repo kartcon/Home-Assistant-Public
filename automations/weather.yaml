@@ -108,13 +108,12 @@
   alias: Its Less Gloomy
   initial_state: true
   trigger:
-  - platform: state
-    entity_id: input_select.current_condition
-    from: 'Rainy'
-  condition:
-  - condition: numeric_state
+  - platform: numeric_state
     entity_id: sensor.kit_light_sensor_227
     above: 60
+  condition:
+  - condition: template
+    value_template: "{{ (states('input_select.current_condition')) != 'Rainy' }}"
   - condition: time
     after: '08:00:00'
     before: '16:00:00'

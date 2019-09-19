@@ -137,9 +137,9 @@ alexa_media:
 #  ---------------
 # Send commands to Alexa (as if spoken directly)
 # https://community.home-assistant.io/t/send-commands-to-alexa/75301
-rest_command:
-  ask_alexa:
-    url: https://virtual-device.bespoken.io/process?message="{{ message }}"&user_id=alexa-eac852d3-5b4b-4d09-9535-3d02f3accadc
+#rest_command:
+#  ask_alexa:
+#    url: https://virtual-device.bespoken.io/process?message="{{ message }}"&user_id=alexa-eac852d3-5b4b-4d09-9535-3d02f3accadc
 #
 #  ---------------
 # Google (Maps,Calendar, ect)
@@ -186,14 +186,14 @@ rachio:
 #  ---------------
 # Remote Home Assistant
 # https://github.com/lukas-hetzenecker/home-assistant-remote
-remote_homeassistant:
-  instances:
-  - host: 192.168.0.51
-    port: 8123
-    secure: true
-#    access_token: !secret access_token
-#    api_password: !secret http_password
-    entity_prefix: "rpi3_"
+#remote_homeassistant:
+#  instances:
+#  - host: 192.168.0.51
+#    port: 8123
+#    secure: true
+##    access_token: !secret access_token
+#    api_password: !secret api_password
+#    entity_prefix: "rpi3_"
 #
 #  ---------------
 # Shell Commands

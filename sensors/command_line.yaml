@@ -6,17 +6,17 @@
   command: cal $(date +"%m %Y") | awk 'NF {DAYS = $NF}; END {print DAYS}'
   scan_interval: 3600
 #
-- platform: command_line
-  name: Birthday Countdown Art
-  unit_of_measurement: days
-  scan_interval: 3600
-  command: "BDAY=`date -d 1959-4-16 +%j | awk '{print $1 + 0}'`; TODAY=`date +%j | awk '{print $1 + 0}'`; DAYS=$(($BDAY - $TODAY)); echo $DAYS"
+#- platform: command_line
+#  name: Birthday Countdown Art
+#  unit_of_measurement: days
+#  scan_interval: 3600
+#  command: "BDAY=`date -d 1959-4-16 +%j | awk '{print $1 + 0}'`; TODAY=`date +%j | awk '{print $1 + 0}'`; DAYS=$(($BDAY - $TODAY)); echo $DAYS"
 #
-- platform: command_line
-  name: Birthday Countdown Steff
-  unit_of_measurement: days
-  scan_interval: 3600
-  command: "BDAY=`date -d 1953-9-20 +%j | awk '{print $1 + 0}'`; TODAY=`date +%j | awk '{print $1 + 0}'`; DAYS=$(($BDAY - $TODAY)); echo $DAYS"
+#- platform: command_line
+#  name: Birthday Countdown Steff
+#  unit_of_measurement: days
+#  scan_interval: 3600
+#  command: "BDAY=`date -d 1953-9-20 +%j | awk '{print $1 + 0}'`; TODAY=`date +%j | awk '{print $1 + 0}'`; DAYS=$(($BDAY - $TODAY)); echo $DAYS"
 #
 # ------------------------
 #- platform: command_line
