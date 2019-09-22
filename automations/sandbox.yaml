@@ -31,31 +31,33 @@
     entity_id: input_boolean.enable_sandbox
     state: 'on'
   action:
-  - service: rest_command.ask_alexa
-    data:
-      message: "Set a 5 minute timer in the office"
+  - service: script.turn_on
+    entity_id: script.test_briefing_two
+#  - service: rest_command.ask_alexa
+#    data:
+#      message: "Set a 5 minute timer in the office"
 #
 #################################################################
 # Execute an Automation via the Sandbox
 #################################################################
-- id: sandbox_test_3
-  alias: Sandbox Test 3
-  initial_state: true
-  trigger:
-  - platform: state
-    entity_id: switch.momentary_sandbox_3
-    to: 'on'
-  - platform: state
-    entity_id: switch.momentary_unscheduled_restart
-    to: 'on'
-  condition:
-  - condition: state
-    entity_id: input_boolean.enable_sandbox
-    state: 'on'
-  action:
-  - service: rest_command.ask_alexa
-    data:
-      message: "Alexa, Tell me a joke on the Office Echo"
+#- id: sandbox_test_3
+#  alias: Sandbox Test 3
+#  initial_state: true
+#  trigger:
+#  - platform: state
+#    entity_id: switch.momentary_sandbox_3
+#    to: 'on'
+#  - platform: state
+#    entity_id: switch.momentary_unscheduled_restart
+#    to: 'on'
+#  condition:
+#  - condition: state
+#    entity_id: input_boolean.enable_sandbox
+#    state: 'on'
+#  action:
+#  - service: rest_command.ask_alexa
+#    data:
+#      message: "Alexa, Tell me a joke on the Office Echo"
 #
 
 #################################################################

@@ -45,6 +45,10 @@
     weekday:
       - wed
   action:
+  - service: media_player.volume_set
+    data:
+      entity_id: group.all_echo_dots
+      volume_level: '0.5'
   - service: notify.alexa_media
     data:
       target: group.all_echo_dots
@@ -91,6 +95,10 @@
       entity_id: sensor.week_odd_even
       state: 'Even Week'
   action:
+  - service: media_player.volume_set
+    data:
+      entity_id: group.all_echo_dots
+      volume_level: '0.5'
   - service: notify.alexa_media
     data:
       target: group.all_echo_dots
@@ -190,6 +198,10 @@
       title: 'Remember to change the furnace filter.'
       message: >-
         It's the first Saturday of the month. Remember to change the furnace filter.
+  - service: media_player.volume_set
+    data:
+      entity_id: group.all_echo_dots
+      volume_level: '0.5'
   - service: notify.alexa_media
     data:
       target: group.all_echo_dots

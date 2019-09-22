@@ -48,9 +48,11 @@ cards:
           entities:
             - entity: input_boolean.enable_sandbox
             - entity: switch.momentary_sandbox_1
+              name: Briefing 1 Test
             - entity: switch.momentary_sandbox_2
+              name: Briefing 2 Test
             - entity: switch.momentary_sandbox_3
-#            - entity: input_boolean.trigger_sandbox
+              name: Disabled
 #
 #
 #        - type: entities
