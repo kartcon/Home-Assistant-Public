@@ -8,17 +8,21 @@
 # Called from [steff_weekday_briefing]
 # In file: [automations/user_briefings.yaml]
 #################################################################
-daily_briefing_alert:
-  alias: Daily Briefing Alert
-  sequence:
-  - service: notify.alexa_media
-    data_template:
-      target:
-        - media_player.kitchen_echo
-      data:
-        type: announce
-      message: >-
-        Your daily briefing is about to start.
+#daily_briefing_alert:
+#  alias: Daily Briefing Alert
+#  sequence:
+##  - service: script.set_alexa_volume
+##    data:
+##      alexa_entity: media_player.kitchen_echo
+##  - delay: '00:00:05'
+#  - service: notify.alexa_media
+#    data_template:
+#      target:
+#        - media_player.kitchen_echo
+#      data:
+#        type: announce
+#      message: >-
+#        Your daily briefing is about to start.
 #
 #################################################################
 # Art Briefing One
@@ -28,16 +32,21 @@ daily_briefing_alert:
 art_briefing_one:
   alias: Art Briefing One
   sequence:
-  - service: media_player.volume_set
+  # Set Volume
+  - service: script.set_alexa_volume
+    data:
+      alexa_entity: media_player.kitchen_echo
+  # Make Announcement
+  - service: notify.alexa_media
     data_template:
-      entity_id: media_player.kitchen_echo
-      volume_level: >-
-        {% set current_hour = strptime(states('sensor.time'), "%H:%M").hour | int %}
-        {% if current_hour < 8 %}
-          0.3
-        {% else %}
-          0.5
-        {% endif %}
+      target:
+        - media_player.kitchen_echo
+      data:
+        type: announce
+      message: >-
+        Your daily briefing is about to start.
+  - delay: 0:00:03
+  # Read Briefing
   - service: notify.alexa_media
     data_template:
       target:
@@ -116,10 +125,6 @@ art_briefing_one:
         {% endif %}
         {# Closing #}
         Have a{{ [" pleasant", " great", " good", " cheerful", " delightful", "n enjoyable", " super", " wonderful", " satisfying"] | random }} day!
-  - service: media_player.volume_set
-    data:
-      entity_id: media_player.kitchen_echo
-      volume_level: '0.5'
 #
 #################################################################
 # Steff Briefing One
@@ -129,20 +134,21 @@ art_briefing_one:
 steff_briefing_one:
   alias: Steff Briefing One
   sequence:
-  - service: media_player.volume_set
+  # Set Volume
+  - service: script.set_alexa_volume
+    data:
+      alexa_entity: media_player.kitchen_echo
+  # Make Announcement
+  - service: notify.alexa_media
     data_template:
-      entity_id: media_player.kitchen_echo
-      volume_level: >-
-        {% set current_hour = strptime(states('sensor.time'), "%H:%M").hour | int %}
-        {% if current_hour < 8 %}
-          0.3
-        {% else %}
-          0.5
-        {% endif %}
-#  - service: media_player.volume_set
-#    data:
-#      entity_id: media_player.kitchen_echo
-#      volume_level: '0.5'
+      target:
+        - media_player.kitchen_echo
+      data:
+        type: announce
+      message: >-
+        Your daily briefing is about to start.
+  - delay: 0:00:03
+  # Read Briefing
   - service: notify.alexa_media
     data_template:
       target:
@@ -236,10 +242,6 @@ steff_briefing_one:
         {% endif %}
         {# Closing #}
         Have a{{ [' pleasant', ' amiable', ' happy', ' cheerful', ' delightful', 'n enjoyable', ' lovely', ' pleasing', ' good'] | random }} day!
-  - service: media_player.volume_set
-    data:
-      entity_id: media_player.kitchen_echo
-      volume_level: '0.5'
 #
 #################################################################
 # Test Briefing One
@@ -249,16 +251,21 @@ steff_briefing_one:
 test_briefing_one:
   alias: Test Briefing One
   sequence:
-  - service: media_player.volume_set
+  # Set Volume
+  - service: script.set_alexa_volume
+    data:
+      alexa_entity: media_player.office_echo
+  # Make Announcement
+  - service: notify.alexa_media
     data_template:
-      entity_id: media_player.office_echo
-      volume_level: >-
-        {% set current_hour = strptime(states('sensor.time'), "%H:%M").hour | int %}
-        {% if current_hour < 8 %}
-          0.3
-        {% else %}
-          0.5
-        {% endif %}
+      target:
+        - media_player.office_echo
+      data:
+        type: announce
+      message: >-
+        Your daily briefing is about to start.
+  - delay: 0:00:03
+  # Read Briefing
   - service: notify.alexa_media
     data_template:
       target:
@@ -266,6 +273,7 @@ test_briefing_one:
       data:
         type: tts
       message: >-
+        Test briefing number one.
         {# Salutation #}
         Good {{states.sensor.time_of_day.state}} Art.
         {# Time #}
@@ -283,8 +291,8 @@ test_briefing_one:
         {# Birthday/Holiday #}
         {% if states.sensor.todays_events.state != 'unknown' %}
           {% if states.sensor.todays_events.state != '' %}
-            {% if states.sensor.todays_events.state|replace("\'","") == 'Steffs Birthday' %}
-              Happy Birthday Steff.
+            {% if states.sensor.todays_events.state|replace("\'","") == 'Arts Birthday' %}
+              Happy Birthday Art.
             {% else %}
               Don't forget, it's {{states.sensor.todays_events.state}} today.
             {% endif %}
@@ -343,10 +351,10 @@ test_briefing_one:
         {% endif %}
         {# Closing #}
         Have a{{ [" pleasant", " great", " good", " cheerful", " delightful", "n enjoyable", " super", " wonderful", " satisfying"] | random }} day!
-  - service: media_player.volume_set
-    data:
-      entity_id: media_player.office_echo
-      volume_level: '0.5'
+#  - service: media_player.volume_set
+#    data:
+#      entity_id: media_player.office_echo
+#      volume_level: '0.5'
 #
 #################################################################
 # Test Briefing Two
@@ -356,6 +364,21 @@ test_briefing_one:
 test_briefing_two:
   alias: Test Briefing Two
   sequence:
+  # Set Volume
+  - service: script.set_alexa_volume
+    data:
+      alexa_entity: media_player.office_echo
+  # Make Announcement
+  - service: notify.alexa_media
+    data_template:
+      target:
+        - media_player.office_echo
+      data:
+        type: announce
+      message: >-
+        Your daily briefing is about to start.
+  - delay: 0:00:03
+  # Read Briefing
   - service: notify.alexa_media
     data_template:
       target:

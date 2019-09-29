@@ -57,9 +57,9 @@ check_open_door_status:
             {{ opendoor.name | upper }},
           {%- endif -%}
         {% endfor %}
-  - condition: state
-    entity_id: input_boolean.enable_sensor_notifications
-    state: 'on'
+#  - condition: state
+#    entity_id: input_boolean.enable_sensor_notifications
+#    state: 'on'
   - service: notify.ios_group_art_steff
     data_template:
       title: "Security Zone Alert!"
@@ -152,7 +152,6 @@ pre_warning_siren:
 # Called from [close_lock_ext_doors_at_2130]
 # In file: [automations/door_locks.yaml]
 #################################################################
-#
 lock_front_door:
   alias: Lock Front Door
   sequence:
@@ -174,7 +173,6 @@ lock_front_door:
 # Called from [close_lock_ext_doors_at_2130]
 # In file: [automations/door_locks.yaml]
 #################################################################
-#
 lock_back_door:
   alias: Lock Back Door
   sequence:
@@ -202,7 +200,6 @@ lock_back_door:
 # Called from [close_garage_door_in_rain]
 # In file: [automations/door_locks.yaml]
 #################################################################
-#
 close_garage_door1:
   alias: Close Garage Door 1
   sequence:
@@ -227,7 +224,6 @@ close_garage_door1:
 # Called from [close_garage_door_2_no_one_home]
 # In file: [automations/door_locks.yaml]
 #################################################################
-#
 close_garage_door2:
   alias: Close Garage Door 2
   sequence:
@@ -243,4 +239,40 @@ close_garage_door2:
       entity_id: lock.garage_controller_2_54
       message: >-
         At {{now().strftime("%m/%d/%Y %H:%M:%S")}} Script - Garage 2 Closed!
+#
+#################################################################
+# Welcome Home
+# Called from [unlock_front_door_arriving_home]
+# In file: [automations/door_locks.yaml]
+#################################################################
+welcome_home:
+  alias: Welcome Home
+  sequence:
+  - condition: state
+    entity_id: lock.front_door_bolt_241
+    state: 'locked'
+  - service: lock.unlock
+    data:
+      entity_id:
+      - lock.front_door_bolt_241
+  - service: script.write_to_log
+    data_template:
+      entity_id: lock.front_door_bolt_241
+      message: >-
+        At {{now().strftime("%m/%d/%Y %H:%M:%S")}} Script - Welcome Home Front Door Unlocked
+  - condition: time
+    after: '08:00:00'
+    before: '22:00:00'
+  - condition: state
+    entity_id: binary_sensor.its_raining
+    state: 'off'
+  - service: lock.unlock
+    data:
+      entity_id:
+      - lock.garage_controller_2_54
+  - service: script.write_to_log
+    data_template:
+      entity_id: lock.garage_controller_2_54
+      message: >-
+        At {{now().strftime("%m/%d/%Y %H:%M:%S")}} Script - Welcome Home Garage Door Opened
 #

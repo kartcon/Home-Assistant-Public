@@ -3,8 +3,39 @@
 #################################################################
 #
 #################################################################
+# Script: Set Alexa Volume
+# Called from [various automations]
+# In file: [_______]
+#################################################################
+set_alexa_volume:
+  alias: "Set Alexa Volume"
+  sequence:
+  - service: media_player.volume_set
+    data_template:
+      entity_id: "{{ alexa_entity }}"
+      volume_level: >-
+        {% set current_hour = strptime(states('sensor.time'), "%H:%M").hour | int %}
+        {% if current_hour < 8 %}
+          0.35
+        {% else %}
+          0.6
+        {% endif %}
+  - delay: '00:00:02'
+#
+#  - service: media_player.volume_set
+#    data_template:
+#      entity_id: media_player.kitchen_echo
+#      volume_level: >-
+#        {% set current_hour = strptime(states('sensor.time'), "%H:%M").hour | int %}
+#        {% if current_hour < 8 %}
+#          0.3
+#        {% else %}
+#          0.5
+#        {% endif %}
+#
+#################################################################
 # Script: Sonos Say
-# Called from [various automations] 
+# Called from [various automations]
 # In file: [_______]
 #################################################################
 sonos_say:
@@ -53,7 +84,7 @@ sonos_say:
 #        type: announce
 #        #method: all
 #      message: "Hello World"
-# -- Working Pust Notication to both Art & Steffs phones
+# -- Working Push Notication to both Art & Steffs phones
 #  - service: notify.alexa_media
 #    data:
 #      target:

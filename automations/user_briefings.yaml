@@ -36,10 +36,10 @@
     value_template: '{{(as_timestamp(now()) - as_timestamp(state_attr("automation.art_weekday_briefing", "last_triggered") | default(0)) | int > 21600 )}}'
   action:
   - service: script.turn_on
-    entity_id: script.daily_briefing_alert
-  - delay: 0:00:05
-  - service: script.turn_on
     entity_id: script.art_briefing_one
+#  - service: script.turn_on
+#    entity_id: script.daily_briefing_alert
+#  - delay: 0:00:04
 #
 #############################################################
 ##  Art Weekends
@@ -72,10 +72,10 @@
     value_template: '{{(as_timestamp(now()) - as_timestamp(state_attr("automation.art_weekend_briefing", "last_triggered") | default(0)) | int > 21600 )}}'
   action:
   - service: script.turn_on
-    entity_id: script.daily_briefing_alert
-  - delay: 0:00:05
-  - service: script.turn_on
     entity_id: script.art_briefing_one
+#  - service: script.turn_on
+#    entity_id: script.daily_briefing_alert
+#  - delay: 0:00:04
 #
 #############################################################
 ##  Steff Weekdays
@@ -109,10 +109,10 @@
     value_template: '{{(as_timestamp(now()) - as_timestamp(state_attr("automation.steff_weekday_briefing", "last_triggered") | default(0)) | int > 21600 )}}'
   action:
   - service: script.turn_on
-    entity_id: script.daily_briefing_alert
-  - delay: 0:00:05
-  - service: script.turn_on
     entity_id: script.steff_briefing_one
+#  - service: script.turn_on
+#    entity_id: script.daily_briefing_alert
+#  - delay: 0:00:04
 #
 #############################################################
 ##  Steff Weekends
@@ -145,10 +145,10 @@
     value_template: '{{(as_timestamp(now()) - as_timestamp(state_attr("automation.steff_weekend_briefing", "last_triggered") | default(0)) | int > 21600 )}}'
   action:
   - service: script.turn_on
-    entity_id: script.daily_briefing_alert
-  - delay: 0:00:05
-  - service: script.turn_on
     entity_id: script.steff_briefing_one
+#  - service: script.turn_on
+#    entity_id: script.daily_briefing_alert
+#  - delay: 0:00:04
 #
 #############################################################
 ##  Test Briefing

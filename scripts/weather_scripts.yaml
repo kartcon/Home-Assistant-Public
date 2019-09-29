@@ -40,6 +40,11 @@ its_gloomy_outside:
       message: >-
         At {{now().strftime("%m/%d/%Y %H:%M")}} its rainy and gloomy.
       title: Weather Notification
+  # Set Volume
+  - service: script.set_alexa_volume
+    data:
+      alexa_entity: group.all_echo_dots
+  # Make Announcement
   - service: notify.alexa_media
     data_template:
       target: group.all_echo_dots
@@ -70,6 +75,11 @@ its_brighter_outside:
       message: >-
         At {{now().strftime("%m/%d/%Y %H:%M")}} its brightened up outside.
       title: Weather Notification
+  # Set Volume
+  - service: script.set_alexa_volume
+    data:
+      alexa_entity: group.all_echo_dots
+  # Make Announcement
   - service: notify.alexa_media
     data_template:
       target: group.all_echo_dots

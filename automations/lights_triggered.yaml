@@ -33,6 +33,11 @@
   - condition: state
     entity_id: input_boolean.speak_kit_motion
     state: 'on'
+  # Set Volume
+  - service: script.set_alexa_volume
+    data:
+      alexa_entity: media_player.kitchen_echo
+  # Make Announcement
   - service: notify.alexa_media
     data_template:
       target:
@@ -107,6 +112,11 @@
 #        Kitchen Lights Auto-On triggered at {{now().strftime("%m/%d/%Y %H:%M:%S")}}.
 #        Last motion was at {{ states.input_datetime.last_kitchen_motion.state }}.
 #        Kitchen Lux was at {{ states.sensor.kit_light_sensor_227.state }}.
+  # Set Volume
+  - service: script.set_alexa_volume
+    data:
+      alexa_entity: media_player.kitchen_echo
+  # Make Announcement
   - service: notify.alexa_media
     data_template:
       target:
@@ -162,6 +172,11 @@
 #        Last motion was at {{ states.input_datetime.last_kitchen_motion.state }}.
 #        Kitchen Lux was at {{ states.sensor.kit_light_sensor_227.state }}.
 #      title: Kitchen AUTO-OFF Triggered
+  # Set Volume
+  - service: script.set_alexa_volume
+    data:
+      alexa_entity: media_player.kitchen_echo
+  # Make Announcement
   - service: notify.alexa_media
     data_template:
       target:
@@ -285,6 +300,11 @@
   - condition: state
     entity_id: input_boolean.speak_lr_motion
     state: 'on'
+  # Set Volume
+  - service: script.set_alexa_volume
+    data:
+      alexa_entity: media_player.kitchen_echo
+  # Make Announcement
   - service: notify.alexa_media
     data_template:
       target:

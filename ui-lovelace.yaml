@@ -16,6 +16,11 @@ resources:
     type: js
     # https://github.com/erlsta/homeassistant-lovelace-birthday-reminder-card
 #   ----------------------------------------------------------------------------
+# Button Entity Row
+  - url: /community_plugin/button-entity-row/button-entity-row.js
+    type: module
+    # https://github.com/custom-cards/button-entity-row
+#   ----------------------------------------------------------------------------
 # Light Entity Row Card
   - url: /community_plugin/light-entity-row/light-entity-row.js
     type: js
@@ -87,10 +92,10 @@ views:
   - !include lovelace/battery.yaml
   - !include lovelace/config.yaml
   - !include lovelace/system.yaml
-  - !include lovelace/alarm_clock.yaml
+#  - !include lovelace/alarm_clock.yaml
 #  - !include lovelace/ic3.yaml
 #  - !include lovelace/sensors.yaml
-#  - !include lovelace/entities.yaml
+  - !include lovelace/entities.yaml
 #  - !include lovelace/sandbox.yaml
 #  - !include lovelace/__security.yaml
 #  - !include lovelace/alarm_config.yaml

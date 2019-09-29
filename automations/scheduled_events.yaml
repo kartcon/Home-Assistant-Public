@@ -45,10 +45,15 @@
     weekday:
       - wed
   action:
-  - service: media_player.volume_set
+#  - service: media_player.volume_set
+#    data:
+#      entity_id: group.all_echo_dots
+#      volume_level: '0.5'
+  # Set Volume
+  - service: script.set_alexa_volume
     data:
-      entity_id: group.all_echo_dots
-      volume_level: '0.5'
+      alexa_entity: group.all_echo_dots
+  # Make Announcement
   - service: notify.alexa_media
     data:
       target: group.all_echo_dots
@@ -95,10 +100,15 @@
       entity_id: sensor.week_odd_even
       state: 'Even Week'
   action:
-  - service: media_player.volume_set
+#  - service: media_player.volume_set
+#    data:
+#      entity_id: group.all_echo_dots
+#      volume_level: '0.5'
+  # Set Volume
+  - service: script.set_alexa_volume
     data:
-      entity_id: group.all_echo_dots
-      volume_level: '0.5'
+      alexa_entity: group.all_echo_dots
+  # Make Announcement
   - service: notify.alexa_media
     data:
       target: group.all_echo_dots
@@ -198,10 +208,15 @@
       title: 'Remember to change the furnace filter.'
       message: >-
         It's the first Saturday of the month. Remember to change the furnace filter.
-  - service: media_player.volume_set
+#  - service: media_player.volume_set
+#    data:
+#      entity_id: group.all_echo_dots
+#      volume_level: '0.5'
+  # Set Volume
+  - service: script.set_alexa_volume
     data:
-      entity_id: group.all_echo_dots
-      volume_level: '0.5'
+      alexa_entity: group.all_echo_dots
+  # Make Announcement
   - service: notify.alexa_media
     data:
       target: group.all_echo_dots
@@ -209,13 +224,6 @@
       data:
         type: announce
         method: speak
-#  - service: notify.alexa_media
-#    data_template:
-#      target:
-#        - media_player.office_echo
-#      data:
-#        type: tts
-#      message: "Trash pick-up is tomorrow. Remember to put the container out to the road."
   - service: script.sonos_say
     data:
       sonos_entity: media_player.sunroom_sonos

@@ -19,6 +19,11 @@
     # Only run if more than 4 hours (14,400 sec) since it last ran
     value_template: '{{(as_timestamp(now()) - as_timestamp(state_attr("automation.weather_alerts", "last_triggered") | default(0)) | int > 14000 )}}'
   action:
+  # Set Volume
+  - service: script.set_alexa_volume
+    data:
+      alexa_entity: group.all_echo_dots
+  # Make Announcement
   - service: notify.alexa_media
     data_template:
       target: group.all_echo_dots

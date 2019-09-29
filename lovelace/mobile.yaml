@@ -88,20 +88,50 @@ cards:
       title: Locks
       show_header_toggle: false
       entities:
-        - lock.front_door_bolt_241
-        - lock.back_door_lock_61
-        - lock.garage_controller_1_55
-        - lock.garage_controller_2_54
+        - entity: lock.front_door_bolt_241
+          name: Front Door
+          hold_action:
+            action: toggle
+            service: lock.lock
+            service_data:
+              entity_id: lock.front_door_bolt_241
+        - entity: lock.back_door_lock_61
+          name: Back Door
+          hold_action:
+            action: toggle
+            service: lock.lock
+            service_data:
+              entity_id: lock.back_door_lock_61
+        - entity: lock.garage_controller_1_55
+          name: Garage 1
+          hold_action:
+            action: toggle
+            service: lock.lock
+            service_data:
+              entity_id: lock.garage_controller_1_55
+        - entity: lock.garage_controller_2_54
+          name: Garage 2
+          hold_action:
+            action: toggle
+            service: lock.lock
+            service_data:
+              entity_id: lock.garage_controller_2_54
   #  Card 5
-#    - type: thermostat
-#      title: Downstairs
-#      show_header_toggle: false
-#      entity: climate.tstat_1_144
-#    - type: thermostat
-#      title: Upstairs
-#      show_header_toggle: false
-#      entity: climate.tstat_2_145
-  #  Card 6
+#    - type: entities
+#      entities:
+#        - type: "custom:button-entity-row"
+#          buttons:
+#            - entity: lock.front_door_bolt_241
+#              name: Front Door
+#              state_icons:
+#                "off": "mdi:lock-open-variant"
+#                "on": "mdi:lock"
+#            - entity: lock.back_door_lock_61
+#              name: Back Door
+#              state_icons:
+#                "off": "mdi:lock-open-variant"
+#                "on": "mdi:lock"
+#  Card 6
     - type: glance
       title: Door Sensors
       show_header_toggle: false

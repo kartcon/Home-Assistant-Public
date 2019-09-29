@@ -43,6 +43,11 @@
     data:
       title: "Weather Notification"
       message: "The garage doors were closed due to rain."
+  # Set Volume
+  - service: script.set_alexa_volume
+    data:
+      alexa_entity: group.all_echo_dots
+  # Make Announcement
   - service: notify.alexa_media
     data_template:
       target: group.all_echo_dots
@@ -111,6 +116,8 @@
   - platform: numeric_state
     entity_id: sensor.kit_light_sensor_227
     above: 60
+    for:
+      minutes: 10
   condition:
   - condition: template
     value_template: "{{ (states('input_select.current_condition')) != 'Rainy' }}"
