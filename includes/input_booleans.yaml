@@ -281,6 +281,11 @@
 #    initial: on
     icon: mdi:zip-disk
 #
+  scheduled_reboots:
+    name: Scheduled Reboots
+    initial: off
+    icon: mdi:autorenew
+#
   speak_kit_motion:
     name: Speak Kitchen Motion
     initial: off

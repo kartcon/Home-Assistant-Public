@@ -206,7 +206,7 @@ lifx_set_default:
       color_temp: 285
   - service: light.lifx_set_state
     data:
-      entity_id: light.garage_cent
+      entity_id: light.garage_center
       brightness: 128
       color_temp: 285
   - service: light.lifx_set_state

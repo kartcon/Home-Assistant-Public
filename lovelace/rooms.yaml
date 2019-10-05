@@ -32,7 +32,7 @@ cards:
             - entity: sensor.kit_light_sensor_227
               icon: mdi:candle
             - entity: input_boolean.kit_motion_detected
-            - entity: input_datetime.last_kitchen_motion
+#            - entity: input_datetime.last_kitchen_motion
 #
         - type: entities
           title: Master Bed/Bath
@@ -92,7 +92,7 @@ cards:
             - entity: sensor.lr_light_sensor_79
               icon: mdi:candle
             - entity: input_boolean.lr_motion_detected
-            - entity: input_datetime.last_livingrm_motion
+#            - entity: input_datetime.last_livingrm_motion
 #            - entity: light.lr_christmas_tree_26
 #              icon: mdi:pine-tree
 #
@@ -120,14 +120,14 @@ cards:
               entity: light.sunroom_lights_203
               name: Lights
               icon: mdi:ceiling-light
-            - entity: light.sunroom_fan_204
-              icon: mdi:fan
+#            - entity: light.sunroom_fan_204
+#              icon: mdi:fan
             - type: custom:slider-entity-row
               entity: light.sunroom_fan_204
               name: Fan %
               icon: mdi:fan
-            - entity: light.flux_led_strip
-              icon: mdi:led-strip-variant
+#            - entity: light.flux_led_strip
+#              icon: mdi:led-strip-variant
             - type: custom:slider-entity-row
               entity:  light.flux_led_strip
               name: LED %
@@ -146,6 +146,15 @@ cards:
               icon: mdi:ceiling-light
             - entity: light.office_fan_224
               icon: mdi:fan
+#
+        - type: entities
+          title: Garage
+          show_header_toggle: true
+          entities:
+            - entity: light.garage_fan_225
+              icon: mdi:fan
+            - entity: light.bench_light_242
+              icon: mdi:led-strip
 #
 # COL 4
     - type: vertical-stack
@@ -168,8 +177,8 @@ cards:
               icon: mdi:wall-sconce
             - entity: light.garage_west
               icon: mdi:wall-sconce
-            - entity: light.garage_fan_225
-              icon: mdi:fan
+#            - entity: light.garage_fan_225
+#              icon: mdi:fan
             - entity: light.holiday_lights_222
               icon: mdi:led-on
             - entity: light.outdoor_switch_1_124

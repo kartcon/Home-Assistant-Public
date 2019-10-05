@@ -43,6 +43,10 @@ cards:
           - type: divider
           - light.bird_room_1_light_52
           - light.bird_room_2_light_53
+          - type: divider
+          - entity: light.garage_fan_225
+            icon: mdi:fan
+          - light.bench_light_242
       - type: entities
         title: Outside
         show_header_toggle: true
@@ -67,8 +71,6 @@ cards:
           - light.garage_east
           - light.garage_center
           - light.garage_west
-          - entity: light.garage_fan_225
-            icon: mdi:fan
           - type: divider
           - entity: light.soffit_east_126
             icon: mdi:power-socket-us
@@ -446,6 +448,13 @@ cards:
         style:
           top: 96%
           left: 6%
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.bench_light_242
+        style:
+          top: 86%
+          left: 8%
 
 
       - type: state-icon

@@ -224,7 +224,7 @@ vera:
   # Optional to exclude devices - this is a list of vera device ids
   exclude: [ 7, 13, 14, 47, 57, 86, 87, 109, 110, 133, 134, 135, 136, 140, 147, 155, 172, 174, 176, 178, 180, 182, 189, 205]
   # Optional to import switches as lights - this is a list of vera device ids
-  lights: [25, 26, 27, 29, 44, 46, 48, 49, 52, 53, 62, 92, 93, 94, 95, 105, 106, 115, 123, 124, 126, 201, 202, 203, 204, 213, 222, 224, 225]
+  lights: [25, 26, 27, 29, 44, 46, 48, 49, 52, 53, 62, 92, 93, 94, 95, 105, 106, 115, 123, 124, 126, 201, 202, 203, 204, 213, 222, 224, 225, 242]
 #
 #  ---------------
 # Weather - Dark Sky Weather
@@ -233,5 +233,9 @@ weather:
   - platform: darksky
     mode: daily
     api_key: !secret darksky_api_key
+#  - platform: nws
+#    api_key: !secret nws_api
+#    mode: daynight
+#    station: KJAX
 #
 #  ---------------

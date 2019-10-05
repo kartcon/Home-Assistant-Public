@@ -79,4 +79,5 @@ garage:
   entities:
     - light.garage_lights_48
     - light.garage_fan_225
+    - light.bench_light_242
 #

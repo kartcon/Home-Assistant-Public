@@ -13,164 +13,48 @@ cards:
 # COL 1
     - type: vertical-stack
       cards:
-      - type: entities
-        title: Run Automations
-        show_header_toggle: false
-        entities:
-        - type: call-service
-          icon: mdi:creation
-          name: Downstairs Fans On
-          action_name: Run
-          service: automation.trigger
-          service_data:
-            entity_id: automation.downstairs_fans_on_at_06_00
-        - type: call-service
-          icon: mdi:creation
-          name: Kitchen U/C Lights
-          action_name: Run
-          service: automation.trigger
-          service_data:
-            entity_id: automation.kit_ucl_on_at_0600
-        - type: call-service
-          icon: mdi:creation
-          name: Its More Gloomy
-          action_name: Run
-          service: automation.trigger
-          service_data:
-            entity_id: automation.its_more_gloomy
-        - type: call-service
-          icon: mdi:creation
-          name: Its Less Gloomy
-          action_name: Run
-          service: automation.trigger
-          service_data:
-            entity_id: automation.its_less_gloomy
-        - type: call-service
-          icon: mdi:creation
-          name: Master Bath Lights On
-          action_name: Run
-          service: automation.trigger
-          service_data:
-            entity_id: automation.mbath_lights_on_after_sunset
-        - type: call-service
-          icon: mdi:creation
-          name: Master Bath Fan On
-          action_name: Run
-          service: automation.trigger
-          service_data:
-            entity_id: automation.mbath_fan_on_with_shower
-        - type: call-service
-          icon: mdi:creation
-          name: Master Bath Fan Off
-          action_name: Run
-          service: automation.trigger
-          service_data:
-            entity_id: automation.mbath_fan_off_with_shower
-        - type: call-service
-          icon: mdi:creation
-          name: Porch Lights on w/Unlock AM
-          action_name: Run
-          service: automation.trigger
-          service_data:
-            entity_id: automation.porch_light_on_w_unlock_am
-        - type: call-service
-          icon: mdi:creation
-          name: Sydney Music On
-          action_name: Run
-          service: automation.trigger
-          service_data:
-            entity_id: automation.sydney_music_on_0645
-#
-#        - type: "custom:monster-card"
-#          card:
-#            title: All Automations
-#            type: entities
-#            show_header_toggle: false
-#          filter:
-#            include:
-#              - domain: automation
+        - type: "custom:monster-card"
+          card:
+            title: All Automations
+            type: entities
+            show_header_toggle: false
+          filter:
+            include:
+              - domain: automation
 #
 # COL 2
     - type: vertical-stack
       cards:
-      - type: entities
-        title: Execute Scripts
-        show_header_toggle: false
-        entities:
-        - type: call-service
-          icon: mdi:creation
-          name: Arts Briefing
-          action_name: Execute
-          service: script.turn_on
-          service_data:
-            entity_id: script.art_briefing_one
-        - type: call-service
-          icon: mdi:creation
-          name: Steffs Briefing
-          action_name: Execute
-          service: script.turn_on
-          service_data:
-            entity_id: script.steff_briefing_one
-        - type: call-service
-          icon: mdi:creation
-          name: All LIFX to default
-          action_name: Execute
-          service: script.turn_on
-          service_data:
-            entity_id: script.lifx_set_default
+        - type: "custom:monster-card"
+          card:
+            title: All Scripts
+            type: entities
+            show_header_toggle: false
+          filter:
+            include:
+              - domain: script
 #
-      - type: entities
-        title: Set Scenes
-        show_header_toggle: false
-        entities:
-        - type: call-service
-          icon: mdi:creation
-          name: Lighting - Its More Gloomy
-          action_name: Set
-          service: scene.turn_on
-          service_data:
-            entity_id: scene.inside_lights_on_more_gloomy
-        - type: call-service
-          icon: mdi:creation
-          name: Lighting - Its Less Gloomy
-          action_name: Set
-          service: scene.turn_on
-          service_data:
-            entity_id: scene.inside_lights_on_less_gloomy
-#
-
-#    - type: vertical-stack
-#      cards:
-#        - type: "custom:monster-card"
-#          card:
-#            title: All Scripts
-#            type: entities
-#            show_header_toggle: false
-#          filter:
-#            include:
-#              - domain: script
-#
-#        - type: "custom:monster-card"
-#          card:
-#            title: All Scenes
-#            type: entities
-#            show_header_toggle: false
-#          filter:
-#            include:
-#              - domain: scene
+        - type: "custom:monster-card"
+          card:
+            title: All Scenes
+            type: entities
+            show_header_toggle: false
+          filter:
+            include:
+              - domain: scene
 #
 # COL 3
-#    - type: vertical-stack
-#      cards:
-#        - type: "custom:monster-card"
-#          card:
-#            title: Inputs
-#            type: entities
-#            show_header_toggle: false
-#          filter:
-#            include:
-#              - domain: input_boolean
-#              - domain: input_select
-#              - domain: input_number
-#              - domain: input_datetime
+    - type: vertical-stack
+      cards:
+        - type: "custom:monster-card"
+          card:
+            title: Inputs
+            type: entities
+            show_header_toggle: false
+          filter:
+            include:
+              - domain: input_boolean
+              - domain: input_select
+              - domain: input_number
+              - domain: input_datetime
 #

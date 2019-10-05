@@ -13,6 +13,9 @@
   - platform: time
     at: '00:30:00'
   condition:
+    - condition: state
+      entity_id: input_boolean.scheduled_reboots
+      state: 'on'
     - condition: template
       value_template: "{% if ((states.sensor.uptime.state) | float) > 2 %}True{% else %}False{% endif %}"
   action:

@@ -56,6 +56,7 @@ inside_light_group:
     - light.office_light_223
     - light.sunroom_lights_203
     - light.flux_led_strip
+    - light.bench_light_242
 #
 outside_light_group:
   name: Outside Light Group

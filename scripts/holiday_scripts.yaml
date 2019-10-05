@@ -419,32 +419,32 @@ breast_cancer_script:
     data:
       entity_id: light.front_porch
       brightness: 128
-      rgb_color: [83,255,126]
+      rgb_color: [254,210,255]
   - service: light.turn_on
     data:
       entity_id: light.tv_left
       brightness: 69
-      rgb_color: [255,0,253]
+      rgb_color: [254,210,255]
   - service: light.turn_on
     data:
       entity_id: light.tv_right
       brightness: 69
-      rgb_color: [255,0,253]
+      rgb_color: [254,210,255]
   - service: light.turn_on
     data:
       entity_id: light.garage_east
       brightness: 128
-      rgb_color: [255,0,253]
+      rgb_color: [254,210,255]
   - service: light.turn_on
     data:
       entity_id: light.garage_center
       brightness: 128
-      rgb_color: [255,0,253]
+      rgb_color: [254,210,255]
   - service: light.turn_on
     data:
       entity_id: light.garage_west
       brightness: 93
-      rgb_color: [255,0,253]
+      rgb_color: [254,210,255]
 #
 #################################################################
 # SCRIPT: Halloween

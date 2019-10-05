@@ -74,6 +74,9 @@ cards:
             - entity: sensor.last_boot
               icon: mdi:calendar-clock
             - entity: switch.momentary_unscheduled_restart
+            - entity: input_boolean.scheduled_reboots
+              name: Allow Auto Reboot
+            - entity: input_boolean.enable_hassio_autobackup
 #
         - type: entities
           title: Memory

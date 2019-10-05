@@ -18,12 +18,105 @@ cards:
           title: Automations
           show_header_toggle: false
           entities:
-            - entity: input_boolean.enable_hassio_autobackup
             - entity: input_boolean.enable_br1_slow_dim
             - entity: input_boolean.enable_br2_slow_dim
             - entity: input_boolean.close_garage_doors_in_rain
             - entity: input_boolean.enable_lr_slow_dim
             - entity: input_boolean.enable_sr_slow_dim
+#
+        - type: entities
+          title: Run Automation
+          show_header_toggle: false
+          entities:
+            - type: call-service
+              icon: mdi:creation
+              name: Downstairs Fans On
+              action_name: Run
+              service: automation.trigger
+              service_data:
+              entity_id: automation.downstairs_fans_on_at_06_00
+            - type: call-service
+              icon: mdi:creation
+              name: Kitchen U/C Lights
+              action_name: Run
+              service: automation.trigger
+              service_data:
+                entity_id: automation.kit_ucl_on_at_0600
+#            - type: call-service
+#              icon: mdi:creation
+#              name: Its More Gloomy
+#              action_name: Run
+#              service: automation.trigger
+#              service_data:
+#                entity_id: automation.its_more_gloomy
+#            - type: call-service
+#              icon: mdi:creation
+#              name: Its Less Gloomy
+#              action_name: Run
+#              service: automation.trigger
+#              service_data:
+#                entity_id: automation.its_less_gloomy
+            - type: call-service
+              icon: mdi:creation
+              name: Master Bath Lights On
+              action_name: Run
+              service: automation.trigger
+              service_data:
+                entity_id: automation.mbath_lights_on_after_sunset
+            - type: call-service
+              icon: mdi:creation
+              name: Master Bath Fan On
+              action_name: Run
+              service: automation.trigger
+              service_data:
+                entity_id: automation.mbath_fan_on_with_shower
+            - type: call-service
+              icon: mdi:creation
+              name: Master Bath Fan Off
+              action_name: Run
+              service: automation.trigger
+              service_data:
+                entity_id: automation.mbath_fan_off_with_shower
+            - type: call-service
+              icon: mdi:creation
+              name: Porch Lights on w/Unlock AM
+              action_name: Run
+              service: automation.trigger
+              service_data:
+                entity_id: automation.porch_light_on_w_unlock_am
+            - type: call-service
+              icon: mdi:creation
+              name: Sydney Music On
+              action_name: Run
+              service: automation.trigger
+              service_data:
+                entity_id: automation.sydney_music_on_0645
+#
+        - type: entities
+          title: Execute Scripts
+          show_header_toggle: false
+          entities:
+          - type: call-service
+            icon: mdi:creation
+            name: Arts Briefing
+            action_name: Execute
+            service: script.turn_on
+            service_data:
+              entity_id: script.art_briefing_one
+          - type: call-service
+            icon: mdi:creation
+            name: Steffs Briefing
+            action_name: Execute
+            service: script.turn_on
+            service_data:
+              entity_id: script.steff_briefing_one
+          - type: call-service
+            icon: mdi:creation
+            name: All LIFX to default
+            action_name: Execute
+            service: script.turn_on
+            service_data:
+              entity_id: script.lifx_set_default
 
 # COL 2
     - type: vertical-stack
@@ -47,6 +140,25 @@ cards:
             - entity: input_boolean.enable_christmas_lighting
             - entity: input_boolean.enable_new_years_eve_lighting
 #
+        - type: entities
+          title: Set Scenes
+          show_header_toggle: false
+          entities:
+          - type: call-service
+            icon: mdi:creation
+            name: Lighting - Its More Gloomy
+            action_name: Set
+            service: scene.turn_on
+            service_data:
+              entity_id: scene.inside_lights_on_more_gloomy
+          - type: call-service
+            icon: mdi:creation
+            name: Lighting - Its Less Gloomy
+            action_name: Set
+            service: scene.turn_on
+            service_data:
+              entity_id: scene.inside_lights_off_less_gloomy
+
 # COL 3
     - type: vertical-stack
       cards:
@@ -62,9 +174,8 @@ cards:
             - entity: input_boolean.enable_weather_alerts
             - entity: input_boolean.zone_alerts
 #
-# COL 4
-    - type: vertical-stack
-      cards:
+#    - type: vertical-stack
+#      cards:
         - type: entities
           title: User Inputs
           show_header_toggle: false
@@ -76,4 +187,8 @@ cards:
             - entity: input_select.led_color
               name: Flux LED TV Backlighting
             - entity: input_number.led_strip_brightness
+#
+# COL 4
+#    - type: vertical-stack
+#      cards:
 #
