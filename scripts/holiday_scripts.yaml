@@ -42,6 +42,8 @@ reset_holiday_booleans:
 # SCRIPT: New Years Day
 # Called from [id: season_is_new_years_day]
 # In file: [automations/lights_holiday.yaml]
+# Called from [id: porch_light_reset_color_pm]
+# In file: [automations/lights_triggered.yaml]
 #################################################################
 new_years_day_script:
   alias: New Years Day Script
@@ -92,6 +94,8 @@ new_years_day_script:
 # SCRIPT: Valentines Day
 # Called from [id: season_is_valentine_day]
 # In file: [automations/lights_holiday.yaml]
+# Called from [id: porch_light_reset_color_pm]
+# In file: [automations/lights_triggered.yaml]
 #################################################################
 valentines_day_script:
   alias: Valentines Day Script
@@ -142,6 +146,8 @@ valentines_day_script:
 # SCRIPT: St Pattys Day
 # Called from [season_is_st_patty_day]
 # In file: [automations/lights_holiday.yaml]
+# Called from [id: porch_light_reset_color_pm]
+# In file: [automations/lights_triggered.yaml]
 #################################################################
 st_pattys_day_script:
   alias: St Pattys Day Script
@@ -186,6 +192,8 @@ st_pattys_day_script:
 # SCRIPT: Easter
 # Called from [season_is_easter]
 # In file: [automations/lights_holiday.yaml]
+# Called from [id: porch_light_reset_color_pm]
+# In file: [automations/lights_triggered.yaml]
 #################################################################
 easter_script:
   alias: Easter Script
@@ -230,6 +238,8 @@ easter_script:
 # SCRIPT: Memorial Day
 # Called from [season_is_memorial_day]
 # In file: [automations/lights_holiday.yaml]
+# Called from [id: porch_light_reset_color_pm]
+# In file: [automations/lights_triggered.yaml]
 #################################################################
 memorial_day_script:
   alias: Memorial Day Script
@@ -274,6 +284,8 @@ memorial_day_script:
 # SCRIPT: Flag Day
 # Called from [season_is_flag_day]
 # In file: [automations/lights_holiday.yaml]
+# Called from [id: porch_light_reset_color_pm]
+# In file: [automations/lights_triggered.yaml]
 #################################################################
 flag_day_script:
   alias: Flag Day Script
@@ -318,6 +330,8 @@ flag_day_script:
 # SCRIPT: Independence Day
 # Called from [season_is_independence_day]
 # In file: [automations/lights_holiday.yaml]
+# Called from [id: porch_light_reset_color_pm]
+# In file: [automations/lights_triggered.yaml]
 #################################################################
 independence_day_script:
   alias: Independence Day Script
@@ -362,6 +376,8 @@ independence_day_script:
 # SCRIPT: Labor Day
 # Called from [season_is_labor_day]
 # In file: [automations/lights_holiday.yaml]
+# Called from [id: porch_light_reset_color_pm]
+# In file: [automations/lights_triggered.yaml]
 #################################################################
 labor_day_script:
   alias: Labor Day Script
@@ -406,6 +422,8 @@ labor_day_script:
 # SCRIPT: Breast Cancer
 # Called from [season_is_breast_cancer]
 # In file: [automations/lights_holiday.yaml]
+# Called from [id: porch_light_reset_color_pm]
+# In file: [automations/lights_triggered.yaml]
 #################################################################
 breast_cancer_script:
   alias: Breast Cancer Script
@@ -443,13 +461,15 @@ breast_cancer_script:
   - service: light.turn_on
     data:
       entity_id: light.garage_west
-      brightness: 93
+      brightness: 128
       rgb_color: [254,210,255]
 #
 #################################################################
 # SCRIPT: Halloween
 # Called from [season_is_halloween]
 # In file: [automations/lights_holiday.yaml]
+# Called from [id: porch_light_reset_color_pm]
+# In file: [automations/lights_triggered.yaml]
 #################################################################
 halloween_script:
   alias: Halloween Script
@@ -463,37 +483,39 @@ halloween_script:
     data:
       entity_id: light.front_porch
       brightness: 128
-      rgb_color: [83,255,126]
+      rgb_color: [255,201,68]
   - service: light.turn_on
     data:
       entity_id: light.tv_left
-      brightness: 69
-      rgb_color: [255,85,0]
+      brightness: 157
+      rgb_color: [255,201,68]
   - service: light.turn_on
     data:
       entity_id: light.tv_right
-      brightness: 69
-      rgb_color: [255,85,0]
+      brightness: 157
+      rgb_color: [255,201,68]
   - service: light.turn_on
     data:
       entity_id: light.garage_east
       brightness: 128
-      rgb_color: [255,85,0]
+      rgb_color: [255,201,68]
   - service: light.turn_on
     data:
       entity_id: light.garage_center
       brightness: 128
-      rgb_color: [85,0, 255]
+      rgb_color: [255,201,68]
   - service: light.turn_on
     data:
       entity_id: light.garage_west
-      brightness: 93
-      rgb_color: [255,85,0]
+      brightness: 128
+      rgb_color: [255,201,68]
 #
 #################################################################
 # SCRIPT: Thanksgiving
 # Called from [season_is_thansgiving]
 # In file: [automations/lights_holiday.yaml]
+# Called from [id: porch_light_reset_color_pm]
+# In file: [automations/lights_triggered.yaml]
 #################################################################
 thanksgiving_script:
   alias: Thanksgiving Script
@@ -538,6 +560,8 @@ thanksgiving_script:
 # SCRIPT: Christmas
 # Called from [season_is_christmas]
 # In file: [automations/lights_holiday.yaml]
+# Called from [id: porch_light_reset_color_pm]
+# In file: [automations/lights_triggered.yaml]
 #################################################################
 christmas_script:
   alias: Christmas Script
@@ -585,6 +609,8 @@ christmas_script:
 # SCRIPT: New Years Eve
 # Called from [id: season_is_new_years_eve]
 # In file: [automations/lights_holiday.yaml]
+# Called from [id: porch_light_reset_color_pm]
+# In file: [automations/lights_triggered.yaml]
 #################################################################
 new_years_eve_script:
   alias: New Years Day Script
@@ -637,7 +663,13 @@ new_years_eve_script:
 # after front door unlock or when date is a specific holiday.
 # Called from [id: porch_light_reset_color_pm]
 # In file: [automations/lights_triggered.yaml]
+# Called from: [Outside Lights On at Sunset]
+# Called from: [Inside Lights On Before Sunset]
+# In file: [scripts/lights_scripts.yaml]
 #################################################################
+#------------------------------------------
+#  Set LIFX Colors for Spring
+#------------------------------------------
 spring_script:
   alias: Spring Script
   sequence:
@@ -646,31 +678,162 @@ spring_script:
       entity_id: light.front_porch
       brightness: 128
       rgb_color: [83,255,126]
-#
-summer_script:
-  alias: Summer Script
-  sequence:
   - service: light.turn_on
     data:
-      entity_id: light.front_porch
-      brightness: 128
-      rgb_color: [255,239,0]
-#
-autumn_script:
-  alias: Autumn Script
-  sequence:
+      entity_id: light.flux_led_strip
+      brightness: 30
+      rgb_color: [83,255,126]
   - service: light.turn_on
     data:
       entity_id: light.front_porch
       brightness: 128
       rgb_color: [83,255,126]
-#
+  - service: light.turn_on
+    data:
+      entity_id: light.tv_left
+      brightness: 157
+      rgb_color: [83,255,126]
+  - service: light.turn_on
+    data:
+      entity_id: light.tv_right
+      brightness: 157
+      rgb_color: [83,255,126]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_east
+      brightness: 128
+      rgb_color: [83,255,126]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_center
+      brightness: 128
+      rgb_color: [83,255,126]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_west
+      brightness: 128
+      rgb_color: [83,255,126]
+#------------------------------------------
+#  Set LIFX Colors for Summer
+#------------------------------------------
+summer_script:
+  alias: Summer Script
+  sequence:
+  - service: light.turn_on
+    data:
+      entity_id: light.flux_led_strip
+      brightness: 30
+      rgb_color: [255,239,0]
+  - service: light.turn_on
+    data:
+      entity_id: light.front_porch
+      brightness: 128
+      rgb_color: [255,239,0]
+  - service: light.turn_on
+    data:
+      entity_id: light.tv_left
+      brightness: 157
+      rgb_color: [255,239,0]
+  - service: light.turn_on
+    data:
+      entity_id: light.tv_right
+      brightness: 157
+      rgb_color: [255,239,0]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_east
+      brightness: 128
+      rgb_color: [255,239,0]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_center
+      brightness: 128
+      rgb_color: [255,239,0]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_west
+      brightness: 128
+      rgb_color: [255,239,0]
+#------------------------------------------
+#  Set LIFX Colors for Autumn
+#------------------------------------------
+autumn_script:
+  alias: Autumn Script
+  sequence:
+  - service: light.turn_on
+    data:
+      entity_id: light.flux_led_strip
+      brightness: 30
+      rgb_color: [255,201,68]
+  - service: light.turn_on
+    data:
+      entity_id: light.front_porch
+      brightness: 128
+      rgb_color: [255,201,68]
+  - service: light.turn_on
+    data:
+      entity_id: light.tv_left
+      brightness: 157
+      rgb_color: [255,201,68]
+  - service: light.turn_on
+    data:
+      entity_id: light.tv_right
+      brightness: 157
+      rgb_color: [255,201,68]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_east
+      brightness: 128
+      rgb_color: [255,201,68]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_center
+      brightness: 128
+      rgb_color: [255,201,68]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_west
+      brightness: 128
+      rgb_color: [255,201,68]
+#------------------------------------------
+#  Set LIFX Colors for Winter
+#------------------------------------------
 winter_script:
   alias: Winter Script
   sequence:
   - service: light.turn_on
     data:
+      entity_id: light.flux_led_strip
+      brightness: 30
+      rgb_color: [83,255,126]
+  - service: light.turn_on
+    data:
       entity_id: light.front_porch
+      brightness: 128
+      rgb_color: [83,255,126]
+  - service: light.turn_on
+    data:
+      entity_id: light.tv_left
+      brightness: 157
+      rgb_color: [83,255,126]
+  - service: light.turn_on
+    data:
+      entity_id: light.tv_right
+      brightness: 157
+      rgb_color: [83,255,126]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_east
+      brightness: 128
+      rgb_color: [83,255,126]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_center
+      brightness: 128
+      rgb_color: [83,255,126]
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_west
       brightness: 128
       rgb_color: [83,255,126]
 #

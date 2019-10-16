@@ -84,7 +84,7 @@ art_briefing_one:
         Current winds are
         {% set winbearing = ((state_attr('weather.dark_sky','forecast')[0].wind_bearing/45)|round +1) %}
         {% set winddir = ['North', 'North East','East','South East','South','South West','West','North West']%}
-        {{ winddir[winbearing]}} at {{(states('sensor.dark_sky_wind_speed_0')|int)|round}}
+        {{ winddir[winbearing]}} averaging {{(states('sensor.dark_sky_wind_speed_0d')|int)|round}} miles per hour
         {% if states('sensor.dark_sky_wind_gust_0d') | float > 0 %}
           with gusts up to {{(states('sensor.dark_sky_wind_gust_0d')|int)|round}}
         {% endif %}
@@ -190,7 +190,7 @@ steff_briefing_one:
         Current winds are
         {% set winbearing = ((state_attr('weather.dark_sky','forecast')[0].wind_bearing/45)|round +1) %}
         {% set winddir = ['North', 'North East','East','South East','South','South West','West','North West']%}
-        {{ winddir[winbearing]}} at {{(states('sensor.dark_sky_wind_speed_0')|int)|round}}
+        {{ winddir[winbearing]}} averaging {{(states('sensor.dark_sky_wind_speed_0d')|int)|round}} miles per hour
         {% if states('sensor.dark_sky_wind_gust_0d') | float > 0 %}
           with gusts up to {{(states('sensor.dark_sky_wind_gust_0d')|int)|round}}
         {% endif %}
@@ -308,7 +308,7 @@ test_briefing_one:
         Current winds are
         {% set winbearing = ((state_attr('weather.dark_sky','forecast')[0].wind_bearing/45)|round +1) %}
         {% set winddir = ['North', 'North East','East','South East','South','South West','West','North West']%}
-        {{ winddir[winbearing]}} at {{(states('sensor.dark_sky_wind_speed_0')|int)|round}}
+        {{ winddir[winbearing]}} averaging {{(states('sensor.dark_sky_wind_speed_0d')|int)|round}} miles per hour
         {% if states('sensor.dark_sky_wind_gust_0d') | float > 0 %}
           with gusts up to {{(states('sensor.dark_sky_wind_gust_0d')|int)|round}}
         {% endif %}
@@ -420,7 +420,7 @@ test_briefing_two:
         Current winds are
         {% set winbearing = ((state_attr('weather.dark_sky','forecast')[0].wind_bearing/45)|round +1) %}
         {% set winddir = ['North', 'North East','East','South East','South','South West','West','North West']%}
-        {{ winddir[winbearing]}} at {{(states('sensor.dark_sky_wind_speed_0')|int)|round}}
+        {{ winddir[winbearing]}} averaging {{(states('sensor.dark_sky_wind_speed_0d')|int)|round}} miles per hour
         {% if states('sensor.dark_sky_wind_gust_0d') | float > 0 %}
           with gusts up to {{(states('sensor.dark_sky_wind_gust_0d')|int)|round}}
         {% endif %}

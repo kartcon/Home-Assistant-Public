@@ -119,6 +119,9 @@
     for:
       minutes: 10
   condition:
+  - condition: state
+    entity_id: light.lr_can_lights_62
+    state: 'on'
   - condition: template
     value_template: "{{ (states('input_select.current_condition')) != 'Rainy' }}"
   - condition: time

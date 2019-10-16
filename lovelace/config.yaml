@@ -126,6 +126,7 @@ cards:
           show_header_toggle: false
           entities:
             - entity: input_select.season_holiday
+            - entity: input_boolean.seasonal_colors
             - entity: input_boolean.enable_new_years_lighting
             - entity: input_boolean.enable_valentine_lighting
             - entity: input_boolean.enable_pattys_lighting

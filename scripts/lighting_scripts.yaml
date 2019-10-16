@@ -87,6 +87,15 @@ inside_lights_on_before_sunset:
       entity_id: light.flux_led_strip
       brightness: 77
       rgb_color: [0,0,255]
+#------------------------------------------
+#  Turn on LIFX Seasonal Colors if Seasonal Colors toggle is ON
+#------------------------------------------
+  - condition: state
+    entity_id: input_boolean.seasonal_colors
+    state: 'on'
+  - service: script.turn_on
+    data_template:
+      entity_id: script.{{ states.input_select.season_holiday.state | lower | replace(' ', '_') | replace('\'', '') }}_script
 #
 #################################################################
 # SCENE: Outside Lights On at Sunset
@@ -138,6 +147,15 @@ outside_lights_on_at_sunset:
       power: true
       brightness: 94
       rgb_color: [255,239,0]
+#------------------------------------------
+#  Turn on LIFX Seasonal Colors if Seasonal Colors toggle is ON
+#------------------------------------------
+  - condition: state
+    entity_id: input_boolean.seasonal_colors
+    state: 'on'
+  - service: script.turn_on
+    data_template:
+      entity_id: script.{{ states.input_select.season_holiday.state | lower | replace(' ', '_') | replace('\'', '') }}_script
 #
 #################################################################
 # LIFX Lights off
