@@ -15,7 +15,7 @@
   <img src="https://img.shields.io/github/watchers/kartcon/Home-Assistant-Public?style=plastic">
 </a>
 <a href="https://github.com/kartcon/Home-Assistant-Public">
-  <img src="https://img.shields.io/badge/Home%20Assistant-98.1-blue?style=plastic">
+  <img src="https://img.shields.io/badge/Home%20Assistant-100.3-blue?style=plastic">
 </a>
 </div>
 
