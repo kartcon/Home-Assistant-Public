@@ -108,6 +108,7 @@ input_boolean: !include includes/input_booleans.yaml
 input_datetime: !include includes/input_datetimes.yaml
 input_number: !include includes/input_numbers.yaml
 input_select: !include includes/input_selects.yaml
+input_text: !include includes/input_texts.yaml
 light: !include includes/lights.yaml
 media_player: !include includes/media_players.yaml
 mqtt: !include includes/mqtt_cfgs.yaml

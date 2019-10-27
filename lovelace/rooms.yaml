@@ -112,27 +112,136 @@ cards:
 # COL 3
     - type: vertical-stack
       cards:
-        - type: entities
-          title: Sun Room
-          show_header_toggle: true
-          entities:
-            - type: custom:slider-entity-row
-              entity: light.sunroom_lights_203
-              name: Lights
-              icon: mdi:ceiling-light
-#            - entity: light.sunroom_fan_204
-#              icon: mdi:fan
-            - type: custom:slider-entity-row
-              entity: light.sunroom_fan_204
-              name: Fan %
-              icon: mdi:fan
-#            - entity: light.flux_led_strip
-#              icon: mdi:led-strip-variant
-            - type: custom:slider-entity-row
-              entity:  light.flux_led_strip
-              name: LED %
-              icon: mdi:led-strip-variant
-#              full_row: true
+#         - type: entities
+#           title: Sun Room
+#           show_header_toggle: true
+#           entities:
+#             - type: custom:slider-entity-row
+#               entity: light.sunroom_lights_203
+#               name: Lights
+#               icon: mdi:ceiling-light
+# #            - entity: light.sunroom_fan_204
+# #              icon: mdi:fan
+#             - type: custom:slider-entity-row
+#               entity: light.sunroom_fan_204
+#               name: Fan %
+#               icon: mdi:fan
+# #            - entity: light.flux_led_strip
+# #              icon: mdi:led-strip-variant
+#             - type: custom:slider-entity-row
+#               entity: light.flux_led_strip
+#               name: LED %
+#               icon: mdi:led-strip-variant
+# #              full_row: true
+
+
+        - type: conditional
+          conditions:
+            - entity: light.flux_led_strip
+              state: "off"
+          card:
+            type: entities
+            title: Sun Room
+            show_header_toggle: true
+            entities:
+              - type: custom:slider-entity-row
+                entity: light.sunroom_lights_203
+                name: Lights
+                icon: mdi:ceiling-light
+              - type: custom:slider-entity-row
+                entity: light.sunroom_fan_204
+                name: Fan %
+                icon: mdi:fan
+              - entity: light.flux_led_strip
+                name: LED %
+                icon: mdi:led-strip-variant
+        - type: conditional
+          conditions:
+            - entity: light.flux_led_strip
+              state: "on"
+          card:
+            type: entities
+            title: Sun Room
+            show_header_toggle: true
+            entities:
+              - type: custom:slider-entity-row
+                entity: light.sunroom_lights_203
+                name: Lights
+                icon: mdi:ceiling-light
+              - type: custom:slider-entity-row
+                entity: light.sunroom_fan_204
+                name: Fan %
+                icon: mdi:fan
+              - type: 'custom:slider-entity-row'
+                entity: light.flux_led_strip
+                name: LED %
+                icon: mdi:led-strip-variant
+                toggle: true
+              - type: 'custom:rgb-light-card'
+                entity: light.flux_led_strip
+                justify: center
+                size: 22
+                colors:
+                  # Pink
+                  - rgb_color:
+                    - 255
+                    - 0
+                    - 253
+                    icon_color: '#FF99FF'
+                  # Red
+                  - rgb_color:
+                    - 255
+                    - 0
+                    - 0
+                    icon_color: '#FF0000'
+                  # Dark Orange
+                  - rgb_color:
+                    - 255
+                    - 36
+                    - 0
+                    icon_color: '#CC6600'
+                  # Orange
+                  - rgb_color:
+                    - 255
+                    - 85
+                    - 0
+                    icon_color: '#FF9900'
+                  # Yellow
+                  - rgb_color:
+                    - 253
+                    - 255
+                    - 0
+                    icon_color: '#FFFF00'
+                  # Lime
+                  - rgb_color:
+                    - 0
+                    - 255
+                    - 35
+                    icon_color: '#33FF00'
+                  # Green
+                  - rgb_color:
+                    - 0
+                    - 255
+                    - 0
+                    icon_color: '#33CC00'
+                  # Light Blue
+                  - rgb_color:
+                    - 0
+                    - 253
+                    - 255
+                    icon_color: '#33CCFF'
+                  # Dark Blue
+                  - rgb_color:
+                    - 0
+                    - 0
+                    - 255
+                    icon_color: '#0033FF'
+                  # Purple
+                  - rgb_color:
+                    - 255
+                    - 0
+                    - 253
+                    icon_color: '#6600CC'
 #
         - type: entities
           title: Bonus Room

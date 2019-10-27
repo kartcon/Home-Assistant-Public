@@ -31,9 +31,9 @@ cards:
             - type: divider
 #            - entity: input_boolean.enable_push_notifications
 #            - entity: input_boolean.enable_prowl_notifications
-            - entity: input_boolean.enable_auto_arm_notifications
-            - entity: input_boolean.enable_disarm_notifications
-            - entity: input_boolean.enable_sensor_notifications
+            - entity: input_boolean.auto_arm_notifications
+            - entity: input_boolean.disarm_notifications
+            - entity: input_boolean.sensor_reset_notifications
 #
 # COL 2
     - type: vertical-stack

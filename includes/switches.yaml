@@ -35,4 +35,18 @@
   on_for: 300
   allow_off: True
 #  ---------------
-#  switch.momentary_unscheduled_restart
+- platform: momentary
+  name: Update OwnTracks
+  on_for: 2
+  allow_off: True
+#  ---------------
+- platform: momentary
+  name: Update ExtURL
+  on_for: 2
+  allow_off: True
+#  ---------------
+- platform: momentary
+  name: Momentary 1
+  on_for: 2
+  allow_off: True
+#  ---------------

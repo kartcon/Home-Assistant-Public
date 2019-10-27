@@ -14,6 +14,9 @@
       brightness: 51
     light.entertainment_center_26:
       state: 'on'
+    light.kitchen_pendants_106:
+      state: 'on'
+      brightness: 105
     light.lr_can_lights_62:
       state: 'on'
       brightness: 230
@@ -42,6 +45,8 @@
     light.china_cabinet_25:
       state: 'off'
     light.entertainment_center_26:
+      state: 'off'
+    light.kitchen_pendants_106:
       state: 'off'
     light.lr_can_lights_62:
       state: 'off'

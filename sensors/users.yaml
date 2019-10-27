@@ -1,0 +1,20 @@
+#########################
+#     OwnTracks         #
+#########################
+#
+- platform: template
+  sensors:
+    owntracks_config:
+      value_template: "XXXX://{{(states.sensor.external_ip.state)}}:8123/api/webhook/3a18f9fcbfab896287e546ebb0ea4edbfac38c1274fb2d04b97d1debeca095fc"
+      friendly_name: "OT Encryption Key"
+#      unit_of_measurement: '%'
+#
+- platform: template
+  sensors:
+    external_url:
+      value_template: "XXXX://{{(states.sensor.external_ip.state)}}:8123"
+      friendly_name: "External URL"
+#      unit_of_measurement: '%'
+#
+#OT1: 656fac318452cbc2076ba63575e7f487db2851dbbea3ff5ea8069f0dadc8dba0
+#OT2: 4b19d51020cb259721124f71a89d61b4b8b19b46a3a0a3f138c0d92715368768

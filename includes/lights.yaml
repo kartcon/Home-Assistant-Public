@@ -9,21 +9,21 @@
 #
 - platform: flux_led
   devices:
-    192.168.0.236:
+    192.168.1.13:
       name: flux_led_strip
       mode: "rgbw"
-      custom_effect:
-        speed_pct: 50
-        transition: 'gradual'
-        colors:
-          - [255,0,0]
-          - [255,255,255]
-          - [0,0,255]
+#      custom_effect:
+#        speed_pct: 50
+#        transition: 'gradual'
+#        colors:
+#          - [255,0,0]
+#          - [255,255,255]
+#          - [0,0,255]
 #
 ##############################################################
-# To reconnect the Flux_led lights: On the i-Phone go to 
-# settings > wi-fi then select the LEDnetAA1940 network. 
-# Open the Magic Home app then click the + in top right 
+# To reconnect the Flux_led lights: On the i-Phone go to
+# settings > wi-fi then select the LEDnetAA1940 network.
+# Open the Magic Home app then click the + in top right
 # then 'Connect light to Wi-Fi network'. Follow prompts.
 ##############################################################
 #

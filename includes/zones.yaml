@@ -1,13 +1,13 @@
 #
 - name: Home
-  latitude: 30.4548083
-  longitude: -81.5355
+  latitude: 30.4545208
+  longitude: -81.5357317
   radius: 300
   icon: mdi:home-circle
 #
 - name: Front Gate
-  latitude: 30.459045
-  longitude: -81.531359
+  latitude: 30.458625
+  longitude: -81.5312852
   radius: 150
   icon: mdi:boom-gate
 #
@@ -56,6 +56,18 @@
 - name: Phoebe
   latitude: 31.5904507
   longitude: -84.1595808
+  radius: 100
+  icon: mdi:hospital
+#
+- name: Monroe
+  latitude: 29.1751791
+  longitude: -82.1390284
+  radius: 100
+  icon: mdi:hospital
+#
+- name: Tallahassee
+  latitude: 30.4575458
+  longitude: -84.2605853
   radius: 100
   icon: mdi:hospital
 #

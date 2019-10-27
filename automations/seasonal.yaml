@@ -138,7 +138,7 @@
   - service: input_boolean.turn_on
     data:
       entity_id:
-      - input_boolean.enable_new_years_lighting
+      - input_boolean.new_years_day_lighting
   - service: input_select.select_option
     data:
       entity_id: input_select.season_holiday
@@ -168,7 +168,7 @@
   - service: input_boolean.turn_on
     data:
       entity_id:
-      - input_boolean.enable_valentine_lighting
+      - input_boolean.valentine_lighting
   - service: input_select.select_option
     data:
       entity_id: input_select.season_holiday
@@ -198,7 +198,7 @@
   - service: input_boolean.turn_on
     data:
       entity_id:
-      - input_boolean.enable_pattys_lighting
+      - input_boolean.st_pattys_lighting
   - service: input_select.select_option
     data:
       entity_id: input_select.season_holiday
@@ -238,7 +238,7 @@
   - service: input_boolean.turn_on
     data:
       entity_id:
-      - input_boolean.enable_easter_lighting
+      - input_boolean.easter_lighting
   - service: input_select.select_option
     data:
       entity_id: input_select.season_holiday
@@ -290,7 +290,7 @@
   - service: input_boolean.turn_on
     data:
       entity_id:
-      - input_boolean.enable_memorial_lighting
+      - input_boolean.memorial_day_lighting
   - service: input_select.select_option
     data:
       entity_id: input_select.season_holiday
@@ -328,7 +328,7 @@
   - service: input_boolean.turn_on
     data:
       entity_id:
-      - input_boolean.enable_flag_day_lighting
+      - input_boolean.flag_day_lighting
   - service: input_select.select_option
     data:
       entity_id: input_select.season_holiday
@@ -358,7 +358,7 @@
   - service: input_boolean.turn_on
     data:
       entity_id:
-      - input_boolean.enable_independence_lighting
+      - input_boolean.independence_day_lighting
   - service: input_select.select_option
     data:
       entity_id: input_select.season_holiday
@@ -399,7 +399,7 @@
   - service: input_boolean.turn_on
     data:
       entity_id:
-      - input_boolean.enable_labor_lighting
+      - input_boolean.labor_day_lighting
   - service: input_select.select_option
     data:
       entity_id: input_select.season_holiday
@@ -436,7 +436,7 @@
   - service: input_boolean.turn_on
     data:
       entity_id:
-      - input_boolean.enable_cancer_lighting
+      - input_boolean.cancer_lighting
   - service: input_select.select_option
     data:
       entity_id: input_select.season_holiday
@@ -466,7 +466,7 @@
   - service: input_boolean.turn_on
     data:
       entity_id:
-      - input_boolean.enable_halloween_lighting
+      - input_boolean.halloween_lighting
   - service: input_select.select_option
     data:
       entity_id: input_select.season_holiday
@@ -496,7 +496,7 @@
   - service: input_boolean.turn_on
     data:
       entity_id:
-      - input_boolean.enable_thanksgiving_lighting
+      - input_boolean.thanksgiving_lighting
   - service: input_select.select_option
     data:
       entity_id: input_select.season_holiday
@@ -530,7 +530,7 @@
   - service: input_boolean.turn_on
     data:
       entity_id:
-      - input_boolean.enable_christmas_lighting
+      - input_boolean.christmas_lighting
   - service: input_select.select_option
     data:
       entity_id: input_select.season_holiday
@@ -560,7 +560,7 @@
   - service: input_boolean.turn_on
     data:
       entity_id:
-      - input_boolean.enable_new_years_eve_lighting
+      - input_boolean.new_years_eve_lighting
   - service: input_select.select_option
     data:
       entity_id: input_select.season_holiday

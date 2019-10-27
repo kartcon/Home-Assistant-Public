@@ -60,6 +60,11 @@
   destination: zone.memorial
   region: 'US'
 - platform: waze_travel_time
+  name: To Monroe
+  origin: device_tracker.art_ot1
+  destination: zone.monroe
+  region: 'US'
+- platform: waze_travel_time
   name: To Phoebe Ga
   origin: device_tracker.art_ot1
   destination: zone.phoebe
@@ -78,6 +83,11 @@
   name: To St Vincents
   origin: device_tracker.art_ot1
   destination: zone.st_vincents
+  region: 'US'
+- platform: waze_travel_time
+  name: To Tallahassee
+  origin: device_tracker.art_ot1
+  destination: zone.tallahassee
   region: 'US'
 - platform: waze_travel_time
   name: To Mom & Dad

@@ -3,26 +3,44 @@
 #################################################################
 #
 #################################################################
-# Briefing Announcement
-# Called from [art_weekday_briefing]
-# Called from [steff_weekday_briefing]
-# In file: [automations/user_briefings.yaml]
+# Script: Set Alexa Volume
+# Called from [various automations]
+# In file: [_______]
 #################################################################
-#daily_briefing_alert:
-#  alias: Daily Briefing Alert
-#  sequence:
-##  - service: script.set_alexa_volume
-##    data:
-##      alexa_entity: media_player.kitchen_echo
-##  - delay: '00:00:05'
-#  - service: notify.alexa_media
-#    data_template:
-#      target:
-#        - media_player.kitchen_echo
-#      data:
-#        type: announce
-#      message: >-
-#        Your daily briefing is about to start.
+set_alexa_volume:
+  alias: "Set Alexa Volume"
+  sequence:
+  - service: media_player.volume_set
+    data_template:
+      entity_id: "{{ alexa_entity }}"
+      volume_level: >-
+        {% set current_hour = strptime(states('sensor.time'), "%H:%M").hour | int %}
+        {% if current_hour >= 5 and current_hour < 8 %}
+          0.23
+        {% elif current_hour >= 8 and current_hour <= 14 %}
+          0.53
+        {% elif current_hour > 15 and current_hour <= 20 %}
+          0.67
+        {% else %}
+          0.33
+        {% endif %}
+#
+#################################################################
+# Script: Announce Daily Briefing
+# Called from [dailiy briefing scriopts]
+# In file: [scripts/user_briefings.yaml]
+#################################################################
+announce_briefing:
+  alias: "Announce Briefing"
+  sequence:
+  - service: notify.alexa_media
+    data_template:
+      target:
+        - "{{ alexa_entity }}"
+      data:
+        type: announce
+      message: >-
+        Your daily briefing is about to start.
 #
 #################################################################
 # Art Briefing One
@@ -36,16 +54,12 @@ art_briefing_one:
   - service: script.set_alexa_volume
     data:
       alexa_entity: media_player.kitchen_echo
+  - delay: '00:00:02'
   # Make Announcement
-  - service: notify.alexa_media
-    data_template:
-      target:
-        - media_player.kitchen_echo
-      data:
-        type: announce
-      message: >-
-        Your daily briefing is about to start.
-  - delay: 0:00:03
+  - service: script.announce_briefing
+    data:
+      alexa_entity: media_player.kitchen_echo
+  - delay: '00:00:03'
   # Read Briefing
   - service: notify.alexa_media
     data_template:
@@ -55,75 +69,120 @@ art_briefing_one:
         type: tts
       message: >-
         {# Salutation #}
-        Good {{states.sensor.time_of_day.state}} Art.
+        {% if states.sensor.time_of_day.state != '' %}
+          Good {{states.sensor.time_of_day.state}} Art.
+        {% endif %}
+
         {# Time #}
-        The time is {{states.sensor.readable_time.state.lstrip('0')}}.
+        {% if states.sensor.readable_time.state.lstrip('0') != '' %}
+          The time is {{states.sensor.readable_time.state.lstrip('0')}}.
+        {% endif %}
+
+        {# Day/Date #}
         Today is a
         {% if states.sensor.payday.state == 'True' %}
-        payday
+          payday
         {% endif %}
-        {{states.sensor.day_of_the_week.state}}
-        and the date is the {{states.sensor.date_of_the_month.state}} of {{states.sensor.month_name.state}}.
+          {{states.sensor.day_of_the_week.state}}
+          and the date is the {{states.sensor.date_of_the_month.state}} of {{states.sensor.month_name.state}}.
+
         {# Birds #}
         {% if states.sensor.weigh_birds.state == 'true' %}
-        It's time to weigh the birds again.
+          It's time to weigh the birds again.
         {% endif %}
-        {# Birthday/Holiday #}
+
+        {# Birthday/Holiday Art #}
         {% if states.sensor.todays_events.state != 'unknown' %}
           {% if states.sensor.todays_events.state != '' %}
-            Don't forget, it's {{states.sensor.todays_events.state}} today.
+            {% if states.sensor.todays_events.state|replace("\'","") == 'Arts Birthday' %}
+              Happy Birthday Art.
+            {% else %}
+              Don't forget, it's {{states.sensor.todays_events.state}} today.
+            {% endif %}
           {% endif %}
         {% endif %}
+
         {# Weather #}
         It's currently {{states.sensor.dark_sky_summary.state}} and {{states.sensor.dark_sky_temperature.state}} degrees at home.
         Today will be {{states.sensor.dark_sky_hourly_summary.state|replace('.','')}}, with a high of {{states.sensor.dark_sky_daytime_high_temperature_0d.state|round(1)}} degrees and a low of {{states.sensor.dark_sky_overnight_low_temperature_0d.state|round(1)}} degrees.
         {% if state_attr('weather.dark_sky', 'forecast')[0].precipitation | float > 0.1 %}
           We may see {{state_attr('weather.dark_sky', 'forecast')[0].precipitation}} inches of rain today.
         {% endif %}
+
         {# Winds #}
-        Current winds are
-        {% set winbearing = ((state_attr('weather.dark_sky','forecast')[0].wind_bearing/45)|round +1) %}
-        {% set winddir = ['North', 'North East','East','South East','South','South West','West','North West']%}
-        {{ winddir[winbearing]}} averaging {{(states('sensor.dark_sky_wind_speed_0d')|int)|round}} miles per hour
-        {% if states('sensor.dark_sky_wind_gust_0d') | float > 0 %}
-          with gusts up to {{(states('sensor.dark_sky_wind_gust_0d')|int)|round}}
-        {% endif %}
-        miles per hour.
-        {# NWS Warnings #}
-          {% if states.sensor.nws_alert_count.state | int > 0 %}
-            {% if states.sensor.nws_alert_event.state != 'None' %}
-              The National Weather Service has issued a {{states.sensor.nws_alert_event.state}} for today.
-            {% endif %}
+        {% if states.weather.dark_sky.state != '' %}
+          Current winds are
+          {% set winbearing = ((state_attr('weather.dark_sky','forecast')[0].wind_bearing/45)|round +1) %}
+          {% set winddir = ['North', 'North East','East','South East','South','South West','West','North West']%}
+          {{ winddir[winbearing]}} averaging {{(states('sensor.dark_sky_wind_speed_0d')|int)|round}} miles per hour
+          {% if states('sensor.dark_sky_wind_gust_0d') | float > 0 %}
+            with gusts up to {{(states('sensor.dark_sky_wind_gust_0d')|int)|round}}
           {% endif %}
-        {# Sunrise/Sunset #}
-        Sunrise
-        {% if states('sun.sun') == 'above_horizon' %}
-          was at
-        {% else %}
-          is at
+          miles per hour.
         {% endif %}
-        {{states.sensor.next_rising.state}}
-        and sunset will be at
-        {{states.sensor.next_setting.state}}.
+
+        {# UV Index #}
+        {% if states.sensor.dark_sky_uv_index.state|int >= 6 and states.sensor.dark_sky_uv_index.state|int <= 7.9 %}
+            Today's UV index is {{ states.sensor.dark_sky_uv_index.state }}. This is high. Be sure wear sunscreen.
+        {% elif states.sensor.dark_sky_uv_index.state|int >= 8 and states.sensor.dark_sky_uv_index.state|int <=10.9 %}
+            Today's UV index is {{ states.sensor.dark_sky_uv_index.state }}. This is very high. Be sure wear sunscreen and re-apply.
+        {% elif states.sensor.dark_sky_uv_index.state|int >= 11 %}
+            Today's UV index is {{ states.sensor.dark_sky_uv_index.state }}. This is EXTREME. You should use caution when going outside.
+        {% endif %}
+
+        {# NWS Warnings #}
+        {% if states.sensor.nws_alert_count.state | int > 0 %}
+          {% if states.sensor.nws_alert_event.state | lower() != 'none' %}
+          {% if states.sensor.nws_alert_event.state | lower() != 'unknown' %}
+            The National Weather Service has issued a {{states.sensor.nws_alert_event.state}} for today.
+          {% endif %}
+          {% endif %}
+        {% endif %}
+
+        {# Sunrise/Sunset #}
+        {% if states.sensor.next_rising.state != '' %}
+        {% if states.sensor.next_setting.state != '' %}
+          Sunrise
+          {% if states('sun.sun') == 'above_horizon' %}
+            was at
+          {% else %}
+            is at
+          {% endif %}
+          {{states.sensor.next_rising.state}}
+            and sunset will be at
+          {{states.sensor.next_setting.state}}.
+        {% endif %}
+        {% endif %}
+
         {# Moon #}
         {% if states('sensor.moon') == 'full_moon' %}
           There will be a Full Moon tonight.
         {% endif %}
+
         {# Tides #}
-        The next {{states.sensor.noaa_tides.state|replace('at','is at')}}.
+        {% if states.sensor.noaa_tides.state != '' %}
+          The next {{states.sensor.noaa_tides.state|replace('at','is at')}}.
+        {% endif %}
+
+        {# High Tide Warnings #}
+        {# End High Tide Warnings #}
+
         {# Trash Day #}
         {% if states.sensor.day_of_the_week.state == 'Thursday' %}
-        Today is Thursday. The trash bin needs to be out to the road.
+          Today is Thursday. The trash bin needs to be out to the road.
         {% endif %}
+
         {# Recycling Day #}
         {% if states.sensor.date.state == states.input_datetime.recycle_pickup_date.state %}
-        Today is Monday. The recycling bin needs to be out to the road.
+          Today is Monday. The recycling bin needs to be out to the road.
         {% endif %}
+
         {# Holiday Lighting #}
         {% if (states.sensor.season.state != (states.input_select.season_holiday.state)|lower()) %}
-        Remember to look for the {{ states.input_select.season_holiday.state }} lighting theme later tonight.
+          Remember to look for the {{ states.input_select.season_holiday.state }} lighting theme later tonight.
         {% endif %}
-        {# Closing #}
+
+        {# Closing Art #}
         Have a{{ [" pleasant", " great", " good", " cheerful", " delightful", "n enjoyable", " super", " wonderful", " satisfying"] | random }} day!
 #
 #################################################################
@@ -138,16 +197,12 @@ steff_briefing_one:
   - service: script.set_alexa_volume
     data:
       alexa_entity: media_player.kitchen_echo
+  - delay: '00:00:02'
   # Make Announcement
-  - service: notify.alexa_media
-    data_template:
-      target:
-        - media_player.kitchen_echo
-      data:
-        type: announce
-      message: >-
-        Your daily briefing is about to start.
-  - delay: 0:00:03
+  - service: script.announce_briefing
+    data:
+      alexa_entity: media_player.kitchen_echo
+  - delay: '00:00:03'
   # Read Briefing
   - service: notify.alexa_media
     data_template:
@@ -157,20 +212,29 @@ steff_briefing_one:
         type: tts
       message: >-
         {# Salutation #}
-        Good {{states.sensor.time_of_day.state}} Steff.
+        {% if states.sensor.time_of_day.state != '' %}
+          Good {{states.sensor.time_of_day.state}} Steff.
+        {% endif %}
+
         {# Time #}
-        The time is {{states.sensor.readable_time.state.lstrip('0')}}.
+        {% if states.sensor.readable_time.state.lstrip('0') != '' %}
+          The time is {{states.sensor.readable_time.state.lstrip('0')}}.
+        {% endif %}
+
+        {# Day/Date #}
         Today is a
         {% if states.sensor.payday.state == 'True' %}
-        payday
+          payday
         {% endif %}
-        {{states.sensor.day_of_the_week.state}}
-        and the date is the {{states.sensor.date_of_the_month.state}} of {{states.sensor.month_name.state}}.
+          {{states.sensor.day_of_the_week.state}}
+          and the date is the {{states.sensor.date_of_the_month.state}} of {{states.sensor.month_name.state}}.
+
         {# Birds #}
         {% if states.sensor.weigh_birds.state == 'true' %}
-        It's time to weigh the birds again.
+          It's time to weigh the birds again.
         {% endif %}
-        {# Birthday/Holiday #}
+
+        {# Birthday/Holiday Steff #}
         {% if states.sensor.todays_events.state != 'unknown' %}
           {% if states.sensor.todays_events.state != '' %}
             {% if states.sensor.todays_events.state|replace("\'","") == 'Steffs Birthday' %}
@@ -180,43 +244,72 @@ steff_briefing_one:
             {% endif %}
           {% endif %}
         {% endif %}
+
         {# Weather #}
         It's currently {{states.sensor.dark_sky_summary.state}} and {{states.sensor.dark_sky_temperature.state}} degrees at home.
         Today will be {{states.sensor.dark_sky_hourly_summary.state|replace('.','')}}, with a high of {{states.sensor.dark_sky_daytime_high_temperature_0d.state|round(1)}} degrees and a low of {{states.sensor.dark_sky_overnight_low_temperature_0d.state|round(1)}} degrees.
         {% if state_attr('weather.dark_sky', 'forecast')[0].precipitation | float > 0.1 %}
           We may see {{state_attr('weather.dark_sky', 'forecast')[0].precipitation}} inches of rain today.
         {% endif %}
+
         {# Winds #}
-        Current winds are
-        {% set winbearing = ((state_attr('weather.dark_sky','forecast')[0].wind_bearing/45)|round +1) %}
-        {% set winddir = ['North', 'North East','East','South East','South','South West','West','North West']%}
-        {{ winddir[winbearing]}} averaging {{(states('sensor.dark_sky_wind_speed_0d')|int)|round}} miles per hour
-        {% if states('sensor.dark_sky_wind_gust_0d') | float > 0 %}
-          with gusts up to {{(states('sensor.dark_sky_wind_gust_0d')|int)|round}}
-        {% endif %}
-        miles per hour.
-        {# NWS Warnings #}
-          {% if states.sensor.nws_alert_count.state | int > 0 %}
-            {% if states.sensor.nws_alert_event.state != 'None' %}
-              The National Weather Service has issued a {{states.sensor.nws_alert_event.state}} for today.
-            {% endif %}
+        {% if states.weather.dark_sky.state != '' %}
+          Current winds are
+          {% set winbearing = ((state_attr('weather.dark_sky','forecast')[0].wind_bearing/45)|round +1) %}
+          {% set winddir = ['North', 'North East','East','South East','South','South West','West','North West']%}
+          {{ winddir[winbearing]}} averaging {{(states('sensor.dark_sky_wind_speed_0d')|int)|round}} miles per hour
+          {% if states('sensor.dark_sky_wind_gust_0d') | float > 0 %}
+            with gusts up to {{(states('sensor.dark_sky_wind_gust_0d')|int)|round}}
           {% endif %}
-        {# Sunrise/Sunset #}
-        Sunrise
-        {% if states('sun.sun') == 'above_horizon' %}
-          was at
-        {% else %}
-          is at
+          miles per hour.
         {% endif %}
-        {{states.sensor.next_rising.state}}
-        and sunset will be at
-        {{states.sensor.next_setting.state}}.
+
+        {# UV Index #}
+        {% if states.sensor.dark_sky_uv_index.state|int >= 6 and states.sensor.dark_sky_uv_index.state|int <= 7.9 %}
+            Today's UV index is {{ states.sensor.dark_sky_uv_index.state }}. This is high. Be sure wear sunscreen.
+        {% elif states.sensor.dark_sky_uv_index.state|int >= 8 and states.sensor.dark_sky_uv_index.state|int <=10.9 %}
+            Today's UV index is {{ states.sensor.dark_sky_uv_index.state }}. This is very high. Be sure wear sunscreen and re-apply.
+        {% elif states.sensor.dark_sky_uv_index.state|int >= 11 %}
+            Today's UV index is {{ states.sensor.dark_sky_uv_index.state }}. This is EXTREME. You should use caution when going outside.
+        {% endif %}
+
+        {# NWS Warnings #}
+        {% if states.sensor.nws_alert_count.state | int > 0 %}
+          {% if states.sensor.nws_alert_event.state | lower() != 'none' %}
+          {% if states.sensor.nws_alert_event.state | lower() != 'unknown' %}
+            The National Weather Service has issued a {{states.sensor.nws_alert_event.state}} for today.
+          {% endif %}
+          {% endif %}
+        {% endif %}
+
+        {# Sunrise/Sunset #}
+        {% if states.sensor.next_rising.state != '' %}
+        {% if states.sensor.next_setting.state != '' %}
+          Sunrise
+          {% if states('sun.sun') == 'above_horizon' %}
+            was at
+          {% else %}
+            is at
+          {% endif %}
+          {{states.sensor.next_rising.state}}
+            and sunset will be at
+          {{states.sensor.next_setting.state}}.
+        {% endif %}
+        {% endif %}
+
         {# Moon #}
         {% if states('sensor.moon') == 'full_moon' %}
           There will be a Full Moon tonight.
         {% endif %}
+
         {# Tides #}
-        The next {{states.sensor.noaa_tides.state|replace('at','is at')}}.
+        {% if states.sensor.noaa_tides.state != '' %}
+          The next {{states.sensor.noaa_tides.state|replace('at','is at')}}.
+        {% endif %}
+
+        {# High Tide Warnings #}
+        {# End High Tide Warnings #}
+
         {# Arts Location #}
         {% if states('device_tracker.art_ot1') != 'home' %}
         Art is
@@ -228,19 +321,23 @@ steff_briefing_one:
             away from home.
           {% endif %}
         {% endif %}
+
         {# Trash Day #}
         {% if states.sensor.day_of_the_week.state == 'Thursday' %}
-        Today is Thursday. The trash bin needs to be out to the road.
+          Today is Thursday. The trash bin needs to be out to the road.
         {% endif %}
+
         {# Recycling Day #}
         {% if states.sensor.date.state == states.input_datetime.recycle_pickup_date.state %}
-        Today is Monday. The recycling bin needs to be out to the road.
+          Today is Monday. The recycling bin needs to be out to the road.
         {% endif %}
+
         {# Holiday Lighting #}
         {% if (states.sensor.season.state != (states.input_select.season_holiday.state)|lower()) %}
-        Remember to look for the {{ states.input_select.season_holiday.state }} lighting theme later tonight.
+          Remember to look for the {{ states.input_select.season_holiday.state }} lighting theme later tonight.
         {% endif %}
-        {# Closing #}
+
+        {# Closing Steff#}
         Have a{{ [' pleasant', ' amiable', ' happy', ' cheerful', ' delightful', 'n enjoyable', ' lovely', ' pleasing', ' good'] | random }} day!
 #
 #################################################################
@@ -255,16 +352,12 @@ test_briefing_one:
   - service: script.set_alexa_volume
     data:
       alexa_entity: media_player.office_echo
+  - delay: '00:00:02'
   # Make Announcement
-  - service: notify.alexa_media
-    data_template:
-      target:
-        - media_player.office_echo
-      data:
-        type: announce
-      message: >-
-        Your daily briefing is about to start.
-  - delay: 0:00:03
+  - service: script.announce_briefing
+    data:
+      alexa_entity: media_player.office_echo
+  - delay: '00:00:03'
   # Read Briefing
   - service: notify.alexa_media
     data_template:
@@ -273,22 +366,31 @@ test_briefing_one:
       data:
         type: tts
       message: >-
-        Test briefing number one.
         {# Salutation #}
-        Good {{states.sensor.time_of_day.state}} Art.
+        {% if states.sensor.time_of_day.state != '' %}
+          Good {{states.sensor.time_of_day.state}} Art.
+          Good {{states.sensor.time_of_day.state}} Steff.
+        {% endif %}
+
         {# Time #}
-        The time is {{states.sensor.readable_time.state.lstrip('0')}}.
+        {% if states.sensor.readable_time.state.lstrip('0') != '' %}
+          The time is {{states.sensor.readable_time.state.lstrip('0')}}.
+        {% endif %}
+
+        {# Day/Date #}
         Today is a
         {% if states.sensor.payday.state == 'True' %}
-        payday
+          payday
         {% endif %}
-        {{states.sensor.day_of_the_week.state}}
-        and the date is the {{states.sensor.date_of_the_month.state}} of {{states.sensor.month_name.state}}.
+          {{states.sensor.day_of_the_week.state}}
+          and the date is the {{states.sensor.date_of_the_month.state}} of {{states.sensor.month_name.state}}.
+
         {# Birds #}
         {% if states.sensor.weigh_birds.state == 'true' %}
-        It's time to weigh the birds again.
+          It's time to weigh the birds again.
         {% endif %}
-        {# Birthday/Holiday #}
+
+        {# Birthday/Holiday Art #}
         {% if states.sensor.todays_events.state != 'unknown' %}
           {% if states.sensor.todays_events.state != '' %}
             {% if states.sensor.todays_events.state|replace("\'","") == 'Arts Birthday' %}
@@ -298,63 +400,115 @@ test_briefing_one:
             {% endif %}
           {% endif %}
         {% endif %}
+
+        {# Birthday/Holiday Steff #}
+        {% if states.sensor.todays_events.state != 'unknown' %}
+          {% if states.sensor.todays_events.state != '' %}
+            {% if states.sensor.todays_events.state|replace("\'","") == 'Steffs Birthday' %}
+              Happy Birthday Steff.
+            {% else %}
+              Don't forget, it's {{states.sensor.todays_events.state}} today.
+            {% endif %}
+          {% endif %}
+        {% endif %}
+
         {# Weather #}
         It's currently {{states.sensor.dark_sky_summary.state}} and {{states.sensor.dark_sky_temperature.state}} degrees at home.
         Today will be {{states.sensor.dark_sky_hourly_summary.state|replace('.','')}}, with a high of {{states.sensor.dark_sky_daytime_high_temperature_0d.state|round(1)}} degrees and a low of {{states.sensor.dark_sky_overnight_low_temperature_0d.state|round(1)}} degrees.
         {% if state_attr('weather.dark_sky', 'forecast')[0].precipitation | float > 0.1 %}
           We may see {{state_attr('weather.dark_sky', 'forecast')[0].precipitation}} inches of rain today.
         {% endif %}
+
         {# Winds #}
-        Current winds are
-        {% set winbearing = ((state_attr('weather.dark_sky','forecast')[0].wind_bearing/45)|round +1) %}
-        {% set winddir = ['North', 'North East','East','South East','South','South West','West','North West']%}
-        {{ winddir[winbearing]}} averaging {{(states('sensor.dark_sky_wind_speed_0d')|int)|round}} miles per hour
-        {% if states('sensor.dark_sky_wind_gust_0d') | float > 0 %}
-          with gusts up to {{(states('sensor.dark_sky_wind_gust_0d')|int)|round}}
-        {% endif %}
-        miles per hour.
-        {# NWS Warnings #}
-          {% if states.sensor.nws_alert_count.state | int > 0 %}
-            {% if states.sensor.nws_alert_event.state != 'None' %}
-              The National Weather Service has issued a {{states.sensor.nws_alert_event.state}} for today.
-            {% endif %}
+        {% if states.weather.dark_sky.state != '' %}
+          Current winds are
+          {% set winbearing = ((state_attr('weather.dark_sky','forecast')[0].wind_bearing/45)|round +1) %}
+          {% set winddir = ['North', 'North East','East','South East','South','South West','West','North West']%}
+          {{ winddir[winbearing]}} averaging {{(states('sensor.dark_sky_wind_speed_0d')|int)|round}} miles per hour
+          {% if states('sensor.dark_sky_wind_gust_0d') | float > 0 %}
+            with gusts up to {{(states('sensor.dark_sky_wind_gust_0d')|int)|round}}
           {% endif %}
-        {# Sunrise/Sunset #}
-        Sunrise
-        {% if states('sun.sun') == 'above_horizon' %}
-          was at
-        {% else %}
-          is at
+          miles per hour.
         {% endif %}
-        {{states.sensor.next_rising.state}}
-        and sunset will be at
-        {{states.sensor.next_setting.state}}.
+
+        {# UV Index #}
+        {% if states.sensor.dark_sky_uv_index.state|int >= 6 and states.sensor.dark_sky_uv_index.state|int <= 7.9 %}
+            Today's UV index is {{ states.sensor.dark_sky_uv_index.state }}. This is high. Be sure wear sunscreen.
+        {% elif states.sensor.dark_sky_uv_index.state|int >= 8 and states.sensor.dark_sky_uv_index.state|int <=10.9 %}
+            Today's UV index is {{ states.sensor.dark_sky_uv_index.state }}. This is very high. Be sure wear sunscreen and re-apply.
+        {% elif states.sensor.dark_sky_uv_index.state|int >= 11 %}
+            Today's UV index is {{ states.sensor.dark_sky_uv_index.state }}. This is EXTREME. You should use caution when going outside.
+        {% endif %}
+
+        {# NWS Warnings #}
+        {% if states.sensor.nws_alert_count.state | int > 0 %}
+          {% if states.sensor.nws_alert_event.state | lower() != 'none' %}
+          {% if states.sensor.nws_alert_event.state | lower() != 'unknown' %}
+            The National Weather Service has issued a {{states.sensor.nws_alert_event.state}} for today.
+          {% endif %}
+          {% endif %}
+        {% endif %}
+
+        {# Sunrise/Sunset #}
+        {% if states.sensor.next_rising.state != '' %}
+        {% if states.sensor.next_setting.state != '' %}
+          Sunrise
+          {% if states('sun.sun') == 'above_horizon' %}
+            was at
+          {% else %}
+            is at
+          {% endif %}
+          {{states.sensor.next_rising.state}}
+            and sunset will be at
+          {{states.sensor.next_setting.state}}.
+        {% endif %}
+        {% endif %}
+
         {# Moon #}
         {% if states('sensor.moon') == 'full_moon' %}
           There will be a Full Moon tonight.
         {% endif %}
+
         {# Tides #}
-        The next {{states.sensor.noaa_tides.state|replace('at','is at')}}.
-        {# High Tide Warningss #}
-        {# End High Tide Warningss #}
+        {% if states.sensor.noaa_tides.state != '' %}
+          The next {{states.sensor.noaa_tides.state|replace('at','is at')}}.
+        {% endif %}
+
+        {# High Tide Warnings #}
+        {# End High Tide Warnings #}
+
+        {# Arts Location #}
+        {% if states('device_tracker.art_ot1') != 'home' %}
+        Art is
+          {% if states('device_tracker.art_ot1') == 'Shands' %} currently at Shands Hospital.
+          {% elif states('device_tracker.art_ot1') == 'Baptist' %} currently at Baptist Hospital.
+          {% elif states('device_tracker.art_ot1') == 'Memorial' %} currently at Memorial Hospital.
+          {% elif states('device_tracker.art_ot1') == 'St Vincents' %} currently at St Vincents Hospital.
+          {% else %}
+            away from home.
+          {% endif %}
+        {% endif %}
+
         {# Trash Day #}
         {% if states.sensor.day_of_the_week.state == 'Thursday' %}
-        Today is Thursday. The trash bin needs to be out to the road.
+          Today is Thursday. The trash bin needs to be out to the road.
         {% endif %}
+
         {# Recycling Day #}
         {% if states.sensor.date.state == states.input_datetime.recycle_pickup_date.state %}
-        Today is Monday. The recycling bin needs to be out to the road.
+          Today is Monday. The recycling bin needs to be out to the road.
         {% endif %}
+
         {# Holiday Lighting #}
         {% if (states.sensor.season.state != (states.input_select.season_holiday.state)|lower()) %}
-        Remember to look for the {{ states.input_select.season_holiday.state }} lighting theme later tonight.
+          Remember to look for the {{ states.input_select.season_holiday.state }} lighting theme later tonight.
         {% endif %}
-        {# Closing #}
+
+        {# Closing Art #}
         Have a{{ [" pleasant", " great", " good", " cheerful", " delightful", "n enjoyable", " super", " wonderful", " satisfying"] | random }} day!
-#  - service: media_player.volume_set
-#    data:
-#      entity_id: media_player.office_echo
-#      volume_level: '0.5'
+
+        {# Closing Steff#}
+        Have a{{ [' pleasant', ' amiable', ' happy', ' cheerful', ' delightful', 'n enjoyable', ' lovely', ' pleasing', ' good'] | random }} day!
 #
 #################################################################
 # Test Briefing Two
@@ -368,16 +522,12 @@ test_briefing_two:
   - service: script.set_alexa_volume
     data:
       alexa_entity: media_player.office_echo
+  - delay: '00:00:02'
   # Make Announcement
-  - service: notify.alexa_media
-    data_template:
-      target:
-        - media_player.office_echo
-      data:
-        type: announce
-      message: >-
-        Your daily briefing is about to start.
-  - delay: 0:00:03
+  - service: script.announce_briefing
+    data:
+      alexa_entity: media_player.office_echo
+  - delay: '00:00:03'
   # Read Briefing
   - service: notify.alexa_media
     data_template:
@@ -473,6 +623,179 @@ test_briefing_two:
         {# Closing #}
         Have a{{ [' pleasant', ' amiable', ' happy', ' cheerful', ' delightful', 'n enjoyable', ' lovely', ' pleasing', ' good'] | random }} day!
 #
+#################################################################
+# Test Briefing Three
+# Called from [test_briefing]
+# In file: [automations/user_briefings.yaml]
+#################################################################
+test_briefing_three:
+  alias: Test Briefing Three
+  sequence:
+  # Set Volume
+  - service: script.set_alexa_volume
+    data:
+      alexa_entity: media_player.office_echo
+  - delay: '00:00:02'
+  # Make Announcement
+  - service: script.announce_briefing
+    data:
+      alexa_entity: media_player.office_echo
+  - delay: '00:00:03'
+  # Read Briefing
+  - service: notify.alexa_media
+    data_template:
+      target:
+        - media_player.office_echo
+      data:
+        type: tts
+      message: >-
+        {# Salutation #}
+        {% if states.sensor.time_of_day.state != '' %}
+          Good {{states.sensor.time_of_day.state}} Art.
+          Good {{states.sensor.time_of_day.state}} Steff.
+        {% endif %}
+
+        {# Time #}
+        {% if states.sensor.readable_time.state.lstrip('0') != '' %}
+          The time is {{states.sensor.readable_time.state.lstrip('0')}}.
+        {% endif %}
+
+        {# Day/Date #}
+        Today is a
+        {% if states.sensor.payday.state == 'True' %}
+          payday
+        {% endif %}
+          {{states.sensor.day_of_the_week.state}}
+          and the date is the {{states.sensor.date_of_the_month.state}} of {{states.sensor.month_name.state}}.
+
+        {# Birds #}
+        {% if states.sensor.weigh_birds.state == 'true' %}
+          It's time to weigh the birds again.
+        {% endif %}
+
+        {# Birthday/Holiday Art #}
+        {% if states.sensor.todays_events.state != 'unknown' %}
+          {% if states.sensor.todays_events.state != '' %}
+            {% if states.sensor.todays_events.state|replace("\'","") == 'Arts Birthday' %}
+              Happy Birthday Art.
+            {% else %}
+              Don't forget, it's {{states.sensor.todays_events.state}} today.
+            {% endif %}
+          {% endif %}
+        {% endif %}
+
+        {# Birthday/Holiday Steff #}
+        {% if states.sensor.todays_events.state != 'unknown' %}
+          {% if states.sensor.todays_events.state != '' %}
+            {% if states.sensor.todays_events.state|replace("\'","") == 'Steffs Birthday' %}
+              Happy Birthday Steff.
+            {% else %}
+              Don't forget, it's {{states.sensor.todays_events.state}} today.
+            {% endif %}
+          {% endif %}
+        {% endif %}
+
+        {# Weather #}
+        It's currently {{states.sensor.dark_sky_summary.state}} and {{states.sensor.dark_sky_temperature.state}} degrees at home.
+        Today will be {{states.sensor.dark_sky_hourly_summary.state|replace('.','')}}, with a high of {{states.sensor.dark_sky_daytime_high_temperature_0d.state|round(1)}} degrees and a low of {{states.sensor.dark_sky_overnight_low_temperature_0d.state|round(1)}} degrees.
+        {% if state_attr('weather.dark_sky', 'forecast')[0].precipitation | float > 0.1 %}
+          We may see {{state_attr('weather.dark_sky', 'forecast')[0].precipitation}} inches of rain today.
+        {% endif %}
+
+        {# Winds #}
+        {% if states.weather.dark_sky.state != '' %}
+          Current winds are
+          {% set winbearing = ((state_attr('weather.dark_sky','forecast')[0].wind_bearing/45)|round +1) %}
+          {% set winddir = ['North', 'North East','East','South East','South','South West','West','North West']%}
+          {{ winddir[winbearing]}} averaging {{(states('sensor.dark_sky_wind_speed_0d')|int)|round}} miles per hour
+          {% if states('sensor.dark_sky_wind_gust_0d') | float > 0 %}
+            with gusts up to {{(states('sensor.dark_sky_wind_gust_0d')|int)|round}}
+          {% endif %}
+          miles per hour.
+        {% endif %}
+
+        {# UV Index #}
+        {% if states.sensor.dark_sky_uv_index.state|int >= 6 and states.sensor.dark_sky_uv_index.state|int <= 7.9 %}
+            Today's UV index is {{ states.sensor.dark_sky_uv_index.state }}. This is high. Be sure wear sunscreen.
+        {% elif states.sensor.dark_sky_uv_index.state|int >= 8 and states.sensor.dark_sky_uv_index.state|int <=10.9 %}
+            Today's UV index is {{ states.sensor.dark_sky_uv_index.state }}. This is very high. Be sure wear sunscreen and re-apply.
+        {% elif states.sensor.dark_sky_uv_index.state|int >= 11 %}
+            Today's UV index is {{ states.sensor.dark_sky_uv_index.state }}. This is EXTREME. You should use caution when going outside.
+        {% endif %}
+
+        {# NWS Warnings #}
+        {% if states.sensor.nws_alert_count.state | int > 0 %}
+          {% if states.sensor.nws_alert_event.state | lower() != 'none' %}
+          {% if states.sensor.nws_alert_event.state | lower() != 'unknown' %}
+            The National Weather Service has issued a {{states.sensor.nws_alert_event.state}} for today.
+          {% endif %}
+          {% endif %}
+        {% endif %}
+
+        {# Sunrise/Sunset #}
+        {% if states.sensor.next_rising.state != '' %}
+        {% if states.sensor.next_setting.state != '' %}
+          Sunrise
+          {% if states('sun.sun') == 'above_horizon' %}
+            was at
+          {% else %}
+            is at
+          {% endif %}
+          {{states.sensor.next_rising.state}}
+            and sunset will be at
+          {{states.sensor.next_setting.state}}.
+        {% endif %}
+        {% endif %}
+
+        {# Moon #}
+        {% if states('sensor.moon') == 'full_moon' %}
+          There will be a Full Moon tonight.
+        {% endif %}
+
+        {# Tides #}
+        {% if states.sensor.noaa_tides.state != '' %}
+          The next {{states.sensor.noaa_tides.state|replace('at','is at')}}.
+        {% endif %}
+
+        {# High Tide Warnings #}
+        {# End High Tide Warnings #}
+
+        {# Arts Location #}
+        {% if states('device_tracker.art_ot1') != 'home' %}
+        Art is
+          {% if states('device_tracker.art_ot1') == 'Shands' %} currently at Shands Hospital.
+          {% elif states('device_tracker.art_ot1') == 'Baptist' %} currently at Baptist Hospital.
+          {% elif states('device_tracker.art_ot1') == 'Memorial' %} currently at Memorial Hospital.
+          {% elif states('device_tracker.art_ot1') == 'St Vincents' %} currently at St Vincents Hospital.
+          {% else %}
+            away from home.
+          {% endif %}
+        {% endif %}
+
+        {# Trash Day #}
+        {% if states.sensor.day_of_the_week.state == 'Thursday' %}
+          Today is Thursday. The trash bin needs to be out to the road.
+        {% endif %}
+
+        {# Recycling Day #}
+        {% if states.sensor.date.state == states.input_datetime.recycle_pickup_date.state %}
+          Today is Monday. The recycling bin needs to be out to the road.
+        {% endif %}
+
+        {# Holiday Lighting #}
+        {% if (states.sensor.season.state != (states.input_select.season_holiday.state)|lower()) %}
+          Remember to look for the {{ states.input_select.season_holiday.state }} lighting theme later tonight.
+        {% endif %}
+
+        {# Closing Art #}
+        Have a{{ [" pleasant", " great", " good", " cheerful", " delightful", "n enjoyable", " super", " wonderful", " satisfying"] | random }} day!
+
+        {# Closing Steff#}
+        Have a{{ [' pleasant', ' amiable', ' happy', ' cheerful', ' delightful', 'n enjoyable', ' lovely', ' pleasing', ' good'] | random }} day!
+
+
+#################################################################
+#
 # input_datetime.recycle_alert_date        2019-09-08
 # input_datetime.recycle_pickup_date       2019-09-09
 # sensor.date                              2019-08-26
@@ -482,17 +805,3 @@ test_briefing_two:
 # input_select.season_holiday              season or holiday name
 # sensor.season                            one of the 4 seasons
 #
-#  - service: media_player.volume_set
-#    data:
-#      entity_id: media_player.office_echo
-#      volume_level: '0.5'
-# -------
-#        {% set level =
-#           states('sensor.alarmclock_radio_volume')|float +
-#           states('input_number.increase_volume')|float %}
-#        {% if level < 1 %} {{ level }}
-#        {% else %} 0.5
-#        {% endif %}
-# ------
-#        {% else %}
-#          0.5

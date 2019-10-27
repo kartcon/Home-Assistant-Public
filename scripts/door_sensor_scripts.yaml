@@ -42,7 +42,7 @@ reset_front_door_sensor:
       message: >-
         At {{now().strftime("%m/%d/%Y %H:%M:%S")}} Script - Reset Front Door Sensor
   - condition: state
-    entity_id: input_boolean.enable_sensor_notifications
+    entity_id: input_boolean.sensor_reset_notifications
     state: 'on'
   - service: persistent_notification.create
     data:
@@ -89,7 +89,7 @@ reset_back_door_sensor:
       message: >-
         At {{now().strftime("%m/%d/%Y %H:%M:%S")}} Script - Reset Back Door Sensor
   - condition: state
-    entity_id: input_boolean.enable_sensor_notifications
+    entity_id: input_boolean.sensor_reset_notifications
     state: 'on'
   - service: persistent_notification.create
     data:
@@ -136,7 +136,7 @@ reset_garage_entry_door_sensor:
       message: >-
         At {{now().strftime("%m/%d/%Y %H:%M:%S")}} Script - Reset Garage Entry Door Sensor
   - condition: state
-    entity_id: input_boolean.enable_sensor_notifications
+    entity_id: input_boolean.sensor_reset_notifications
     state: 'on'
   - service: persistent_notification.create
     data:
@@ -183,7 +183,7 @@ reset_sliding_door_left_sensor:
       message: >-
         At {{now().strftime("%m/%d/%Y %H:%M:%S")}} Script - Reset Sliding Door Left Sensor
   - condition: state
-    entity_id: input_boolean.enable_sensor_notifications
+    entity_id: input_boolean.sensor_reset_notifications
     state: 'on'
   - service: persistent_notification.create
     data:
@@ -230,7 +230,7 @@ reset_sliding_door_right_sensor:
       message: >-
         At {{now().strftime("%m/%d/%Y %H:%M:%S")}} Script - Reset Sliding Door Right Sensor
   - condition: state
-    entity_id: input_boolean.enable_sensor_notifications
+    entity_id: input_boolean.sensor_reset_notifications
     state: 'on'
   - service: persistent_notification.create
     data:
@@ -277,7 +277,7 @@ reset_sunroom_east_sensor:
       message: >-
         At {{now().strftime("%m/%d/%Y %H:%M:%S")}} Script - Reset Sunroom East Sensor
   - condition: state
-    entity_id: input_boolean.enable_sensor_notifications
+    entity_id: input_boolean.sensor_reset_notifications
     state: 'on'
   - service: persistent_notification.create
     data:
@@ -324,7 +324,7 @@ reset_sunroom_west_sensor:
       message: >-
         At {{now().strftime("%m/%d/%Y %H:%M:%S")}} Script - Reset Sunroom West Sensor
   - condition: state
-    entity_id: input_boolean.enable_sensor_notifications
+    entity_id: input_boolean.sensor_reset_notifications
     state: 'on'
   - service: persistent_notification.create
     data:
@@ -371,7 +371,7 @@ reset_one_car_gar_sensor:
       message: >-
         At {{now().strftime("%m/%d/%Y %H:%M:%S")}} Script - Reset One Car Gar Sensor
   - condition: state
-    entity_id: input_boolean.enable_sensor_notifications
+    entity_id: input_boolean.sensor_reset_notifications
     state: 'on'
   - service: persistent_notification.create
     data:
@@ -422,7 +422,7 @@ reset_two_car_gar_sensor:
       message: >-
         At {{now().strftime("%m/%d/%Y %H:%M:%S")}} Script - Reset Two Car Gar Sensor
   - condition: state
-    entity_id: input_boolean.enable_sensor_notifications
+    entity_id: input_boolean.sensor_reset_notifications
     state: 'on'
   - service: persistent_notification.create
     data:
@@ -456,7 +456,7 @@ reset_two_car_gar_sensor:
 #    timeout: '00:00:30'
 #    continue_on_timeout: 'true'
 #  - condition: state
-#    entity_id: input_boolean.enable_sensor_notifications
+#    entity_id: input_boolean.sensor_reset_notifications
 #    state: 'on'
 #  - service: persistent_notification.create
 #    data:
@@ -487,7 +487,7 @@ reset_two_car_gar_sensor:
 #    timeout: '00:00:30'
 #    continue_on_timeout: 'true'
 #  - condition: state
-#    entity_id: input_boolean.enable_sensor_notifications
+#    entity_id: input_boolean.sensor_reset_notifications
 #    state: 'on'
 #  - service: persistent_notification.create
 #    data:
@@ -518,7 +518,7 @@ reset_two_car_gar_sensor:
 #    timeout: '00:00:30'
 #    continue_on_timeout: 'true'
 #  - condition: state
-#    entity_id: input_boolean.enable_sensor_notifications
+#    entity_id: input_boolean.sensor_reset_notifications
 #    state: 'on'
 #  - service: persistent_notification.create
 #    data:
@@ -549,7 +549,7 @@ reset_two_car_gar_sensor:
 #    timeout: '00:00:30'
 #    continue_on_timeout: 'true'
 #  - condition: state
-#    entity_id: input_boolean.enable_sensor_notifications
+#    entity_id: input_boolean.sensor_reset_notifications
 #    state: 'on'
 #  - service: persistent_notification.create
 #    data:
@@ -580,7 +580,7 @@ reset_two_car_gar_sensor:
 #    timeout: '00:00:30'
 #    continue_on_timeout: 'true'
 #  - condition: state
-#    entity_id: input_boolean.enable_sensor_notifications
+#    entity_id: input_boolean.sensor_reset_notifications
 #    state: 'on'
 #  - service: persistent_notification.create
 #    data:
@@ -611,7 +611,7 @@ reset_two_car_gar_sensor:
 #    timeout: '00:00:30'
 #    continue_on_timeout: 'true'
 #  - condition: state
-#    entity_id: input_boolean.enable_sensor_notifications
+#    entity_id: input_boolean.sensor_reset_notifications
 #    state: 'on'
 #  - service: persistent_notification.create
 #    data:
@@ -642,7 +642,7 @@ reset_two_car_gar_sensor:
 #    timeout: '00:00:30'
 #    continue_on_timeout: 'true'
 #  - condition: state
-#    entity_id: input_boolean.enable_sensor_notifications
+#    entity_id: input_boolean.sensor_reset_notifications
 #    state: 'on'
 #  - service: persistent_notification.create
 #    data:
@@ -673,7 +673,7 @@ reset_two_car_gar_sensor:
 #    timeout: '00:00:30'
 #    continue_on_timeout: 'true'
 #  - condition: state
-#    entity_id: input_boolean.enable_sensor_notifications
+#    entity_id: input_boolean.sensor_reset_notifications
 #    state: 'on'
 #  - service: persistent_notification.create
 #    data:
@@ -707,7 +707,7 @@ reset_two_car_gar_sensor:
 #    timeout: '00:00:30'
 #    continue_on_timeout: 'true'
 #  - condition: state
-#    entity_id: input_boolean.enable_sensor_notifications
+#    entity_id: input_boolean.sensor_reset_notifications
 #    state: 'on'
 #  - service: persistent_notification.create
 #    data:

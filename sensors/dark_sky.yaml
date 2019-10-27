@@ -24,7 +24,7 @@
     - moon_phase
 #    - nearest_storm_bearing
     - nearest_storm_distance
-#    - ozone
+    - ozone
 #    - precip_type
     - precip_intensity
     - precip_probability
@@ -36,6 +36,7 @@
     - temperature
     - temperature_high
     - temperature_low
+    - uv_index
     - visibility
     - wind_bearing
     - wind_speed

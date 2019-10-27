@@ -58,7 +58,7 @@ check_open_door_status:
           {%- endif -%}
         {% endfor %}
 #  - condition: state
-#    entity_id: input_boolean.enable_sensor_notifications
+#    entity_id: input_boolean.sensor_reset_notifications
 #    state: 'on'
   - service: notify.ios_group_art_steff
     data_template:

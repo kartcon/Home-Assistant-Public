@@ -25,6 +25,8 @@ cards:
           - entity: sensor.to_mayo_clinic
           - entity: sensor.to_flagler
           - entity: sensor.to_phoebe_ga
+          - entity: sensor.to_monroe
+          - entity: sensor.to_tallahassee
           - entity: sensor.to_mom_dad
         columns: ['name', 'duration']
         # columns: ['name', 'duration', 'distance', 'route']

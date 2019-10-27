@@ -32,7 +32,7 @@
       above: 20
   action:
   - condition: state
-    entity_id: input_boolean.enable_battery_notifications
+    entity_id: input_boolean.battery_notifications
     state: 'on'
   - service: notify.ios_group_art_only
     data_template:
@@ -73,7 +73,7 @@
       above: 10
   action:
   - condition: state
-    entity_id: input_boolean.enable_battery_notifications
+    entity_id: input_boolean.battery_notifications
     state: 'on'
   - service: notify.ios_group_art_only
     data_template:
@@ -113,7 +113,7 @@
       below: 11
   action:
   - condition: state
-    entity_id: input_boolean.enable_battery_notifications
+    entity_id: input_boolean.battery_notifications
     state: 'on'
   - service: notify.ios_group_art_only
     data_template:

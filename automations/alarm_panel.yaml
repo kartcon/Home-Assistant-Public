@@ -559,7 +559,7 @@
     to: armed_home
   condition:
   - condition: state
-    entity_id: input_boolean.enable_auto_arm_notifications
+    entity_id: input_boolean.auto_arm_notifications
     state: 'on'
   action:
   - service: script.write_to_log
@@ -579,7 +579,7 @@
       title: "Alarm Set"
       message: "The alarm system has been set to Armed Home."
   - condition: state
-    entity_id: input_boolean.enable_auto_arm_notifications
+    entity_id: input_boolean.auto_arm_notifications
     state: 'on'
   - service: notify.ios_group_art_steff
     data:
@@ -600,7 +600,7 @@
     to: armed_away
   condition:
   - condition: state
-    entity_id: input_boolean.enable_auto_arm_notifications
+    entity_id: input_boolean.auto_arm_notifications
     state: 'on'
   action:
   - service: script.write_to_log
@@ -613,7 +613,7 @@
       message: >-
         The alarm has been changed to Armed Away at {{now().strftime("%m/%d/%Y %H:%M:%S")}}.
   - condition: state
-    entity_id: input_boolean.enable_auto_arm_notifications
+    entity_id: input_boolean.auto_arm_notifications
     state: 'on'
   - service: notify.ios_group_art_steff
     data:
@@ -633,7 +633,7 @@
     to: disarmed
   condition:
   - condition: state
-    entity_id: input_boolean.enable_disarm_notifications
+    entity_id: input_boolean.disarm_notifications
     state: 'on'
   action:
   - service: script.write_to_log
@@ -646,7 +646,7 @@
       message: >-
         The alarm was disarmed at {{now().strftime("%m/%d/%Y %H:%M:%S")}}.
   - condition: state
-    entity_id: input_boolean.enable_disarm_notifications
+    entity_id: input_boolean.disarm_notifications
     state: 'on'
   - service: notify.ios_group_art_steff
     data:

@@ -1,0 +1,20 @@
+##############################################################
+##   Input Text                                           ##
+##############################################################
+#
+  text1:
+    name: Text 1
+    min: 4
+    max: 140
+#    initial: click button to populate
+#  text2:
+#    name: 8-40 chars
+#    min: 8
+#    max: 40
+#  text3:
+#    name: Hex
+#    pattern: '[a-fA-F0-9]*'
+#  text4:
+#    name: Hidden
+#    mode: password
+#

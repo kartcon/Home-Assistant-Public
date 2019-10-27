@@ -3,6 +3,38 @@
 #################################################################
 #
 #################################################################
+# New Years Day Lights On
+#################################################################
+- id: new_years_day_lights_on_at_sunset
+  alias: New Years Day Lights On at Sunset
+  initial_state: true
+  trigger:
+    platform: sun
+    event: sunset
+    offset: '00:00:05'
+  condition:
+  - condition: state
+    entity_id: input_boolean.new_years_day_lighting
+    state: 'on'
+  action:
+  - service: script.turn_on
+    entity_id: script.new_years_day_script
+  - service: persistent_notification.create
+    data:
+      message: New Years Day Lighting turned on.
+      title: Holiday Schedule Applied
+  - service: notify.lg_tv
+    data:
+      title: "Notification"
+      message: "New Years Day Lighting turned on."
+  - condition: state
+    entity_id: input_boolean.enable_system_alerts
+    state: 'on'
+  - service: notify.ios_group_art_steff
+    data:
+      message: "New Years Day Lighting turned on."
+#
+#################################################################
 # Valentines Day Lights On
 #################################################################
 - id: valentines_lights_on_at_sunset
@@ -14,7 +46,7 @@
     offset: '00:00:05'
   condition:
   - condition: state
-    entity_id: input_boolean.enable_valentine_lighting
+    entity_id: input_boolean.valentine_lighting
     state: 'on'
   action:
   - service: script.turn_on
@@ -46,7 +78,7 @@
     offset: '00:00:05'
   condition:
   - condition: state
-    entity_id: input_boolean.enable_pattys_lighting
+    entity_id: input_boolean.st_pattys_lighting
     state: 'on'
   action:
   - service: script.turn_on
@@ -84,7 +116,7 @@
     offset: '00:00:05'
   condition:
   - condition: state
-    entity_id: input_boolean.enable_easter_lighting
+    entity_id: input_boolean.easter_lighting
     state: 'on'
   action:
   - service: script.turn_on
@@ -116,7 +148,7 @@
     offset: '00:00:05'
   condition:
   - condition: state
-    entity_id: input_boolean.enable_memorial_lighting
+    entity_id: input_boolean.memorial_day_lighting
     state: 'on'
   action:
   - service: script.turn_on
@@ -148,7 +180,7 @@
     offset: '00:00:05'
   condition:
   - condition: state
-    entity_id: input_boolean.enable_flag_day_lighting
+    entity_id: input_boolean.flag_day_lighting
     state: 'on'
   action:
   - service: script.turn_on
@@ -180,7 +212,7 @@
     offset: '00:00:05'
   condition:
   - condition: state
-    entity_id: input_boolean.enable_independence_lighting
+    entity_id: input_boolean.independence_day_lighting
     state: 'on'
   action:
   - service: script.turn_on
@@ -212,7 +244,7 @@
     offset: '00:00:05'
   condition:
   - condition: state
-    entity_id: input_boolean.enable_labor_lighting
+    entity_id: input_boolean.labor_day_lighting
     state: 'on'
   action:
   - service: script.turn_on
@@ -244,7 +276,7 @@
     offset: '00:00:05'
   condition:
   - condition: state
-    entity_id: input_boolean.enable_cancer_lighting
+    entity_id: input_boolean.cancer_lighting
     state: 'on'
   action:
   - service: script.turn_on
@@ -276,7 +308,7 @@
     offset: '00:00:05'
   condition:
   - condition: state
-    entity_id: input_boolean.enable_halloween_lighting
+    entity_id: input_boolean.halloween_lighting
     state: 'on'
   action:
   - service: script.turn_on
@@ -308,7 +340,7 @@
     offset: '00:00:05'
   condition:
   - condition: state
-    entity_id: input_boolean.enable_thanksgiving_lighting
+    entity_id: input_boolean.thanksgiving_lighting
     state: 'on'
   action:
   - service: script.turn_on
@@ -340,7 +372,7 @@
     offset: '00:00:05'
   condition:
   - condition: state
-    entity_id: input_boolean.enable_christmas_lighting
+    entity_id: input_boolean.christmas_lighting
     state: 'on'
   action:
   - service: script.turn_on
@@ -359,4 +391,37 @@
     data:
       title: "Notification"
       message: "Christmas Lighting turned on."
+#
+
+#################################################################
+# New Years Eve Lights On
+#################################################################
+- id: new_years_eve_lights_on_at_sunset
+  alias: New Years Eve Lights On at Sunset
+  initial_state: true
+  trigger:
+    platform: sun
+    event: sunset
+    offset: '00:00:05'
+  condition:
+  - condition: state
+    entity_id: input_boolean.new_years_eve_lighting
+    state: 'on'
+  action:
+  - service: script.turn_on
+    entity_id: script.new_years_eve_script
+  - service: persistent_notification.create
+    data:
+      message: New Years Eve Lighting turned on.
+      title: Holiday Schedule Applied
+  - service: notify.lg_tv
+    data:
+      title: "Notification"
+      message: "New Years Eve Lighting turned on."
+  - condition: state
+    entity_id: input_boolean.enable_system_alerts
+    state: 'on'
+  - service: notify.ios_group_art_steff
+    data:
+      message: "New Years Eve Lighting turned on."
 #

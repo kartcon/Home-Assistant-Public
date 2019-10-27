@@ -12,31 +12,31 @@ reset_holiday_booleans:
   alias: Reset Holiday Booleans
   sequence:
   - service: input_boolean.turn_off
-    entity_id: input_boolean.enable_new_years_lighting
+    entity_id: input_boolean.new_years_day_lighting
   - service: input_boolean.turn_off
-    entity_id: input_boolean.enable_valentine_lighting
+    entity_id: input_boolean.valentine_lighting
   - service: input_boolean.turn_off
-    entity_id: input_boolean.enable_pattys_lighting
+    entity_id: input_boolean.st_pattys_lighting
   - service: input_boolean.turn_off
-    entity_id: input_boolean.enable_easter_lighting
+    entity_id: input_boolean.easter_lighting
   - service: input_boolean.turn_off
-    entity_id: input_boolean.enable_memorial_lighting
+    entity_id: input_boolean.memorial_day_lighting
   - service: input_boolean.turn_off
-    entity_id: input_boolean.enable_flag_day_lighting
+    entity_id: input_boolean.flag_day_lighting
   - service: input_boolean.turn_off
-    entity_id: input_boolean.enable_independence_lighting
+    entity_id: input_boolean.independence_day_lighting
   - service: input_boolean.turn_off
-    entity_id: input_boolean.enable_labor_lighting
+    entity_id: input_boolean.labor_day_lighting
   - service: input_boolean.turn_off
-    entity_id: input_boolean.enable_cancer_lighting
+    entity_id: input_boolean.cancer_lighting
   - service: input_boolean.turn_off
-    entity_id: input_boolean.enable_halloween_lighting
+    entity_id: input_boolean.halloween_lighting
   - service: input_boolean.turn_off
-    entity_id: input_boolean.enable_thanksgiving_lighting
+    entity_id: input_boolean.thanksgiving_lighting
   - service: input_boolean.turn_off
-    entity_id: input_boolean.enable_christmas_lighting
+    entity_id: input_boolean.christmas_lighting
   - service: input_boolean.turn_off
-    entity_id: input_boolean.enable_new_years_eve_lighting
+    entity_id: input_boolean.new_years_eve_lighting
 #
 #################################################################
 # SCRIPT: New Years Day
@@ -613,7 +613,7 @@ christmas_script:
 # In file: [automations/lights_triggered.yaml]
 #################################################################
 new_years_eve_script:
-  alias: New Years Day Script
+  alias: New Years Eve Script
   sequence:
   - service: light.turn_on
     data:
@@ -763,8 +763,8 @@ autumn_script:
   - service: light.turn_on
     data:
       entity_id: light.flux_led_strip
-      brightness: 30
-      rgb_color: [255,201,68]
+      brightness: 127
+      rgb_color: [255,62,0]
   - service: light.turn_on
     data:
       entity_id: light.front_porch

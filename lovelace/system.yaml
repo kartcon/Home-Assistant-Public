@@ -52,7 +52,7 @@ cards:
             - entity: switch.momentary_sandbox_2
               name: Briefing 2 Test
             - entity: switch.momentary_sandbox_3
-              name: Disabled
+              name: New Briefing
 #
 #
 #        - type: entities

@@ -3,49 +3,6 @@
 ##############################################################
 #
 ##############################################################
-##       Alarm Clock Variables                              ##
-##############################################################
-  alarm_clock_enabled:
-    name: Alarm Enabled
-    icon: mdi:alarm-check
-#
-  weekdays_alarm_on:
-    name: Alarm Weekdays
-    icon: mdi:alarm-check
-#
-  weekends_alarm_on:
-    name: Alarm Weekends
-    icon: mdi:alarm-check
-#
-  sunday_alarm_on:
-    name: Sunday
-    icon: mdi:alarm-check
-#
-  monday_alarm_on:
-    name: Monday
-    icon: mdi:alarm-check
-#
-  tuesday_alarm_on:
-    name: Tuesday
-    icon: mdi:alarm-check
-#
-  wednesday_alarm_on:
-    name: Wednesday
-    icon: mdi:alarm-check
-#
-  thursday_alarm_on:
-    name: Thursday
-    icon: mdi:alarm-check
-#
-  friday_alarm_on:
-    name: Friday
-    icon: mdi:alarm-check
-#
-  saturday_alarm_on:
-    name: Saturday
-    icon: mdi:alarm-check
-#
-##############################################################
 # Geolocation Toggles
 ##############################################################
   art_home:
@@ -114,17 +71,17 @@
 ##############################################################
 # Notifications Toggles
 ##############################################################
-  enable_auto_arm_notifications:
+  auto_arm_notifications:
     name: Auto-Arm Notifications
 #    initial: on
     icon: mdi:message-alert-outline
 #
-  enable_battery_notifications:
+  battery_notifications:
     name: Battery Notifications
 #    initial: on
     icon: mdi:message-alert-outline
 #
-  enable_disarm_notifications:
+  disarm_notifications:
     name: Disarm Notifications
 #    initial: on
     icon: mdi:message-alert-outline
@@ -138,8 +95,18 @@
     name: Steffs Daily Briefing
     initial: on
     icon: mdi:voice
-#i
-  enable_sensor_notifications:
+#
+  speak_kit_motion:
+    name: Speak Kitchen Motion
+    initial: off
+    icon: mdi:voice
+#
+  speak_lr_motion:
+    name: Speak LR Motion
+    initial: off
+    icon: mdi:voice
+#
+  sensor_reset_notifications:
     name: Sensor Reset Notifications
 #    initial: on
     icon: mdi:message-alert
@@ -175,67 +142,67 @@
 ##############################################################
 # Seasonal Toggles
 ##############################################################
-  enable_new_years_lighting:
+  new_years_day_lighting:
     name: New Years Day Lighting
     initial: off
     icon: mdi:calendar-star
 #
-  enable_valentine_lighting:
+  valentine_lighting:
     name: Valentines Day Lighting
     initial: off
     icon: mdi:heart
 #
-  enable_pattys_lighting:
+  st_pattys_lighting:
     name: St Pattys Day Lighting
     initial: off
     icon: mdi:clover
 #
-  enable_easter_lighting:
+  easter_lighting:
     name: Easter Lighting
     initial: off
     icon: mdi:egg-easter
 #
-  enable_memorial_lighting:
+  memorial_day_lighting:
     name: Memorial Day Lighting
     initial: off
     icon: mdi:grave-stone
 #
-  enable_flag_day_lighting:
+  flag_day_lighting:
     name: Flag Day Lighting
     initial: off
     icon: mdi:flag-variant
 #
-  enable_independence_lighting:
+  independence_day_lighting:
     name: July 4th Lighting
     initial: off
     icon: mdi:vanish
 #      or mdi:flare
-  enable_labor_lighting:
+  labor_day_lighting:
     name: Labor Day Lighting
     initial: off
     icon: mdi:truck
 #
-  enable_cancer_lighting:
+  cancer_lighting:
     name: Breast Cancer Lighting
     initial: off
     icon: mdi:ribbon
 #
-  enable_halloween_lighting:
+  halloween_lighting:
     name: Halloween Lighting
     initial: off
     icon: mdi:halloween
 #
-  enable_thanksgiving_lighting:
+  thanksgiving_lighting:
     name: Thanksgiving Lighting
     initial: off
     icon: mdi:pumpkin
 #
-  enable_christmas_lighting:
+  christmas_lighting:
     name: Christmas Lighting
     initial: off
     icon: mdi:gift
 #
-  enable_new_years_eve_lighting:
+  new_years_eve_lighting:
     name: New Years Eve Lighting
     initial: off
     icon: mdi:party-popper
@@ -290,16 +257,6 @@
     name: Scheduled Reboots
     initial: off
     icon: mdi:autorenew
-#
-  speak_kit_motion:
-    name: Speak Kitchen Motion
-    initial: off
-    icon: mdi:voice
-#
-  speak_lr_motion:
-    name: Speak LR Motion
-    initial: off
-    icon: mdi:voice
 #
 ##############################################################
 # Weather Toggles

@@ -24,17 +24,17 @@ cards:
             - entity: input_boolean.enable_br2_slow_dim
             - entity: input_boolean.enable_hassio_autobackup
             - type: divider
-            - entity: input_boolean.enable_valentine_lighting
-            - entity: input_boolean.enable_pattys_lighting
-            - entity: input_boolean.enable_easter_lighting
-            - entity: input_boolean.enable_memorial_lighting
-            - entity: input_boolean.enable_flag_day_lighting
-            - entity: input_boolean.enable_independence_lighting
-            - entity: input_boolean.enable_labor_lighting
-            - entity: input_boolean.enable_cancer_lighting
-            - entity: input_boolean.enable_halloween_lighting
-            - entity: input_boolean.enable_thanksgiving_lighting
-            - entity: input_boolean.enable_christmas_lighting
+            - entity: input_boolean.valentine_lighting
+            - entity: input_boolean.st_pattys_lighting
+            - entity: input_boolean.easter_lighting
+            - entity: input_boolean.memorial_day_lighting
+            - entity: input_boolean.flag_day_lighting
+            - entity: input_boolean.independence_day_lighting
+            - entity: input_boolean.labor_day_lighting
+            - entity: input_boolean.cancer_lighting
+            - entity: input_boolean.halloween_lighting
+            - entity: input_boolean.thanksgiving_lighting
+            - entity: input_boolean.christmas_lighting
             
 # COL 2
     - type: vertical-stack
@@ -47,8 +47,8 @@ cards:
 #            - entity: input_boolean.enable_push_notifications
 #            - entity: input_boolean.enable_prowl_notifications
 #            - entity: input_boolean.mode_privacy
-            - entity: input_boolean.enable_battery_notifications
-            - entity: input_boolean.enable_sensor_notifications
+            - entity: input_boolean.battery_notifications
+            - entity: input_boolean.sensor_reset_notifications
             - entity: input_boolean.enable_system_alerts
             - entity: input_boolean.enable_weather_alerts
             - entity: input_boolean.zone_alerts

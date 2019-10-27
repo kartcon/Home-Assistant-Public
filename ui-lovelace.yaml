@@ -45,6 +45,11 @@ resources:
     type: js
 #   https://github.com/ciotlosm/custom-lovelace/tree/master/monster-card
 #   ----------------------------------------------------------------------------
+# RGB Light Card
+  - url: https://cdn.jsdelivr.net/npm/rgb-light-card
+    type: js
+#   https://github.com/bokub/rgb-light-card
+#   ----------------------------------------------------------------------------
 # Slider Entity Row
   - url: /community_plugin/lovelace-slider-entity-row/slider-entity-row.js
     type: module
@@ -82,9 +87,7 @@ views:
   - !include lovelace/floor_one.yaml
   - !include lovelace/floor_two.yaml
   - !include lovelace/users.yaml
-#  - !include lovelace/users2.yaml
   - !include lovelace/traffic.yaml
-#  - !include lovelace/traffic-bak.yaml
   - !include lovelace/weather.yaml
   - !include lovelace/weather_radar.yaml
   - !include lovelace/map.yaml
@@ -92,10 +95,13 @@ views:
   - !include lovelace/battery.yaml
   - !include lovelace/config.yaml
   - !include lovelace/system.yaml
+  - !include lovelace/entities.yaml
+#  - !include lovelace/users2.yaml
+#  - !include lovelace/traffic-bak.yaml
 #  - !include lovelace/alarm_clock.yaml
 #  - !include lovelace/ic3.yaml
 #  - !include lovelace/sensors.yaml
-  - !include lovelace/entities.yaml
+#  - !include lovelace/mobile3.yaml
 #  - !include lovelace/sandbox.yaml
 #  - !include lovelace/__security.yaml
 #  - !include lovelace/alarm_config.yaml

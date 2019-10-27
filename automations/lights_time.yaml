@@ -96,6 +96,10 @@
   - service: light.turn_on
     entity_id: light.kitchen_can_lights_49
   - service: light.turn_on
+    data:
+      entity_id: light.kitchen_pendants_106
+      brightness: 127
+  - service: light.turn_on
     entity_id: light.kitchen_uc_lights_44
   - service: light.turn_on
     data:
@@ -202,12 +206,12 @@
     at: '23:30:00'
   condition: []
   action:
-#  - service: light.turn_off
-#    entity_id: group.ceiling_fan_group
+  - service: light.turn_off
+    entity_id: group.ceiling_fan_group
   - service: light.turn_off
     entity_id: group.outside_light_group
-#  - service: light.turn_off
-#    entity_id: group.inside_light_group
+  - service: light.turn_off
+    entity_id: group.inside_light_group
   - service: script.turn_on
     entity_id: script.lifx_lights_off
   - service: script.turn_on

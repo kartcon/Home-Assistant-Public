@@ -1,5 +1,5 @@
 #################################################################
-## USER PRESENCE/GEO LOCATION [Home/Away]
+## AUTOMATION USER PRESENCE/GEO LOCATION [Home/Away]
 #################################################################
 #
 #############################################################
@@ -329,4 +329,76 @@
       data_template:
         name: "Person: "
         message: "{{trigger.to_state.name}} changed from {{trigger.from_state.state}} to {{trigger.to_state.state}} by {{ trigger.to_state.attributes.source }}"
+#
+#############################################################
+#   Update Arts OwnTracks Data
+#############################################################
+- id: owntracks_copy_art
+  alias: Owntracks Copy Art
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: switch.momentary_update_art
+    to: 'on'
+#  condition:
+#  - condition: state
+#    entity_id: input_text.text1
+#    state: 'on'
+  action:
+  - service: input_text.set_value
+    data_template:
+      entity_id: input_text.text1
+      value: "{{states('sensor.art_ot_config') | string }}"
+  - service: persistent_notification.create
+    data_template:
+      title: "Art OwnTracks Path"
+      message: "{{states('sensor.art_ot_config') | string }}"
+#
+#############################################################
+#   Update Steffs OwnTracks Data
+#############################################################
+- id: owntracks_copy_steff
+  alias: Owntarcks Copy Steff
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: switch.momentary_update_steff
+    to: 'on'
+#  condition:
+#  - condition: state
+#    entity_id: input_text.text1
+#    state: 'on'
+  action:
+  - service: input_text.set_value
+    data_template:
+      entity_id: input_text.text1
+      value: "{{states('sensor.steff_ot_config') | string }}"
+  - service: persistent_notification.create
+    data_template:
+      title: "Steff OwnTracks Path"
+      message: "{{states('sensor.steff_ot_config') | string }}"
+#
+#############################################################
+#   Update External URL Data
+#############################################################
+- id: copy_external_url
+  alias: Copy External URL
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: switch.momentary_update_exturl
+    to: 'on'
+#  condition:
+#  - condition: state
+#    entity_id: input_text.text1
+#    state: 'on'
+  action:
+  - service: input_text.set_value
+    data_template:
+      entity_id: input_text.text1
+      value: "{{states('sensor.external_url') | string }}"
+  - service: persistent_notification.create
+    data_template:
+      title: "External URL"
+      message: "{{states('sensor.external_url') | string }}"
 #
