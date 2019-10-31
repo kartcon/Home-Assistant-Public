@@ -2,6 +2,11 @@
 #    Device Tracker     #
 #########################
 #
+# Example configuration.yaml entry
+- platform: unifi_direct
+  host: 192.168.1.233
+  username: admin
+  password: kcplus00
 #- platform: icloud3
 #  username: !secret icloud_un1
 #  password: !secret icloud_pw1

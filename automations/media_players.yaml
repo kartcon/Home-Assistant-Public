@@ -26,7 +26,7 @@
   - service: media_player.volume_set
     data:
       entity_id: media_player.office_echo
-      volume_level: 0.3
+      volume_level: 0.1
   - delay: '00:00:05'
   - service: media_player.play_media
     data:

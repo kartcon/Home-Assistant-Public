@@ -122,6 +122,8 @@ cards:
           icon: mdi:wall-sconce
         - entity: light.garage_west
           icon: mdi:wall-sconce
+        - entity: light.holiday_lights_222
+          icon: mdi:power-plug
 #        - type: divider
 #        - entity: light.garage_lights_48
 #        - entity: light.porch_light_46

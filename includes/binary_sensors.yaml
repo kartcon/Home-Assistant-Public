@@ -99,6 +99,11 @@
 #      entity_id: 'device_tracker.arts_iphone_8'
 #      prob_given_true: 0.80
 #      prob_given_false: 0.20
+    - platform: 'state'
+      to_state: 'home'
+      entity_id: 'device_tracker.arts_iphone_8_2'
+      prob_given_true: 0.95
+      prob_given_false: 0.05
     - platform: 'numeric_state'
       entity_id: 'proximity.art_to_home'
       prob_given_true: 0.90
@@ -109,11 +114,6 @@
 #      prob_given_true: 0.90
 #      prob_given_false: 0.10
 #      below: 0.4
-#    - platform: 'state'
-#      to_state: 'home'
-#      entity_id: 'sensor.artsiphone8_zone'
-#      prob_given_true: 0.85
-#      prob_given_false: 0.15
 #    - platform: 'state'
 #      to_state: 'home'
 #      entity_id: 'device_tracker.artsiphone8'
@@ -146,6 +146,11 @@
 #      entity_id: 'device_tracker.steffs_iphone_8'
 #      prob_given_true: 0.80
 #      prob_given_false: 0.20
+    - platform: 'state'
+      to_state: 'home'
+      entity_id: 'sdevice_tracker.steffs_iphone_8_2'
+      prob_given_true: 0.95
+      prob_given_false: 0.05
     - platform: 'numeric_state'
       entity_id: 'proximity.steff_to_home'
       prob_given_true: 0.90
@@ -156,11 +161,6 @@
 #      prob_given_true: 0.90
 #      prob_given_false: 0.10
 #      below: 0.4
-#    - platform: 'state'
-#      to_state: 'home'
-#      entity_id: 'sensor.steffsiphone8_zone'
-#      prob_given_true: 0.85
-#      prob_given_false: 0.15
 #    - platform: 'state'
 #      to_state: 'home'
 #      entity_id: 'device_tracker.steffsiphone8'

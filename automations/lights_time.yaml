@@ -75,7 +75,7 @@
   - service: light.turn_on
     data:
       entity_id: light.office_light_223
-      brightness: 38
+      brightness: 70
   - delay:
       minutes: 30
       seconds: 00

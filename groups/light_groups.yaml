@@ -70,6 +70,7 @@ outside_light_group:
     - light.outdoor_switch_1_124
     - light.sun_room_floods_202
     - light.house_floods_105
+    - light.holiday_lights_222
 #
 lifx_light_group:
   name: LIFX Light Group

@@ -44,6 +44,8 @@ cards:
               name: binary_sensor.ping_art
             - entity: sensor.art_badge
               name: sensor.art_badge
+            - entity: device_tracker.arts_iphone_8ub
+              name: arts_iphone_8ub
 #            - type: divider
 #              # not working >
 #            - entity: device_tracker.artsiphone8
@@ -115,6 +117,8 @@ cards:
               name: binary_sensor.ping_steff
             - entity: sensor.steff_badge
               name: sensor.steff_badge
+            - entity: device_tracker.steffs_iphone_8ub
+              name: steffs_iphone_8ub
 #            - type: divider
 #              # not working >
 #            - entity: device_tracker.steffsiphone8

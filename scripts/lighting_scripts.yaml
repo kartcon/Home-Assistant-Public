@@ -120,6 +120,9 @@ outside_lights_on_at_sunset:
   - service: light.turn_on
     data:
       entity_id: light.sun_room_floods_202
+  - service: light.turn_on
+    data:
+      entity_id: light.holiday_lights_222
 #------------------------------------------
 #  Set Colors on LIFX Lights
 #------------------------------------------

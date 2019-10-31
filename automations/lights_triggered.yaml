@@ -103,8 +103,20 @@
     entity_id: sensor.kit_light_sensor_227
     below: 70
   action:
+#  - service: light.turn_on
+#    entity_id: group.kitchen
   - service: light.turn_on
-    entity_id: group.kitchen
+    entity_id: light.kitchen_uc_lights_44
+  - service: light.turn_on
+    data:
+      entity_id: light.nook_uc_lights_116
+      brightness: 127
+  - service: light.turn_on
+    entity_id: light.kitchen_uc_lights_44
+  - service: light.turn_on
+    data:
+      entity_id: light.kitchen_pendants_106
+      brightness: 127
 #  - service: persistent_notification.create
 #    data_template:
 #      title: Kitchen AUTO-ON Triggered
