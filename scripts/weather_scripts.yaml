@@ -16,7 +16,7 @@ its_raining:
         At {{now().strftime("%m/%d/%Y %H:%M")}} its raining.
       title: Weather Notification
   - condition: state
-    entity_id: input_boolean.enable_weather_alerts
+    entity_id: input_boolean.weather_alerts
     state: 'on'
   - service: notify.ios_group_art_steff
     data:

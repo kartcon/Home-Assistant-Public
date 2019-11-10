@@ -3,6 +3,22 @@
 #################################################################
 #
 #################################################################
+# Set Default Media Device at 0555
+#################################################################
+- id: set_default_media_device_at_0555
+  alias: Set Default Media Device at 0555
+  initial_state: true
+  trigger:
+    platform: time
+    at: '05:55:00'
+  condition: []
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.alexa_entity
+      option: "media_player.kitchen_echo"
+#
+#################################################################
 # Country on for Sydney @ 06:50
 #################################################################
 - id: sydney_music_on_0645
@@ -76,4 +92,54 @@
   - service: script.turn_on
     entity_id: script.turn_on_lgtv
 #
+#################################################################
+# Roku Auto On at 16:55 Weekdays
+#################################################################
+- id: ruko_auto_on_1655_weekdays
+  alias: Ruko Auto On at 16:55 Weekdays
+  initial_state: true
+  trigger:
+    platform: time
+    at: '16:55:00'
+  condition:
+  - condition: time
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  - condition: state
+    entity_id: media_player.sharp_roku_tv
+    state: 'off'
+  - condition: state
+    entity_id: input_boolean.no_one_home
+    state: 'off'
+  action:
+  - service: script.turn_on
+    entity_id: script.turn_on_kitchen_roku
+#
+#################################################################
+# Roku Auto On at 17:55 Weekends
+#################################################################
+- id: ruko_auto_on_1755_weekends
+  alias: Ruko Auto On at 17:55 Weekends
+  initial_state: true
+  trigger:
+    platform: time
+    at: '17:55:00'
+  condition:
+  - condition: time
+    weekday:
+    - sat
+    - sun
+  - condition: state
+    entity_id: media_player.sharp_roku_tv
+    state: 'off'
+  - condition: state
+    entity_id: input_boolean.no_one_home
+    state: 'off'
+  action:
+  - service: script.turn_on
+    entity_id: script.turn_on_kitchen_roku
 #

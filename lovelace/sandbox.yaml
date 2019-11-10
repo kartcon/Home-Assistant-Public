@@ -5,42 +5,108 @@
 title: Sandbox
 path: sandbox
 id: v_sbox
-icon: mdi:package-variant
-#panel: true
+icon: mdi:pound-box
+panel: true
 cards:
 - type: horizontal-stack
   cards:
-    - type: entity-button
-      name: Refresh Geo
-      tap_action: call-service
-      entity: script.refresh_geolocation
-      service: script.turn_on
+# COL 1
+    - type: vertical-stack
+      cards:
+        - type: entities
+          title: Sandbox Control
+          show_header_toggle: false
+          entities:
+            - entity: input_boolean.sandbox_testing
+        - type: entities
+          title: Sandbox Items
+          show_header_toggle: false
+          entities:
+            - entity: switch.momentary_sandbox_1
+              name: Art Morning Briefing
+            - entity: switch.momentary_sandbox_2
+              name: Steff Morning Briefing
+            - entity: switch.momentary_sandbox_3
+              name: Evening Briefing
+            - entity: switch.momentary_sandbox_4
+              name: Kitchen Roku
+#
+#        - type: entities
+#          title: Breaking Changes
+#          show_header_toggle: false
+#          entities:
+#            - entity: sensor.potential_breaking_changes_list
+#              icon: mdi:package-up
+#
+# COL 2
+    - type: vertical-stack
+      cards:
+        - type: entities
+          title: Processor
+          show_header_toggle: false
+          entities:
+            - entity: sensor.uptime
+              icon: mdi:clock-out
+            - entity: sensor.last_boot
+              icon: mdi:calendar-clock
+            - entity: switch.momentary_unscheduled_restart
+            - entity: input_boolean.scheduled_reboots
+              name: Allow Auto Reboot
+            - entity: input_boolean.hass_io_autobackup
+#
+#
+# COL 3
+    - type: vertical-stack
+      cards:
+        - type: horizontal-stack
+          cards:
+          - type: entity-button
+            name: RUN SPEED TEST
+            icon: mdi:play-speed
+            tap_action: call-service
+            entity: script.refresh_speedtest
+            service: script.turn_on
+#
+          - type: entity-button
+            name: RUN MEMORY TEST
+            icon: mdi:play-speed
+            tap_action: call-service
+            entity: script.refresh_speedtest
+            service: script.turn_on
+#
+        - type: horizontal-stack
+          cards:
+          - type: entity-button
+            name: Refresh Geo
+            tap_action: call-service
+            entity: script.refresh_geolocation
+            service: script.turn_on
 
-    - type: entity-button
-      name: Turn On Desk Lamp
-      entity: script.desk_light_on
-      tap_action:
-        action: call-service
-        service: script.desk_light_on
-        service_data:
-          entity_id: script.desk_light_on
+          - type: entity-button
+            name: Turn On Desk Lamp
+            entity: script.desk_light_on
+            tap_action:
+              action: call-service
+              service: script.desk_light_on
+              service_data:
+                entity_id: script.desk_light_on
 #
-    - type: entity-button
-      name: Turn Off Desk Lamp
-      entity: script.desk_light_off
-      tap_action:
-        action: call-service
-        service: script.desk_light_off
-        service_data:
-          entity_id: script.desk_light_off
+        - type: horizontal-stack
+          cards:
+          - type: entity-button
+            name: Turn Off Desk Lamp
+            entity: script.desk_light_off
+            tap_action:
+              action: call-service
+              service: script.desk_light_off
+              service_data:
+                entity_id: script.desk_light_off
 #
-    - type: entity-button
-      name: Send Push - Art Only
-      entity: script.desk_light_off
-      tap_action:
-        action: call-service
-        service: script.push_art_only
-#        service_data:
-#          entity_id: script.push_art_only
+          - type: entity-button
+            name: Send Push - Art Only
+            entity: script.desk_light_off
+            tap_action:
+              action: call-service
+              service: script.push_art_only
 #
 #

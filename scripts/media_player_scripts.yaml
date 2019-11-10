@@ -31,3 +31,40 @@ turn_off_lgtv:
   - service: media_player.turn_off
     entity_id: media_player.sun_room_lg_tv
 #
+#################################################################
+# Turn on Kitchen Roku
+# Called from [POwer On Button]
+# In file: [lovelace/media_players]
+#################################################################
+turn_on_kitchen_roku:
+  alias: Turn on Kitchen Roku
+  sequence:
+  - service: media_player.turn_on
+    entity_id: media_player.sharp_roku_tv
+  - delay: '00:00:05'
+  - service: remote.send_command
+    data:
+      entity_id: remote.sharp_roku_tv
+      command:
+      - home
+      - right
+      - select
+  - delay: '00:00:15'
+  - service: remote.send_command
+    data:
+      entity_id: remote.sharp_roku_tv
+      command:
+      - down
+      - select
+#
+#################################################################
+# Turn off Kitchen Roku
+# Called from [POwer Off Button]
+# In file: [lovelace/media_players]
+#################################################################
+turn_off_kitchen_roku:
+  alias: Turn off Kitchen Roku
+  sequence:
+  - service: media_player.turn_off
+    entity_id: media_player.sharp_roku_tv
+#

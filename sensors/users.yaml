@@ -16,5 +16,18 @@
       friendly_name: "External URL"
 #      unit_of_measurement: '%'
 #
-#OT1: 656fac318452cbc2076ba63575e7f487db2851dbbea3ff5ea8069f0dadc8dba0
-#OT2: 4b19d51020cb259721124f71a89d61b4b8b19b46a3a0a3f138c0d92715368768
+- platform: template
+  sensors:
+    briefing_recipient:
+      value_template: >-
+        {% if states.input_boolean.someone_home.state == 'on' %}
+          {% if (states.input_boolean.steff_home.state == 'on') %}
+            'Steff'
+          {% else %}
+            'Art'
+          {% endif %}
+        {% endif %}
+        {% if (states.input_boolean.everyone_home.state == 'on') %}
+          'Everyone'
+        {% endif %}
+#

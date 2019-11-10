@@ -22,8 +22,8 @@ cards:
       show_header_toggle: false
       entities:
         - type: divider
-        - entity: input_boolean.mode_guest
-        - entity: input_boolean.mode_vacation
+        - entity: input_boolean.guest_mode
+        - entity: input_boolean.vacation_mode
   #  Card 2
 #    - type: entities
 #      title: Lights

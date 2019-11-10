@@ -5,7 +5,7 @@
 title: A/S/S
 path: entities
 id: v_ent
-icon: mdi:package-variant
+icon: mdi:view-list
 panel: true
 cards:
 - type: horizontal-stack
@@ -43,6 +43,17 @@ cards:
             include:
               - domain: scene
 #
+        - type: custom:monster-card
+          card:
+            type: entities
+            show_header_toggle: false
+            title: Arts Sensors
+          filter:
+            include:
+              - name: "*art*"
+            exclude:
+              - domain: automation
+
 # COL 3
     - type: vertical-stack
       cards:
@@ -57,4 +68,15 @@ cards:
               - domain: input_select
               - domain: input_number
               - domain: input_datetime
+#
+        - type: custom:monster-card
+          card:
+            type: entities
+            show_header_toggle: false
+            title: Steffs Sensors
+          filter:
+            include:
+              - name: "*steff*"
+            exclude:
+              - domain: automation
 #

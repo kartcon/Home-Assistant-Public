@@ -57,7 +57,7 @@
 #############################################################
 #
 - id: home_assistant_unscheduled_restart
-  alias: Home Assistant Startup
+  alias: Home Assistant Unscheduled Restart
   initial_state: true
   hide_entity: true
   trigger:
@@ -80,7 +80,7 @@
       title: "HomeAssistant Startup"
       message: "Home Assistant has started."
   - condition: state
-    entity_id: input_boolean.enable_system_alerts
+    entity_id: input_boolean.system_alerts
     state: 'on'
   - condition: time
     after: '06:00:00'
@@ -108,7 +108,7 @@
       message: >-
         At {{now().strftime("%m/%d/%Y %H:%M:%S")}} the download speed has dropped below 30 Mbit/s.
   - condition: state
-    entity_id: input_boolean.enable_system_alerts
+    entity_id: input_boolean.system_alerts
     state: 'on'
   - service: notify.ios_group_art_only
     data:
@@ -132,7 +132,7 @@
 #      - sun
 #      - wed
 #  - condition: state
-#    entity_id: input_boolean.enable_hassio_autobackup
+#    entity_id: input_boolean.hass_io_autobackup
 #    state: 'on'
 #  action:
 #  - service: hassio.snapshot_full
@@ -140,7 +140,7 @@
 #      name: Automated Backup {{ now().strftime('%Y-%m-%d') }}
 #  - delay: '00:30:00'
 #  - condition: state
-#    entity_id: input_boolean.enable_system_alerts
+#    entity_id: input_boolean.system_alerts
 #    state: 'on'
 #  - service:  notify.ios_group_art_only
 #    data_template:
@@ -162,7 +162,7 @@
     value_template: "{% if trigger.from_state and trigger.to_state %} True {% else %} False {% endif %}"
   action:
   - condition: state
-    entity_id: input_boolean.enable_system_alerts
+    entity_id: input_boolean.system_alerts
     state: 'on'
   - service: persistent_notification.create
     data_template:
@@ -196,7 +196,7 @@
 #        New device:
 #        {{trigger.event.data.entity_id}}
   - condition: state
-    entity_id: input_boolean.enable_system_alerts
+    entity_id: input_boolean.system_alerts
     state: 'on'
   - service:  notify.ios_group_art_only
     data_template:
@@ -294,7 +294,7 @@
       message: >-
         At {{now().strftime("%m/%d/%Y %H:%M:%S")}} {{trigger.to_state.attributes.friendly_name}} has gone offline..
   - condition: state
-    entity_id: input_boolean.enable_system_alerts
+    entity_id: input_boolean.system_alerts
     state: 'on'
   - service:  notify.ios_group_art_only
     data_template:

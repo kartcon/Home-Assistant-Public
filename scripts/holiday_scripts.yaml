@@ -524,37 +524,37 @@ thanksgiving_script:
     data:
       entity_id: light.flux_led_strip
       brightness: 30
-      rgb_color: [255,36,0]
+      rgb_color: [255,33,0]
   - service: light.turn_on
     data:
       entity_id: light.front_porch
       brightness: 128
-      rgb_color: [83,255,126]
+      rgb_color: [255,194,55]
   - service: light.turn_on
     data:
       entity_id: light.tv_left
       brightness: 69
-      rgb_color: [255,36,0]
+      rgb_color: [255,194,55]
   - service: light.turn_on
     data:
       entity_id: light.tv_right
       brightness: 69
-      rgb_color: [255,36,0]
+      rgb_color: [255,194,55]
   - service: light.turn_on
     data:
       entity_id: light.garage_east
       brightness: 128
-      rgb_color: [255,36,0]
+      rgb_color: [255,194,55]
   - service: light.turn_on
     data:
       entity_id: light.garage_center
       brightness: 128
-      rgb_color: [253,255,0]
+      rgb_color: [255,194,55]
   - service: light.turn_on
     data:
       entity_id: light.garage_west
       brightness: 93
-      rgb_color: [255,36,0]
+      rgb_color: [255,194,55]
 #
 #################################################################
 # SCRIPT: Christmas

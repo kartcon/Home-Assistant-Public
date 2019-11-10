@@ -16,6 +16,24 @@
 # https://github.com/twrecked/hass-momentary
 ##############################################################
 - platform: momentary
+  name: Unscheduled Restart
+  on_for: 300
+  allow_off: True
+#  ---------------
+- platform: momentary
+  name: Update OwnTracks
+  on_for: 2
+  allow_off: True
+#  ---------------
+- platform: momentary
+  name: Update ExtURL
+  on_for: 2
+  allow_off: True
+##############################################################
+# Sandbox Momentary Switches
+##############################################################
+#  ---------------
+- platform: momentary
   name: Sandbox 1
   on_for: 2
   allow_off: False
@@ -31,22 +49,12 @@
   allow_off: False
 #  ---------------
 - platform: momentary
-  name: Unscheduled Restart
-  on_for: 300
-  allow_off: True
+  name: Sandbox 4
+  on_for: 2
+  allow_off: False
 #  ---------------
 - platform: momentary
-  name: Update OwnTracks
+  name: Sandbox 5
   on_for: 2
-  allow_off: True
-#  ---------------
-- platform: momentary
-  name: Update ExtURL
-  on_for: 2
-  allow_off: True
-#  ---------------
-- platform: momentary
-  name: Momentary 1
-  on_for: 2
-  allow_off: True
+  allow_off: False
 #  ---------------

@@ -20,6 +20,14 @@ all_echo_dots:
     - media_player.kitchen_echo
     - media_player.office_echo
 #
+kitchen_sunroom:
+  name: Kitchen & Sunroom
+  view: no
+  icon: mdi:amazon-alexa
+  entities:
+    - media_player.kitchen_echo
+    - media_player.sunroom_echo_white
+#
 #  - service: notify.alexa_media
 #    data:
 #      target: group.all_echo_dots

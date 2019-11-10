@@ -21,7 +21,7 @@
     for: '00:05:00'
   action:
   - condition: state
-    entity_id: input_boolean.enable_system_alerts
+    entity_id: input_boolean.system_alerts
     state: 'on'
   - service: persistent_notification.create
     data_template:
@@ -67,7 +67,7 @@
     entity_id: input_select.led_color
   condition:
   - condition: state
-    entity_id: input_boolean.enable_sandbox
+    entity_id: input_boolean.sandbox_testing
     state: 'on'
   action:
     service: light.turn_on
@@ -88,7 +88,7 @@
     entity_id: input_number.led_strip_brightness
   condition:
   - condition: state
-    entity_id: input_boolean.enable_sandbox
+    entity_id: input_boolean.sandbox_testing
     state: 'on'
   action:
     service: light.turn_on
@@ -109,7 +109,7 @@
 #    seconds: '/15'
 #  condition:
 #  - condition: state
-#    entity_id: input_boolean.enable_sandbox
+#    entity_id: input_boolean.sandbox_testing
 #    state: 'on'
 #  action:
 #    service: light.turn_on
@@ -149,7 +149,7 @@
 #    to: 'on'
 #  condition:
 #  - condition: state
-#    entity_id: input_boolean.enable_sandbox
+#    entity_id: input_boolean.sandbox_testing
 #    state: 'on'
 #  action:
 ##  - service: scene.turn_on

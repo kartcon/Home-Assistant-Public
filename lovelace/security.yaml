@@ -26,8 +26,8 @@ cards:
 #            - entity: input_boolean.alarm_panic_mode
             - type: divider
             - entity: input_boolean.alarm_auto
-            - entity: input_boolean.mode_guest
-            - entity: input_boolean.mode_vacation
+            - entity: input_boolean.guest_mode
+            - entity: input_boolean.vacation_mode
             - type: divider
 #            - entity: input_boolean.enable_push_notifications
 #            - entity: input_boolean.enable_prowl_notifications

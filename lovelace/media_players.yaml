@@ -109,6 +109,33 @@ cards:
             power_state: false
             icon_state: false
 #
+        - type: custom:mini-media-player
+          entity: media_player.sharp_roku_tv
+          artwork: full-cover
+          source: full
+          toggle_power: true
+          shortcuts:
+            columns: 2 # Max buttons per row
+            buttons:
+            # Change the source
+            - name: Power On
+              type: script
+              id: script.turn_on_kitchen_roku
+            - name: Power Off
+              type: script
+              id: script.turn_off_kitchen_roku
+#            - name: Power On
+#              type: service
+#              id: media_player.turn_on
+#            - name: Power Off
+#              type: service
+#              id: media_player.turn_off
+          hide:
+            controls: false
+            power: false
+            power_state: false
+            icon_state: false
+#
 # COL 3
     - type: vertical-stack
       cards:

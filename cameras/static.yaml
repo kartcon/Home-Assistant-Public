@@ -22,7 +22,7 @@
 #
 - platform: generic
   name: Regional Radar
-  still_image_url: https://icons.wxug.com/data/weather-maps/radar/united-states/saint-petersburg-florida-region-current-radar-animation.gif
+  still_image_url: https://s.w-x.co/staticmaps/wu/wu/wxtype1200_cur/uspie/animate.png
 #
 - platform: generic
   name: NWS Radar Mosaic

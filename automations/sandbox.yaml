@@ -10,11 +10,15 @@
     to: 'on'
   condition:
   - condition: state
-    entity_id: input_boolean.enable_sandbox
+    entity_id: input_boolean.sandbox_testing
     state: 'on'
   action:
   - service: script.turn_on
-    entity_id: script.test_briefing_one
+    entity_id: script.morning_briefing
+    data:
+      variables:
+        recipient: Art
+        alexa_entity: media_player.office_echo
 #
 #################################################################
 # Execute an Automation via the Sandbox
@@ -28,14 +32,15 @@
     to: 'on'
   condition:
   - condition: state
-    entity_id: input_boolean.enable_sandbox
+    entity_id: input_boolean.sandbox_testing
     state: 'on'
   action:
   - service: script.turn_on
-    entity_id: script.test_briefing_two
-#  - service: rest_command.ask_alexa
-#    data:
-#      message: "Set a 5 minute timer in the office"
+    entity_id: script.morning_briefing
+    data:
+      variables:
+        recipient: Steff
+        alexa_entity: media_player.office_echo
 #
 #################################################################
 # Execute an Automation via the Sandbox
@@ -47,16 +52,47 @@
   - platform: state
     entity_id: switch.momentary_sandbox_3
     to: 'on'
-#  - platform: state
-#    entity_id: switch.momentary_unscheduled_restart
-#    to: 'on'
-#  condition:
-#  - condition: state
-#    entity_id: input_boolean.enable_sandbox
-#    state: 'on'
+  condition:
+  - condition: state
+    entity_id: input_boolean.sandbox_testing
+    state: 'on'
   action:
   - service: script.turn_on
-    entity_id: script.test_briefing_three
+    entity_id: script.set_alexa_volume
+    data:
+      variables:
+        alexa_entity: media_player.office_echo
+  - delay: '00:00:03'
+  - service: script.turn_on
+    entity_id: script.announce_evening_briefing
+    data:
+      variables:
+        alexa_entity: media_player.office_echo
+  - delay: '00:00:03'
+  - service: script.turn_on
+    entity_id: script.evening_briefing
+    data:
+      variables:
+        recipient: "{{ states('sensor.briefing_recipient') }}"
+        alexa_entity: media_player.office_echo
+#
+#################################################################
+# Execute an Automation via the Sandbox
+#################################################################
+- id: sandbox_test_4
+  alias: Sandbox Test 4
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: switch.momentary_sandbox_4
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: input_boolean.sandbox_testing
+    state: 'on'
+  action:
+  - service: script.turn_on
+    entity_id: script.turn_on_kitchen_roku
 #
 #################################################################
 # Write to Log via Automation Test
@@ -100,7 +136,7 @@
 #    to: 'on'
 #  condition:
 #  - condition: state
-#    entity_id: input_boolean.enable_sandbox
+#    entity_id: input_boolean.sandbox_testing
 #    state: 'on'
 #  action:
 #

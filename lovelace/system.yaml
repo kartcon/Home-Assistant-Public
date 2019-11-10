@@ -42,60 +42,6 @@ cards:
 #            - entity: sensor.speedtest_download
 #              icon: mdi:package-down
 #
-        - type: entities
-          title: Sandbox
-          show_header_toggle: false
-          entities:
-            - entity: input_boolean.enable_sandbox
-            - entity: switch.momentary_sandbox_1
-              name: Briefing 1 Test
-            - entity: switch.momentary_sandbox_2
-              name: Briefing 2 Test
-            - entity: switch.momentary_sandbox_3
-              name: New Briefing
-#
-#
-#        - type: entities
-#          title: Breaking Changes
-#          show_header_toggle: false
-#          entities:
-#            - entity: sensor.potential_breaking_changes_list
-#              icon: mdi:package-up
-#
-# COL 2
-    - type: vertical-stack
-      cards:
-        - type: entities
-          title: Processor
-          show_header_toggle: false
-          entities:
-            - entity: sensor.uptime
-              icon: mdi:clock-out
-            - entity: sensor.last_boot
-              icon: mdi:calendar-clock
-            - entity: switch.momentary_unscheduled_restart
-            - entity: input_boolean.scheduled_reboots
-              name: Allow Auto Reboot
-            - entity: input_boolean.enable_hassio_autobackup
-#
-        - type: entities
-          title: Memory
-          show_header_toggle: false
-          entities:
-            - entity: sensor.load_1m
-              icon: mdi:select-inverse
-              secondary_info: last-changed
-            - entity: sensor.load_5m
-              icon: mdi:select-inverse
-            - entity: sensor.load_15m
-              icon: mdi:select-inverse
-            - entity: sensor.memory_free
-              icon: mdi:select-inverse
-            - entity: sensor.memory_use
-              icon: mdi:select-inverse
-            - entity: sensor.memory_use_percent
-              icon: mdi:select-inverse
-#
         - type: glance
           title: Counters
           show_name: true
@@ -142,6 +88,60 @@ cards:
 #            - entity: sensor.zone_count
 #              name: Zones
 #
+#        - type: entities
+#          title: Sandbox
+#          show_header_toggle: false
+#          entities:
+#            - entity: input_boolean.sandbox_testing
+#            - entity: switch.momentary_sandbox_1
+#              name: Morning Briefing
+#            - entity: switch.momentary_sandbox_2
+#              name: Evening Briefing
+#            - entity: switch.momentary_sandbox_3
+#              name: Kitchen Roku
+#
+#
+#        - type: entities
+#          title: Breaking Changes
+#          show_header_toggle: false
+#          entities:
+#            - entity: sensor.potential_breaking_changes_list
+#              icon: mdi:package-up
+#
+# COL 2
+    - type: vertical-stack
+      cards:
+        - type: entities
+          title: Processor
+          show_header_toggle: false
+          entities:
+            - entity: sensor.uptime
+              icon: mdi:clock-out
+            - entity: sensor.last_boot
+              icon: mdi:calendar-clock
+            - entity: switch.momentary_unscheduled_restart
+            - entity: input_boolean.scheduled_reboots
+              name: Allow Auto Reboot
+            - entity: input_boolean.hass_io_autobackup
+#
+        - type: entities
+          title: Memory
+          show_header_toggle: false
+          entities:
+            - entity: sensor.load_1m
+              icon: mdi:select-inverse
+              secondary_info: last-changed
+            - entity: sensor.load_5m
+              icon: mdi:select-inverse
+            - entity: sensor.load_15m
+              icon: mdi:select-inverse
+            - entity: sensor.memory_free
+              icon: mdi:select-inverse
+            - entity: sensor.memory_use
+              icon: mdi:select-inverse
+            - entity: sensor.memory_use_percent
+              icon: mdi:select-inverse
+#
 # COL 3
     - type: vertical-stack
       cards:
@@ -165,20 +165,4 @@ cards:
             - entity: input_datetime.recycle_pickup_date
             - entity: sensor.day_of_year
             - entity: sensor.week_of_year
-#
-        - type: horizontal-stack
-          cards:
-          - type: entity-button
-            name: RUN SPEED TEST
-            icon: mdi:play-speed
-            tap_action: call-service
-            entity: script.refresh_speedtest
-            service: script.turn_on
-#
-          - type: entity-button
-            name: RUN MEMORY TEST
-            icon: mdi:play-speed
-            tap_action: call-service
-            entity: script.refresh_speedtest
-            service: script.turn_on
 #

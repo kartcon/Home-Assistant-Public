@@ -13,7 +13,7 @@
 #    to: 'home'
 #  condition:
 #  - condition: state
-#    entity_id: input_boolean.enable_sandbox
+#    entity_id: input_boolean.sandbox_testing
 #    state: 'on'
 #  action:
 #  - service: notify.ios_group_art_only
@@ -32,7 +32,7 @@
 #    value_template: "{% if not is_state('sensor.artsiphone8_zone', 'home') %}true{% endif %}"
 #  condition:
 #  - condition: state
-#    entity_id: input_boolean.enable_sandbox
+#    entity_id: input_boolean.sandbox_testing
 #    state: 'on'
 #  action:
 #  - service: notify.ios_group_art_only
@@ -53,7 +53,7 @@
 #    to: 'not_home'
 #  condition:
 #  - condition: state
-#    entity_id: input_boolean.enable_sandbox
+#    entity_id: input_boolean.sandbox_testing
 #    state: 'on'
 #  action:
 #  - service: notify.ios_group_art_only
@@ -73,7 +73,7 @@
 ##    value_template: "{% if not is_state('sensor.artsiphone8_zone', 'not_home') %}true{% endif %}"
 #  condition:
 #  - condition: state
-#    entity_id: input_boolean.enable_sandbox
+#    entity_id: input_boolean.sandbox_testing
 #    state: 'on'
 #  action:
 #  - service: notify.ios_group_art_only
@@ -94,7 +94,7 @@
 #    to: 'away'
 #  condition:
 #  - condition: state
-#    entity_id: input_boolean.enable_sandbox
+#    entity_id: input_boolean.sandbox_testing
 #    state: 'on'
 #  action:
 #  - service: notify.ios_group_art_only
@@ -114,7 +114,7 @@
 ##    value_template: "{% if not is_state('sensor.artsiphone8_zone', 'away') %}true{% endif %}"
 #  condition:
 #  - condition: state
-#    entity_id: input_boolean.enable_sandbox
+#    entity_id: input_boolean.sandbox_testing
 #    state: 'on'
 #  action:
 #  - service: notify.ios_group_art_only
@@ -135,7 +135,7 @@
 #    below: 0.5
 #  condition:
 #  - condition: state
-#    entity_id: input_boolean.enable_sandbox
+#    entity_id: input_boolean.sandbox_testing
 #    state: 'on'
 ##  - condition: state
 ##    entity_id: sensor.artsiphone8_dir_of_travel
@@ -160,7 +160,7 @@
 #    below: 55
 #  condition:
 #  - condition: state
-#    entity_id: input_boolean.enable_sandbox
+#    entity_id: input_boolean.sandbox_testing
 #    state: 'on'
 #  action:
 #  - service: notify.ios_group_art_only
@@ -183,7 +183,7 @@
 #    below: 65
 #  condition:
 #  - condition: state
-#    entity_id: input_boolean.enable_sandbox
+#    entity_id: input_boolean.sandbox_testing
 #    state: 'on'
 #  action:
 #  - service: notify.ios_group_art_only

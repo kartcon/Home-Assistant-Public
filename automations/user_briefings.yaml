@@ -1,5 +1,5 @@
 #################################################################
-## USER BREIFING
+## USER BREIFING AUTOMATIONS
 #################################################################
 #
 #############################################################
@@ -14,7 +14,7 @@
     to: 'on'
   condition:
   - condition: state
-    entity_id: input_boolean.daily_briefing_art
+    entity_id: input_boolean.arts_daily_briefing
     state: 'on'
   - condition: time
     weekday:
@@ -36,10 +36,12 @@
     value_template: '{{(as_timestamp(now()) - as_timestamp(state_attr("automation.art_weekday_briefing", "last_triggered") | default(0)) | int > 21600 )}}'
   action:
   - service: script.turn_on
-    entity_id: script.art_briefing_one
-#  - service: script.turn_on
-#    entity_id: script.daily_briefing_alert
-#  - delay: 0:00:04
+    entity_id: script.morning_briefing
+    data_template:
+      variables:
+        recipient: 'Art'
+        alexa_entity: "{{ states('input_select.alexa_entity') }}"
+#        alexa_entity: 'media_player.kitchen_echo'
 #
 #############################################################
 ##  Art Weekends
@@ -53,7 +55,7 @@
     to: 'on'
   condition:
   - condition: state
-    entity_id: input_boolean.daily_briefing_art
+    entity_id: input_boolean.arts_daily_briefing
     state: 'on'
   - condition: time
     weekday:
@@ -72,10 +74,12 @@
     value_template: '{{(as_timestamp(now()) - as_timestamp(state_attr("automation.art_weekend_briefing", "last_triggered") | default(0)) | int > 21600 )}}'
   action:
   - service: script.turn_on
-    entity_id: script.art_briefing_one
-#  - service: script.turn_on
-#    entity_id: script.daily_briefing_alert
-#  - delay: 0:00:04
+    entity_id: script.morning_briefing
+    data_template:
+      variables:
+        recipient: 'Art'
+        alexa_entity: "{{ states('input_select.alexa_entity') }}"
+#        alexa_entity: 'media_player.kitchen_echo'
 #
 #############################################################
 ##  Steff Weekdays
@@ -89,7 +93,7 @@
     to: 'on'
   condition:
   - condition: state
-    entity_id: input_boolean.daily_briefing_steff
+    entity_id: input_boolean.steffs_daily_briefing
     state: 'on'
   - condition: time
     weekday:
@@ -104,15 +108,19 @@
   - condition: state
     entity_id: binary_sensor.sleepnumber_cc04b4013d81_steff_is_in_bed
     state: 'off'
+    for:
+      minutes: 3
   - condition: template
     # Only run if more than 6 hours (21,600 sec) since it last ran
     value_template: '{{(as_timestamp(now()) - as_timestamp(state_attr("automation.steff_weekday_briefing", "last_triggered") | default(0)) | int > 21600 )}}'
   action:
   - service: script.turn_on
-    entity_id: script.steff_briefing_one
-#  - service: script.turn_on
-#    entity_id: script.daily_briefing_alert
-#  - delay: 0:00:04
+    entity_id: script.morning_briefing
+    data_template:
+      variables:
+        recipient: 'Steff'
+        alexa_entity: "{{ states('input_select.alexa_entity') }}"
+#        alexa_entity: 'media_player.kitchen_echo'
 #
 #############################################################
 ##  Steff Weekends
@@ -126,7 +134,7 @@
     to: 'on'
   condition:
   - condition: state
-    entity_id: input_boolean.daily_briefing_steff
+    entity_id: input_boolean.steffs_daily_briefing
     state: 'on'
   - condition: time
     weekday:
@@ -145,27 +153,119 @@
     value_template: '{{(as_timestamp(now()) - as_timestamp(state_attr("automation.steff_weekend_briefing", "last_triggered") | default(0)) | int > 21600 )}}'
   action:
   - service: script.turn_on
-    entity_id: script.steff_briefing_one
-#  - service: script.turn_on
-#    entity_id: script.daily_briefing_alert
-#  - delay: 0:00:04
+    entity_id: script.morning_briefing
+    data_template:
+      variables:
+        recipient: 'Steff'
+        alexa_entity: "{{ states('input_select.alexa_entity') }}"
+#        alexa_entity: 'media_player.kitchen_echo'
 #
 #############################################################
-##  Test Briefing
-##  See automations/sandbox.yaml
+##  Evening Briefing
 #############################################################
-#- id: test_briefing
-#  alias: Test Briefing
-#  initial_state: true
-#  trigger:
-#  - platform: state
-#    entity_id: switch.momentary_sandbox_1
-#    to: 'on'
-#  condition:
-#  - condition: state
-#    entity_id: input_boolean.enable_sandbox
-#    state: 'on'
-#  action:
-#  - service: script.turn_on
-#    entity_id: script.test_briefing_one
+- id: evening_briefing
+  alias: Evening Briefing
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.kit_motion_sensor_81
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: input_boolean.evening_briefing
+    state: 'on'
+  - condition: state
+    entity_id: input_boolean.no_one_home
+    state: 'off'
+  - condition: time
+    after: '18:30'
+    before: '19:30'
+  - condition: template
+    # Only run if more than 6 hours (21,600 sec) since it last ran
+    value_template: '{{(as_timestamp(now()) - as_timestamp(state_attr("automation.evening_briefing", "last_triggered") | default(0)) | int > 21600 )}}'
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.alexa_entity
+      option: "media_player.kitchen_echo"
+  - service: script.turn_on
+    entity_id: script.set_alexa_volume
+    data_template:
+      variables:
+        alexa_entity: "{{ states('input_select.alexa_entity') }}"
+#        alexa_entity: media_player.kitchen_echo
+  - delay: '00:00:03'
+  - service: script.turn_on
+    entity_id: script.announce_evening_briefing
+    data_template:
+      variables:
+        alexa_entity: "{{ states('input_select.alexa_entity') }}"
+#        alexa_entity: media_player.kitchen_echo
+  - delay: '00:00:03'
+  - service: script.turn_on
+    entity_id: script.evening_briefing
+    data_template:
+      variables:
+        recipient: "{{ states('sensor.briefing_recipient') }}"
+        alexa_entity: "{{ states('input_select.alexa_entity') }}"
+#        alexa_entity: media_player.kitchen_echo
+#
+#################################################################
+# AUTOMATIONS TO TEST/REPLAY SCRIPTS FOLLOW
+#################################################################
+# Replay Arts Morning Briefing
+#################################################################
+- id: replay_arts_morning_briefing
+  alias: Replay Arts Morning Briefing
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: switch.momentary_sandbox_1
+    to: 'replay'
+  action:
+  - service: script.turn_on
+    entity_id: script.morning_briefing
+    data_template:
+      variables:
+        recipient: Art
+        alexa_entity: "{{ states('input_select.alexa_entity') }}"
+#        alexa_entity: media_player.office_echo
+#
+#################################################################
+# Replay Steffs Morning Briefing
+#################################################################
+- id: replay_steffs_morning_briefing
+  alias: Replay Steffs Morning Briefing
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: switch.momentary_sandbox_1
+    to: 'replay'
+  action:
+  - service: script.turn_on
+    entity_id: script.morning_briefing
+    data_template:
+      variables:
+        recipient: Steff
+        alexa_entity: "{{ states('input_select.alexa_entity') }}"
+#        alexa_entity: media_player.office_echo
+#
+#################################################################
+# Replay Evening Update
+#################################################################
+- id: replay_evening_update
+  alias: Replay Evening Update
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: switch.momentary_sandbox_1
+    to: 'replay'
+  action:
+  - service: script.turn_on
+    entity_id: script.evening_briefing
+    data_template:
+      variables:
+        recipient: "{{ states('sensor.briefing_recipient') }}"
+        alexa_entity: "{{ states('input_select.alexa_entity') }}"
+#        alexa_entity: media_player.office_echo
 #

@@ -17,7 +17,7 @@
       entity_id: light.lr_can_lights_62
       state: 'on'
     - condition: state
-      entity_id: input_boolean.enable_lr_slow_dim
+      entity_id: input_boolean.lr_slow_dim
       state: 'on'
     - condition: time
       after: '21:00:00'
@@ -36,6 +36,10 @@
             {% set lr_next = 138 %}
           {% endif %}
           {{ lr_next }}
+    - service: script.write_to_log
+      data_template:
+        entity_id: light.lr_can_lights_62
+        message: Automation - LR Cans Dim to {{ state_attr('light.lr_can_lights_62', 'brightness') }}%
 #
 #################################################################
 # Sunroom Lights Dim - Start at 19:30:00
@@ -52,7 +56,7 @@
       entity_id: light.sunroom_lights_203
       state: 'on'
     - condition: state
-      entity_id: input_boolean.enable_sr_slow_dim
+      entity_id: input_boolean.sr_slow_dim
       state: 'on'
     - condition: time
       after: '19:15:00'
@@ -71,6 +75,10 @@
             {% set sr_next = 73 %}
           {% endif %}
           {{ sr_next }}
+    - service: script.write_to_log
+      data_template:
+        entity_id: light.sunroom_lights_203
+        message: Automation - SR Cans Dim to {{ state_attr('light.sunroom_lights_203', 'brightness') }}%
 #
 #################################################################
 # Bird Room 1 Lights Dim - Start at 18:00:00, End @ 20:00:00
@@ -87,7 +95,7 @@
       entity_id: light.bird_room_1_light_52
       state: 'on'
     - condition: state
-      entity_id: input_boolean.enable_br1_slow_dim
+      entity_id: input_boolean.br1_slow_dim
       state: 'on'
     - condition: time
       after: '18:00:00'
@@ -106,6 +114,10 @@
             {% set br1_next = 13 %}
           {% endif %}
           {{ br1_next }}
+    - service: script.write_to_log
+      data_template:
+        entity_id: light.bird_room_1_light_52
+        message: Automation - Bird Rm1 Lights to {{ state_attr('light.bird_room_1_light_52', 'brightness') }}%
 #
 #################################################################
 # Bird Room 2 Lights Dim - Start at 18:00:00, End @ 20:00:00
@@ -122,7 +134,7 @@
       entity_id: light.bird_room_2_light_53
       state: 'on'
     - condition: state
-      entity_id: input_boolean.enable_br2_slow_dim
+      entity_id: input_boolean.br2_slow_dim
       state: 'on'
     - condition: time
       after: '18:00:00'
@@ -141,4 +153,8 @@
             {% set br2_next = 13 %}
           {% endif %}
           {{ br2_next }}
+    - service: script.write_to_log
+      data_template:
+        entity_id: light.bird_room_2_light_53
+        message: Automation - Bird Rm2 Lights to {{ state_attr('light.bird_room_2_light_53', 'brightness') }}%
 #

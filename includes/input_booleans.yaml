@@ -43,22 +43,22 @@
     initial: off
     icon: mdi:run-fast
 #
-  enable_lr_slow_dim:
+  lr_slow_dim:
     name: Living Rm Slow Dim
     initial: on
     icon: mdi:trending-down
 #
-  enable_sr_slow_dim:
+  sr_slow_dim:
     name: Sun Room Slow Dim
     initial: on
     icon: mdi:trending-down
 #
-  enable_br1_slow_dim:
+  br1_slow_dim:
     name: Bird Rm1 Slow Dim
     initial: on
     icon: mdi:trending-down
 #
-  enable_br2_slow_dim:
+  br2_slow_dim:
     name: Bird Rm2 Slow Dim
     initial: on
     icon: mdi:trending-down
@@ -71,6 +71,16 @@
 ##############################################################
 # Notifications Toggles
 ##############################################################
+  alexa_speaking:
+    name: Alexa Speaking
+    initial: off
+    icon: mdi:voice
+#
+  arts_daily_briefing:
+    name: Arts Daily Briefing
+    initial: on
+    icon: mdi:voice
+#
   auto_arm_notifications:
     name: Auto-Arm Notifications
 #    initial: on
@@ -86,15 +96,15 @@
 #    initial: on
     icon: mdi:message-alert-outline
 #
-  daily_briefing_art:
-    name: Arts Daily Briefing
+  evening_briefing:
+    name: Evening Briefing
     initial: on
     icon: mdi:voice
 #
-  daily_briefing_steff:
-    name: Steffs Daily Briefing
-    initial: on
-    icon: mdi:voice
+  sensor_reset_notifications:
+    name: Sensor Reset Notifications
+#    initial: on
+    icon: mdi:message-alert
 #
   speak_kit_motion:
     name: Speak Kitchen Motion
@@ -106,30 +116,30 @@
     initial: off
     icon: mdi:voice
 #
-  sensor_reset_notifications:
-    name: Sensor Reset Notifications
-#    initial: on
-    icon: mdi:message-alert
+  steffs_daily_briefing:
+    name: Steffs Daily Briefing
+    initial: on
+    icon: mdi:voice
 #
-  enable_system_alerts:
+  system_alerts:
     name: Enable System Alerts
 #    initial: on
     icon: mdi:server
+#
+  weather_alerts:
+    name: Enable Weather Alerts
+#    initial: on
+    icon: mdi:weather-lightning-rainy
 #
   zone_alerts:
     name: Enable Zone Alerts
 #    initial: on
     icon: mdi:map-marker-radius
 #
-  enable_weather_alerts:
-    name: Enable Weather Alerts
-#    initial: on
-    icon: mdi:weather-lightning-rainy
-#
 ##############################################################
 # Sandbox
 ##############################################################
-  enable_sandbox:
+  sandbox_testing:
     name: Enable Sandbox Testing
 #    initial: on
     icon: mdi:test-tube
@@ -210,12 +220,12 @@
 ##############################################################
 # Security Toggles
 ##############################################################
-  mode_guest:
+  guest_mode:
     name: Enable Guest Mode
 #    initial: on
     icon: mdi:account-heart
 #
-  mode_vacation:
+  vacation_mode:
     name: Enable Vacation Mode
 #    initial: on
     icon: mdi:airplane
@@ -248,7 +258,7 @@
     initial: on
     icon: mdi:garage
 #
-  enable_hassio_autobackup:
+  hass_io_autobackup:
     name: Automatic Backups
 #    initial: on
     icon: mdi:zip-disk
