@@ -124,15 +124,4 @@ cards:
 # {{states.input_select.days_to_display.state}}
 # {{ states('input_select.days_to_display') }}
 # {{ states('input_number.led_strip_brightness') }}
-#        - type: custom:monster-card
-#          card:
-#            type: glance
-#            title: GPS Tracker
-#            columns: 3
-#          filter:
-#            include:
-#              - domain: device_tracker
-#                options:
-#                  secondary_info: last-changed
-#                attributes:
-#                  source_type: gps
+#

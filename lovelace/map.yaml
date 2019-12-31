@@ -68,16 +68,7 @@ cards:
                 - entity: device_tracker.steffs_ipad_mini
                   name: Steffs iPad
                   icon: mdi:tablet-ipad
-#        - type: custom:monster-card
-#          card:
-#            type: glance
-#            show_header_toggle: false
-#            title: GPS Tracker
-#          filter:
-#            include:
-#              - domain: device_tracker
-#                attributes:
-#                  source_type: gps
+#
         - type: horizontal-stack
           cards:
             - type: entity-button

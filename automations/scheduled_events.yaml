@@ -54,6 +54,8 @@
     data:
       alexa_entity: group.all_echo_dots
   # Make Announcement
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.alexa_speaking
   - service: notify.alexa_media
     data:
       target: group.all_echo_dots
@@ -73,6 +75,9 @@
   - service: notify.ios_group_art_steff
     data:
       message: "Reminder: Take out the Trash."
+  - delay: '00:00:05'
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.alexa_speaking
   - service: script.turn_on
     entity_id: script.blink_lights_tv
   - delay: 0:00:03
@@ -109,6 +114,8 @@
     data:
       alexa_entity: group.all_echo_dots
   # Make Announcement
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.alexa_speaking
   - service: notify.alexa_media
     data:
       target: group.all_echo_dots
@@ -130,6 +137,9 @@
 #    data_template:
 #      entity_id: input_datetime.recycle_pickup_date
 #      date: '{{ (as_timestamp(now()) + (15*24*3600)) | timestamp_custom("%Y-%m-%d", True) }}'
+  - delay: '00:00:05'
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.alexa_speaking
   - service: script.turn_on
     entity_id: script.blink_lights_tv
   - delay: 0:00:03
@@ -208,32 +218,4 @@
       title: 'Remember to change the furnace filter.'
       message: >-
         It's the first Saturday of the month. Remember to change the furnace filter.
-#  - service: media_player.volume_set
-#    data:
-#      entity_id: group.all_echo_dots
-#      volume_level: '0.5'
-#   Set Volume
-  # - service: script.set_alexa_volume
-  #   data:
-  #     alexa_entity: group.all_echo_dots
-  # # Make Announcement
-  # - service: notify.alexa_media
-  #   data:
-  #     target: group.all_echo_dots
-  #     message: "It's the first Saturday of the month. Remember to change the furnace filter."
-  #     data:
-  #       type: announce
-  #       method: speak
-  # - service: script.sonos_say
-  #   data:
-  #     sonos_entity: media_player.sunroom_sonos
-  #     volume: 0.4
-  #     message: "It's the first Saturday of the month. Remember to change the furnace filter."
-  #     delay: '00:00:05'
-  # - condition: state
-  #   entity_id: input_boolean.system_alerts
-  #   state: 'on'
-  # - service: notify.ios_group_art_steff
-  #   data:
-  #     message: "Reminder: Change the furnace filter."
 #

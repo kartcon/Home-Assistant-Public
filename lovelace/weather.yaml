@@ -14,7 +14,7 @@ cards:
     - type: vertical-stack
       cards:
 #       Card 1-1
-#        - type: custom:monster-card
+#        - type: custom:auto-entities
 #          card:
 #            type: entities
 #            show_header_toggle: false
@@ -45,7 +45,7 @@ cards:
             - entity: sensor.dark_sky_nearest_storm_distance
 #
 #       Card 1-2
-        - type: custom:monster-card
+        - type: custom:auto-entities
           card:
             type: entities
             show_header_toggle: false
@@ -62,12 +62,14 @@ cards:
             - entity: sensor.us_air_pollution_level
             - entity: sensor.us_main_pollutant
             - entity: sensor.pollutant_type
+            - entity: sensor.dark_sky_ozone
+            - entity: sensor.dark_sky_uv_index
 #
 # COL 2
     - type: vertical-stack
       cards:
 #       Card 2-1
-        - type: custom:monster-card
+        - type: custom:auto-entities
           card:
             type: entities
             show_header_toggle: false
@@ -75,5 +77,9 @@ cards:
           filter:
             include:
               - entity_id: "*dark_sky*"
+          sort:
+            method: name
+            reverse: false
+            ignore_case: true
 #
 #

@@ -13,7 +13,7 @@ cards:
 # COL 1
     - type: vertical-stack
       cards:
-        - type: custom:monster-card
+        - type: custom:auto-entities
           card:
             type: entities
             show_header_toggle: false
@@ -27,7 +27,7 @@ cards:
 # COL 2
     - type: vertical-stack
       cards:
-        - type: custom:monster-card
+        - type: custom:auto-entities
           card:
             type: entities
             show_header_toggle: false
@@ -43,7 +43,7 @@ cards:
 # COL 3
     - type: vertical-stack
       cards:
-        - type: custom:monster-card
+        - type: custom:auto-entities
           card:
             type: entities
             show_header_toggle: false
@@ -53,7 +53,7 @@ cards:
               - entity_id: "*pws*"
             exclude:
               - entity_id: group.wu_pws
-        - type: custom:monster-card
+        - type: custom:auto-entities
           card:
             type: entities
             show_header_toggle: false

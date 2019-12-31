@@ -158,9 +158,10 @@ cards:
           title: Notifications
           show_header_toggle: false
           entities:
+            - entity: input_boolean.alexa_speaking
             - entity: input_select.alexa_entity
               name: Alexa Entities
-            - type: divider
+#            - type: divider
             - entity: input_boolean.arts_daily_briefing
             - entity: input_boolean.steffs_daily_briefing
             - entity: input_boolean.evening_briefing
@@ -178,7 +179,7 @@ cards:
           entities:
             - entity: input_select.kit_lights_auto_off
               name: Kitchen Lights Auto Off
-            - type: divider
+#            - type: divider
             - entity: input_select.led_color
               name: Flux LED TV Backlighting
             - entity: input_number.led_strip_brightness

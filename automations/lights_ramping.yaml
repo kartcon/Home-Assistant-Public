@@ -39,7 +39,7 @@
     - service: script.write_to_log
       data_template:
         entity_id: light.lr_can_lights_62
-        message: Automation - LR Cans Dim to {{ state_attr('light.lr_can_lights_62', 'brightness') }}%
+        message: Automation - LR Cans Dim to {{ (state_attr('light.lr_can_lights_62', 'brightness')/2.55)|int }}% ({{ state_attr('light.lr_can_lights_62', 'brightness') }})
 #
 #################################################################
 # Sunroom Lights Dim - Start at 19:30:00
@@ -78,7 +78,7 @@
     - service: script.write_to_log
       data_template:
         entity_id: light.sunroom_lights_203
-        message: Automation - SR Cans Dim to {{ state_attr('light.sunroom_lights_203', 'brightness') }}%
+        message: Automation - SR Cans Dim to {{ (state_attr('light.sunroom_lights_203', 'brightness')/2.55)|int }}% ({{ state_attr('light.sunroom_lights_203', 'brightness') }})
 #
 #################################################################
 # Bird Room 1 Lights Dim - Start at 18:00:00, End @ 20:00:00
@@ -117,7 +117,7 @@
     - service: script.write_to_log
       data_template:
         entity_id: light.bird_room_1_light_52
-        message: Automation - Bird Rm1 Lights to {{ state_attr('light.bird_room_1_light_52', 'brightness') }}%
+        message: Automation - Bird Rm1 Dim to {{ (state_attr('light.bird_room_1_light_52', 'brightness')/2.55)|int }}%  ({{ state_attr('light.bird_room_1_light_52', 'brightness') }})
 #
 #################################################################
 # Bird Room 2 Lights Dim - Start at 18:00:00, End @ 20:00:00
@@ -156,5 +156,5 @@
     - service: script.write_to_log
       data_template:
         entity_id: light.bird_room_2_light_53
-        message: Automation - Bird Rm2 Lights to {{ state_attr('light.bird_room_2_light_53', 'brightness') }}%
+        message: Automation - Bird Rm2 Dim to {{ (state_attr('light.bird_room_2_light_53', 'brightness')/2.55)|int }}%  ({{ state_attr('light.bird_room_2_light_53', 'brightness') }})
 #

@@ -13,7 +13,7 @@ cards:
 # COL 1
     - type: vertical-stack
       cards:
-        - type: "custom:monster-card"
+        - type: custom:auto-entities
           card:
             title: All Automations
             type: entities
@@ -21,11 +21,15 @@ cards:
           filter:
             include:
               - domain: automation
+          sort:
+            method: name
+            reverse: false
+            ignore_case: true
 #
 # COL 2
     - type: vertical-stack
       cards:
-        - type: "custom:monster-card"
+        - type: custom:auto-entities
           card:
             title: All Scripts
             type: entities
@@ -33,8 +37,12 @@ cards:
           filter:
             include:
               - domain: script
+          sort:
+            method: name
+            reverse: false
+            ignore_case: true
 #
-        - type: "custom:monster-card"
+        - type: custom:auto-entities
           card:
             title: All Scenes
             type: entities
@@ -42,22 +50,31 @@ cards:
           filter:
             include:
               - domain: scene
+          sort:
+            method: name
+            reverse: false
+            ignore_case: true
 #
-        - type: custom:monster-card
+        - type: custom:auto-entities
           card:
             type: entities
             show_header_toggle: false
             title: Arts Sensors
           filter:
             include:
-              - name: "*art*"
+#              - name: "*art*"
+              - entity_id: "*art*"
             exclude:
               - domain: automation
+          sort:
+            method: name
+            reverse: false
+            ignore_case: true
 
 # COL 3
     - type: vertical-stack
       cards:
-        - type: "custom:monster-card"
+        - type: custom:auto-entities
           card:
             title: Inputs
             type: entities
@@ -68,15 +85,23 @@ cards:
               - domain: input_select
               - domain: input_number
               - domain: input_datetime
+          sort:
+            method: name
+            reverse: false
+            ignore_case: true
 #
-        - type: custom:monster-card
+        - type: custom:auto-entities
           card:
             type: entities
             show_header_toggle: false
             title: Steffs Sensors
           filter:
             include:
-              - name: "*steff*"
+              - entity_id: "*steff*"
             exclude:
               - domain: automation
+          sort:
+            method: name
+            reverse: false
+            ignore_case: true
 #

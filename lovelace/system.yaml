@@ -88,17 +88,6 @@ cards:
 #            - entity: sensor.zone_count
 #              name: Zones
 #
-#        - type: entities
-#          title: Sandbox
-#          show_header_toggle: false
-#          entities:
-#            - entity: input_boolean.sandbox_testing
-#            - entity: switch.momentary_sandbox_1
-#              name: Morning Briefing
-#            - entity: switch.momentary_sandbox_2
-#              name: Evening Briefing
-#            - entity: switch.momentary_sandbox_3
-#              name: Kitchen Roku
 #
 #
 #        - type: entities
@@ -152,6 +141,8 @@ cards:
             - entity: input_boolean.kit_motion_detected
             - entity: input_datetime.last_kitchen_motion
             - entity: input_boolean.speak_kit_motion
+            - entity: input_select.kit_lights_auto_off
+              name: Kitchen Lights Auto Off
             - type: divider
             - entity: input_boolean.lr_motion_detected
             - entity: input_datetime.last_livingrm_motion

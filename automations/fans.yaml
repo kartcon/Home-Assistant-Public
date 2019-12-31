@@ -41,7 +41,7 @@
     data:
       entity_id: light.sunroom_fan_204
       brightness: >
-          76
+          84
   - delay: 0:00:10
 #  - service: persistent_notification.create
 #    data_template:

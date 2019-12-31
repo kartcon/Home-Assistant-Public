@@ -5,25 +5,31 @@
 #################################################################
 # Active Weather Alert
 #################################################################
-- alias: NWS Announcement Weather Alert
+- id: nws_announcement_weather_alert
+  alias: NWS Announcement Weather Alert
   trigger:
   - platform: state
     entity_id: sensor.nws_alert_count
   condition:
+  - condition: state
+    entity_id: input_boolean.weather_alerts
+    state: 'on'
   - condition: template
     value_template: '{{states.sensor.nws_alert_count.state | int > 0}}'
   - condition: time
     after: '09:00:00'
     before: '23:00:00'
   - condition: template
-    # Only run if more than 4 hours (14,400 sec) since it last ran
-    value_template: '{{(as_timestamp(now()) - as_timestamp(state_attr("automation.weather_alerts", "last_triggered") | default(0)) | int > 14000 )}}'
+    # Only run if more than 6 hours (21,600 sec) since it last ran
+    value_template: '{{(as_timestamp(now()) - as_timestamp(state_attr("automation.weather_alerts", "last_triggered") | default(0)) | int > 21600 )}}'
   action:
   # Set Volume
   - service: script.set_alexa_volume
     data:
       alexa_entity: group.all_echo_dots
   # Make Announcement
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.alexa_speaking
   - service: notify.alexa_media
     data_template:
       target: group.all_echo_dots
@@ -31,4 +37,91 @@
         type: tts
       message: "The National Weather Service has issued a
       {{ states.sensor.nws_alert_event.state }} for your area.
-      It expires at {{ as_timestamp(state_attr('sensor.nws_alert_event', 'features')[0].properties.expires)| timestamp_custom('%-I:%M %p on %-m-%-d-%Y') }}."
+      It expires at {{ as_timestamp(state_attr('sensor.nws_alert_event', 'features')[0].properties.expires)| timestamp_custom('%-I %p on %-m-%-d-%Y') }}."
+  - delay: '00:00:15'
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.alexa_speaking
+#   {{ as_timestamp(state_attr('sensor.nws_alert_event', 'features')[0].properties.expires)| timestamp_custom('%-I:%M %p on %-m-%-d-%Y') }}
+#################################################################
+# High UV Index Alert
+#################################################################
+- id: high_uv_index_alert
+  alias: High UV Index Alert
+  trigger:
+  - platform: state
+    entity_id: sensor.dark_sky_uv_index
+  condition:
+  - condition: state
+    entity_id: input_boolean.weather_alerts
+    state: 'on'
+  - condition: numeric_state
+    entity_id: sensor.dark_sky_uv_index
+    above: 5.9
+    below: 8
+  - condition: time
+    after: '09:00:00'
+    before: '20:00:00'
+  - condition: template
+    # Only run if more than 4 hours (14,400 sec) since it last ran
+    value_template: '{{(as_timestamp(now()) - as_timestamp(state_attr("automation.high_uv_index_alert", "last_triggered") | default(0)) | int > 14000 )}}'
+  action:
+  - service: notify.ios_group_art_steff
+    data:
+      title: "UV Index High"
+      message: "Sunscreen would be a good idea."
+#
+#################################################################
+# Very High UV Index Alert
+#################################################################
+- id: very_high_uv_index_alert
+  alias: Very High UV Index Alert
+  trigger:
+  - platform: state
+    entity_id: sensor.dark_sky_uv_index
+  condition:
+  - condition: state
+    entity_id: input_boolean.weather_alerts
+    state: 'on'
+  - condition: numeric_state
+    entity_id: sensor.dark_sky_uv_index
+    above: 7.9
+    below: 11
+  - condition: time
+    after: '09:00:00'
+    before: '20:00:00'
+  - condition: template
+    # Only run if more than 4 hours (14,400 sec) since it last ran
+    value_template: '{{(as_timestamp(now()) - as_timestamp(state_attr("automation.very_high_uv_index_alert", "last_triggered") | default(0)) | int > 14000 )}}'
+  action:
+  - service: notify.ios_group_art_steff
+    data:
+      title: "UV Index Very High"
+      message: "Re-apply sunscreen before you burn!"
+#
+#################################################################
+# Extreme UV Index Alert
+#################################################################
+- id: extreme_uv_index_alert
+  alias: Extreme UV Index Alert
+  trigger:
+  - platform: state
+    entity_id: sensor.dark_sky_uv_index
+  condition:
+  - condition: state
+    entity_id: input_boolean.weather_alerts
+    state: 'on'
+  - condition: numeric_state
+    entity_id: sensor.dark_sky_uv_index
+    above: 11
+  - condition: time
+    after: '09:00:00'
+    before: '20:00:00'
+  - condition: template
+    # Only run if more than 4 hours (14,400 sec) since it last ran
+    value_template: '{{(as_timestamp(now()) - as_timestamp(state_attr("automation.extreme_uv_index_alert", "last_triggered") | default(0)) | int > 14000 )}}'
+  action:
+  - service: notify.ios_group_art_steff
+    data:
+      title: "UV Index Extremly High"
+      message: "Re-apply sunscreen and use caution when going outside."
+#

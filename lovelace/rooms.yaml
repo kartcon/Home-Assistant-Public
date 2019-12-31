@@ -78,6 +78,8 @@ cards:
               entity: light.lr_can_lights_62
               name: Cans
               icon: mdi:blur-radial
+#            - entity: light.lr_fan_115
+#              icon: mdi:fan
             - entity: light.lr_fan_115
               icon: mdi:fan
             - entity: light.tv_left
@@ -151,6 +153,9 @@ cards:
               - type: custom:slider-entity-row
                 entity: light.sunroom_fan_204
                 name: Fan %
+                min: 0
+                max: 100
+                step: 33
                 icon: mdi:fan
               - entity: light.flux_led_strip
                 name: LED %

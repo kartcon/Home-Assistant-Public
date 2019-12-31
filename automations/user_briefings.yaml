@@ -35,6 +35,28 @@
     # Only run if more than 6 hours (21,600 sec) since it last ran
     value_template: '{{(as_timestamp(now()) - as_timestamp(state_attr("automation.art_weekday_briefing", "last_triggered") | default(0)) | int > 21600 )}}'
   action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.alexa_entity
+      option: "media_player.kitchen_echo"
+    # Wait for Alexa to be ready
+  - wait_template: "{{ is_state('input_boolean.alexa_speaking', 'on') }}"
+    timeout: '00:00:20'
+    continue_on_timeout: 'true'
+  - service: script.turn_on
+    entity_id: script.set_alexa_volume
+    data_template:
+      variables:
+        alexa_entity: "{{ states('input_select.alexa_entity') }}"
+#        alexa_entity: media_player.kitchen_echo
+  - delay: '00:00:03'
+  - service: script.turn_on
+    entity_id: script.announce_morning_briefing
+    data_template:
+      variables:
+        alexa_entity: "{{ states('input_select.alexa_entity') }}"
+#        alexa_entity: media_player.kitchen_echo
+  - delay: '00:00:03'
   - service: script.turn_on
     entity_id: script.morning_briefing
     data_template:
@@ -73,6 +95,28 @@
     # Only run if more than 6 hours (21,600 sec) since it last ran
     value_template: '{{(as_timestamp(now()) - as_timestamp(state_attr("automation.art_weekend_briefing", "last_triggered") | default(0)) | int > 21600 )}}'
   action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.alexa_entity
+      option: "media_player.kitchen_echo"
+    # Wait for Alexa to be ready
+  - wait_template: "{{ is_state('input_boolean.alexa_speaking', 'on') }}"
+    timeout: '00:00:20'
+    continue_on_timeout: 'true'
+  - service: script.turn_on
+    entity_id: script.set_alexa_volume
+    data_template:
+      variables:
+        alexa_entity: "{{ states('input_select.alexa_entity') }}"
+#        alexa_entity: media_player.kitchen_echo
+  - delay: '00:00:03'
+  - service: script.turn_on
+    entity_id: script.announce_morning_briefing
+    data_template:
+      variables:
+        alexa_entity: "{{ states('input_select.alexa_entity') }}"
+#        alexa_entity: media_player.kitchen_echo
+  - delay: '00:00:03'
   - service: script.turn_on
     entity_id: script.morning_briefing
     data_template:
@@ -114,6 +158,28 @@
     # Only run if more than 6 hours (21,600 sec) since it last ran
     value_template: '{{(as_timestamp(now()) - as_timestamp(state_attr("automation.steff_weekday_briefing", "last_triggered") | default(0)) | int > 21600 )}}'
   action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.alexa_entity
+      option: "media_player.kitchen_echo"
+    # Wait for Alexa to be ready
+  - wait_template: "{{ is_state('input_boolean.alexa_speaking', 'on') }}"
+    timeout: '00:00:20'
+    continue_on_timeout: 'true'
+  - service: script.turn_on
+    entity_id: script.set_alexa_volume
+    data_template:
+      variables:
+        alexa_entity: "{{ states('input_select.alexa_entity') }}"
+#        alexa_entity: media_player.kitchen_echo
+  - delay: '00:00:03'
+  - service: script.turn_on
+    entity_id: script.announce_morning_briefing
+    data_template:
+      variables:
+        alexa_entity: "{{ states('input_select.alexa_entity') }}"
+#        alexa_entity: media_player.kitchen_echo
+  - delay: '00:00:03'
   - service: script.turn_on
     entity_id: script.morning_briefing
     data_template:
@@ -152,6 +218,28 @@
     # Only run if more than 6 hours (21,600 sec) since it last ran
     value_template: '{{(as_timestamp(now()) - as_timestamp(state_attr("automation.steff_weekend_briefing", "last_triggered") | default(0)) | int > 21600 )}}'
   action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.alexa_entity
+      option: "media_player.kitchen_echo"
+    # Wait for Alexa to be ready
+  - wait_template: "{{ is_state('input_boolean.alexa_speaking', 'on') }}"
+    timeout: '00:00:20'
+    continue_on_timeout: 'true'
+  - service: script.turn_on
+    entity_id: script.set_alexa_volume
+    data_template:
+      variables:
+        alexa_entity: "{{ states('input_select.alexa_entity') }}"
+#        alexa_entity: media_player.kitchen_echo
+  - delay: '00:00:03'
+  - service: script.turn_on
+    entity_id: script.announce_morning_briefing
+    data_template:
+      variables:
+        alexa_entity: "{{ states('input_select.alexa_entity') }}"
+#        alexa_entity: media_player.kitchen_echo
+  - delay: '00:00:03'
   - service: script.turn_on
     entity_id: script.morning_briefing
     data_template:
@@ -188,6 +276,10 @@
     data:
       entity_id: input_select.alexa_entity
       option: "media_player.kitchen_echo"
+    # Wait for Alexa to be ready
+  - wait_template: "{{ is_state('input_boolean.alexa_speaking', 'on') }}"
+    timeout: '00:00:20'
+    continue_on_timeout: 'true'
   - service: script.turn_on
     entity_id: script.set_alexa_volume
     data_template:
@@ -223,6 +315,10 @@
     entity_id: switch.momentary_sandbox_1
     to: 'replay'
   action:
+    # Wait for Alexa to be ready
+  - wait_template: "{{ is_state('input_boolean.alexa_speaking', 'on') }}"
+    timeout: '00:00:20'
+    continue_on_timeout: 'true'
   - service: script.turn_on
     entity_id: script.morning_briefing
     data_template:
@@ -242,6 +338,10 @@
     entity_id: switch.momentary_sandbox_1
     to: 'replay'
   action:
+    # Wait for Alexa to be ready
+  - wait_template: "{{ is_state('input_boolean.alexa_speaking', 'on') }}"
+    timeout: '00:00:20'
+    continue_on_timeout: 'true'
   - service: script.turn_on
     entity_id: script.morning_briefing
     data_template:
@@ -261,6 +361,10 @@
     entity_id: switch.momentary_sandbox_1
     to: 'replay'
   action:
+    # Wait for Alexa to be ready
+  - wait_template: "{{ is_state('input_boolean.alexa_speaking', 'on') }}"
+    timeout: '00:00:20'
+    continue_on_timeout: 'true'
   - service: script.turn_on
     entity_id: script.evening_briefing
     data_template:

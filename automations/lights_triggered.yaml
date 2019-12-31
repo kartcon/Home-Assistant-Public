@@ -38,6 +38,8 @@
     data:
       alexa_entity: media_player.kitchen_echo
   # Make Announcement
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.alexa_speaking
   - service: notify.alexa_media
     data_template:
       target:
@@ -45,6 +47,9 @@
       data:
         type: tts
       message: "Kitchen Motion Sensor."
+  - delay: '00:00:05'
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.alexa_speaking
 #  - service: script.sonos_say
 #    data:
 #      sonos_entity: media_player.sunroom_sonos
@@ -106,6 +111,12 @@
 #  - service: light.turn_on
 #    entity_id: group.kitchen
   - service: light.turn_on
+    entity_id: light.kitchen_can_lights_49
+  - service: light.turn_on
+    data:
+      entity_id: light.kitchen_pendants_106
+      brightness: 127
+  - service: light.turn_on
     entity_id: light.kitchen_uc_lights_44
   - service: light.turn_on
     data:
@@ -113,10 +124,6 @@
       brightness: 127
   - service: light.turn_on
     entity_id: light.kitchen_uc_lights_44
-  - service: light.turn_on
-    data:
-      entity_id: light.kitchen_pendants_106
-      brightness: 127
 #  - service: persistent_notification.create
 #    data_template:
 #      title: Kitchen AUTO-ON Triggered
@@ -129,6 +136,8 @@
     data:
       alexa_entity: media_player.kitchen_echo
   # Make Announcement
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.alexa_speaking
   - service: notify.alexa_media
     data_template:
       target:
@@ -136,6 +145,9 @@
       data:
         type: tts
       message: "I've turned the light on for you."
+  - delay: '00:00:05'
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.alexa_speaking
 #  - service: script.sonos_say
 #    data:
 #      sonos_entity: media_player.sunroom_sonos
@@ -189,6 +201,8 @@
     data:
       alexa_entity: media_player.kitchen_echo
   # Make Announcement
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.alexa_speaking
   - service: notify.alexa_media
     data_template:
       target:
@@ -196,6 +210,9 @@
       data:
         type: tts
       message: "I've turned the lights off to save energy."
+  - delay: '00:00:05'
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.alexa_speaking
 #  - service: script.sonos_say
 #    data:
 #      sonos_entity: media_player.sunroom_sonos
@@ -317,6 +334,8 @@
     data:
       alexa_entity: media_player.kitchen_echo
   # Make Announcement
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.alexa_speaking
   - service: notify.alexa_media
     data_template:
       target:
@@ -324,6 +343,9 @@
       data:
         type: tts
       message: "Living Room Motion Sensor."
+  - delay: '00:00:05'
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.alexa_speaking
 #  - service: script.sonos_say
 #    data:
 #      sonos_entity: media_player.sunroom_sonos

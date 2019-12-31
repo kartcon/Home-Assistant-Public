@@ -11,6 +11,11 @@ title: My Home Assistant
 # https://github.com/custom-components/custom_updater/wiki/How-it-works
 resources:
 #   ----------------------------------------------------------------------------
+# Auto Entities (was Monster Card)
+  - url: /community_plugin/lovelace-auto-entities/auto-entities.js
+    type: module
+    # https://github.com/thomasloven/lovelace-auto-entities
+#   ----------------------------------------------------------------------------
 # Birthday Card
   - url: /local/birthday-card.js?v=1.072719
     type: js
@@ -41,8 +46,8 @@ resources:
 #   https://github.com/kalkih/mini-media-player
 #   ----------------------------------------------------------------------------
 # Monster Card
-  - url: /community_plugin/monster-card/monster-card.js
-    type: js
+#  - url: /community_plugin/monster-card/monster-card.js
+#    type: js
 #   https://github.com/ciotlosm/custom-lovelace/tree/master/monster-card
 #   ----------------------------------------------------------------------------
 # RGB Light Card

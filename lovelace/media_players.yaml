@@ -84,7 +84,7 @@ cards:
           shortcuts:
             columns: 2 # Max buttons per row
             buttons:
-            # Change the source
+            # Button Options
             - name: Power On
               type: script
               id: script.turn_on_lgtv
@@ -94,18 +94,22 @@ cards:
             - name: XFinity
               type: source
               id: Xfinity
+              attribute: source
             - name: Cameras
               type: source
               id: NVR Cameras
+              attribute: source
             - name: Amazon
               type: source
               id: Amazon Prime Video
+              attribute: source
             - name: Wii
               type: source
               id: Game Console
+              attribute: source
           hide:
-            controls: false
-            power: true
+            controls: true
+            power: false
             power_state: false
             icon_state: false
 #
@@ -117,24 +121,22 @@ cards:
           shortcuts:
             columns: 2 # Max buttons per row
             buttons:
-            # Change the source
+            # Button Options
             - name: Power On
               type: script
               id: script.turn_on_kitchen_roku
             - name: Power Off
               type: script
               id: script.turn_off_kitchen_roku
-#            - name: Power On
-#              type: service
-#              id: media_player.turn_on
-#            - name: Power Off
-#              type: service
-#              id: media_player.turn_off
           hide:
-            controls: false
+            controls: true
             power: false
             power_state: false
-            icon_state: false
+            icon_state: true
+#            controls: false
+#            power: false
+#            power_state: false
+#            icon_state: false
 #
 # COL 3
     - type: vertical-stack

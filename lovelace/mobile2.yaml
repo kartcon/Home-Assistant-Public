@@ -74,7 +74,14 @@ cards:
         - type: custom:slider-entity-row
           entity: light.sunroom_fan_204
           name: Fan %
+          min: 0
+          max: 100
+          step: 33
           icon: mdi:fan
+#        - type: custom:slider-entity-row
+#          entity: light.sunroom_fan_204
+#          name: Fan %
+#          icon: mdi:fan
         - entity: light.flux_led_strip
           icon: mdi:led-strip-variant
         - type: custom:slider-entity-row
