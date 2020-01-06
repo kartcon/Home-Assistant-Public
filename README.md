@@ -15,7 +15,7 @@
   <img src="https://img.shields.io/github/watchers/kartcon/Home-Assistant-Public?style=plastic">
 </a>
 <a href="https://github.com/kartcon/Home-Assistant-Public">
-  <img src="https://img.shields.io/badge/Home%20Assistant-100.3-blue?style=plastic">
+  <img src="https://img.shields.io/badge/Home%20Assistant-103.5-blue?style=plastic">
 </a>
 </div>
 
@@ -46,7 +46,7 @@ The following is a list of hardware deployed in this home automation project. Z-
 - Primary Z-wave hub: [Vera Secure](https://getvera.com/products/verasecure)
 - Secondary Z-wave hub: [Vera 3](https://getvera.com/collections/controllers)
 - Low Power RF Network: [433MHz](https://www.vesternet.com/pages/vera-controller-comparison)
-- Wifi: [X-Finity Router](https://www.xfinity.com/learn/internet-service/wifi)
+- Wifi: Unifi USG Cloud Key, 2 APO's, 2 Switches (https://unifi-network.ui.com)
 - Extenders(3): [X-Fi Pods](https://www.xfinity.com/learn/internet-service/wifi/xfi-pod-3pack)
 - Zone Controller [Leviton](https://www.amazon.com/gp/product/B004KN87OE/ref=ppx_yo_dt_b_asin_title_o07_s00?ie=UTF8&psc=1)
 
@@ -58,7 +58,7 @@ The following is a list of hardware deployed in this home automation project. Z-
 ### Switches & Outlets
 - On/Off Switches (22) [GE/Jasco](https://byjasco.com/products/category/home-automation/z-wave-home-automation)
 - Dimmable Switches (11) [GE/Jasco](https://byjasco.com/products/category/home-automation/z-wave-home-automation)
-- Z-Wave Outlets (10) [GE/Jasco](https://byjasco.com/products/category/home-automation/z-wave-home-automation)
+- Z-Wave Outlets (11) [GE/Jasco](https://byjasco.com/products/category/home-automation/z-wave-home-automation)
 - Exterior Outlets (2) [GE/Jasco](https://byjasco.com/products/category/home-automation/z-wave-home-automation)
 
 ### LED Lighting
@@ -76,6 +76,7 @@ The following is a list of hardware deployed in this home automation project. Z-
 - Sonos One Speakers (2) [Sonos](https://www.sonos.com/en-us/shop/one.html)
 - LG Smart TV (1)
 - Sony Smart TV (1)
+- Roku TV
 
 ### Cameras
 - Dahua 8 Port POE DVR [Dahua](https://www.cctvsecuritypros.com/video-recorders/8-channel-ip-camera-poe-network-video-recorder/)
@@ -112,7 +113,7 @@ Note that these screenshots are provided in a best-effort manner, and may not re
 
 ## By the Numbers
 Everybody loves stats. Its how we relate to how big, bad or powerful things are. Its our chance to brag, just a little, about what we're proud of. So here's what makes this system Big, Bad Ass and Powerful.
-- 174	Automations, 38	Binary Sensors, 15 Cameras, 2	Climate Sensors, 44 Input Booleans, 7 Input Dates, 23 Input Numbers, 13 Input Selects, 38 Lights, 4 Locks, 16 Media Players, 2 Persons, 67 Scripts, 174 Sensors, 42 Switches, 8 Device Trackers, 13 Zones and more than 17,000 lines of YAML code.
+- 186	Automations, 36	Binary Sensors, 15 Cameras, 2	Climate Sensors, 48 Input Booleans, 7 Input Dates, 39 Input Numbers, 11 Input Selects, 39 Lights, 4 Locks, 15 Media Players, 2 Persons, 79 Scripts, 186 Sensors, 26 Switches, 6 Device Trackers, 13 Zones and more than 17,000 lines of YAML code.
 
 ## Links
 - [Home Assistant Homepage](<https://home-assistant.io/>)
