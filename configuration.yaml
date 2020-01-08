@@ -1,109 +1,98 @@
-# Configure a default setup of Home Assistant (frontend, api, etc)
-#default_config:
-#  ---------------
-# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-# http:
-#   base_url: example.duckdns.org:8123
-#  ---------------
 homeassistant:
-  # Name of the location where Home Assistant is running
-  name: HA-iMac
-  # Location required to calculate the time the sun rises and sets
-  latitude: !secret latitude
-  longitude: !secret longitude
-  # Impacts weather/sunrise data (altitude above sea level in meters)
-  elevation: 4.3
-  # metric for Metric, imperial for Imperial
-  unit_system: imperial
-  # Pick yours from here:
-  # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   customize: !include customize.yaml
-  time_zone: !secret timezone
-  whitelist_external_dirs:
-    - /Users/artdavis/.homeassistant/json_files
-#
-#  ---------------
-# 0.90 setup see:
-# https://github.com/CCOSTAN/Home-AssistantConfig/blob/master/config/configuration.yaml
-# comment out http_cfgs 'include' below
   auth_providers:
     - type: homeassistant
-    - type: legacy_api_password
-      api_password: !secret api_password
+##    - type: legacy_api_password
+##      api_password: !secret api_password
     - type: trusted_networks
       trusted_networks:
       - !secret trusted_network1
       - !secret trusted_network2
       - !secret external_ip
-#  ---------------
+#  ---------------------------------------------------------------------------
 # Enables Breaking Changes Sensor (>0.96)
 breaking_changes:
-#  ---------------
+#  ---------------------------------------------------------------------------
 # Enables configuration UI
 config:
-#  ---------------
+#  ---------------------------------------------------------------------------
+# configures a default set of integrations for Home Assistant to load
+default_config:
+# https://www.home-assistant.io/integrations/default_config/
+#  ---------------------------------------------------------------------------
+# Discover and automatically configure zeroconf/mDNS and uPnP devices
+#discovery:
+#  ignore:
+#    - apple_tv
+#    - roku
+#    - sonos
+#  ---------------------------------------------------------------------------
 # Enables the frontend
 frontend:
   javascript_version: latest
-#  ---------------
+  themes: !include_dir_merge_named themes
+#  ---------------------------------------------------------------------------
 # Enables support for IOS
 #ios:
 # see Include section below!
-#  ---------------
+#  ---------------------------------------------------------------------------
 # Enables support for tracking state changes over time
 logbook:
-#  ---------------
-# https://www.home-assistant.io/components/logger/
+#  ---------------------------------------------------------------------------
 logger:
+# https://www.home-assistant.io/components/logger/
   default: info
 #  logs:
 #    homeassistant.components.device_tracker: critical
 #    homeassistant.components.camera: critical
-#  ---------------
+#  ---------------------------------------------------------------------------
 # Lovelace configuration via YAML
 lovelace:
   mode: yaml
-#  ---------------
+#  ---------------------------------------------------------------------------
 # Enables a map showing the location of tracked devices
 map:
-#  ---------------
+#  ---------------------------------------------------------------------------
+# Allows Home Assistant mobile apps to easily integrate with Home Assistant.
+mobile_app:
+#  ---------------------------------------------------------------------------
 # Enables lovelace momentary switches
 momentary:
-#  ---------------
+#  ---------------------------------------------------------------------------
 # Enable Person component
 person:
-#  ---------------
+#  ---------------------------------------------------------------------------
 # Enable Python scripts
-python_script:
-#  ---------------
+#python_script:
+#  ---------------------------------------------------------------------------
 # Track the sun
 sun:
-#  ---------------
+#  ---------------------------------------------------------------------------
 # System Health component
 system_health:
-#  ---------------
-# Text to speech
+#  ---------------------------------------------------------------------------
+# Text to speech - Required for Sonos Say??
 tts:
   - platform: google_translate
     service_name: google_say
-# Text to speech
-#  ---------------
+#  ---------------------------------------------------------------------------
 # Checks for available updates
 updater:
   # Optional, allows Home Assistant developers to focus on popular components.
   include_used_components: true
-#  ---------------
+#  ---------------------------------------------------------------------------
 #
 # Included files
 alarm_control_panel: !include includes/alarm_cp.yaml
 automation: !include_dir_merge_list automations
 binary_sensor: !include includes/binary_sensors.yaml
-camera: !include_dir_merge_list cameras
+#camera: !include_dir_merge_list cameras
 device_tracker: !include includes/device_trackers.yaml
+fan: !include includes/fans.yaml
 group: !include_dir_merge_named groups
 history: !include includes/history_cfgs.yaml
-ios: !include includes/ios_cfg.yaml
-##http: !include includes/http_cfgs.yaml
+##ios: !include includes/ios_cfg.yaml
+###http: !include includes/http_cfgs.yaml
 input_boolean: !include includes/input_booleans.yaml
 input_datetime: !include includes/input_datetimes.yaml
 input_number: !include includes/input_numbers.yaml
@@ -111,7 +100,7 @@ input_select: !include includes/input_selects.yaml
 input_text: !include includes/input_texts.yaml
 light: !include includes/lights.yaml
 media_player: !include includes/media_players.yaml
-mqtt: !include includes/mqtt_cfgs.yaml
+#mqtt: !include includes/mqtt_cfgs.yaml
 notify: !include_dir_merge_list notify
 proximity: !include includes/proximity.yaml
 recorder: !include includes/recorders.yaml
@@ -135,99 +124,50 @@ alexa_media:
       password: !secret alexa_pw
       url: amazon.com
 #
-#  ---------------
-# Send commands to Alexa (as if spoken directly)
-# https://community.home-assistant.io/t/send-commands-to-alexa/75301
-#rest_command:
-#  ask_alexa:
-#    url: https://virtual-device.bespoken.io/process?message="{{ message }}"&user_id=alexa-eac852d3-5b4b-4d09-9535-3d02f3accadc
-#
-#  ---------------
-# Google (Maps,Calendar, ect)
-#google:
-#  client_id: !secret google_cal_client_id
-#  client_secret: !secret google_cal_secret_id
-#
-#  ---------------
+#  ---------------------------------------------------------------------------
 # Enable Home Assistant Community Store
 hacs:
   token: !secret githubtoken1
   appdaemon: True
   # Enable tracking of AppDaemon apps.
-  python_script: True
+  #python_script: True
   # Enable tracking of python scripts.
-  theme: True
+  #theme: True
   # Enable tracking of themes.
 #
-#  ---------------
+#  ---------------------------------------------------------------------------
 # Own Tracks
 owntracks:
   max_gps_accuracy: 50
   events_only: false
 #  waypoints: true
 #
-#  ---------------
-#panel_iframe:
-# SSH in Sidebar
-#  terminal:
-#    title: Terminal
-#    icon: mdi:console
-#    url: !secret terminal_url
-# HASS Configurator in sidebar
-#  configurator:
-#    title: Configurator
-#    icon: mdi:wrench
-#    url: !secret configurator_url
-#
-#  ---------------
+#  ---------------------------------------------------------------------------
 # Rachio Irrigation Control
-rachio:
-  api_key: !secret rachio_api_key
+#rachio:
+#  api_key: !secret rachio_api_key
 #
-#  ---------------
-# Remote Home Assistant
-# https://github.com/lukas-hetzenecker/home-assistant-remote
-#remote_homeassistant:
-#  instances:
-#  - host: 192.168.0.51
-#    port: 8123
-#    secure: true
-##    access_token: !secret access_token
-#    api_password: !secret api_password
-#    entity_prefix: "rpi3_"
+#  ---------------------------------------------------------------------------
+# Roku TV
+roku:
+  host: !secret roku_url
 #
-#  ---------------
-# Shell Commands
-shell_command:
-  query_comcast_data_usage: 'python /python_scripts/comcast.py'
-#  image_classify: bash /home/homeassistant/.homeassistant/shell_scripts/image_classification.sh "{{camera}}"
-#  facebox: bash /home/homeassistant/.homeassistant/shell_scripts/facebox.sh "{{camera}}"
-#
-#  ---------------
+#  ---------------------------------------------------------------------------
 # Sleep IQ Bed
 sleepiq:
   username: !secret sleepiq_un
   password: !secret sleepiq_pw
 #
-#  ---------------
-# Speed Test
-# https://www.home-assistant.io/components/speedtestdotnet/
-#speedtestdotnet:
-#  monitored_conditions:
-#    - ping
-#    - download
-#    - upload
-#
-#  ---------------
+#  ---------------------------------------------------------------------------
 # Vera Setup
 vera:
   vera_controller_url: !secret vera_url
   # Optional to exclude devices - this is a list of vera device ids
-  exclude: [ 7, 13, 14, 47, 57, 86, 87, 109, 110, 133, 134, 135, 136, 140, 147, 155, 172, 174, 176, 178, 180, 182, 189, 205]
+  exclude: [ 7, 13, 14, 47, 57, 61, 86, 87, 109, 110, 133, 134, 135, 136, 140, 147, 155, 172, 174, 176, 178, 180, 182, 189, 205]
   # Optional to import switches as lights - this is a list of vera device ids
-  lights: [25, 26, 27, 29, 44, 46, 48, 49, 52, 53, 62, 92, 93, 94, 95, 105, 106, 115, 123, 124, 126, 201, 202, 203, 204, 213, 222, 224, 225, 242]
-#
-#  ---------------
+  lights: [25, 26, 27, 29, 40, 44, 46, 48, 49, 52, 53, 62, 92, 93, 94, 95, 105, 106, 115, 123, 124, 126, 201, 202, 203, 213, 222, 224, 225, 242, 278]
+#  204 Sunroom Fan Controller
+#  ---------------------------------------------------------------------------
 # Weather - Dark Sky Weather
 # See also [sensors/dark_sky.yaml]
 weather:
@@ -238,5 +178,6 @@ weather:
 #    api_key: !secret nws_api
 #    mode: daynight
 #    station: KJAX
+#  ---------------------------------------------------------------------------
 #
-#  ---------------
+

@@ -14,24 +14,80 @@ cards:
 #    max_columns: 2
     max_width: [25%, 75%]
     cards:
-      - type: 'custom:travel-time-card'
-        entities:
-          - entity: sensor.to_home
-          - entity: sensor.to_baptist
-          - entity: sensor.to_memorial
-          - entity: sensor.to_shands_jax
-          - entity: sensor.to_shands_north
-          - entity: sensor.to_st_vincents
-          - entity: sensor.to_mayo_clinic
-          - entity: sensor.to_flagler
-          - entity: sensor.to_phoebe_ga
-          - entity: sensor.to_monroe
-          - entity: sensor.to_tallahassee
-          - entity: sensor.to_mom_dad
-        columns: ['name', 'duration']
-        # columns: ['name', 'duration', 'distance', 'route']
-        map: google
-      - type: iframe
-        id: v_traf_c1
-        url: https://interactive.wusa9.com/doapp/trafficsmap-mobile.aspx?lat=30.3485&lon=-81.6644&zoom=10
-        aspect_ratio: 77%
+    - type: vertical-stack
+      cards:
+        - type: entities
+          show_header_toggle: false
+          title: IOS Art
+          entities:
+            - entity: proximity.art_to_home
+              name: Art to Home
+#            - entity: sensor.art_travel_direction
+            - entity: sensor.geocoded_location_arts_iphone_8
+              name: Location
+##            - entity: device_tracker.art_ot1
+##              name: Art OwnTracks
+#            - entity: device_tracker.arts_iphone_8
+#              name: Art iPhone 8
+        - type: entities
+          show_header_toggle: false
+          title: IOS Steff
+          entities:
+            - entity: proximity.steff_to_home
+              name: Steff to Home
+#            - entity: sensor.steff_travel_direction
+            - entity: sensor.geocoded_location_steffs_iphone_8
+              name: Location
+##            - entity: device_tracker.steff_ot2
+##              name: Steff OwnTracks
+#            - entity: device_tracker.steffs_iphone_8
+#              name: Steff iPhone 8
+        - type: 'custom:travel-time-card'
+          title: Waze Travel Times
+          entities:
+            - entity: sensor.art_to_home
+            - entity: sensor.steff_to_home                  
+            - entity: sensor.to_baptist
+            - entity: sensor.to_memorial
+            - entity: sensor.to_shands_jax
+            - entity: sensor.to_shands_north
+            - entity: sensor.to_st_vincents
+            - entity: sensor.to_mayo_clinic
+            - entity: sensor.to_flagler
+#            - entity: sensor.to_phoebe_ga
+#            - entity: sensor.to_monroe
+#            - entity: sensor.to_tallahassee
+#            - entity: sensor.to_mom_dad
+          columns: ['name', 'duration', 'distance']
+          # columns: ['name', 'duration', 'distance', 'route']
+          map: google
+        - type: horizontal-stack
+          cards:
+          - type: entity-button
+            name: Update Art
+            entity: script.update_waze_art_travel_time
+            show_icon: false
+            tap_action:
+              action: call-service
+              service: script.update_waze_art_travel_time
+#
+          - type: entity-button
+            name: Update Steff
+            entity: script.update_waze_steff_travel_time
+            show_icon: false
+            tap_action:
+              action: call-service
+              service: script.update_waze_steff_travel_time
+#
+#          - type: entity-button
+#            name: Update Mom
+#            entity: script.update_waze_mom_travel_time
+#            show_icon: false
+#            tap_action:
+#              action: call-service
+#              service: script.update_waze_mom_travel_time
+    - type: iframe
+      id: v_traf_c1
+      url: https://interactive.wusa9.com/doapp/trafficsmap-mobile.aspx?lat=30.3485&lon=-81.6644&zoom=10
+      aspect_ratio: 77%
+#

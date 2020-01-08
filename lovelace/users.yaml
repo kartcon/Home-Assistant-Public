@@ -34,8 +34,8 @@ cards:
           entities:
             - entity: device_tracker.art_ot1
               name: d_t.art_ot1
-#            - entity: device_tracker.arts_iphone_8
-#              name: d_t.arts_iphone_8
+            - entity: device_tracker.arts_iphone_8
+              name: d_t.arts_iphone_8
             - entity: proximity.art_to_home
               name: proximity.art_to_home
             - entity: person.art
@@ -44,8 +44,8 @@ cards:
               name: binary_sensor.ping_art
             - entity: sensor.art_badge
               name: sensor.art_badge
-            - entity: device_tracker.arts_iphone_8ub
-              name: arts_iphone_8ub
+#            - entity: device_tracker.arts_iphone_8ub
+#              name: arts_iphone_8ub
 #            - type: divider
 #              # not working >
 #            - entity: device_tracker.artsiphone8
@@ -107,8 +107,8 @@ cards:
           entities:
             - entity: device_tracker.steff_ot2
               name: d_t.steff_ot2
-#            - entity: device_tracker.steffs_iphone_8
-#              name: d_t.steffs_iphone_8
+            - entity: device_tracker.steffs_iphone_8
+              name: d_t.steffs_iphone_8
             - entity: proximity.steff_to_home
               name: proximity.steff_to_home
             - entity: person.steff
@@ -117,8 +117,8 @@ cards:
               name: binary_sensor.ping_steff
             - entity: sensor.steff_badge
               name: sensor.steff_badge
-            - entity: device_tracker.steffs_iphone_8ub
-              name: steffs_iphone_8ub
+#            - entity: device_tracker.steffs_iphone_8ub
+#              name: steffs_iphone_8ub
 #            - type: divider
 #              # not working >
 #            - entity: device_tracker.steffsiphone8
@@ -128,4 +128,6 @@ cards:
 #            - entity: sensor.steffsiphone8_distance
 #              name: sensor.steffsiphone8_distance
 #              # not working <
+#
+#
 #

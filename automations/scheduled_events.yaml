@@ -24,13 +24,13 @@
       title: '{{ states.sensor.todays_events.state }}'
       message: >-
         Today is {{ states.sensor.todays_events.state }}.
-  - service: notify.ios_group_art_steff
+  - service: notify.mobile_group_art_steff
     data_template:
       title: '{{ states.sensor.todays_events.state }}'
       message: 'Today is {{ states.sensor.todays_events.state }}.'
 #
 #############################################################
-#  Trash Day - Every Thursday, Notify Wednesday at sunset
+#  Trash Day - Every Wednesday, Notify Tuesday at sunset
 #############################################################
 - id: take_out_the_trash
   alias: 'Take out the trash'
@@ -43,12 +43,8 @@
   condition:
     condition: time
     weekday:
-      - wed
+      - tue
   action:
-#  - service: media_player.volume_set
-#    data:
-#      entity_id: group.all_echo_dots
-#      volume_level: '0.5'
   # Set Volume
   - service: script.set_alexa_volume
     data:
@@ -58,11 +54,13 @@
     entity_id: input_boolean.alexa_speaking
   - service: notify.alexa_media
     data:
-      target: group.all_echo_dots
-      message: "Trash pick-up is tomorrow. Remember to put the container out to the road."
+      target:
+        - media_player.kitchen_echo
+#        - media_player.office_echo
       data:
-        type: announce
+        type: tts
         method: speak
+      message: "Trash pick-up is tomorrow. Remember to put the container out to the road."
   - service: script.sonos_say
     data:
       sonos_entity: media_player.sunroom_sonos
@@ -72,7 +70,7 @@
   - condition: state
     entity_id: input_boolean.system_alerts
     state: 'on'
-  - service: notify.ios_group_art_steff
+  - service: notify.mobile_group_art_steff
     data:
       message: "Reminder: Take out the Trash."
   - delay: '00:00:05'
@@ -105,10 +103,6 @@
       entity_id: sensor.week_odd_even
       state: 'Even Week'
   action:
-#  - service: media_player.volume_set
-#    data:
-#      entity_id: group.all_echo_dots
-#      volume_level: '0.5'
   # Set Volume
   - service: script.set_alexa_volume
     data:
@@ -118,14 +112,16 @@
     entity_id: input_boolean.alexa_speaking
   - service: notify.alexa_media
     data:
-      target: group.all_echo_dots
-      message: "Recycling pick-up is tomorrow. Remember to put the container out to the road."
+      target:
+        - media_player.kitchen_echo
+#        - media_player.office_echo
       data:
-        type: announce
+        type: tts
         method: speak
+      message: "Recycling pick-up is tomorrow. Remember to put the container out to the road."
   - service: script.sonos_say
     data:
-      sonos_entity: media_player.sunroom_sonos
+      sonos_entity: media_player.sunroom_black_sonos
       volume: 0.4
       message: "Recycling pick-up is tomorrow. Remember to put the container out to the road."
       delay: '00:00:05'
@@ -150,7 +146,7 @@
   - condition: state
     entity_id: input_boolean.system_alerts
     state: 'on'
-  - service: notify.ios_group_art_steff
+  - service: notify.mobile_group_art_steff
     data:
       message: "Reminder: Take out the recycling."
 #

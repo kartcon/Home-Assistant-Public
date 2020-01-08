@@ -1,0 +1,30 @@
+sunroom_fan_on:
+  sequence:
+    - service: light.turn_on
+      data:
+        entity_id: light.sunroom_fan_204
+        brightness: 84
+
+sunroom_fan_off:
+  sequence:
+    - service: light.turn_off
+      entity_id: light.sunroom_fan_204
+
+sunroom_fan_speed:
+  sequence:
+    - service: light.turn_on
+      data_template:
+        entity_id: light.sunroom_fan_204
+        brightness: >
+          {% if speed == 'off' %}
+            0
+          {% elif speed == 'low' %}
+            84
+          {% elif speed == 'medium' %}
+            166
+          {% elif speed == 'high' %}
+            255
+          {% else %}
+            0
+          {% endif %}
+#

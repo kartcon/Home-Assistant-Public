@@ -3,6 +3,58 @@
 #################################################################
 #
 #############################################################
+#   Geo Track Art
+#############################################################
+- alias: Geo Track Art
+  id: geo_track_art
+  trigger:
+  - platform: template
+    value_template: "{% if not is_state('device_tracker.arts_iphone_8', 'not_home') %}true{% endif %}"
+  # value_template: "{% if not is_state('device_tracker.art_ot1', 'not_home') %}true{% endif %}"
+#  condition:
+#  - condition: state
+#    entity_id: input_boolean.sandbox_testing
+#    state: 'on'
+  action:
+  - service: notify.mobile_group_art_only
+    data_template:
+      title: Art's Tracking
+      message: >-
+        "{{now().strftime('%m/%d/%Y %H:%M:%S')}}: Art went from {{trigger.from_state.state}} to {{trigger.to_state.state}}. Direction of travel is {{states('sensor.art_travel_direction')}}."
+  - service: persistent_notification.create
+    data_template:
+      title: Geo Track Art
+      message: >-
+        "{{now().strftime('%m/%d/%Y %H:%M:%S')}}: Art went from {{trigger.from_state.state}} to {{trigger.to_state.state}}. Direction of travel is {{states('sensor.art_travel_direction')}}."
+#
+#############################################################
+#   Geo Track Steff
+#############################################################
+- alias: Geo Track Steff
+  id: geo_track_steff
+  trigger:
+  - platform: template
+    value_template: "{% if not is_state('device_tracker.steffs_iphone_8', 'not_home') %}true{% endif %}"
+  # value_template: "{% if not is_state('device_tracker.art_ot1', 'not_home') %}true{% endif %}"
+#  condition:
+#  - condition: state
+#    entity_id: input_boolean.sandbox_testing
+#    state: 'on'
+  action:
+  - service: notify.mobile_group_art_only
+    data_template:
+      title: Steff's Tracking
+      message: >-
+        "{{now().strftime('%m/%d/%Y %H:%M:%S')}}: Steff went from {{trigger.from_state.state}} to {{trigger.to_state.state}}. Direction of travel is {{states('sensor.art_travel_direction')}}."
+  - service: persistent_notification.create
+    data_template:
+      title: Geo Track Steff
+      message: >-
+        "{{now().strftime('%m/%d/%Y %H:%M:%S')}}: Steff went from {{trigger.from_state.state}} to {{trigger.to_state.state}}. Direction of travel is {{states('sensor.art_travel_direction')}}."
+#
+
+
+#############################################################
 #   Geo Test One ZONE=HOME (Used in geo_location yaml)
 #############################################################
 #- alias: Geo Test One
@@ -16,7 +68,7 @@
 #    entity_id: input_boolean.sandbox_testing
 #    state: 'on'
 #  action:
-#  - service: notify.ios_group_art_only
+#  - service: notify.mobile_group_art_only
 #    data_template:
 #      title: "Geo Test One"
 #      message: "Trigger {{trigger.from_state.state}} to {{trigger.to_state.state}},
@@ -35,7 +87,7 @@
 #    entity_id: input_boolean.sandbox_testing
 #    state: 'on'
 #  action:
-#  - service: notify.ios_group_art_only
+#  - service: notify.mobile_group_art_only
 #    data_template:
 #      title: "Geo Test Two"
 #      message: "Trigger {{trigger.from_state.state}} to {{trigger.to_state.state}},
@@ -56,7 +108,7 @@
 #    entity_id: input_boolean.sandbox_testing
 #    state: 'on'
 #  action:
-#  - service: notify.ios_group_art_only
+#  - service: notify.mobile_group_art_only
 #    data_template:
 #      title: "Geo Test Three"
 #      message: "Trigger {{trigger.from_state.state}} to {{trigger.to_state.state}},
@@ -68,19 +120,19 @@
 #- alias: Geo Test Four
 #  id: geo_test_four
 #  trigger:
-#    platform: template
-#    value_template: "{% if not is_state('device_tracker.art_ot1', 'not_home') %}true{% endif %}"
-##    value_template: "{% if not is_state('sensor.artsiphone8_zone', 'not_home') %}true{% endif %}"
+#  - platform: template
+#    value_template: "{% if not is_state('device_tracker.arts_iphone_8', 'not_home') %}true{% endif %}"
+#  # value_template: "{% if not is_state('device_tracker.art_ot1', 'not_home') %}true{% endif %}"
 #  condition:
 #  - condition: state
 #    entity_id: input_boolean.sandbox_testing
 #    state: 'on'
 #  action:
-#  - service: notify.ios_group_art_only
+#  - service: notify.mobile_group_art_only
 #    data_template:
-#      title: "Geo Test Four"
-#      message: "Trigger {{trigger.from_state.state}} to {{trigger.to_state.state}},
-#                Zone={{states.sensor.artsiphone8_zone.state}}"
+#      title: Art's Tracking
+#      message: >-
+#        "{{now().strftime('%m/%d/%Y %H:%M:%S')}}: Art went from {{trigger.from_state.state}} to {{trigger.to_state.state}}. Direction of travel is {{states('sensor.art_travel_direction')}}."
 #
 #############################################################
 #   Geo Test Five ZONE=AWAY
@@ -97,7 +149,7 @@
 #    entity_id: input_boolean.sandbox_testing
 #    state: 'on'
 #  action:
-#  - service: notify.ios_group_art_only
+#  - service: notify.mobile_group_art_only
 #    data_template:
 #      title: "Geo Test Five"
 #      message: "Trigger {{trigger.from_state.state}} to {{trigger.to_state.state}},
@@ -117,7 +169,7 @@
 #    entity_id: input_boolean.sandbox_testing
 #    state: 'on'
 #  action:
-#  - service: notify.ios_group_art_only
+#  - service: notify.mobile_group_art_only
 #    data_template:
 #      title: "Geo Test Six"
 #      message: "Trigger {{trigger.from_state.state}} to {{trigger.to_state.state}},
@@ -141,7 +193,7 @@
 ##    entity_id: sensor.artsiphone8_dir_of_travel
 ##    state: 'away_from'
 #  action:
-#  - service: notify.ios_group_art_only
+#  - service: notify.mobile_group_art_only
 #    data_template:
 #      title: "Geo Test Seven"
 #      message: "Trigger {{trigger.from_state.state}} to {{trigger.to_state.state}},
@@ -163,7 +215,7 @@
 #    entity_id: input_boolean.sandbox_testing
 #    state: 'on'
 #  action:
-#  - service: notify.ios_group_art_only
+#  - service: notify.mobile_group_art_only
 #    data_template:
 #      title: "Geo Test Eight"
 #      message: "Trigger {{trigger.from_state.state}} to {{trigger.to_state.state}},
@@ -186,7 +238,7 @@
 #    entity_id: input_boolean.sandbox_testing
 #    state: 'on'
 #  action:
-#  - service: notify.ios_group_art_only
+#  - service: notify.mobile_group_art_only
 #    data_template:
 #      title: "Geo Test Nine"
 #      message: "Trigger {{trigger.from_state.state}} to {{trigger.to_state.state}},
@@ -210,7 +262,7 @@
 #    after: '06:00:00'
 #    before: '23:59:00'
 #  action:
-#  - service: notify.ios_group_art_only
+#  - service: notify.mobile_group_art_only
 #    data_template:
 #      title: "Art Arrives Tidewater (GT10)"
 #      message: "Zone: {{states.sensor.artsiphone8_zone.state}},
@@ -221,8 +273,8 @@
 #    data_template:
 #      title: "Art Arrives Tidewater (GT10)"
 #      message: >-
-#        {{now().strftime("%m/%d/%Y %H:%M:%S")}}.
-#        Trigger {{trigger.from_state.state}} to {{trigger.to_state.state}},
+#        {{now().strftime("%m/%d/%Y %H:%M:%S")}}.<br />
+#        Trigger {{trigger.from_state.state}} to {{trigger.to_state.state}},<br />
 #        Zone={{states.sensor.artsiphone8_zone.state}}
 #############################################################
 #   Geo Test Eleven Home > Front Gate
@@ -239,7 +291,7 @@
 #    after: '06:00:00'
 #    before: '23:59:00'
 #  action:
-#  - service: notify.ios_group_art_only
+#  - service: notify.mobile_group_art_only
 #    data_template:
 #      title: "Art Departs Tidewater (GT11)"
 #      message: "Zone: {{states.sensor.artsiphone8_zone.state}},
@@ -250,7 +302,7 @@
 #    data_template:
 #      title: "Art Departs Tidewater (GT11)"
 #      message: >-
-#        {{now().strftime("%m/%d/%Y %H:%M:%S")}}.
-#        Trigger {{trigger.from_state.state}} to {{trigger.to_state.state}},
+#        {{now().strftime("%m/%d/%Y %H:%M:%S")}}.<br />
+#        Trigger {{trigger.from_state.state}} to {{trigger.to_state.state}},<br />
 #        Zone={{states.sensor.artsiphone8_zone.state}}
 #

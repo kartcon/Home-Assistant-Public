@@ -29,7 +29,7 @@ cards:
             - entity: switch.momentary_sandbox_3
               name: Evening Briefing
             - entity: switch.momentary_sandbox_4
-              name: Kitchen Roku
+              name: Test Text to Speech
 #
 #        - type: entities
 #          title: Breaking Changes
@@ -54,6 +54,19 @@ cards:
               name: Allow Auto Reboot
             - entity: input_boolean.hass_io_autobackup
 #
+        - type: entities
+          title: Default
+          entities:
+            - type: custom:template-entity-row
+              icon: mdi:lamp
+              name: "The light is {{states('light.bed_light')}} but nobody's"
+              state: "{% if is_state('input_boolean.car_home', 'on')%} home {% else %} away {% endif %}"
+              secondary: "It's {{states('sensor.time')}}"
+              active: "{{ is_state('light.bed_light', 'off') }}"
+            - type: custom:template-entity-row
+              icon: mdi:car
+              name: Hi there
+              condition: "{{is_state('input_boolean.car_home', 'on')}}"
 #
 # COL 3
     - type: vertical-stack
@@ -76,11 +89,6 @@ cards:
 #
         - type: horizontal-stack
           cards:
-          - type: entity-button
-            name: Refresh Geo
-            tap_action: call-service
-            entity: script.refresh_geolocation
-            service: script.turn_on
 
           - type: entity-button
             name: Turn On Desk Lamp
@@ -90,9 +98,7 @@ cards:
               service: script.desk_light_on
               service_data:
                 entity_id: script.desk_light_on
-#
-        - type: horizontal-stack
-          cards:
+
           - type: entity-button
             name: Turn Off Desk Lamp
             entity: script.desk_light_off
@@ -101,12 +107,39 @@ cards:
               service: script.desk_light_off
               service_data:
                 entity_id: script.desk_light_off
+
 #
+#        - type: horizontal-stack
+#          cards:
+#          - type: entity-button
+#            name: Turn Off Desk Lamp
+#            entity: script.desk_light_off
+#            tap_action:
+#              action: call-service
+#              service: script.desk_light_off
+#              service_data:
+#                entity_id: script.desk_light_off
+#
+#          - type: entity-button
+#            name: Send Push - Art Only
+#            entity: script.desk_light_off
+#            tap_action:
+#              action: call-service
+#              service: script.push_art_only
+#
+        - type: horizontal-stack
+          cards:
           - type: entity-button
-            name: Send Push - Art Only
-            entity: script.desk_light_off
+            name: Send Prowl - Art Only
+            entity: script.push_prowl_art_only
             tap_action:
               action: call-service
-              service: script.push_art_only
+              service: script.push_prowl_art_only
 #
+          - type: entity-button
+            name: Send Mobile - Art Only
+            entity: script.push_mobile_art_only
+            tap_action:
+              action: call-service
+              service: script.push_mobile_art_only
 #

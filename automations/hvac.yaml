@@ -1,70 +1,92 @@
 #################################################################
 ## HVAC AUTOMATIONS
 #################################################################
-#
+# 
 #################################################################
-# HVAC Mode to Heat
+# HVAC Mode Downstairs
 #################################################################
-- id: hvac_heat_mode
-  alias: HVAC Heat Mode
+- id: hvac_set_mode_1
+  alias: HVAC Set Mode 1
   initial_state: true
   trigger:
-    platform: numeric_state
-#    entity_id: sensor.pws_temp_f
-    entity_id: sensor.dark_sky_temperature
-    below: 67
-#  condition:
-#  - condition: state
-#    entity_id: input_boolean.no_one_home
-#    state: 'off'
+  - platform: state
+    entity_id: sensor.tstat1_currentsetpoint
+  - platform: state
+    entity_id: input_number.t1_set_point
   action:
   - service: input_select.select_option
+    data_template:
+      entity_id: input_select.thermostat_mode_1
+      option: >
+        {% if (states('sensor.tstat1_actual_temp')|float - states('input_number.t1_set_point')|float) > +2 %}
+           {% if (states('sensor.dark_sky_apparent_temperature')|float > states('sensor.tstat1_actual_temp')|float) %}
+             Cool
+           {% else %}
+             {{states('climate.tstat_1_144')|title}}
+           {% endif %}
+        {% elif (states('sensor.tstat1_actual_temp')|float - states('input_number.t1_set_point')|float) < -2 %}
+           {% if (states('sensor.dark_sky_apparent_temperature')|float < states('sensor.tstat1_actual_temp')|float) %}
+             Heat
+           {% else %}
+             {states('climate.tstat_1_144')|title}}
+           {% endif %}
+        {% else %}
+          {{states('climate.tstat_1_144')|title}}
+        {% endif %}
+#        {% if states('sensor.tstat1_actual_temp')|float > states('input_number.t1_set_point')|float %}
+#          Cool
+#        {% elif states('sensor.tstat1_actual_temp')|float < states('input_number.t1_set_point')|float %}
+#          Heat
+#        {% else %}
+#          Auto
+#        {% endif %}
+  - service: script.write_to_log
     data:
-      entity_id: input_select.thermostat_mode
-      option: Heat
+      entity_id: climate.tstat_1_144
+      message: Automation - Set HVAC-1 Mode
 #
 #################################################################
-# HVAC Mode to Cool
+# HVAC Mode Upstairs
 #################################################################
-- id: hvac_cool_mode
-  alias: HVAC Cool Mode
+- id: hvac_set_mode_2
+  alias: HVAC Set Mode 2
   initial_state: true
   trigger:
-    platform: numeric_state
-#    entity_id: sensor.pws_temp_f
-    entity_id: sensor.dark_sky_temperature
-    above: 72
-#  condition:
-#  - condition: state
-#    entity_id: input_boolean.no_one_home
-#    state: 'off'
+  - platform: state
+    entity_id: sensor.tstat1_currentsetpoint
+  - platform: state
+    entity_id: input_number.t2_set_point
   action:
   - service: input_select.select_option
+    data_template:
+      entity_id: input_select.thermostat_mode_2
+      option: >
+        {% if (states('sensor.tstat2_actual_temp')|float - states('input_number.t2_set_point')|float) > +2 %}
+           {% if (states('sensor.dark_sky_temperature')|float > states('sensor.tstat2_actual_temp')|float) %}
+             Cool
+           {% else %}
+             {{states('climate.tstat_2_145')|title}}
+           {% endif %}
+        {% elif (states('sensor.tstat2_actual_temp')|float - states('input_number.t2_set_point')|float) < -2 %}
+           {% if (states('sensor.dark_sky_temperature')|float < states('sensor.tstat2_actual_temp')|float) %}
+             Heat
+           {% else %}
+             {{states('climate.tstat_2_145')|title}}
+           {% endif %}
+        {% else %}
+          {{states('climate.tstat_2_145')|title}}
+        {% endif %}
+#        {% if states('sensor.tstat2_actual_temp')|float > states('input_number.t2_set_point')|float %}
+#          Cool
+#        {% elif states('sensor.tstat2_actual_temp')|float < states('input_number.t2_set_point')|float %}
+#          Heat
+#        {% else %}
+#          Auto
+#        {% endif %}
+  - service: script.write_to_log
     data:
-      entity_id: input_select.thermostat_mode
-      option: Cool
-#
-#################################################################
-# HVAC Mode to Auto
-#################################################################
-- id: hvac_auto_mode
-  alias: HVAC Auto Mode
-  initial_state: true
-  trigger:
-    platform: numeric_state
-#    entity_id: sensor.pws_temp_f
-    entity_id: sensor.dark_sky_temperature
-    above: 67
-    below: 72
-#  condition:
-#  - condition: state
-#    entity_id: input_boolean.no_one_home
-#    state: 'off'
-  action:
-  - service: input_select.select_option
-    data:
-      entity_id: input_select.thermostat_mode
-      option: Auto
+      entity_id: climate.tstat_2_145
+      message: Automation - Set HVAC-2 Mode
 #
 #################################################################
 # Phase of the Day: Morning
@@ -80,10 +102,19 @@
 #    entity_id: input_boolean.no_one_home
 #    state: 'off'
   action:
+  - service: input_text.set_value
+    data_template:
+      entity_id: input_text.text1
+      value: >-
+        6:00 AM until 8:30 AM
   - service: input_select.select_option
     data:
       entity_id: input_select.thermostat_phase
       option: Morning
+  - service: script.write_to_log
+    data:
+      entity_id: input_select.thermostat_phase
+      message: Automation - Set Phase Morning
 #
 #################################################################
 # Phase of the Day: Daytime
@@ -99,10 +130,19 @@
 #    entity_id: input_boolean.no_one_home
 #    state: 'off'
   action:
+  - service: input_text.set_value
+    data_template:
+      entity_id: input_text.text1
+      value: >-
+        8:30 AM until {{ states('sensor.next_setting')}}
   - service: input_select.select_option
     data:
       entity_id: input_select.thermostat_phase
       option: Daytime
+  - service: script.write_to_log
+    data:
+      entity_id: input_select.thermostat_phase
+      message: Automation - Set Phase Daytime
 #
 #################################################################
 # Phase of the Day: Evening
@@ -118,10 +158,19 @@
 #    entity_id: input_boolean.no_one_home
 #    state: 'off'
   action:
+  - service: input_text.set_value
+    data_template:
+      entity_id: input_text.text1
+      value: >-
+        {{ states('sensor.next_setting')}} until 10:00 PM
   - service: input_select.select_option
     data:
       entity_id: input_select.thermostat_phase
       option: Evening
+  - service: script.write_to_log
+    data:
+      entity_id: input_select.thermostat_phase
+      message: Automation - Set Phase Evening
 #
 #################################################################
 # Phase of the Day: Sleeping
@@ -131,58 +180,119 @@
   initial_state: true
   trigger:
     platform: time
-    at: '23:00:00'
+    at: '22:00:00'
 #  condition:
 #  - condition: state
 #    entity_id: input_boolean.no_one_home
 #    state: 'off'
   action:
+  - service: input_text.set_value
+    data_template:
+      entity_id: input_text.text1
+      value: >-
+        10:00 PM until 06:00 PM
   - service: input_select.select_option
     data:
       entity_id: input_select.thermostat_phase
       option: Sleeping
+  - service: script.write_to_log
+    data:
+      entity_id: input_select.thermostat_phase
+      message: Automation - Set Phase Sleeping
 #
 #################################################################
-# HVAC Auto Updated
+# HVAC Mode 1 Changed
 #################################################################
-- id: hvac_auto_updated
-  alias: HVAC Auto Updated
+- id: hvac_mode1_changed
+  alias: HVAC Mode1 Changed
   initial_state: true
   trigger:
-  - platform: state
-    entity_id: input_select.thermostat_mode
-  - platform: state
-    entity_id: input_select.thermostat_phase
+    platform: state
+    entity_id: input_select.thermostat_mode_1
   condition: []
   action:
-  - service: script.turn_on
-    entity_id: script.update_tstats_script
+#     - service: script.turn_on
+#       entity_id: script.update_tstat_mode_1
+#     - service: script.turn_on
+#       entity_id: script.update_tstat_temp_1
+    - service: script.turn_on
+      entity_id: script.update_tstat_note
 #
 #################################################################
-# HVAC Mode Changed
+# HVAC Mode 2 Changed
 #################################################################
-#- id: hvac_mode_changed
-#  alias: HVAC Mode Changed
-#  initial_state: true
-#  trigger:
-#    platform: state
-#    entity_id: input_select.thermostat_mode
-#  condition: []
-#  action:
-#    - service: script.turn_on
-#      entity_id: script.update_tstats_script
+- id: hvac_mode2_changed
+  alias: HVAC Mode2 Changed
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: input_select.thermostat_mode_2
+  condition: []
+  action:
+#     - service: script.turn_on
+#       entity_id: script.update_tstat_mode_2
+#     - service: script.turn_on
+#       entity_id: script.update_tstat_temp_2
+    - service: script.turn_on
+      entity_id: script.update_tstat_note
 #
 #################################################################
 # HVAC Phase Changed
 #################################################################
-#- id: hvac_phase_changed
-#  alias: HVAC Phase Changed
-#  initial_state: true
-#  trigger:
-#    platform: state
-#    entity_id: input_select.thermostat_phase
-#  condition: []
-#  action:
-#    - service: script.turn_on
-#      entity_id: script.update_tstats_script
+- id: hvac_phase_changed
+  alias: HVAC Phase Changed
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: input_select.thermostat_phase
+  condition: []
+  action:
+    - service: input_text.set_value
+      data_template:
+        entity_id: input_text.text1
+        value: >-
+          {% if states('input_select.thermostat_phase') == 'Morning' %}
+            6:00 AM until 8:30 AM
+          {% elif states('input_select.thermostat_phase') == 'Daytime' %}
+            8:30 AM until {{ states('sensor.next_setting')}}
+          {% elif states('input_select.thermostat_phase') == 'Evening' %}
+            {{ states('sensor.next_setting')}} until 10:00 PM
+          {% elif states('input_select.thermostat_phase') == 'Sleeping' %}
+            10:00 PM until 6:00 AM
+          {% else %}
+            Unknown phase error.
+          {% endif %}
+    - service: script.turn_on
+      entity_id: script.update_tstat_temp_1
+    - service: script.turn_on
+      entity_id: script.update_tstat_temp_2
+    - service: script.turn_on
+      entity_id: script.update_tstat_note
 #
+#
+#################################################################
+# Template text
+#################################################################
+# DS actual temp: {{states('sensor.dark_sky_temperature')|float}}
+# DS feels like: {{states('sensor.dark_sky_apparent_temperature')|float}}
+# Phase: {{states('input_select.thermostat_phase')}}
+# 
+# T1 Mode: {{states('climate.tstat_1_144')}}
+# T1 needs Cool: {{(states('sensor.tstat1_actual_temp')|float - 
+#   states('input_number.t1_set_point')|float) < -2}}
+# T1 needs Heat: {{(states('sensor.tstat1_actual_temp')|float - 
+#   states('input_number.t1_set_point')|float) > +2}}
+# T1 Actual temp: {{states('sensor.tstat1_actual_temp')|float}}
+# T1 Internal SetPoint: {{states('sensor.tstat1_currentsetpoint')}}
+# T1 H/A SetPoint: {{states('input_number.t1_set_point')|float}}
+# T1 H/A Mode: {{states('input_select.thermostat_mode_1')}}
+# 
+# T2 Md:{{states('climate.tstat_2_145')}}
+# T2 needs Cool: {{(states('sensor.tstat2_actual_temp')|float - 
+#   states('input_number.t2_set_point')|float) < -2}}
+# T2 needs Heat: {{(states('sensor.tstat2_actual_temp')|float - 
+#   states('input_number.t2_set_point')|float) > +2}}
+# T2 Actual temp: {{states('sensor.tstat2_actual_temp')|float}}
+# T2 Internal SetPoint: {{states('sensor.tstat2_currentsetpoint')}}
+# T2 H/A SetPoint: {{states('input_number.t2_set_point')|float}}
+# T2 H/A Mode: {{states('input_select.thermostat_mode_2')}}

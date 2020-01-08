@@ -24,13 +24,13 @@
     - thu
     - fri
   - condition: time
-    after: '06:30'
+    after: '06:00'
     before: '09:00'
-  - condition: state
-    entity_id: binary_sensor.sleepnumber_cc04b4013d81_art_is_in_bed
-    state: 'off'
-    for:
-      minutes: 3
+#  - condition: state
+#    entity_id: binary_sensor.sleepnumber_cc04b4013d81_art_is_in_bed
+#    state: 'off'
+#    for:
+#      minutes: 3
   - condition: template
     # Only run if more than 6 hours (21,600 sec) since it last ran
     value_template: '{{(as_timestamp(now()) - as_timestamp(state_attr("automation.art_weekday_briefing", "last_triggered") | default(0)) | int > 21600 )}}'
@@ -86,11 +86,11 @@
   - condition: time
     after: '06:30'
     before: '09:00'
-  - condition: state
-    entity_id: binary_sensor.sleepnumber_cc04b4013d81_art_is_in_bed
-    state: 'off'
-    for:
-      minutes: 3
+#  - condition: state
+#    entity_id: binary_sensor.sleepnumber_cc04b4013d81_art_is_in_bed
+#    state: 'off'
+#    for:
+#      minutes: 3
   - condition: template
     # Only run if more than 6 hours (21,600 sec) since it last ran
     value_template: '{{(as_timestamp(now()) - as_timestamp(state_attr("automation.art_weekend_briefing", "last_triggered") | default(0)) | int > 21600 )}}'
@@ -149,11 +149,11 @@
   - condition: time
     after: '08:00'
     before: '09:30'
-  - condition: state
-    entity_id: binary_sensor.sleepnumber_cc04b4013d81_steff_is_in_bed
-    state: 'off'
-    for:
-      minutes: 3
+#  - condition: state
+#    entity_id: binary_sensor.sleepnumber_cc04b4013d81_steff_is_in_bed
+#    state: 'off'
+#    for:
+#      minutes: 3
   - condition: template
     # Only run if more than 6 hours (21,600 sec) since it last ran
     value_template: '{{(as_timestamp(now()) - as_timestamp(state_attr("automation.steff_weekday_briefing", "last_triggered") | default(0)) | int > 21600 )}}'
@@ -209,11 +209,11 @@
   - condition: time
     after: '08:00'
     before: '09:30'
-  - condition: state
-    entity_id: binary_sensor.sleepnumber_cc04b4013d81_steff_is_in_bed
-    state: 'off'
-    for:
-      minutes: 3
+#  - condition: state
+#    entity_id: binary_sensor.sleepnumber_cc04b4013d81_steff_is_in_bed
+#    state: 'off'
+#    for:
+#      minutes: 3
   - condition: template
     # Only run if more than 6 hours (21,600 sec) since it last ran
     value_template: '{{(as_timestamp(now()) - as_timestamp(state_attr("automation.steff_weekend_briefing", "last_triggered") | default(0)) | int > 21600 )}}'

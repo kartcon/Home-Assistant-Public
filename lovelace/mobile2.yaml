@@ -69,18 +69,23 @@ cards:
           entity: light.sunroom_lights_203
           name: Lights
           icon: mdi:ceiling-light
-        - entity: light.sunroom_fan_204
-          icon: mdi:fan
-        - type: custom:slider-entity-row
-          entity: light.sunroom_fan_204
-          name: Fan %
-          min: 0
-          max: 100
-          step: 33
-          icon: mdi:fan
+#        - entity: light.sunroom_fan_204
+#          icon: mdi:fan
+        - entity: fan.sunroom_fan
+          type: custom:fan-control-entity-row
+          name: Sunroom Fan
+          customTheme: true
+          customIsOnLowColor: 'rgb(178, 203, 84)'
+          customIsOnMedColor: 'rgb(250, 199, 67)'
+          customIsOnHiColor: 'rgb(237, 114, 127)'
+          customIsOffSpdColor: 'rgb(204, 208, 209)'
+          customIsOffColor: 'rgb(144, 144, 144)'
 #        - type: custom:slider-entity-row
 #          entity: light.sunroom_fan_204
 #          name: Fan %
+#          min: 0
+#          max: 100
+#          step: 33
 #          icon: mdi:fan
         - entity: light.flux_led_strip
           icon: mdi:led-strip-variant
@@ -182,16 +187,6 @@ cards:
   #  Card 12
     - type: horizontal-stack
       cards:
-#        - type: entity-button
-#          name: Refresh Geo-Locations
-#          icon: mdi:google-maps
-#          tap_action:
-#            action: call-service
-#            service: script.turn_on
-#            service_data:
-#              entity_id: script.refresh_geolocation
-#          entity: script.refresh_geolocation
-#
         - type: entity-button
           name: Replay Art's Daily Briefing
           icon: mdi:voice

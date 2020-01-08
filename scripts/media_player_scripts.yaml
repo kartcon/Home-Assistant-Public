@@ -33,15 +33,17 @@ turn_off_lgtv:
 #
 #################################################################
 # Turn on Kitchen Roku
-# Called from [POwer On Button]
+# Called from [Power On Button]
 # In file: [lovelace/media_players]
+# Called from [ruko_auto_on_1655_weekdays] & [ruko_auto_on_1755_weekends]
+# In file: [automations/media_players]
 #################################################################
 turn_on_kitchen_roku:
   alias: Turn on Kitchen Roku
   sequence:
   - service: media_player.turn_on
     entity_id: media_player.sharp_roku_tv
-  - delay: '00:00:05'
+  - delay: '00:00:08'
   - service: remote.send_command
     data:
       entity_id: remote.sharp_roku_tv
@@ -49,7 +51,7 @@ turn_on_kitchen_roku:
       - home
       - right
       - select
-  - delay: '00:00:15'
+  - delay: '00:00:18'
   - service: remote.send_command
     data:
       entity_id: remote.sharp_roku_tv
@@ -67,4 +69,31 @@ turn_off_kitchen_roku:
   sequence:
   - service: media_player.turn_off
     entity_id: media_player.sharp_roku_tv
+#
+#################################################################
+# Sonos Say
+# Called from [ ]
+# In file: [ ]
+#################################################################
+sonos_say:
+  alias: "Sonos Say"
+  sequence:
+   - service: sonos.snapshot
+     data_template:
+       entity_id: "{{ sonos_entity }}"
+   - service: sonos.unjoin
+     data_template:
+       entity_id: "{{ sonos_entity }}"
+   - service: media_player.volume_set
+     data_template:
+       entity_id: "{{ sonos_entity }}"
+       volume_level: "{{ volume }}"
+   - service: tts.google_say
+     data_template:
+       entity_id: "{{ sonos_entity }}"
+       message: "{{ message }}"
+   - delay: "{{ delay }}"
+   - service: sonos.restore
+     data_template:
+       entity_id: "{{ sonos_entity }}"
 #

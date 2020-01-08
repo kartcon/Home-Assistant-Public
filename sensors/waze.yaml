@@ -1,97 +1,96 @@
 #########################
 #   Waze Travel Time    #
 #########################
-#- platform: waze_travel_time
-#  name: "Time to destination"
-#  origin: device_tracker.artsiphone8
-#  destination: sensor.dest_address
-#  region: 'US'
-#
-#- platform: template
-#  sensors:
-#     dest_address:
-#       value_template: >-
-#          {%- if is_state("input_select.destination", "Home")  -%}
-#            5124 Creek Crossing Drive, Jacksonville, FL 32226, USA
-#          {%- elif is_state("input_select.destination", "Shands")  -%}
-#            627 W 8th Street, Jacksonville, FL 32207, USA
-#          {%- elif is_state("input_select.destination", "Baptist")  -%}
-#            800 Prudential Dr, Jacksonville, FL 32207, USA
-#          {%- elif is_state("input_select.destination", "Memorial")  -%}
-#            3625 University Blvd S, Jacksonville, FL 32216, USA
-#          {%- elif is_state("input_select.destination", "Mayo")  -%}
-#            4500 San Pablo Rd S, Jacksonville, FL 32224, USA
-#          {%- elif is_state("input_select.destination", "Phoebe")  -%}
-#            910 N Jefferson St, Albany, GA 31701, USA
-#          {%- elif is_state("input_select.destination", "Flagler")  -%}
-#            400 Health Park Blvd, St. Augustine, FL 32086, USA
-#          {%- elif is_state("input_select.destination", "St Vincents")  -%}
-#            1 Shircliff Way, Jacksonville, FL 32204, USA
-#          {%- elif is_state("input_select.destination", "Mom & Dad")  -%}
-#            5425 Eagle Claw Drive, Port Orange, FL 32128, USA
-#          {%- else -%}
-#            Unknown
-#          {%- endif %}
-#
 # Travel Times
 - platform: waze_travel_time
-  name: To Home
-  origin: device_tracker.art_ot1
+  name: Art To Home
+  origin: person.art
   destination: zone.home
   region: 'US'
+  realtime: false
+  scan_interval: 3600
 - platform: waze_travel_time
-  name: To Baptist
-  origin: device_tracker.art_ot1
-  destination: zone.baptist
+  name: Steff To Home
+  origin: person.steff
+  destination: zone.home
   region: 'US'
-- platform: waze_travel_time
-  name: To Flagler
-  origin: device_tracker.art_ot1
-  destination: zone.flagler
-  region: 'US'
-- platform: waze_travel_time
-  name: To Mayo Clinic
-  origin: device_tracker.art_ot1
-  destination: zone.mayo
-  region: 'US'
-- platform: waze_travel_time
-  name: To Memorial
-  origin: device_tracker.art_ot1
-  destination: zone.memorial
-  region: 'US'
-- platform: waze_travel_time
-  name: To Monroe
-  origin: device_tracker.art_ot1
-  destination: zone.monroe
-  region: 'US'
-- platform: waze_travel_time
-  name: To Phoebe Ga
-  origin: device_tracker.art_ot1
-  destination: zone.phoebe
-  region: 'US'
-- platform: waze_travel_time
-  name: To Shands Jax
-  origin: device_tracker.art_ot1
-  destination: zone.shands_jax
-  region: 'US'
-- platform: waze_travel_time
-  name: To Shands North
-  origin: device_tracker.art_ot1
-  destination: zone.shands_north
-  region: 'US'
-- platform: waze_travel_time
-  name: To St Vincents
-  origin: device_tracker.art_ot1
-  destination: zone.st_vincents
-  region: 'US'
-- platform: waze_travel_time
-  name: To Tallahassee
-  origin: device_tracker.art_ot1
-  destination: zone.tallahassee
-  region: 'US'
-- platform: waze_travel_time
-  name: To Mom & Dad
-  origin: device_tracker.art_ot1
-  destination: zone.mom_dad
-  region: 'US'
+  realtime: false
+  scan_interval: 3600
+#- platform: waze_travel_time
+#  name: To Baptist
+#  origin: person.art
+#  destination: zone.baptist
+#  region: 'US'
+#  realtime: false
+#  scan_interval: 86400
+#- platform: waze_travel_time
+#  name: To Flagler
+#  origin: person.art
+#  destination: zone.flagler
+#  region: 'US'
+#  realtime: false
+#  scan_interval: 86400
+#- platform: waze_travel_time
+#  name: To Mayo Clinic
+#  origin: person.art
+#  destination: zone.mayo
+#  region: 'US'
+#  realtime: false
+#  scan_interval: 86400
+#- platform: waze_travel_time
+#  name: To Memorial
+#  origin: person.art
+#  destination: zone.memorial
+#  region: 'US'
+#  realtime: false
+#  scan_interval: 86400
+#- platform: waze_travel_time
+#  name: To Monroe
+#  origin: person.art
+#  destination: zone.monroe
+#  region: 'US'
+#  realtime: false
+#  scan_interval: 86400
+#- platform: waze_travel_time
+#  name: To Phoebe Ga
+#  origin: person.art
+#  destination: zone.phoebe
+#  region: 'US'
+#  realtime: false
+#  scan_interval: 86400
+#- platform: waze_travel_time
+#  name: To Shands Jax
+#  origin: person.art
+#  destination: zone.shands_jax
+#  region: 'US'
+#  realtime: false
+#  scan_interval: 86400
+#- platform: waze_travel_time
+#  name: To Shands North
+#  origin: person.art
+#  destination: zone.shands_north
+#  region: 'US'
+#  realtime: false
+#  scan_interval: 86400
+#- platform: waze_travel_time
+#  name: To St Vincents
+#  origin: person.art
+#  destination: zone.st_vincents
+#  region: 'US'
+#  realtime: false
+#  scan_interval: 86400
+#- platform: waze_travel_time
+#  name: To Tallahassee
+#  origin: person.art
+#  destination: zone.tallahassee
+#  region: 'US'
+#  realtime: false
+#  scan_interval: 86400
+#- platform: waze_travel_time
+#  name: To Mom & Dad
+#  origin: person.art
+#  destination: zone.mom_dad
+#  region: 'US'
+#  realtime: false
+#  scan_interval: 86400
 #

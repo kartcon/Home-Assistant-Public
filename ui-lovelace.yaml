@@ -21,61 +21,80 @@ resources:
     type: js
     # https://github.com/erlsta/homeassistant-lovelace-birthday-reminder-card
 #   ----------------------------------------------------------------------------
+# Button Card
+  - url: /community_plugin/button-card/button-card.js
+    type: module
+    # https://github.com/custom-cards/button-card
+#   ----------------------------------------------------------------------------
 # Button Entity Row
   - url: /community_plugin/button-entity-row/button-entity-row.js
     type: module
     # https://github.com/custom-cards/button-entity-row
 #   ----------------------------------------------------------------------------
-# Light Entity Row Card
-  - url: /community_plugin/light-entity-row/light-entity-row.js
-    type: js
-#   ----------------------------------------------------------------------------
-# Markdown Mod Card
-  - url: /community_plugin/lovelace-markdown-mod/markdown-mod.js
-    type: js
-#   https://github.com/thomasloven/lovelace-markdown-mod
-#   ----------------------------------------------------------------------------
-# Mini Graph Card
-  - url: /community_plugin/mini-graph-card/mini-graph-card.js
-    type: module
-#   https://github.com/kalkih/mini-graph-card
-#   ----------------------------------------------------------------------------
-# Mini Media Player
-  - url: /community_plugin/mini-media-player/mini-media-player.js
-    type: module
-#   https://github.com/kalkih/mini-media-player
-#   ----------------------------------------------------------------------------
-# Monster Card
-#  - url: /community_plugin/monster-card/monster-card.js
-#    type: js
-#   https://github.com/ciotlosm/custom-lovelace/tree/master/monster-card
-#   ----------------------------------------------------------------------------
-# RGB Light Card
-  - url: https://cdn.jsdelivr.net/npm/rgb-light-card
-    type: js
-#   https://github.com/bokub/rgb-light-card
-#   ----------------------------------------------------------------------------
-# Slider Entity Row
-  - url: /community_plugin/lovelace-slider-entity-row/slider-entity-row.js
-    type: module
-#   https://github.com/thomasloven/lovelace-slider-entity-row
-#   ----------------------------------------------------------------------------
-# Surveillance Card
-  - url: /community_plugin/surveillance-card/surveillance-card.js
-    type: module
-#   https://github.com/custom-cards/surveillance-card
-#   ----------------------------------------------------------------------------
+# Card Tools
   - url: /local/github/thomasloven/card-tools.js?track=true
     type: js
     # https://github.com/thomasloven/lovelace-card-tools
 #   ----------------------------------------------------------------------------
+# Dual Gauge card
+  - url: /community_plugin/dual-gauge-card/dual-gauge-card.js
+    type: js
+    # https://github.com/custom-cards/dual-gauge-card
+#   ----------------------------------------------------------------------------
+# Fan Control Entity
+  - url: /community_plugin/fan-control-entity-row/fan-control-entity-row.js
+    type: js 
+    # https://github.com/finity69x2/fan-control-entity-row
+#   ----------------------------------------------------------------------------
+# Layout Card
   - url: /local/github/thomasloven/layout-card.js?track=true
     type: js
-#   https://github.com/thomasloven/lovelace-layout-card
+    # https://github.com/thomasloven/lovelace-layout-card
+#   ----------------------------------------------------------------------------
+# Light Entity Row Card
+  - url: /community_plugin/light-entity-row/light-entity-row.js
+    type: js
+    # 
+#   ----------------------------------------------------------------------------
+# Mini Graph Card
+  - url: /community_plugin/mini-graph-card/mini-graph-card.js
+    type: module
+    # https://github.com/kalkih/mini-graph-card
+#   ----------------------------------------------------------------------------
+# Mini Media Player
+  - url: /community_plugin/mini-media-player/mini-media-player.js
+    type: module
+    # https://github.com/kalkih/mini-media-player
+#   ----------------------------------------------------------------------------
+# RGB Light Card
+  - url: https://cdn.jsdelivr.net/npm/rgb-light-card
+    type: js
+    # https://github.com/bokub/rgb-light-card
+#   ----------------------------------------------------------------------------
+# Slider Entity Row
+  - url: /community_plugin/lovelace-slider-entity-row/slider-entity-row.js
+    type: module
+    # https://github.com/thomasloven/lovelace-slider-entity-row
+#   ----------------------------------------------------------------------------
+# Surveillance Card
+#  - url: /community_plugin/surveillance-card/surveillance-card.js
+#    type: module
+#    # https://github.com/custom-cards/surveillance-card
+#   ----------------------------------------------------------------------------
+# Template Entity Row
+  - url: /community_plugin/lovelace-template-entity-row/template-entity-row.js
+    type: module 
+    # https://github.com/thomasloven/lovelace-template-entity-row
 #   ----------------------------------------------------------------------------
 # Travel Time Card
   - url: /community_plugin/travel-time-card/travel-time-card.js
     type: js
+    # https://github.com/ljmerza/travel-time-card
+#   ----------------------------------------------------------------------------
+# Vertical Stack In Card
+  - url: /community_plugin/vertical-stack-in-card/vertical-stack-in-card.js
+    type: js
+    # https://github.com/custom-cards/vertical-stack-in-card
 #   ----------------------------------------------------------------------------
 #
 #excluded_entities:
@@ -86,9 +105,10 @@ views:
   - !include lovelace/mobile2.yaml
   - !include lovelace/home.yaml
   - !include lovelace/rooms.yaml
+  - !include lovelace/rooms2.yaml
   - !include lovelace/hvac.yaml
   - !include lovelace/security.yaml
-  - !include lovelace/cameras.yaml
+#  - !include lovelace/cameras.yaml
   - !include lovelace/floor_one.yaml
   - !include lovelace/floor_two.yaml
   - !include lovelace/users.yaml
@@ -102,6 +122,7 @@ views:
   - !include lovelace/sandbox.yaml
   - !include lovelace/entities.yaml
 #
+#  - !include lovelace/hvac_cool_mode.yaml
 #  - !include lovelace/users_full.yaml
 #  - !include lovelace/map.yaml
 #  - !include lovelace/alarm_clock.yaml

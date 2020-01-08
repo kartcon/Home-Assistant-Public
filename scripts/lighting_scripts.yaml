@@ -11,20 +11,20 @@
 ucl_temp_nightlights:
   alias: UCL Temp Nightlights
   sequence:
-   - service: light.turn_on
-     data:
-       entity_id: light.kitchen_uc_lights_44
-   - service: light.turn_on
-     data:
-       entity_id: light.nook_uc_lights_116
-       brightness: 127
-   - delay: '00:02:00'
-   - service: light.turn_off
-     data:
-       entity_id: light.kitchen_uc_lights_44
-   - service: light.turn_off
-     data:
-       entity_id: light.nook_uc_lights_116
+  - service: light.turn_on
+    data:
+      entity_id: light.kitchen_uc_lights_44
+  - service: light.turn_on
+    data:
+      entity_id: light.nook_uc_lights_116
+      brightness: 127
+  - delay: '00:02:00'
+  - service: light.turn_off
+    data:
+      entity_id: light.kitchen_uc_lights_44
+  - service: light.turn_off
+    data:
+      entity_id: light.nook_uc_lights_116
 #
 #################################################################
 # SCRIPT: Inside Lights On 1 Hour before Sunset
@@ -59,21 +59,21 @@ inside_lights_on_before_sunset:
   - service: light.turn_on
     data:
       entity_id: light.bird_room_1_light_52
-      brightness: 51
+      brightness: 204
   - service: light.turn_on
     data:
       entity_id: light.bird_room_2_light_53
-      brightness: 51
+      brightness: 204
 #------------------------------------------
 #  Set Colors on LIFX Lights
 #------------------------------------------
-  - service: light.lifx_set_state
+  - service: lifx.set_state
     data:
       entity_id: light.tv_left
       power: true
       brightness: 58
       color_temp: 285
-  - service: light.lifx_set_state
+  - service: lifx.set_state
     data:
       entity_id: light.tv_right
       power: true
@@ -126,25 +126,25 @@ outside_lights_on_at_sunset:
 #------------------------------------------
 #  Set Colors on LIFX Lights
 #------------------------------------------
-  - service: light.lifx_set_state
+  - service: lifx.set_state
     data:
       entity_id: light.front_porch
       power: true
       brightness: 94
       rgb_color: [255,239,0]
-  - service: light.lifx_set_state
+  - service: lifx.set_state
     data:
       entity_id: light.garage_east
       power: true
       brightness: 94
       rgb_color: [255,239,0]
-  - service: light.lifx_set_state
+  - service: lifx.set_state
     data:
       entity_id: light.garage_center
       power: true
       brightness: 94
       rgb_color: [255,239,0]
-  - service: light.lifx_set_state
+  - service: lifx.set_state
     data:
       entity_id: light.garage_west
       power: true
@@ -169,27 +169,27 @@ outside_lights_on_at_sunset:
 lifx_lights_off:
   alias: LIFX Lights Off
   sequence:
-  - service: light.lifx_set_state
+  - service: lifx.set_state
     data:
       entity_id: light.tv_left
       power: false
-  - service: light.lifx_set_state
+  - service: lifx.set_state
     data:
       entity_id: light.tv_right
       power: false
-  - service: light.lifx_set_state
+  - service: lifx.set_state
     data:
       entity_id: light.front_porch
       power: false
-  - service: light.lifx_set_state
+  - service: lifx.set_state
     data:
       entity_id: light.garage_east
       power: false
-  - service: light.lifx_set_state
+  - service: lifx.set_state
     data:
       entity_id: light.garage_center
       power: false
-  - service: light.lifx_set_state
+  - service: lifx.set_state
     data:
       entity_id: light.garage_west
       power: false
@@ -205,32 +205,32 @@ lifx_lights_off:
 lifx_set_default:
   alias: LIFX Set Default
   sequence:
-  - service: light.lifx_set_state
+  - service: lifx.set_state
     data:
       entity_id: light.tv_left
       brightness: 58
       color_temp: 285
-  - service: light.lifx_set_state
+  - service: lifx.set_state
     data:
       entity_id: light.tv_right
       brightness: 58
       color_temp: 285
-  - service: light.lifx_set_state
+  - service: lifx.set_state
     data:
       entity_id: light.front_porch
       brightness: 128
       color_temp: 285
-  - service: light.lifx_set_state
+  - service: lifx.set_state
     data:
       entity_id: light.garage_east
       brightness: 128
       color_temp: 285
-  - service: light.lifx_set_state
+  - service: lifx.set_state
     data:
       entity_id: light.garage_center
       brightness: 128
       color_temp: 285
-  - service: light.lifx_set_state
+  - service: lifx.set_state
     data:
       entity_id: light.garage_west
       brightness: 128

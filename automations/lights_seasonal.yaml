@@ -1,0 +1,490 @@
+#################################################################
+# SEASONAL AUTOMATIONS
+#################################################################
+#
+#################################################################
+#  Select Current Season
+#############################################################
+- id: select_current_season
+  alias: Select Current Season
+  initial_state: true
+  trigger:
+  - platform: homeassistant
+    event: start
+  - platform: time
+    at: '01:00:00'
+  action:
+    - service: input_select.select_option
+      data_template:
+        entity_id: input_select.season_holiday
+        option: >-
+          {% if is_state('sensor.season', 'spring')  %}
+            Spring
+          {% elif is_state('sensor.season', 'summer') %}
+            Summer
+          {% elif is_state('sensor.season', 'autumn') %}
+            Autumn
+          {% else %}
+            Winter
+          {% endif %}
+    - service: script.write_to_log
+      data:
+        entity_id: input_select.season_holiday
+        message: Automation - Set Season to {{ states.input_select.season_holiday.state }}
+#
+#################################################################
+# HOLIDAY AUTOMATIONS
+#################################################################
+#
+#################################################################
+# New Years Day (Jan 1,2)
+#################################################################
+- id: season_is_new_years_day
+  alias: Season is New Years Day
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: switch.momentary_unscheduled_restart
+    to: 'on'
+    for: '00:00:03'
+  - platform: time
+    at: '01:01:03'
+  condition:
+  - condition: template
+    value_template: '{{ ( now().month == 1 and now().day >= 1 ) and ( now().month == 1 and now().day <= 2 )}}'
+  action:
+  - service: input_boolean.turn_on
+    data:
+      entity_id:
+      - input_boolean.new_years_day_lighting
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.season_holiday
+      option: New Years Day
+  - service: script.write_to_log
+    data:
+      entity_id: input_select.season_holiday
+      message: Automation - Select New Years Day
+#
+#################################################################
+# Valentines Day (Feb 7 - Feb 14)
+#################################################################
+- id: season_is_valentines_day
+  alias: Season is Valentines Day
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: switch.momentary_unscheduled_restart
+    to: 'on'
+    for: '00:00:06'
+  - platform: time
+    at: '01:01:06'
+  condition:
+  - condition: template
+    value_template: '{{ ( now().month == 2 and now().day >= 7 ) and ( now().month == 2 and now().day <= 14 )}}'
+  action:
+  - service: input_boolean.turn_on
+    data:
+      entity_id:
+      - input_boolean.valentine_lighting
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.season_holiday
+      option: Valentines Day
+  - service: script.write_to_log
+    data:
+      entity_id: input_select.season_holiday
+      message: Automation - Select Valentines Day
+#
+#################################################################
+# St Pattys Day (Mar 10 - Mar 17)
+#################################################################
+- id: season_is_st_pattys_day
+  alias: Season is St Pattys Day
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: switch.momentary_unscheduled_restart
+    to: 'on'
+    for: '00:00:09'
+  - platform: time
+    at: '01:01:09'
+  condition:
+  - condition: template
+    value_template: '{{ ( now().month == 3 and now().day >= 7 ) and ( now().month == 3 and now().day <= 17 )}}'
+  action:
+  - service: input_boolean.turn_on
+    data:
+      entity_id:
+      - input_boolean.st_pattys_lighting
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.season_holiday
+      option: St Pattys Day
+  - service: script.write_to_log
+    data:
+      entity_id: input_select.season_holiday
+      message: Automation - Select St Pattys Day
+#
+#################################################################
+# Easter    -- VARIABLE DATE
+#################################################################
+- id: season_is_easter
+  alias: Season is Easter
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: switch.momentary_unscheduled_restart
+    to: 'on'
+    for: '00:00:12'
+  - platform: time
+    at: '01:01:12'
+  condition:
+    condition: or
+    conditions:
+    - condition: template
+      value_template: "{{ (states.sensor.date.state >= '2019-4-14') and (states.sensor.date.state <= '2019-4-21') }}"
+    - condition: template
+      value_template: "{{ (states.sensor.date.state >= '2020-4-5') and (states.sensor.date.state <= '2020-4-12') }}"
+    - condition: template
+      value_template: "{{ (states.sensor.date.state >= '2021-3-28') and (states.sensor.date.state <= '2021-4-4') }}"
+    - condition: template
+      value_template: "{{ (states.sensor.date.state >= '2022-4-10') and (states.sensor.date.state <= '2022-4-17') }}"
+    - condition: template
+      value_template: "{{ (states.sensor.date.state >= '2023-4-2') and (states.sensor.date.state <= '2023-4-9') }}"
+  action:
+  - service: input_boolean.turn_on
+    data:
+      entity_id:
+      - input_boolean.easter_lighting
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.season_holiday
+      option: Easter
+  - service: script.write_to_log
+    data:
+      entity_id: input_select.season_holiday
+      message: Automation - Select Easter
+# 2019 Sunday	April 21, 2019
+# 2020 Sunday	April 12, 2020
+# 2021 Sunday	April 4, 2021
+# 2022 Sunday	April 17, 2022
+# 2023 Sunday	April 9, 2023
+# 2024 Sunday	March 31, 2024
+# 2025 Sunday	April 20, 2025
+# 2026 Sunday	April 5, 2026
+# 2027 Sunday	March 28, 2027
+# 2028 Sunday	April 16, 2028
+# 2029 Sunday	April 1, 2029
+#
+#################################################################
+# Memorial Day (3 day weekend)
+#################################################################
+#
+- id: season_is_memorial_day
+  alias: Season is Memorial Day
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: switch.momentary_unscheduled_restart
+    to: 'on'
+    for: '00:00:15'
+  - platform: time
+    at: '01:01:15'
+  condition:
+    condition: or
+    conditions:
+    - condition: template
+      value_template: "{{ (states.sensor.date.state >= '2019-5-25') and (states.sensor.date.state <= '2019-5-27') }}"
+    - condition: template
+      value_template: "{{ (states.sensor.date.state >= '2020-5-23') and (states.sensor.date.state <= '2020-5-25') }}"
+    - condition: template
+      value_template: "{{ (states.sensor.date.state >= '2021-5-29') and (states.sensor.date.state <= '2021-5-31') }}"
+    - condition: template
+      value_template: "{{ (states.sensor.date.state >= '2022-5-28') and (states.sensor.date.state <= '2022-5-30') }}"
+    - condition: template
+      value_template: "{{ (states.sensor.date.state >= '2023-5-27') and (states.sensor.date.state <= '2023-5-29') }}"
+  action:
+  - service: input_boolean.turn_on
+    data:
+      entity_id:
+      - input_boolean.memorial_day_lighting
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.season_holiday
+      option: Memorial Day
+  - service: script.write_to_log
+    data:
+      entity_id: input_select.season_holiday
+      message: Automation - Select Memorial Day
+#2019 May 27
+#2020 May 25
+#2021 May 31
+#2022 May 30
+#2023 May 29
+#2024 May 27
+#2025 May 26
+#
+#################################################################
+# Flag Day (Jun 14)
+#################################################################
+- id: season_is_flag_day
+  alias: Season is Flag Day
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: switch.momentary_unscheduled_restart
+    to: 'on'
+    for: '00:00:18'
+  - platform: time
+    at: '01:01:18'
+  condition:
+  - condition: template
+    value_template: '{{ ( now().month == 6 and now().day == 14 ) }}'
+#    value_template: '{{ ( now().month == 6 and now().day >= 14 ) or ( now().month == 6 and now().day <= 14 ) }}'
+  action:
+  - service: input_boolean.turn_on
+    data:
+      entity_id:
+      - input_boolean.flag_day_lighting
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.season_holiday
+      option: Flag Day
+  - service: script.write_to_log
+    data:
+      entity_id: input_select.season_holiday
+      message: Automation - Select Flag Day
+#
+#################################################################
+# July 4th (Jul 2 - July 6)
+#################################################################
+- id: season_is_independence_day
+  alias: Season is Independence Day
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: switch.momentary_unscheduled_restart
+    to: 'on'
+    for: '00:00:21'
+  - platform: time
+    at: '01:01:21'
+  condition:
+  - condition: template
+    value_template: '{{ ( now().month == 7 and now().day >= 2 ) and ( now().month == 7 and now().day <= 6 ) }}'
+  action:
+  - service: input_boolean.turn_on
+    data:
+      entity_id:
+      - input_boolean.independence_day_lighting
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.season_holiday
+      option: Independence Day
+  - service: script.write_to_log
+    data:
+      entity_id: input_select.season_holiday
+      message: Automation - Select Independence Day
+#
+#################################################################
+# Labor Day (3 day weekend)
+#################################################################
+#
+- id: season_is_labor_day
+  alias: Season is Labor Day
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: switch.momentary_unscheduled_restart
+    to: 'on'
+#    for: '00:00:24'
+  - platform: time
+    at: '01:01:24'
+  condition:
+    condition: or
+    conditions:
+    - condition: template
+      value_template: "{{ (states.sensor.date.state >= '2019-8-31') and (states.sensor.date.state <= '2019-9-2') }}"
+    - condition: template
+      value_template: "{{ (states.sensor.date.state >= '2020-9-5') and (states.sensor.date.state <= '2020-9-7') }}"
+    - condition: template
+      value_template: "{{ (states.sensor.date.state >= '2021-9-4') and (states.sensor.date.state <= '2021-9-6') }}"
+    - condition: template
+      value_template: "{{ (states.sensor.date.state >= '2022-9-3') and (states.sensor.date.state <= '2020-9-5') }}"
+    - condition: template
+      value_template: "{{ (states.sensor.date.state >= '2023-9-2') and (states.sensor.date.state <= '2023-9-4') }}"
+  action:
+  - service: input_boolean.turn_on
+    data:
+      entity_id:
+      - input_boolean.labor_day_lighting
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.season_holiday
+      option: Labor Day
+  - service: script.write_to_log
+    data:
+      entity_id: input_select.season_holiday
+      message: Automation - Select Labor Day
+#2019 September 2
+#2020 September 7
+#2021 September 6
+#2022 September 5
+#2023 September 4
+#2024 September 2
+#2025 September 1
+#
+#################################################################
+# Breast Cancer Season (Oct 1 - Oct 9)
+#################################################################
+- id: season_is_breast_cancer
+  alias: Season is Breast Cancer
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: switch.momentary_unscheduled_restart
+    to: 'on'
+    for: '00:00:27'
+  - platform: time
+    at: '01:01:27'
+  condition:
+  - condition: template
+    value_template: '{{ ( now().month == 10 and now().day >= 1 ) and ( now().month == 10 and now().day <= 9 ) }}'
+  action:
+  - service: input_boolean.turn_on
+    data:
+      entity_id:
+      - input_boolean.cancer_lighting
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.season_holiday
+      option: Breast Cancer
+  - service: script.write_to_log
+    data:
+      entity_id: input_select.season_holiday
+      message: Automation - Select Breast Cancer Day
+#
+#################################################################
+# Halloween Season (Oct 10 - Nov 3)
+#################################################################
+- id: season_is_halloween
+  alias: Season is Halloween
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: switch.momentary_unscheduled_restart
+    to: 'on'
+    for: '00:00:30'
+  - platform: time
+    at: '01:01:30'
+  condition:
+  - condition: template
+    value_template: '{{ ( now().month == 10 and now().day >= 10 ) and ( now().month == 11 and now().day <= 3 ) }}'
+  action:
+  - service: input_boolean.turn_on
+    data:
+      entity_id:
+      - input_boolean.halloween_lighting
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.season_holiday
+      option: Halloween
+  - service: script.write_to_log
+    data:
+      entity_id: input_select.season_holiday
+      message: Automation - Select Halloween
+#
+##################################################################
+# Thanksgiving Season (Nov 4 - Nov 30)
+#################################################################
+- id: season_is_thansgiving
+  alias: Season is Thanksgiving
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: switch.momentary_unscheduled_restart
+    to: 'on'
+    for: '00:00:33'
+  - platform: time
+    at: '01:01:33'
+  condition:
+  - condition: template
+    value_template: '{{ ( now().month == 11 and now().day >= 4 ) and ( now().month == 11 and now().day <= 30 ) }}'
+  action:
+  - service: input_boolean.turn_on
+    data:
+      entity_id:
+      - input_boolean.thanksgiving_lighting
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.season_holiday
+      option: Thanksgiving
+  - service: script.write_to_log
+    data:
+      entity_id: input_select.season_holiday
+      message: Automation - Select Thanksgiving
+#
+##################################################################
+# Christmas Season (Dec 1 - Jan 7)
+#################################################################
+- id: season_is_christmas
+  alias: Season is Christmas
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: switch.momentary_unscheduled_restart
+    to: 'on'
+    for: '00:00:36'
+  - platform: time
+    at: '01:01:36'
+  condition:
+    condition: or
+    conditions:
+      - condition: template
+        value_template: '{{ ( now().month == 12 and now().day >= 1 ) and ( now().month == 12 and now().day <= 30 ) }}'
+#      - condition: template
+#        value_template: '{{ ( now().month == 1 and now().day >= 3 ) and ( now().month == 1 and now().day <= 7 ) }}'
+  action:
+  - service: input_boolean.turn_on
+    data:
+      entity_id:
+      - input_boolean.christmas_lighting
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.season_holiday
+      option: Christmas
+  - service: script.write_to_log
+    data:
+      entity_id: input_select.season_holiday
+      message: Automation - Select Christmas
+#
+#################################################################
+# New Years Eve (Dec 31)
+#################################################################
+- id: season_is_new_years_eve
+  alias: Season is New Years Eve
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: switch.momentary_unscheduled_restart
+    to: 'on'
+    for: '00:00:39'
+  - platform: time
+    at: '01:01:39'
+  condition:
+  - condition: template
+    value_template: '{{ ( now().month == 12 and now().day == 31 ) }}'
+  action:
+  - service: input_boolean.turn_on
+    data:
+      entity_id:
+      - input_boolean.new_years_eve_lighting
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.season_holiday
+      option: New Years Eve
+  - service: script.write_to_log
+    data:
+      entity_id: input_select.season_holiday
+      message: Automation - Select New Years Eve
+#

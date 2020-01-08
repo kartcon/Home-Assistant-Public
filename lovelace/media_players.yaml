@@ -17,54 +17,54 @@ cards:
           cards:
 #         Card 1
           - type: custom:mini-media-player
-            entity: media_player.sunroom_white
+            entity: media_player.sunroom_white_sonos
             artwork: cover
             tts:
               platform: sonos
-              entity_id: media_player.sunroom_white
+              entity_id: media_player.sunroom_white_sonos
             toggle_power: true
             sonos:
               show_group_count: true
               entities:
-                - entity_id: media_player.sunroom_white
+                - entity_id: media_player.sunroom_white_sonos
                   name: Sunroom Sonos White
-                - entity_id: media_player.sunroom_black
+                - entity_id: media_player.sunroom_black_sonos
                   name: Sunroom Sonos Black
-                - entity_id: media_player.living_room
+                - entity_id: media_player.living_room_sonos
                   name: Living Room Sonos
 #
           - type: custom:mini-media-player
-            entity: media_player.sunroom_black
+            entity: media_player.sunroom_black_sonos
             artwork: cover
             tts:
               platform: sonos
-              entity_id: media_player.sunroom_black
+              entity_id: media_player.sunroom_black_sonos
             toggle_power: true
             sonos:
               show_group_count: true
               entities:
-                - entity_id: media_player.sunroom_white
+                - entity_id: media_player.sunroom_white_sonos
                   name: Sunroom Sonos White
-                - entity_id: media_player.sunroom_black
+                - entity_id: media_player.sunroom_black_sonos
                   name: Sunroom Sonos Black
-                - entity_id: media_player.living_room
+                - entity_id: media_player.living_room_sonos
                   name: Living Room Sonos
 #
           - type: custom:mini-media-player
-            entity: media_player.living_room
+            entity: media_player.living_room_sonos
             artwork: cover
 #            tts:
 #              platform: sonos
-#              entity_id: media_player.living_room
+#              entity_id: media_player.living_room_sonos
 #            toggle_power: true
             sonos:
               show_group_count: true
               entities:
-                - entity_id: media_player.sunroom_white
+                - entity_id: media_player.sunroom_white_sonos
                   name: Sunroom Sonos White
-                - entity_id: media_player.sunroom_black
+                - entity_id: media_player.sunroom_black_sonos
                   name: Sunroom Sonos Black
-                - entity_id: media_player.living_room
+                - entity_id: media_player.living_room_sonos
                   name: Living Room Sonos
 #
 #          - type: picture-entity
@@ -192,4 +192,5 @@ cards:
           tts:
             platform: alexa
             entity_id: media_player.sunroom_echo_black
+#
 #

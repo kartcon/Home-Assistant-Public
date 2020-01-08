@@ -19,7 +19,7 @@
   - service: light.turn_on
     data:
       entity_id: light.sunroom_fan_204
-      brightness: 76
+      brightness: 84
 #
 #################################################################
 # Sun Room Fan On - Low
@@ -47,7 +47,7 @@
 #    data_template:
 #      title: "Sunroom Fan Low"
 #      message: >-
-#        At {{now().strftime("%m/%d/%Y %H:%M:%S")}} the Outside Temperature is {{ states.sensor.dark_sky_temperature.state }}º.
+#        At {{now().strftime("%m/%d/%Y %H:%M:%S")}} the Outside Temperature is {{ states.sensor.dark_sky_temperature.state }}º.<br />
 #        Fan speed set to 30% ({{ states.light.sunroom_fan_204.attributes.brightness }}).
   - service: script.write_to_log
     data_template:
@@ -80,7 +80,7 @@
 #    data_template:
 #      title: "Sunroom Fan Med"
 #      message: >-
-#        At {{now().strftime("%m/%d/%Y %H:%M:%S")}} the Outside Temperature is {{ states.sensor.dark_sky_temperature.state }}º.
+#        At {{now().strftime("%m/%d/%Y %H:%M:%S")}} the Outside Temperature is {{ states.sensor.dark_sky_temperature.state }}º.<br />
 #        Fan speed set to 65% ({{ states.light.sunroom_fan_204.attributes.brightness }}).
   - service: script.write_to_log
     data_template:
@@ -112,7 +112,7 @@
 #    data_template:
 #      title: "Sunroom Fan High"
 #      message: >-
-#        At {{now().strftime("%m/%d/%Y %H:%M:%S")}} the Outside Temperature is {{ states.sensor.dark_sky_temperature.state }}º.
+#        At {{now().strftime("%m/%d/%Y %H:%M:%S")}} the Outside Temperature is {{ states.sensor.dark_sky_temperature.state }}º.<br />
 #        Fan speed set to 100% ({{ states.light.sunroom_fan_204.attributes.brightness }}).
   - service: script.write_to_log
     data_template:
@@ -127,7 +127,7 @@
   initial_state: true
   trigger:
   - platform: numeric_state
-    entity_id: sensor.tstat2_temp
+    entity_id: sensor.tstat2_actual_temp
     above: 78
   condition:
   - condition: time
@@ -141,7 +141,7 @@
 #    data_template:
 #      title: "Office Fan ON"
 #      message: >-
-#        Office Temperature is {{ states.sensor.tstat2_temp.state }}º.
+#        Office Temperature is {{ states.sensor.tstat2_actual_temp.state }}º.
   - service: script.write_to_log
     data_template:
       entity_id: light.office_fan_224

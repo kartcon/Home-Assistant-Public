@@ -18,8 +18,8 @@ cards:
           aspect_ratio: 100%
           default_zoom: 12
           entities:
-            - device_tracker.art_ot1
-            - device_tracker.steff_ot2
+#            - device_tracker.art_ot1
+#            - device_tracker.steff_ot2
             - zone.home
             - zone.shands_jax
             - zone.shands_north
@@ -56,44 +56,17 @@ cards:
               show_header_toggle: false
               columns: 4
               entities:
-                - entity: device_tracker.art_ot1
-                  name: Arts Phone
+#                - entity: device_tracker.art_ot1
+#                  name: Arts Phone
                   icon: mdi:cellphone-iphone
                 - entity: device_tracker.sjm_ipad
                   name: SJM iPad
                   icon: mdi:tablet-ipad
-                - entity: device_tracker.steff_ot2
-                  name: Steffs Phone
+#                - entity: device_tracker.steff_ot2
+#                  name: Steffs Phone
                   icon: mdi:cellphone-iphone
                 - entity: device_tracker.steffs_ipad_mini
                   name: Steffs iPad
                   icon: mdi:tablet-ipad
 #
-        - type: horizontal-stack
-          cards:
-            - type: entity-button
-              name: Refresh Geo-Locations
-              icon: mdi:google-maps
-              tap_action:
-                action: call-service
-                service: script.turn_on
-                service_data:
-                  entity_id: script.refresh_geolocation
-              entity: script.refresh_geolocation
-#
-            - type: entity-button
-              entity: sun.sun
-              name: Check Traffic
-              icon: mdi:car-multiple
-              tap_action:
-                action: navigate
-                navigation_path: /lovelace/traffic/
-#
-            - type: entity-button
-              entity: sun.sun
-              name: Check Weather
-              icon: mdi:weather-sunny
-              tap_action:
-                action: navigate
-                navigation_path: /lovelace/weather/
 #

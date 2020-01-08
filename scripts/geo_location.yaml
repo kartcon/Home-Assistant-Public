@@ -3,27 +3,41 @@
 #################################################################
 #
 #################################################################
-# Script: Refresh GeoLocation
-# Called from [_______]
-# In file: [_______]
+# Script: Update Waze Travel Time
+# Called from [Update Travel Time button]
+# In file: [lovelace/traffic.yaml]
+# See: [sensors/waze.yaml]
 #################################################################
-refresh_geolocation:
-  alias: Refresh Geolocation
+update_waze_art_travel_time:
+  alias: Update Waze Travel Time
   sequence:
-#  - service: device_tracker.icloud_update
-#    data: {}
   - service: homeassistant.update_entity
-    entity_id: device_tracker.art_ot1
-  - service: homeassistant.update_entity
-    entity_id: device_tracker.steff_ot2
-  - service: notify.mobile_app_arts_iphone_8
-    data:
-      message: "request_location_update"
-  - service: notify.mobile_app_steffs_iphone_8
-    data:
-      message: "request_location_update"
-  - service: persistent_notification.create
-    data:
-      message: "Your Geo-Location has been updated.."
-      title: "Success"
+    entity_id: sensor.art_to_home
 #
+update_waze_steff_travel_time:
+  alias: Update Waze Travel Time
+  sequence:
+  - service: homeassistant.update_entity
+    entity_id: sensor.steff_to_home
+#
+update_waze_mom_travel_time:
+  alias: Update Waze Travel Time
+  sequence:
+  - service: homeassistant.update_entity
+    entity_id: sensor.mom_dad_to_home
+
+#  - service: homeassistant.update_entity
+#    entity_id: sensor.to_baptist
+#  - service: homeassistant.update_entity
+#    entity_id: sensor.to_flagler
+#  - service: homeassistant.update_entity
+#    entity_id: sensor.to_mayo_clinic
+#  - service: homeassistant.update_entity
+#    entity_id: sensor.to_memorial
+#
+#
+#
+#  - service: homeassistant.update_entity
+#    entity_id: device_tracker.art_ot1
+#  - service: homeassistant.update_entity
+#    entity_id: device_tracker.steff_ot2

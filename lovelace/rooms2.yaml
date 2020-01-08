@@ -2,9 +2,9 @@
 #  View 2 - ROOMS
 #########################################
 #
-title: Rooms
-path: rooms
-id: v_rooms
+title: Rooms2
+path: rooms2
+id: v_rooms2
 icon: mdi:lightbulb
 panel: true
 cards:
@@ -35,42 +35,6 @@ cards:
 #            - entity: input_datetime.last_kitchen_motion
 #
         - type: entities
-          title: Master Bed/Bath
-          show_header_toggle: true
-          entities:
-            - type: custom:slider-entity-row
-              entity: light.mbr_can_lights_95
-              name: Cans
-              icon: mdi:blur-radial
-            - type: custom:slider-entity-row
-              entity: light.mbr_bath_lights_94
-              name: Vanity
-              icon: mdi:blur-radial
-            - entity: light.mbr_shower_light_92
-              icon: mdi:blur-radial
-            - entity: light.mbr_bath_fan_93
-              icon: mdi:fan
-#        - type: entities
-#          title: Locks
-#          show_header_toggle: true
-#          entities:
-#            - lock.front_door_bolt_241
-#            - lock.back_door_lock_61
-#            - entity: lock.garage_controller_1_55
-#              icon: mdi:garage
-#            - entity: lock.garage_controller_2_54
-#              icon: mdi:garage
-#        - type: entities
-#          id: v_rooms_c3
-#          title: Garage
-#          show_header_toggle: true
-#          entities:
-#            - light.garage_fan_225
-#
-# COL 2
-    - type: vertical-stack
-      cards:
-        - type: entities
           title: Living Room
           show_header_toggle: true
           entities:
@@ -78,8 +42,6 @@ cards:
               entity: light.lr_can_lights_62
               name: Cans
               icon: mdi:blur-radial
-#            - entity: light.lr_fan_115
-#              icon: mdi:fan
             - entity: light.lr_fan_115
               icon: mdi:fan
             - entity: light.tv_left
@@ -98,45 +60,9 @@ cards:
 #            - entity: light.lr_christmas_tree_26
 #              icon: mdi:pine-tree
 #
-        - type: entities
-          title: Bird Rooms
-          show_header_toggle: true
-          entities:
-            - type: custom:slider-entity-row
-              entity: light.bird_room_1_light_52
-              name: Rm 1
-              icon: mdi:ceiling-light
-            - type: custom:slider-entity-row
-              entity: light.bird_room_2_light_53
-              name: Rm 2
-              icon: mdi:ceiling-light
-#
-# COL 3
+# COL 2
     - type: vertical-stack
       cards:
-#         - type: entities
-#           title: Sun Room
-#           show_header_toggle: true
-#           entities:
-#             - type: custom:slider-entity-row
-#               entity: light.sunroom_lights_203
-#               name: Lights
-#               icon: mdi:ceiling-light
-# #            - entity: light.sunroom_fan_204
-# #              icon: mdi:fan
-#             - type: custom:slider-entity-row
-#               entity: light.sunroom_fan_204
-#               name: Fan %
-#               icon: mdi:fan
-# #            - entity: light.flux_led_strip
-# #              icon: mdi:led-strip-variant
-#             - type: custom:slider-entity-row
-#               entity: light.flux_led_strip
-#               name: LED %
-#               icon: mdi:led-strip-variant
-# #              full_row: true
-
-
         - type: conditional
           conditions:
             - entity: light.flux_led_strip
@@ -274,6 +200,19 @@ cards:
                     icon_color: '#6600CC'
 #
         - type: entities
+          title: Bird Rooms
+          show_header_toggle: true
+          entities:
+            - type: custom:slider-entity-row
+              entity: light.bird_room_1_light_52
+              name: Rm 1
+              icon: mdi:ceiling-light
+            - type: custom:slider-entity-row
+              entity: light.bird_room_2_light_53
+              name: Rm 2
+              icon: mdi:ceiling-light
+#
+        - type: entities
           title: Bonus Room
           show_header_toggle: true
           entities:
@@ -287,15 +226,23 @@ cards:
               icon: mdi:fan
 #
         - type: entities
-          title: Garage
+          title: Master Bed/Bath
           show_header_toggle: true
           entities:
-            - entity: light.garage_fan_225
+            - type: custom:slider-entity-row
+              entity: light.mbr_can_lights_95
+              name: Cans
+              icon: mdi:blur-radial
+            - type: custom:slider-entity-row
+              entity: light.mbr_bath_lights_94
+              name: Vanity
+              icon: mdi:blur-radial
+            - entity: light.mbr_shower_light_92
+              icon: mdi:blur-radial
+            - entity: light.mbr_bath_fan_93
               icon: mdi:fan
-            - entity: light.bench_light_242
-              icon: mdi:led-strip
 #
-# COL 4
+# COL 3
     - type: vertical-stack
       cards:
         - type: entities
@@ -331,3 +278,13 @@ cards:
             - entity: light.soffit_west_278
               icon: mdi:power-socket-us
 #
+        - type: entities
+          title: Garage
+          show_header_toggle: true
+          entities:
+            - entity: light.garage_fan_225
+              icon: mdi:fan
+            - entity: light.bench_light_242
+              icon: mdi:led-strip
+#
+# COL 4

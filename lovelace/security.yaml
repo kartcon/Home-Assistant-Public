@@ -125,31 +125,31 @@ cards:
           title: Locks
           show_name: true
           show_header_toggle: false
-          columns: 2
+          columns: 3
           entities:
             - lock.front_door_bolt_241
-            - lock.back_door_lock_61
+#            - lock.back_door_lock_61
             - lock.garage_controller_1_55
             - lock.garage_controller_2_54
 #
-        - type: horizontal-stack
-          cards:
-            - type: entity-button
-              name: Refresh Art
-              icon: mdi:google-maps
-              tap_action:
-                action: call-service
-                service: script.turn_on
-                service_data:
-                  entity_id: script.refresh_geolocation
-              entity: script.refresh_geolocation
-#
-            - type: entity-button
-              name: Refresh Steff
-              icon: mdi:google-maps
-              tap_action:
-                action: call-service
-                service: script.turn_on
-                service_data:
-                  entity_id: script.refresh_geolocation
-              entity: script.refresh_geolocation
+#        - type: horizontal-stack
+#          cards:
+#            - type: entity-button
+#              name: Refresh Art
+#              icon: mdi:google-maps
+#              tap_action:
+#                action: call-service
+#                service: script.turn_on
+#                service_data:
+#                  entity_id: script.refresh_geolocation
+#              entity: script.refresh_geolocation
+##
+#            - type: entity-button
+#              name: Refresh Steff
+#              icon: mdi:google-maps
+#              tap_action:
+#                action: call-service
+#                service: script.turn_on
+#                service_data:
+#                  entity_id: script.refresh_geolocation
+#              entity: script.refresh_geolocation

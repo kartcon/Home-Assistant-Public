@@ -1,0 +1,29 @@
+- platform: template
+  fans:
+    sunroom_fan:
+      friendly_name: "Sunroom Fan"
+      value_template: "{{ states('light.sunroom_fan_204') }}"
+      speed_template: >
+        {% if state_attr('light.sunroom_fan_204','brightness') | int < 1 %}
+          off
+        {% elif state_attr('light.sunroom_fan_204','brightness') | int > 0 and state_attr('light.sunroom_fan_204','brightness') | int <= 84 %}
+          low
+        {% elif state_attr('light.sunroom_fan_204','brightness') | int  >= 85 and  state_attr('light.sunroom_fan_204','brightness') | int <= 166 %}
+          medium
+        {% elif state_attr('light.sunroom_fan_204','brightness') | int >= 166 %}
+          high
+        {% endif %}
+      turn_on:
+        service: script.sunroom_fan_on
+      turn_off:
+        service: script.sunroom_fan_off
+      set_speed:
+        service: script.sunroom_fan_speed
+        data_template:
+          speed: "{{ speed }}"
+      speeds:
+        - 'off'
+        - 'low'
+        - 'medium'
+        - 'high'
+#
