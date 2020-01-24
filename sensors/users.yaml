@@ -5,29 +5,28 @@
 - platform: template
   sensors:
     owntracks_config:
-      value_template: "XXXX://{{(states.sensor.external_ip.state)}}:8123/api/webhook/3a18f9fcbfab896287e546ebb0ea4edbfac38c1274fb2d04b97d1debeca095fc"
+      value_template: "{{(states('input_text.owntracks_config'))}}"
       friendly_name: "OT Encryption Key"
-#      unit_of_measurement: '%'
 #
 - platform: template
   sensors:
     external_url:
-      value_template: "XXXX://{{(states.sensor.external_ip.state)}}:8123"
+      value_template: "XXXX://{{states('sensor.external_ip')}}:8123"
       friendly_name: "External URL"
 #      unit_of_measurement: '%'
-#
+# states('sensor.external_ip')
 - platform: template
   sensors:
     briefing_recipient:
       value_template: >-
         {% if states.input_boolean.someone_home.state == 'on' %}
           {% if (states.input_boolean.steff_home.state == 'on') %}
-            'Steff'
+            Steff
           {% else %}
-            'Art'
+            Art
           {% endif %}
         {% endif %}
         {% if (states.input_boolean.everyone_home.state == 'on') %}
-          'Everyone'
+          Everyone
         {% endif %}
 #

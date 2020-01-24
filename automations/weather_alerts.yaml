@@ -30,13 +30,27 @@
   # Make Announcement
   - service: input_boolean.turn_on
     entity_id: input_boolean.alexa_speaking
-  - service: notify.alexa_media
-    data_template:
-      target: group.all_echo_dots
+#  - service: notify.alexa_media
+#    data_template:
+#      target:
+#        - media_player.kitchen_echo
+##        - media_player.office_echo
+#      data:
+#        type: tts
+#        method: speak
+#      message: "The National Weather Service has issued a
+#      {{ states('sensor.nws_alert_event') }} for your area.
+#      It expires at {{ as_timestamp(state_attr('sensor.nws_alert_event', 'features')[0].properties.expires)| timestamp_custom('%-I %p on %-m-%-d-%Y') }}."
+  - service: notify.alexa_media_all_echo_dots
+    data:
+      target:
+        - media_player.kitchen_echo
+        - media_player.office_echo
       data:
         type: tts
+        method: speak
       message: "The National Weather Service has issued a
-      {{ states.sensor.nws_alert_event.state }} for your area.
+      {{ states('sensor.nws_alert_event') }} for your area.
       It expires at {{ as_timestamp(state_attr('sensor.nws_alert_event', 'features')[0].properties.expires)| timestamp_custom('%-I %p on %-m-%-d-%Y') }}."
   - delay: '00:00:15'
   - service: input_boolean.turn_off
@@ -65,7 +79,7 @@
     # Only run if more than 4 hours (14,400 sec) since it last ran
     value_template: '{{(as_timestamp(now()) - as_timestamp(state_attr("automation.high_uv_index_alert", "last_triggered") | default(0)) | int > 14000 )}}'
   action:
-  - service: notify.ios_group_art_steff
+  - service: notify.mobile_group_art_steff
     data:
       title: "UV Index High"
       message: "Sunscreen would be a good idea."
@@ -93,7 +107,7 @@
     # Only run if more than 4 hours (14,400 sec) since it last ran
     value_template: '{{(as_timestamp(now()) - as_timestamp(state_attr("automation.very_high_uv_index_alert", "last_triggered") | default(0)) | int > 14000 )}}'
   action:
-  - service: notify.ios_group_art_steff
+  - service: notify.mobile_group_art_steff
     data:
       title: "UV Index Very High"
       message: "Re-apply sunscreen before you burn!"
@@ -120,7 +134,7 @@
     # Only run if more than 4 hours (14,400 sec) since it last ran
     value_template: '{{(as_timestamp(now()) - as_timestamp(state_attr("automation.extreme_uv_index_alert", "last_triggered") | default(0)) | int > 14000 )}}'
   action:
-  - service: notify.ios_group_art_steff
+  - service: notify.mobile_group_art_steff
     data:
       title: "UV Index Extremly High"
       message: "Re-apply sunscreen and use caution when going outside."

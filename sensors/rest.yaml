@@ -7,7 +7,7 @@
 - platform: rest
   resource: https://raw.githubusercontent.com/kartcon/Home-Assistant-Public/master/json_files/holidays.json
   name: todays_events
-  scan_interval: 14400
+  scan_interval: 21600
   value_template: >
     {% set today = now().month  ~ '/' ~ now().day  %}
     {% set holiday =  value_json.MAJOR_US.static[ today ] %}
@@ -23,7 +23,7 @@
 - platform: rest
   resource: https://raw.githubusercontent.com/kartcon/Home-Assistant-Public/master/json_files/weigh_birds.json
   name: weigh_birds
-  scan_interval: 14400
+  scan_interval: 21600
   value_template: >
     {% set today = now().month  ~ '/' ~ now().day ~ '/' ~ now().year %}
     {% set weighday =  value_json.WEIGH_DAY.dynamic[ today ] %}
@@ -47,7 +47,7 @@
   headers:
     User-Agent: Homeassistant
     Accept: application/geo+json
-  scan_interval: 60
+  scan_interval: 3600
 #
 #  *******************************************************************************
 #  US Weather Service Emergency Data
@@ -65,7 +65,7 @@
   headers:
     User-Agent: Homeassistant
     Accept: application/ld+json
-  scan_interval: 60
+  scan_interval: 3600
 #  *******************************************************************************
 #  See also: sensors/environmental.yaml - Weather.gov Alerts
 #  *******************************************************************************

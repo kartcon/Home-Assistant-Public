@@ -111,7 +111,8 @@
     - fri
   - condition: state
     entity_id: media_player.sharp_roku_tv
-    state: 'off'
+    state: 'standby'
+#    state: 'off'
   - condition: state
     entity_id: input_boolean.no_one_home
     state: 'off'
@@ -135,7 +136,8 @@
     - sun
   - condition: state
     entity_id: media_player.sharp_roku_tv
-    state: 'off'
+    state: 'standby'
+#    state: 'off'
   - condition: state
     entity_id: input_boolean.no_one_home
     state: 'off'

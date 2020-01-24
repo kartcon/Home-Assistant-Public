@@ -1,0 +1,77 @@
+#################################################################
+## Scheduled Reset Event Automations
+#################################################################
+#
+#############################################################
+#  Recycling - Reset next PickUp Date
+#############################################################
+- id: reset_recycling_pickup_date
+  alias: 'Reset recycling pickup date'
+  initial_state: true
+  trigger:
+  - platform: sun
+    event: sunset
+  condition:
+    - condition: time
+      weekday:
+        - mon
+    - condition: state
+      entity_id: sensor.week_odd_even
+      state: 'Even Week'
+  action:
+  - service: input_datetime.set_datetime
+    data_template:
+      entity_id: input_datetime.recycle_alert_date
+      date: '{{ (as_timestamp(now()) + (13*24*3600)) | timestamp_custom("%Y-%m-%d", True) }}'
+  - service: input_datetime.set_datetime
+    data_template:
+      entity_id: input_datetime.recycle_pickup_date
+      date: '{{ (as_timestamp(now()) + (14*24*3600)) | timestamp_custom("%Y-%m-%d", True) }}'
+#
+#################################################################
+# Reset Holiday Booleans at 11:55p
+#################################################################
+- id: reset_holiday_booleans_at_2355
+  alias: Reset Holiday Booleans at 2355
+  initial_state: true
+  trigger:
+    platform: time
+    at: '23:55:00'
+  condition: []
+  action:
+    service: script.turn_on
+    entity_id: script.reset_holiday_booleans
+#
+#################################################################
+# Reset Expenses Boolean weekly
+#################################################################
+- id: reset_expense_boolean_weekly
+  alias: Reset Expense Boolean Weekly
+  initial_state: true
+  trigger:
+    platform: time
+    at: '00:05:00'
+  condition:
+  - condition: time
+    weekday:
+      - sun
+  action:
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.reminder_concur
+#
+#################################################################
+# Reset Mileage Boolean Monthly
+#################################################################
+- id: reset_mileage_boolean_monthly
+  alias: Reset Mileage Boolean Monthly
+  initial_state: true
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.day_of_the_month
+      above: 0
+      below: 2
+  condition: []
+  action:
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.reminder_motus
+#

@@ -78,9 +78,6 @@ cards:
           - entity: input_boolean.everyone_home
           - entity: input_boolean.someone_home
           - entity: input_boolean.no_one_home
-      - type: "custom:birthday-card"
-        title: "Upcoming Events"
-        numberofdays: 30
 
 
 #

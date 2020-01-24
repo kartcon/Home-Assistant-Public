@@ -89,5 +89,5 @@ cards:
     - type: iframe
       id: v_traf_c1
       url: https://interactive.wusa9.com/doapp/trafficsmap-mobile.aspx?lat=30.3485&lon=-81.6644&zoom=10
-      aspect_ratio: 77%
+      aspect_ratio: 60%
 #

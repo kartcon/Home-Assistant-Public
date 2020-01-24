@@ -91,8 +91,50 @@
     entity_id: input_boolean.sandbox_testing
     state: 'on'
   action:
-  - service: script.turn_on
-    entity_id: script.turn_on_kitchen_roku
+  - service: notify.alexa_media_all_echo_dots
+    data:
+      target:
+        - media_player.kitchen_echo
+        - media_player.office_echo
+      data:
+        type: tts
+        method: speak
+      message: "This is a GROUP test."
+#  - service: notify.mobile_group_art_steff
+#    data:
+#      message: 'Notification text'
+#      data:
+#        push:
+#          sound: "US-EN-Morgan-Freeman-Roommate-Is-Arriving.wav"
+  - service: script.sonos_say
+    data:
+      sonos_entity: media_player.sunroom_sonos
+      volume: 0.4
+      message: "This is a GROUP test."
+      delay: '00:00:05'
+
+
+  # - service: script.set_alexa_volume
+  #   data:
+  #     alexa_entity: group.all_echo_dots
+  # # Make Announcement
+  # - service: input_boolean.turn_on
+  #   entity_id: input_boolean.alexa_speaking
+  # - service: notify.alexa_media
+  #   data:
+  #     target:
+  #       - media_player.kitchen_echo
+  #       - media_player.office_echo
+  #     data:
+  #       type: tts
+  #       method: speak
+  #     message: "This is just a test."
+  # - delay: '00:00:05'
+  # - service: input_boolean.turn_off
+  #   entity_id: input_boolean.alexa_speaking
+
+#  - service: script.turn_on
+#    entity_id: script.update_tstats_script
 #
 #################################################################
 # Write to Log via Automation Test
@@ -140,7 +182,7 @@
 #    state: 'on'
 #  action:
 #
-#  - service: notify.ios_group_art_only
+#  - service: notify.mobile_group_art_only
 #    data:
 #      message: "Arrived Home"
 #      data:

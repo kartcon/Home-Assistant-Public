@@ -5,9 +5,21 @@
 ###############################################################
 # Climate
 ##############################################################
-# T1 Cooling Set Points
-  t1_cool_morning:
-    name: T1 Cool Morning
+#
+############################
+# Target Set Points
+############################
+  t1_set_point:
+    name: T1 Set Point
+    icon: mdi:temperature-fahrenheit
+#    initial: 80
+    min: 65
+    max: 85
+    step: 1
+    mode: box
+
+  t2_set_point:
+    name: T2 Set Point
     icon: mdi:temperature-fahrenheit
 #    initial: 80
     min: 65
@@ -15,181 +27,273 @@
     step: 1
     mode: box
 #
-  t1_cool_daytime:
-    name: T1 Cool Daytime
+############################
+# Spring
+############################
+  t1_spring_morning:
+    name: T1 Spring Morning
     icon: mdi:temperature-fahrenheit
-#    initial: 81
     min: 65
     max: 85
     step: 1
     mode: box
 #
-  t1_cool_evening:
-    name: T1 Cool Evening
+  t1_spring_daytime:
+    name: T1 Spring Daytime
     icon: mdi:temperature-fahrenheit
-#    initial: 80
     min: 65
     max: 85
     step: 1
     mode: box
 #
-  t1_cool_sleeping:
-    name: T1 Cool Sleeping
+  t1_spring_evening:
+    name: T1 Spring Evening
     icon: mdi:temperature-fahrenheit
-#    initial: 80
     min: 65
     max: 85
     step: 1
     mode: box
 #
-# T2 Cooling Set Points
-  t2_cool_morning:
-    name: T2 Cool Morning
+  t1_spring_sleeping:
+    name: T1 Spring Sleeping
     icon: mdi:temperature-fahrenheit
-#    initial: 81
     min: 65
     max: 85
     step: 1
     mode: box
 #
-  t2_cool_daytime:
-    name: T2 Cool Daytime
+  t2_spring_morning:
+    name: T2 Spring Morning
     icon: mdi:temperature-fahrenheit
-#    initial: 81
     min: 65
     max: 85
     step: 1
     mode: box
 #
-  t2_cool_evening:
-    name: T2 Cool Evening
+  t2_spring_daytime:
+    name: T2 Spring Daytime
     icon: mdi:temperature-fahrenheit
-#    initial: 79
     min: 65
     max: 85
     step: 1
     mode: box
 #
-  t2_cool_sleeping:
-    name: T2 Cool Sleeping
+  t2_spring_evening:
+    name: T2 Spring Evening
     icon: mdi:temperature-fahrenheit
-#    initial: 80
     min: 65
     max: 85
     step: 1
     mode: box
 #
-# T1 Heating Set Points
-  t1_heat_morning:
-    name: T1 Heat Morning
+  t2_spring_sleeping:
+    name: T2 Spring Sleeping
     icon: mdi:temperature-fahrenheit
-#    initial: 75
     min: 65
     max: 85
     step: 1
     mode: box
 #
-  t1_heat_daytime:
-    name: T1 Heat Daytime
+############################
+# Summer
+############################
+  t1_summer_morning:
+    name: T1 Summer Morning
     icon: mdi:temperature-fahrenheit
-#    initial: 74
     min: 65
     max: 85
     step: 1
     mode: box
 #
-  t1_heat_evening:
-    name: T1 Heat Evening
+  t1_summer_daytime:
+    name: T1 Summer Daytime
     icon: mdi:temperature-fahrenheit
-#    initial: 75
     min: 65
     max: 85
     step: 1
     mode: box
 #
-  t1_heat_sleeping:
-    name: T1 Heat Sleeping
+  t1_summer_evening:
+    name: T1 Summer Evening
     icon: mdi:temperature-fahrenheit
-#    initial: 73
     min: 65
     max: 85
     step: 1
     mode: box
 #
-# T2 Heating Set Points
-  t2_heat_morning:
-    name: T2 Heat Morning
+  t1_summer_sleeping:
+    name: T1 Summer Sleeping
     icon: mdi:temperature-fahrenheit
-#    initial: 75
     min: 65
     max: 85
     step: 1
     mode: box
 #
-  t2_heat_daytime:
-    name: T2 Heat Daytime
+  t2_summer_morning:
+    name: T2 Summer Morning
     icon: mdi:temperature-fahrenheit
-#    initial: 74
     min: 65
     max: 85
     step: 1
     mode: box
 #
-  t2_heat_evening:
-    name: T2 Heat Evening
+  t2_summer_daytime:
+    name: T2 Summer Daytime
     icon: mdi:temperature-fahrenheit
-#    initial: 73
     min: 65
     max: 85
     step: 1
     mode: box
 #
-  t2_heat_sleeping:
-    name: T2 Heat Sleeping
+  t2_summer_evening:
+    name: T2 Summer Evening
     icon: mdi:temperature-fahrenheit
-#    initial: 73
     min: 65
     max: 85
     step: 1
     mode: box
 #
-# Auto Change Over Set Points
-  t1_aco:
-    name: T1 Auto Change Over
+  t2_summer_sleeping:
+    name: T2 Summer Sleeping
     icon: mdi:temperature-fahrenheit
-#    initial: 78
     min: 65
     max: 85
     step: 1
     mode: box
 #
-  t2_aco:
-    name: T2 Auto Change Over
+############################
+# Autumn
+############################
+  t1_autumn_morning:
+    name: T1 Autumn Morning
     icon: mdi:temperature-fahrenheit
-#    initial: 78
     min: 65
     max: 85
     step: 1
     mode: box
 #
-# Unused set points
-#  t1_heat_aco:
-#    name: T1 Heat Change Over
-#    icon: mdi:temperature-fahrenheit
-#    initial: 74
-#    min: 65
-#    max: 85
-#    step: 1
-#    mode: box
+  t1_autumn_daytime:
+    name: T1 Autumn Daytime
+    icon: mdi:temperature-fahrenheit
+    min: 65
+    max: 85
+    step: 1
+    mode: box
 #
-#  t2_heat_aco:
-#    name: T2 Heat Change Over
-#    icon: mdi:temperature-fahrenheit
-#    initial: 75
-#    min: 65
-#    max: 85
-#    step: 1
-#    mode: box
+  t1_autumn_evening:
+    name: T1 Autumn Evening
+    icon: mdi:temperature-fahrenheit
+    min: 65
+    max: 85
+    step: 1
+    mode: box
+#
+  t1_autumn_sleeping:
+    name: T1 Autumn Sleeping
+    icon: mdi:temperature-fahrenheit
+    min: 65
+    max: 85
+    step: 1
+    mode: box
+#
+  t2_autumn_morning:
+    name: T2 Autumn Morning
+    icon: mdi:temperature-fahrenheit
+    min: 65
+    max: 85
+    step: 1
+    mode: box
+#
+  t2_autumn_daytime:
+    name: T2 Autumn Daytime
+    icon: mdi:temperature-fahrenheit
+    min: 65
+    max: 85
+    step: 1
+    mode: box
+#
+  t2_autumn_evening:
+    name: T2 Autumn Evening
+    icon: mdi:temperature-fahrenheit
+    min: 65
+    max: 85
+    step: 1
+    mode: box
+#
+  t2_autumn_sleeping:
+    name: T2 Autumn Sleeping
+    icon: mdi:temperature-fahrenheit
+    min: 65
+    max: 85
+    step: 1
+    mode: box
+#
+############################
+# Winter
+############################
+  t1_winter_morning:
+    name: T1 Winter Morning
+    icon: mdi:temperature-fahrenheit
+    min: 65
+    max: 85
+    step: 1
+    mode: box
+#
+  t1_winter_daytime:
+    name: T1 Winter Daytime
+    icon: mdi:temperature-fahrenheit
+    min: 65
+    max: 85
+    step: 1
+    mode: box
+#
+  t1_winter_evening:
+    name: T1 Winter Evening
+    icon: mdi:temperature-fahrenheit
+    min: 65
+    max: 85
+    step: 1
+    mode: box
+#
+  t1_winter_sleeping:
+    name: T1 Winter Sleeping
+    icon: mdi:temperature-fahrenheit
+    min: 65
+    max: 85
+    step: 1
+    mode: box
+#
+  t2_winter_morning:
+    name: T2 Winter Morning
+    icon: mdi:temperature-fahrenheit
+    min: 65
+    max: 85
+    step: 1
+    mode: box
+#
+  t2_winter_daytime:
+    name: T2 Winter Daytime
+    icon: mdi:temperature-fahrenheit
+    min: 65
+    max: 85
+    step: 1
+    mode: box
+#
+  t2_winter_evening:
+    name: T2 Winter Evening
+    icon: mdi:temperature-fahrenheit
+    min: 65
+    max: 85
+    step: 1
+    mode: box
+#
+  t2_winter_sleeping:
+    name: T2 Winter Sleeping
+    icon: mdi:temperature-fahrenheit
+    min: 65
+    max: 85
+    step: 1
+    mode: box
 #
 ##############################################################
 # Lighting
@@ -203,6 +307,18 @@
     max: 255
     step: 25
     mode: slider
+#
+##############################################################
+# Highest Tide
+##############################################################
+#
+  max_high_tide:
+    name: Max High Tide
+    icon: mdi:waves
+    min: 0
+    max: 16
+    step: 0.001
+    mode: box
 #
 ##############################################################
 # Timers
@@ -241,6 +357,174 @@
     mode: box
 #
 ##############################################################
-##       Alarm Clock Variables                              ##
+##       Old HVAC Variables                              ##
 ##############################################################
 #
+# # T1 Cooling Set Points
+#   t1_cool_morning:
+#     name: T1 Cool Morning
+#     icon: mdi:temperature-fahrenheit
+# #    initial: 80
+#     min: 65
+#     max: 85
+#     step: 1
+#     mode: box
+# #
+#   t1_cool_daytime:
+#     name: T1 Cool Daytime
+#     icon: mdi:temperature-fahrenheit
+# #    initial: 81
+#     min: 65
+#     max: 85
+#     step: 1
+#     mode: box
+# #
+#   t1_cool_evening:
+#     name: T1 Cool Evening
+#     icon: mdi:temperature-fahrenheit
+# #    initial: 80
+#     min: 65
+#     max: 85
+#     step: 1
+#     mode: box
+# #
+#   t1_cool_sleeping:
+#     name: T1 Cool Sleeping
+#     icon: mdi:temperature-fahrenheit
+# #    initial: 80
+#     min: 65
+#     max: 85
+#     step: 1
+#     mode: box
+# #
+# # T2 Cooling Set Points
+#   t2_cool_morning:
+#     name: T2 Cool Morning
+#     icon: mdi:temperature-fahrenheit
+# #    initial: 81
+#     min: 65
+#     max: 85
+#     step: 1
+#     mode: box
+# #
+#   t2_cool_daytime:
+#     name: T2 Cool Daytime
+#     icon: mdi:temperature-fahrenheit
+# #    initial: 81
+#     min: 65
+#     max: 85
+#     step: 1
+#     mode: box
+# #
+#   t2_cool_evening:
+#     name: T2 Cool Evening
+#     icon: mdi:temperature-fahrenheit
+# #    initial: 79
+#     min: 65
+#     max: 85
+#     step: 1
+#     mode: box
+# #
+#   t2_cool_sleeping:
+#     name: T2 Cool Sleeping
+#     icon: mdi:temperature-fahrenheit
+# #    initial: 80
+#     min: 65
+#     max: 85
+#     step: 1
+#     mode: box
+# #
+# # T1 Heating Set Points
+#   t1_heat_morning:
+#     name: T1 Heat Morning
+#     icon: mdi:temperature-fahrenheit
+# #    initial: 75
+#     min: 65
+#     max: 85
+#     step: 1
+#     mode: box
+# #
+#   t1_heat_daytime:
+#     name: T1 Heat Daytime
+#     icon: mdi:temperature-fahrenheit
+# #    initial: 74
+#     min: 65
+#     max: 85
+#     step: 1
+#     mode: box
+# #
+#   t1_heat_evening:
+#     name: T1 Heat Evening
+#     icon: mdi:temperature-fahrenheit
+# #    initial: 75
+#     min: 65
+#     max: 85
+#     step: 1
+#     mode: box
+# #
+#   t1_heat_sleeping:
+#     name: T1 Heat Sleeping
+#     icon: mdi:temperature-fahrenheit
+# #    initial: 73
+#     min: 65
+#     max: 85
+#     step: 1
+#     mode: box
+# #
+# # T2 Heating Set Points
+#   t2_heat_morning:
+#     name: T2 Heat Morning
+#     icon: mdi:temperature-fahrenheit
+# #    initial: 75
+#     min: 65
+#     max: 85
+#     step: 1
+#     mode: box
+# #
+#   t2_heat_daytime:
+#     name: T2 Heat Daytime
+#     icon: mdi:temperature-fahrenheit
+# #    initial: 74
+#     min: 65
+#     max: 85
+#     step: 1
+#     mode: box
+# #
+#   t2_heat_evening:
+#     name: T2 Heat Evening
+#     icon: mdi:temperature-fahrenheit
+# #    initial: 73
+#     min: 65
+#     max: 85
+#     step: 1
+#     mode: box
+# #
+#   t2_heat_sleeping:
+#     name: T2 Heat Sleeping
+#     icon: mdi:temperature-fahrenheit
+# #    initial: 73
+#     min: 65
+#     max: 85
+#     step: 1
+#     mode: box
+# #
+# # Auto Change Over Set Points
+#   t1_aco:
+#     name: T1 Auto Change Over
+#     icon: mdi:temperature-fahrenheit
+# #    initial: 78
+#     min: 65
+#     max: 85
+#     step: 1
+#     mode: box
+# #
+#   t2_aco:
+#     name: T2 Auto Change Over
+#     icon: mdi:temperature-fahrenheit
+# #    initial: 78
+#     min: 65
+#     max: 85
+#     step: 1
+#     mode: box
+# #
+# # Unused set points

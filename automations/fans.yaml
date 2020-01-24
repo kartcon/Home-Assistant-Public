@@ -145,7 +145,7 @@
   - service: script.write_to_log
     data_template:
       entity_id: light.office_fan_224
-      message: 'Outside Temperature is {{ states.sensor.dark_sky_temperature.state }}º. Office Fan turned on.'
+      message: "Upstairs Temperature is {{states('sensor.tstat2_actual_temp')|float}}º. Office Fan turned on."
 #
 #################################################################
 # Garage Fan On when outside temp >85

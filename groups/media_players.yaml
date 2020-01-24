@@ -1,32 +1,33 @@
 #################################################################
 #     MEDIA PLAYERS
+#     SEE /notify/alexa.yaml !!! 
 #################################################################
 #
-all_echo_devices:
-  name: All Echo Devices
-  view: no
-  icon: mdi:amazon-alexa
-  entities:
-    - media_player.kitchen_echo
-    - media_player.office_echo
-    - media_player.sunroom_echo_black
-    - media_player.sunroom_echo_white
+#all_echo_devices:
+#  name: All Echo Devices
+#  view: no
+#  icon: mdi:amazon-alexa
+#  entities:
+#    - media_player.kitchen_echo
+#    - media_player.office_echo
+#    - media_player.sunroom_echo_black
+#    - media_player.sunroom_echo_white
 #
-all_echo_dots:
-  name: All Echo Dots
-  view: no
-  icon: mdi:hockey-puck
-  entities:
-    - media_player.kitchen_echo
-    - media_player.office_echo
+#all_echo_dots:
+#  name: All Echo Dots
+#  view: no
+#  icon: mdi:hockey-puck
+#  entities:
+#    - media_player.kitchen_echo
+#    - media_player.office_echo
 #
-kitchen_sunroom:
-  name: Kitchen & Sunroom
-  view: no
-  icon: mdi:amazon-alexa
-  entities:
-    - media_player.kitchen_echo
-    - media_player.sunroom_echo_white
+#kitchen_sunroom:
+#  name: Kitchen & Sunroom
+#  view: no
+#  icon: mdi:amazon-alexa
+#  entities:
+#    - media_player.kitchen_echo
+#    - media_player.sunroom_echo_white
 #
 #  - service: notify.alexa_media
 #    data:

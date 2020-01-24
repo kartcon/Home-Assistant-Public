@@ -134,19 +134,132 @@ cards:
 # COL 3
     - type: vertical-stack
       cards:
-        - type: entities
-          title: Motion Detection
-          show_header_toggle: false
-          entities:
-            - entity: input_boolean.kit_motion_detected
-            - entity: input_datetime.last_kitchen_motion
-            - entity: input_boolean.speak_kit_motion
-            - entity: input_select.kit_lights_auto_off
-              name: Kitchen Lights Auto Off
-            - type: divider
-            - entity: input_boolean.lr_motion_detected
-            - entity: input_datetime.last_livingrm_motion
-            - entity: input_boolean.speak_lr_motion
+        - type: custom:vertical-stack-in-card
+          title: XFinity
+          cards:
+            - type: entities
+              entities:
+                - entity: sensor.xfinity_allowed
+                - entity: sensor.xfinity_usage
+                - entity: sensor.xfinity_daily_avg
+                - entity: sensor.xfinity_useage_rate
+                - entity: sensor.xfinity_projected
+                - entity: sensor.xfinity_remaining
+#            - type: history-graph
+#              entities:
+#                - entity: sensor.xfinity_allowed
+#                - entity: sensor.xfinity_usage
+#                - entity: sensor.xfinity_daily_avg
+#                - entity: sensor.xfinity_remaining
+#              hours_to_show: 72
+#              # refresh_interval: 14400
+#              refresh_interval: 21600
+
+            - type: horizontal-stack
+              cards:
+              - type: custom:mini-graph-card
+                name: Total Useage
+                icon: mdi:network
+                hours_to_show: 168
+                points_per_hour: 0.25
+                show:
+                  fill: true
+                  extrema: true
+#                  average: true
+                  icon_adaptive_color: true
+#                line_color: "#000000"
+                color_thresholds_transition: hard
+                color_thresholds:
+                - value: 0
+                  color: "#00CC00"
+#                - value: 0.1
+#                  color: "#00CC00"
+                - value: 250
+                  color: "#CCCC00"
+                - value: 500
+                  color: "#FF8000"
+                - value: 750
+                  color: "#FFFF00"
+                entities:
+#                  - entity: sensor.xfinity_daily_avg
+#                    name: Used
+#                    unit: GB
+#                    upper_bound: 1024
+                  - entity: sensor.xfinity_usage
+                    name: Avg
+                    unit: GB
+                    y_axis: secondary
+                    upper_bound: 1024
+#                - entity: sensor.xfinity_remaining
+#                  name: Remain
+#                  unit: GB
+#
+
+              - type: custom:mini-graph-card
+                name: Daily Avg
+                icon: mdi:network
+                hours_to_show: 168
+                points_per_hour: 0.25
+                average: true
+                show:
+                  fill: true
+                  extrema: true
+#                  average: true
+                  icon_adaptive_color: true
+                line_color: "#000000"
+                color_thresholds_transition: hard
+                color_thresholds:
+                - value: 0
+                  color: "#000000"
+                - value: 0.5
+                  color: "#00CC00"
+                - value: 10
+                  color: "#FFFF00"
+                - value: 20
+                  color: "#FF8000"
+                - value: 30
+                  color: "#FFFF00"
+
+
+                entities:
+#                - entity: sensor.xfinity_allowed
+#                  name: Allowed
+#                  unit: GB
+#                  upper_bound: 1024
+                  - entity: sensor.xfinity_daily_avg
+                    name: Used
+                    unit: GB
+                    upper_bound: 35
+
+#                - entity: sensor.xfinity_usage
+#                  name: Avg
+#                  unit: GB
+#                  y_axis: secondary
+#                  upper_bound_secondary: 1024
+#                - entity: sensor.xfinity_remaining
+#                  name: Remain
+#                  unit: GB
+
+#             - type: "custom:mini-graph-card"
+#               entities:
+#               -  sensor.sun_elevation
+#               icon: mdi:weather-sunny
+#               more_info: false
+#               points_per_hour: 2
+#               hours_to_show: 72
+# #              height: 100
+#               line_width: 4
+# #              font_size: 50
+#               line_color: '#566573'
+#               color_thresholds:
+#               - value: 0
+#                 color: "#F4D03F"
+#               - value: 0.1
+#                 color: "#F4D03F"
+#               labels: false
+#               show:
+#                 legend: false
+#                 extrema: false
 #
         - type: entities
           title: Schedules
@@ -156,4 +269,9 @@ cards:
             - entity: input_datetime.recycle_pickup_date
             - entity: sensor.day_of_year
             - entity: sensor.week_of_year
+            - entity: sensor.submit_mileage
+            - entity: sensor.submit_expenses
+#            - entity: sensor.bulk_trash
+#            - entity: sensor.recycling_pickup
+#            - entity: sensor.trash_pickup
 #

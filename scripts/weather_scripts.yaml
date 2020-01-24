@@ -18,7 +18,7 @@ its_raining:
   - condition: state
     entity_id: input_boolean.weather_alerts
     state: 'on'
-  - service: notify.ios_group_art_steff
+  - service: notify.mobile_group_art_steff
     data:
       message: "At {{now().strftime('%m/%d/%Y %H:%M')}} its raining."
       title: Weather Notification
@@ -45,12 +45,30 @@ its_gloomy_outside:
     data:
       alexa_entity: group.all_echo_dots
   # Make Announcement
-  - service: notify.alexa_media
-    data_template:
-      target: group.all_echo_dots
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.alexa_speaking
+#  - service: notify.alexa_media
+#    data:
+#      target:
+#        - media_player.kitchen_echo
+##        - media_player.office_echo
+#      data:
+#        type: tts
+#        method: speak
+#      message: "Its raining and gloomy outside so I've turned the lights on to brighten things up."
+#
+  - service: notify.alexa_media_all_echo_dots
+    data:
+      target:
+        - media_player.kitchen_echo
+        - media_player.office_echo
       data:
         type: tts
+        method: speak
       message: "Its raining and gloomy outside so I've turned the lights on to brighten things up."
+  - delay: '00:00:05'
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.alexa_speaking
 #  - service: script.sonos_say
 #    data:
 #      sonos_entity: media_player.sunroom_sonos
@@ -80,9 +98,26 @@ its_brighter_outside:
     data:
       alexa_entity: group.all_echo_dots
   # Make Announcement
-  - service: notify.alexa_media
-    data_template:
-      target: group.all_echo_dots
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.alexa_speaking
+#  - service: notify.alexa_media
+#    data:
+#      target:
+#        - media_player.kitchen_echo
+##        - media_player.office_echo
+#      data:
+#        type: tts
+#        method: speak
+#      message: "Its brightened up outside so I've turned the lights off."
+  - service: notify.alexa_media_all_echo_dots
+    data:
+      target:
+        - media_player.kitchen_echo
+        - media_player.office_echo
       data:
         type: tts
+        method: speak
       message: "Its brightened up outside so I've turned the lights off."
+  - delay: '00:00:05'
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.alexa_speaking

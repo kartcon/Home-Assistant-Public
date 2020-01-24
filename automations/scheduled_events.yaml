@@ -46,21 +46,41 @@
       - tue
   action:
   # Set Volume
-  - service: script.set_alexa_volume
-    data:
-      alexa_entity: group.all_echo_dots
+#  - service: script.set_alexa_volume
+#    data:
+#      alexa_entity: group.all_echo_dots
   # Make Announcement
   - service: input_boolean.turn_on
     entity_id: input_boolean.alexa_speaking
-  - service: notify.alexa_media
+#  - service: notify.alexa_media
+#    data:
+#      target:
+#        - media_player.kitchen_echo
+##        - media_player.office_echo
+#      data:
+#        type: tts
+#        method: speak
+#      message: "Trash pick-up is tomorrow. Remember to put the container out to the road."
+#
+  - service: notify.alexa_media_all_echo_dots
     data:
       target:
         - media_player.kitchen_echo
-#        - media_player.office_echo
+        - media_player.office_echo
       data:
-        type: tts
-        method: speak
-      message: "Trash pick-up is tomorrow. Remember to put the container out to the road."
+        type: announce
+      message: >-
+        Trash pick-up is tomorrow. Remember to put the container out to the road.
+#
+#  - service: notify.alexa_media
+#    data_template:
+#      target:
+#        - media_player.kitchen_echo
+#      data:
+#        type: announce
+#      message: >-
+#        Trash pick-up is tomorrow. Remember to put the container out to the road.
+#
   - service: script.sonos_say
     data:
       sonos_entity: media_player.sunroom_sonos
@@ -77,7 +97,7 @@
   - service: input_boolean.turn_off
     entity_id: input_boolean.alexa_speaking
   - service: script.turn_on
-    entity_id: script.blink_lights_tv
+    entity_id: script.blink_tv_lights
   - delay: 0:00:03
   - service: notify.lg_tv
     data:
@@ -104,21 +124,41 @@
       state: 'Even Week'
   action:
   # Set Volume
-  - service: script.set_alexa_volume
-    data:
-      alexa_entity: group.all_echo_dots
+#  - service: script.set_alexa_volume
+#    data:
+#      alexa_entity: group.all_echo_dots
   # Make Announcement
   - service: input_boolean.turn_on
     entity_id: input_boolean.alexa_speaking
-  - service: notify.alexa_media
+#  - service: notify.alexa_media
+#    data:
+#      target:
+#        - media_player.kitchen_echo
+##        - media_player.office_echo
+#      data:
+#        type: tts
+#        method: speak
+#      message: "Recycling pick-up is tomorrow. Remember to put the container out to the road."
+#
+  - service: notify.alexa_media_all_echo_dots
     data:
       target:
         - media_player.kitchen_echo
-#        - media_player.office_echo
+        - media_player.office_echo
       data:
-        type: tts
-        method: speak
-      message: "Recycling pick-up is tomorrow. Remember to put the container out to the road."
+        type: announce
+      message: >-
+        Recycling pick-up is tomorrow. Remember to put the container out to the road.
+#
+#  - service: notify.alexa_media
+#    data_template:
+#      target:
+#        - media_player.kitchen_echo
+#      data:
+#        type: announce
+#      message: >-
+#        Recycling pick-up is tomorrow. Remember to put the container out to the road.
+#
   - service: script.sonos_say
     data:
       sonos_entity: media_player.sunroom_black_sonos
@@ -137,7 +177,7 @@
   - service: input_boolean.turn_off
     entity_id: input_boolean.alexa_speaking
   - service: script.turn_on
-    entity_id: script.blink_lights_tv
+    entity_id: script.blink_tv_lights
   - delay: 0:00:03
   - service: notify.lg_tv
     data:
@@ -149,46 +189,6 @@
   - service: notify.mobile_group_art_steff
     data:
       message: "Reminder: Take out the recycling."
-#
-#############################################################
-#  Recycling - Reset next PickUp Date
-#############################################################
-- id: reset_recycling_pickup_date
-  alias: 'Reset recycling pickup date'
-  initial_state: true
-  trigger:
-  - platform: sun
-    event: sunset
-  condition:
-    - condition: time
-      weekday:
-        - mon
-    - condition: state
-      entity_id: sensor.week_odd_even
-      state: 'Even Week'
-  action:
-  - service: input_datetime.set_datetime
-    data_template:
-      entity_id: input_datetime.recycle_alert_date
-      date: '{{ (as_timestamp(now()) + (13*24*3600)) | timestamp_custom("%Y-%m-%d", True) }}'
-  - service: input_datetime.set_datetime
-    data_template:
-      entity_id: input_datetime.recycle_pickup_date
-      date: '{{ (as_timestamp(now()) + (14*24*3600)) | timestamp_custom("%Y-%m-%d", True) }}'
-#
-#################################################################
-# Reset Holiday Booleans at 11:55p
-#################################################################
-- id: reset_holiday_booleans_at_2355
-  alias: Reset Holiday Booleans at 2355
-  initial_state: true
-  trigger:
-    platform: time
-    at: '23:55:00'
-  condition: []
-  action:
-    service: script.turn_on
-    entity_id: script.reset_holiday_booleans
 #
 #############################################################
 #  Change Furnace Filter

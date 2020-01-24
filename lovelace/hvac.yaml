@@ -12,97 +12,559 @@ cards:
 - type: horizontal-stack
   cards:
 # COL 1
-    - type: vertical-stack
+# DOWNSTAIRS
+    - type: custom:vertical-stack-in-card
+      title: Thermostats
       cards:
-      - type: thermostat
-        title: Downstairs
-        show_header_toggle: false
-        entity: climate.tstat_1_144
-      - type: thermostat
-        title: Upstairs
-        show_header_toggle: false
-        entity: climate.tstat_2_145
+# UPSTAIRS
+        - type: markdown
+          content: >
+            <h3>Upstairs</h3>
+#        - type: gauge
+#          name: Upstairs Temp
+#          unit: 'f'
+#          entity: sensor.tstat2_actual_temp
+#          severity:
+#            red: 79
+#            green: 76
+#            yellow: 74
+        - type: horizontal-stack
+          cards:
+            - type: "custom:button-card"
+              entity: sensor.tstat2_feels_like_temp
+              name: Feels Like
+              show_name: true
+              show_state: true
+              show_icon: false
+              show_units: true
+              styles:
+                state:
+                  - font-size: small
+                  - font-weight: bold
+                name:
+                  - font-size: small
+              tap_action:
+                action: none
+
+#            - type: "custom:button-card"
+#              color_type: blank-card
+
+            - type: "custom:button-card"
+              color_type: icon
+              color: rgb(0,0,255)
+              icon: mdi:chevron-down-circle
+              tap_action:
+                action: call-service
+                service: script.turn_on
+                service_data:
+                  entity_id: script.tstat2_lower_by_1
+
+            - type: "custom:button-card"
+              entity: input_number.t2_set_point
+              show_name: false
+              show_state: true
+              show_icon: false
+              show_units: false
+              styles:
+                state:
+                  - font-size: x-large
+                  - font-weight: bold
+              tap_action:
+                action: none
+
+            - type: "custom:button-card"
+              color_type: icon
+              color: rgb(255,0,0)
+              icon: mdi:chevron-up-circle
+              tap_action:
+                action: call-service
+                service: script.turn_on
+                service_data:
+                  entity_id: script.tstat2_higher_by_1
+
+            - type: "custom:button-card"
+              entity: sensor.tstat2_actual_temp
+              name: Cur Temp
+              show_name: true
+              show_state: true
+              show_icon: false
+              show_units: true
+              styles:
+                state:
+                  - font-size: small
+                  - font-weight: bold
+                name:
+                  - font-size: small
+              tap_action:
+                action: none
+
+#            - type: "custom:button-card"
+#              color_type: blank-card
+
+        - type: horizontal-stack
+          cards:
+            - type: "custom:button-card"
+              entity: climate.tstat_2_145
+              color_type: icon
+              color: rgb(234, 237, 237)
+              name: Auto
+              icon: mdi:autorenew
+              tap_action:
+                action: more-info
+              hold_action:
+                action: call-service
+                service: climate.set_hvac_mode
+                service_data:
+                  entity_id: climate.tstat_2_145
+                  hvac_mode: heat_cool
+              state:
+                - value: "heat_cool"
+                  color: rgb(39, 174, 96)
+                - value: "off"
+                  color: rgb(234, 237, 237)
+
+            - type: "custom:button-card"
+              entity: climate.tstat_2_145
+              color_type: icon
+              color: rgb(234, 237, 237)
+              name: Cool
+              icon: mdi:snowflake
+              tap_action:
+                action: more-info
+              hold_action:
+                action: call-service
+                service: climate.set_hvac_mode
+                service_data:
+                  entity_id: climate.tstat_2_145
+                  hvac_mode: cool
+              state:
+                - value: "cool"
+                  color: rgb(33, 150, 243)
+                - value: "off"
+                  color: rgb(234, 237, 237)
+
+            - type: "custom:button-card"
+              entity: climate.tstat_2_145
+              color_type: icon
+              color: rgb(234, 237, 237)
+              name: Heat
+              icon: mdi:fire
+              tap_action:
+                action: more-info
+              hold_action:
+                action: call-service
+                service: climate.set_hvac_mode
+                service_data:
+                  entity_id: climate.tstat_2_145
+                  hvac_mode: heat
+              state:
+                - value: "heat"
+                  color: rgb(229, 57, 53)
+                - value: "off"
+                  color: rgb(234, 237, 237)
+
+            - type: "custom:button-card"
+              entity: climate.tstat_2_145
+              color_type: icon
+              color: rgb(234, 237, 237)
+              name: "Off"
+              icon: mdi:power-standby
+              tap_action:
+                action: more-info
+              hold_action:
+                action: call-service
+                service: climate.set_hvac_mode
+                service_data:
+                  entity_id: climate.tstat_2_145
+                  hvac_mode: "off"
+              state:
+                - value: "off"
+                  color: rgb(66, 66, 66)
+#
+# Dual Gauge Card
+#
+        - type: custom:dual-gauge-card
+          title: Cur. Temps
+          min: 70
+          max: 85
+          shadeInner: false
+          outer:
+            entity: sensor.tstat2_actual_temp
+#            attribute: current_temperature
+            label: "Up"
+            unit: "°f"
+            colors:
+              - color: DarkViolet
+                value: 71
+              - color: SlateBlue
+                value: 72
+              - color: SteelBlue
+                value: 73
+              - color: CadetBlue
+                value: 74
+              - color: DarkCyan
+                value: 75
+              - color: ForestGreen
+                value: 76
+              - color: OliveDrab
+                value: 77
+              - color: Olive
+                value: 78
+              - color: Gold
+                value: 79
+              - color: DarkOrange
+                value: 80
+              - color: Red
+                value: 81
+          inner:
+            entity: sensor.tstat1_actual_temp
+            label: "Dn"
+#            attribute: temperature
+            unit: "°f"
+            colors:
+              - color: DarkViolet
+                value: 71
+              - color: SlateBlue
+                value: 72
+              - color: SteelBlue
+                value: 73
+              - color: CadetBlue
+                value: 74
+              - color: DarkCyan
+                value: 75
+              - color: ForestGreen
+                value: 76
+              - color: OliveDrab
+                value: 77
+              - color: Olive
+                value: 78
+              - color: Gold
+                value: 79
+              - color: DarkOrange
+                value: 80
+              - color: Red
+                value: 81
+#
+        - type: markdown
+          content: >
+            <h3>Downstairs</h3>
+
+#        - type: gauge
+#          name: Downstairs Temp
+#          unit: 'f'
+#          entity: sensor.tstat1_actual_temp
+#          severity:
+#            yellow: 74
+#            green: 76
+#            red: 79
+
+        - type: horizontal-stack
+          cards:
+            - type: "custom:button-card"
+              entity: sensor.tstat1_feels_like_temp
+              name: Feels Like
+              show_name: true
+              show_state: true
+              show_icon: false
+              show_units: true
+              styles:
+                state:
+                  - font-size: small
+                  - font-weight: bold
+                name:
+                  - font-size: small
+              tap_action:
+                action: none
+
+#            - type: "custom:button-card"
+#              color_type: blank-card
+
+            - type: "custom:button-card"
+              color_type: icon
+              color: rgb(0,0,255)
+              icon: mdi:chevron-down-circle
+              tap_action:
+                action: call-service
+                service: script.turn_on
+                service_data:
+                  entity_id: script.tstat1_lower_by_1
+
+            - type: "custom:button-card"
+              entity: input_number.t1_set_point
+              show_name: false
+              show_state: true
+              show_icon: false
+              show_units: false
+              styles:
+                state:
+                  - font-size: x-large
+                  - font-weight: bold
+              tap_action:
+                action: none
+
+            - type: "custom:button-card"
+              color_type: icon
+              color: rgb(255,0,0)
+              icon: mdi:chevron-up-circle
+              tap_action:
+                action: call-service
+                service: script.turn_on
+                service_data:
+                  entity_id: script.tstat1_higher_by_1
+
+#            - type: "custom:button-card"
+#              color_type: blank-card
+
+            - type: "custom:button-card"
+              entity: sensor.tstat1_actual_temp
+              name: Cur Temp
+              show_name: true
+              show_state: true
+              show_icon: false
+              show_units: true
+              styles:
+                state:
+                  - font-size: small
+                  - font-weight: bold
+                name:
+                  - font-size: small
+              tap_action:
+                action: none
+
+        - type: horizontal-stack
+          cards:
+            - type: "custom:button-card"
+              entity: climate.tstat_1_144
+              color_type: icon
+              color: rgb(234, 237, 237)
+              name: Auto
+              icon: mdi:autorenew
+              tap_action:
+                action: more-info
+              hold_action:
+                action: call-service
+                service: climate.set_hvac_mode
+                service_data:
+                  entity_id: climate.tstat_1_144
+                  hvac_mode: heat_cool
+              state:
+                - value: "heat_cool"
+                  color: rgb(39, 174, 96)
+                - value: "off"
+                  color: rgb(234, 237, 237)
+
+            - type: "custom:button-card"
+              entity: climate.tstat_1_144
+              color_type: icon
+              color: rgb(234, 237, 237)
+              name: Cool
+              icon: mdi:snowflake
+              tap_action:
+                action: more-info
+              hold_action:
+                action: call-service
+                service: climate.set_hvac_mode
+                service_data:
+                  entity_id: climate.tstat_1_144
+                  hvac_mode: cool
+              state:
+                - value: "cool"
+                  color: rgb(33, 150, 243)
+                - value: "off"
+                  color: rgb(234, 237, 237)
+
+            - type: "custom:button-card"
+              entity: climate.tstat_1_144
+              color_type: icon
+              color: rgb(234, 237, 237)
+              name: Heat
+              icon: mdi:fire
+              tap_action:
+                action: more-info
+              hold_action:
+                action: call-service
+                service: climate.set_hvac_mode
+                service_data:
+                  entity_id: climate.tstat_1_144
+                  hvac_mode: heat
+              state:
+                - value: "heat"
+                  color: rgb(229, 57, 53)
+                - value: "off"
+                  color: rgb(234, 237, 237)
+
+            - type: "custom:button-card"
+              entity: climate.tstat_1_144
+              color_type: icon
+              color: rgb(234, 237, 237)
+              name: "Off"
+              icon: mdi:power-standby
+              tap_action:
+                action: more-info
+              hold_action:
+                action: call-service
+                service: climate.set_hvac_mode
+                service_data:
+                  entity_id: climate.tstat_1_144
+                  hvac_mode: "off"
+              state:
+                - value: "off"
+                  color: rgb(66, 66, 66)
+
+# Outside Temp
+        - type: entities
+          title: Current Conditions
+          show_header_toggle: false
+          entities:
+            - entity: sensor.dark_sky_temperature
+              name: Outside Temp
+            - entity: sensor.dark_sky_apparent_temperature
+              name: Feels Like
+            - entity: sensor.dark_sky_daytime_high_temperature_0d
+              name: Daytime High
+            - entity: sensor.dark_sky_overnight_low_temperature_0d
+              name: Overnight Low
+#            - entity: input_number.t1_set_point
+#              name: T1 SetPoint
+#            - entity: sensor.tstat1_feels_like_temp
+#              name: T1 Feels Like
+#            - entity: input_number.t2_set_point
+#              name: T2 SetPoint
+#            - entity: sensor.tstat2_feels_like_temp
+#              name: T2 Feels Like
+#            - entity: sensor.tstat1_actual_temp
+#              name: T1 Current
+#            - entity: sensor.tstat2_actual_temp
+#              name: T2 Current
+#            - entity: sensor.tstat1_currentsetpoint
+#              name: T1 Internal SetPoint
+#            - entity: sensor.tstat2_currentsetpoint
+#              name: T2 Internal SetPoint
+
 # COL 2
     - type: vertical-stack
       cards:
       - type: entities
-        title: HVAC Modes
+        title: Mode
         show_header_toggle: false
         entities:
-#          - entity: sensor.pws_temp_f
+#          - entity: sensor.dark_sky_temperature
 #            name: Outside Temp
-          - entity: sensor.dark_sky_temperature
-            name: Outside Temp
-          - input_select.thermostat_mode
+          - input_select.thermostat_mode_1
+          - input_select.thermostat_mode_2
           - input_select.thermostat_phase
+          - entity: input_text.hvac_phase_time
+            name: Time span
+          - entity: input_text.hvac_trigger
+            name: Last Trigger
+#      - type: markdown
+#        content: >
+#          Heat mode below 76, Cool mode above 79, Auto mode 77-78
+
       - type: conditional
         conditions:
-          - entity: input_select.thermostat_mode
-            state: "Cool"
+          - entity: sensor.season
+            state: "spring"
         card:
           type: entities
+          title: Spring
+          show_header_toggle: false
           entities:
-            - entity: input_number.t1_cool_morning
-              name: Downstairs Cool Morning
-            - entity: input_number.t1_cool_daytime
-              name: Downstairs Cool Daytime
-            - entity: input_number.t1_cool_evening
-              name: Downstairs Cool Evening
-            - entity: input_number.t1_cool_sleeping
-              name: Downstairs Cool Sleeping
-            - entity: input_number.t1_aco
-              name: Downstairs Auto Change Over
-            - type: divider
-            - entity: input_number.t2_cool_morning
-              name: Upstairs Cool Morning
-            - entity: input_number.t2_cool_daytime
-              name: Upstairs Cool Daytime
-            - entity: input_number.t2_cool_evening
-              name: Upstairs Cool Evening
-            - entity: input_number.t2_cool_sleeping
-              name: Upstairs Cool Sleeping
-            - entity: input_number.t2_aco
-              name: Upstairs Auto Change Over
+            - entity: input_number.t2_spring_morning
+              name: Upstairs Morning
+            - entity: input_number.t2_spring_daytime
+              name: Upstairs Daytime
+            - entity: input_number.t2_spring_evening
+              name: Upstairs Evening
+            - entity: input_number.t2_spring_sleeping
+              name: Upstairs Sleeping
+            - entity: input_number.t1_spring_morning
+              name: Downstairs Morning
+            - entity: input_number.t1_spring_daytime
+              name: Downstairs Daytime
+            - entity: input_number.t1_spring_evening
+              name: Downstairs Evening
+            - entity: input_number.t1_spring_sleeping
+              name: Downstairs Sleeping
+
       - type: conditional
         conditions:
-          - entity: input_select.thermostat_mode
-            state: "Heat"
+          - entity: sensor.season
+            state: "summer"
         card:
           type: entities
+          title: Summer
+          show_header_toggle: false
           entities:
-            - entity: input_number.t1_heat_morning
-              name: Downstairs Heat Morning
-            - entity: input_number.t1_heat_daytime
-              name: Downstairs Heat Daytime
-            - entity: input_number.t1_heat_evening
-              name: Downstairs Heat Evening
-            - entity: input_number.t1_heat_sleeping
-              name: Downstairs Heat Sleeping
-            - entity: input_number.t1_aco
-              name: Downstairs Auto Change Over
-            - type: divider
-            - entity: input_number.t2_heat_morning
-              name: Upstairs Heat Morning
-            - entity: input_number.t2_heat_daytime
-              name: Upstairs Heat Daytime
-            - entity: input_number.t2_heat_evening
-              name: Upstairs Heat Evening
-            - entity: input_number.t2_heat_sleeping
-              name: Upstairs Heat Sleeping
-            - entity: input_number.t2_aco
-              name: Upstairs Auto Change Over
+            - entity: input_number.t2_summer_morning
+              name: Upstairs Morning
+            - entity: input_number.t2_summer_daytime
+              name: Upstairs Daytime
+            - entity: input_number.t2_summer_evening
+              name: Upstairs Evening
+            - entity: input_number.t2_summer_sleeping
+              name: Upstairs Sleeping
+            - entity: input_number.t1_summer_morning
+              name: Downstairs Morning
+            - entity: input_number.t1_summer_daytime
+              name: Downstairs Daytime
+            - entity: input_number.t1_summer_evening
+              name: Downstairs Evening
+            - entity: input_number.t1_summer_sleeping
+              name: Downstairs Sleeping
+
       - type: conditional
         conditions:
-          - entity: input_select.thermostat_mode
-            state: "Auto"
+          - entity: sensor.season
+            state: "autumn"
         card:
           type: entities
+          title: Autumn
+          show_header_toggle: false
           entities:
-            - entity: input_number.t1_aco
-              name: Downstairs Auto Change Over
-            - entity: input_number.t2_aco
-              name: Upstairs Auto Change Over
-#
+            - entity: input_number.t2_autumn_morning
+              name: Upstairs Morning
+            - entity: input_number.t2_autumn_daytime
+              name: Upstairs Daytime
+            - entity: input_number.t2_autumn_evening
+              name: Upstairs Evening
+            - entity: input_number.t2_autumn_sleeping
+              name: Upstairs Sleeping
+            - entity: input_number.t1_autumn_morning
+              name: Downstairs Morning
+            - entity: input_number.t1_autumn_daytime
+              name: Downstairs Daytime
+            - entity: input_number.t1_autumn_evening
+              name: Downstairs Evening
+            - entity: input_number.t1_autumn_sleeping
+              name: Downstairs Sleeping
+
+      - type: conditional
+        conditions:
+          - entity: sensor.season
+            state: "winter"
+        card:
+          type: entities
+          title: Winter
+          show_header_toggle: false
+          entities:
+            - entity: input_number.t2_winter_morning
+              name: Upstairs Morning
+            - entity: input_number.t2_winter_daytime
+              name: Upstairs Daytime
+            - entity: input_number.t2_winter_evening
+              name: Upstairs Evening
+            - entity: input_number.t2_winter_sleeping
+              name: Upstairs Sleeping
+            - entity: input_number.t1_winter_morning
+              name: Downstairs Morning
+            - entity: input_number.t1_winter_daytime
+              name: Downstairs Daytime
+            - entity: input_number.t1_winter_evening
+              name: Downstairs Evening
+            - entity: input_number.t1_winter_sleeping
+              name: Downstairs Sleeping
+
 # COL 3
     - type: vertical-stack
       cards:
@@ -115,16 +577,17 @@ cards:
             name: Outside Temp
           - entity: sensor.kit_temp_sensor_226
             name: Kitchen
-          - entity: sensor.tstat1_temp
+          - entity: sensor.lr_temp_sensor_78
+            name: Living Rm
+          - entity: sensor.tstat1_actual_temp
             name: Downstairs
-          - entity: sensor.tstat2_temp
+          - entity: sensor.tstat2_actual_temp
             name: Upstairs
-          - entity: sensor.temperature_sensor_234
+          - entity: sensor.sun_room_temp_sensor_234
             name: Sunroom
-          - entity: sensor.temperature_sensor_237
+          - entity: sensor.birdrm1_temp_sensor_237
             name: Bird Rm1
-#      - type: picture
-#        image: https://cdn.tegna-media.com/wtlv/weather/7Day_forecast.jpg
+
       - type: glance
         title: Temp & Humidity Sensors
         columns: 3
@@ -141,3 +604,4 @@ cards:
          - sensor.birdrm1_temp_sensor_237
          - sensor.birdrm1_hum_sensor_239
          - sensor.birdrm1_lite_sensor_238
+#

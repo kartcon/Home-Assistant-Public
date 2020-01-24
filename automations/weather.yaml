@@ -32,7 +32,7 @@
   - condition: state
     entity_id: lock.garage_controller_2_54
     state: 'unlocked'
-  - service: notify.ios_group_art_steff
+  - service: notify.mobile_group_art_steff
     data:
       title: Garage Door Closed
       message: Rain - Close Garage Door Automation Triggered
@@ -50,11 +50,23 @@
   # Make Announcement
   - service: input_boolean.turn_on
     entity_id: input_boolean.alexa_speaking
-  - service: notify.alexa_media
-    data_template:
-      target: group.all_echo_dots
+#  - service: notify.alexa_media
+#    data:
+#      target:
+#        - media_player.kitchen_echo
+##        - media_player.office_echo
+#      data:
+#        type: tts
+#        method: speak
+#      message: "I'ts getting ready to rain. I've closed the Garage Doors for you"
+  - service: notify.alexa_media_all_echo_dots
+    data:
+      target:
+        - media_player.kitchen_echo
+        - media_player.office_echo
       data:
         type: tts
+        method: speak
       message: "I'ts getting ready to rain. I've closed the Garage Doors for you"
   - delay: '00:00:05'
   - service: input_boolean.turn_off
@@ -297,5 +309,29 @@
 # Dark Sky icons as of 2/20/2019: clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day, or partly-cloudy-night
 #input_select-current_condition: Sunny, Cloudy, Rainy, Windy, Foggy
 #
+#################################################################
+# Update Max High Tide Value
+#################################################################
+- id: max_high_tide
+  alias: Max High Tide
+  initial_state: true
+  trigger:
+  - platform: template
+    value_template: >-
+      {% if (states('sensor.high_tide_height')|float) > (states('input_number.max_high_tide')|float) %}
+        True
+      {% else %}
+        False
+      {% endif %}
+#  condition:
+#  - condition: state
+#    entity_id: sensor.dark_sky_icon
+#    state: 'wind'
+  action:
+  - service: input_number.set_value
+    data_template:
+      entity_id: input_number.max_high_tide
+      value: >-
+        {{ states('sensor.high_tide_height') }}
 #
 #

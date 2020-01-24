@@ -11,9 +11,17 @@ cards:
 # Top Banner
 - type: vertical-stack
   cards:
-  - type: markdown
-    content: >
-      ## Good [[ sensor.time_of_day.state ]] [[ {user} ]]. Today is [[ sensor.readable_date_long.state ]]. It's [[ sensor.readable_time.state ]]
+  - type: 'custom:card-templater'
+    card:
+      type: markdown
+      content_template: >
+        <h2> <center>
+        Good {{ states.sensor.time_of_day.state }} {{user.name}}. Today is {{states.sensor.readable_date_long.state}}. It's  {{states.sensor.readable_time.state}}
+        </center> </h2>
+    entities:
+      - entity: sensor.time
+#
+
   - type: horizontal-stack
     cards:
 # COL 1
@@ -94,7 +102,7 @@ cards:
               icon: mdi:slope-uphill
 #       Card 2-3
         - type: picture
-          image: https://wave.marineweather.net/itide/tides/png/fl_clapboard_creek.png?x=1543758223
+          image: https://wave.marineweather.net/itide/tides/png/fl_clapboard_creek.png?x=1543758223&z={{states('sensor.uptime')}}
 #
 # COL 3
 #   Card 3-1
@@ -103,25 +111,63 @@ cards:
       - type: glance
         title: Device Trackers
         show_name: true
-        columns: 4
+        columns: 3
         entities:
           - entity: device_tracker.art_ot1
             icon: mdi:crosshairs-gps
-#            - entity: device_tracker.arts_iphone_8
-#              icon: mdi:cellphone-iphone
+          - entity: device_tracker.arts_iphone_8
+            icon: mdi:cellphone-iphone
           - entity: device_tracker.sjm_ipad
             icon: mdi:tablet-ipad
           - entity: device_tracker.steff_ot2
             icon: mdi:crosshairs-gps
-#            - entity: device_tracker.steffs_iphone_8
-#              icon: mdi:cellphone-iphone
+          - entity: device_tracker.steffs_iphone_8
+            icon: mdi:cellphone-iphone
           - entity: device_tracker.steffs_ipad_mini
             icon: mdi:tablet-ipad
 #     Card 3-2
       - type: "custom:birthday-card"
         title: "Birthdays & Anniversaries"
         numberofdays: 60
+#
+      - type: custom:vertical-stack-in-card
+#        title: Reminders
+        cards:
+#       Card 3-3-1
+#        - type: entity-filter
+#          entities:
+#            - entity: sensor.submit_expenses
+#            - entity: input_boolean.reminder_concur
+#              state_filter:
+#              - "on"
+#            - entity: sensor.submit_mileage
+#            - entity: input_boolean.reminder_motus
+#              state_filter:
+#              - "on"
+#          state_filter:
+#            - "True"
+#          card:
+#          type: entities
+#          title: Reminders
+        - type: conditional
+          conditions:
+            - entity: sensor.submit_expenses
+              state: "True"
+          card:
+            type: entities
+            entities:
+              - input_boolean.reminder_concur
+#        Card 3-3-2
+        - type: conditional
+          conditions:
+            - entity: sensor.submit_mileage
+              state: "True"
+          card:
+            type: entities
+            entities:
+              - input_boolean.reminder_motus
+#
 # {{states.input_select.days_to_display.state}}
 # {{ states('input_select.days_to_display') }}
 # {{ states('input_number.led_strip_brightness') }}
-#
+# 

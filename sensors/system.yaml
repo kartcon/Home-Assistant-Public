@@ -1,4 +1,13 @@
 #########################
+#    HA User            #
+#########################
+# platform: template
+#  sensors:
+#    logged_user:
+#      value_template: "{{ user.name }}"
+#      friendly_name: "Logged User"
+#
+#########################
 #    HA Uptime          #
 #########################
 - platform: uptime
@@ -62,6 +71,56 @@
     - 'date_time'
 #
 #########################
+#    XFinity Useage     #
+#########################
+# https://github.com/robert-alfaro/xfinity-usage
+- platform: xfinity
+  username: !secret xfinity_username
+  password: !secret xfinity_password
+  # sensor.xfinity_usage
+  #
+  ############################
+  # XFinity Data Sensors
+  ############################
+- platform: template
+  sensors:
+    xfinity_allowed:
+      value_template: '{{state_attr("sensor.xfinity_usage","allowed_usage")}}'
+      friendly_name: "XFinity Data Allowed"
+      icon_template: mdi:network
+      unit_of_measurement: 'GB'
+    xfinity_remaining:
+      value_template: '{{state_attr("sensor.xfinity_usage","remaining_usage")}}'
+      friendly_name: "XFinity Data Remaining"
+      icon_template: mdi:network
+      unit_of_measurement: 'GB'
+    xfinity_daily_avg:
+      value_template: '{{((states("sensor.xfinity_usage")|int)/(states("sensor.day_of_the_month")|int))|round(2)}}'
+      friendly_name: "XFinity Daily Average"
+      icon_template: mdi:network
+      unit_of_measurement: 'GB'
+    xfinity_projected:
+      value_template: '{{((states("sensor.xfinity_daily_avg")|float) * (states("sensor.days_in_current_month")|int))|round(2)}}'
+      friendly_name: "XFinity Projected Use"
+      icon_template: mdi:network
+      unit_of_measurement: 'GB'
+    xfinity_useage_rate:
+      value_template: >-
+        {% if states('sensor.xfinity_daily_avg')|int > 0 and states('sensor.xfinity_daily_avg')|int < 10%}
+          Low
+        {% elif states('sensor.xfinity_daily_avg')|int >= 10 and states('sensor.xfinity_daily_avg')|int < 20 %}
+          Medium
+        {% elif states('sensor.xfinity_daily_avg')|int >= 20 and states('sensor.xfinity_daily_avg')|int < 30 %}
+          High
+        {% elif states('sensor.xfinity_daily_avg')|int >= 30 %}
+          Critical
+        {% else %}
+          Unknown
+        {% endif %}
+      icon_template: mdi:network
+      friendly_name: "XFinity Useage Rate"
+#
+#########################
 #    File Size      #
 #########################
 #https://www.home-assistant.io/components/sensor.filesize/
@@ -71,223 +130,6 @@
 #    - /config/home-assistant.log
 #
 #
-#====================================
-#=== Home Assistant Component counts
-#====================================
-#Thanks to @ccostan for the code here.  Some Intresting HA stats
-# - platform: template
-#   sensors:
-#     automation_count:
-#       entity_id: []
-#       friendly_name: 'Number of Automations'
-#       value_template: >
-#         {%- set domains = ['automation'] -%}
-#         {%- for domain in domains -%}
-#           {%- for item in states[domain] -%}
-#             {% if loop.first %}
-#               {{loop.length}}
-#             {% endif %}
-#           {%- endfor -%}
-#         {%- endfor -%}
-#     binary_sensor_count:
-#       entity_id: []
-#       friendly_name: 'Number of Binary Sensors'
-#       value_template: >
-#         {%- set domains = ['binary_sensor'] -%}
-#         {%- for domain in domains -%}
-#           {%- for item in states[domain] -%}
-#             {% if loop.first %}
-#               {{loop.length}}
-#             {% endif %}
-#           {%- endfor -%}
-#         {%- endfor -%}
-#     camera_count:
-#       entity_id: []
-#       friendly_name: 'Number of Cameras'
-#       value_template: >
-#         {%- set domains = ['camera'] -%}
-#         {%- for domain in domains -%}
-#           {%- for item in states[domain] -%}
-#             {% if loop.first %}
-#               {{loop.length}}
-#             {% endif %}
-#           {%- endfor -%}
-#         {%- endfor -%}
-#     climate_count:
-#       entity_id: []
-#       friendly_name: 'Number of Climate Sensors'
-#       value_template: >
-#         {%- set domains = ['climate'] -%}
-#         {%- for domain in domains -%}
-#           {%- for item in states[domain] -%}
-#             {% if loop.first %}
-#               {{loop.length}}
-#             {% endif %}
-#           {%- endfor -%}
-#         {%- endfor -%}
-#     input_boolean_count:
-#       entity_id: []
-#       friendly_name: 'Number of Input Booleans'
-#       value_template: >
-#         {%- set domains = ['input_boolean'] -%}
-#         {%- for domain in domains -%}
-#           {%- for item in states[domain] -%}
-#             {% if loop.first %}
-#               {{loop.length}}
-#             {% endif %}
-#           {%- endfor -%}
-#         {%- endfor -%}
-#     input_date_count:
-#       entity_id: []
-#       friendly_name: 'Number of Input Dates'
-#       value_template: >
-#         {%- set domains = ['input_datetime'] -%}
-#         {%- for domain in domains -%}
-#           {%- for item in states[domain] -%}
-#             {% if loop.first %}
-#               {{loop.length}}
-#             {% endif %}
-#           {%- endfor -%}
-#         {%- endfor -%}
-#     input_number_count:
-#       entity_id: []
-#       friendly_name: 'Number of Input Numbers'
-#       value_template: >
-#         {%- set domains = ['input_number'] -%}
-#         {%- for domain in domains -%}
-#           {%- for item in states[domain] -%}
-#             {% if loop.first %}
-#               {{loop.length}}
-#             {% endif %}
-#           {%- endfor -%}
-#         {%- endfor -%}
-#     input_select_count:
-#       entity_id: []
-#       friendly_name: 'Number of Input Selects'
-#       value_template: >
-#         {%- set domains = ['input_select'] -%}
-#         {%- for domain in domains -%}
-#           {%- for item in states[domain] -%}
-#             {% if loop.first %}
-#               {{loop.length}}
-#             {% endif %}
-#           {%- endfor -%}
-#         {%- endfor -%}
-#     lights_count:
-#       entity_id: []
-#       friendly_name: 'Number of Lights'
-#       value_template: >
-#         {%- set domains = ['light'] -%}
-#         {%- for domain in domains -%}
-#           {%- for item in states[domain] -%}
-#             {% if loop.first %}
-#               {{loop.length}}
-#             {% endif %}
-#           {%- endfor -%}
-#         {%- endfor -%}
-#     locks_count:
-#       entity_id: []
-#       friendly_name: 'Number of Locks'
-#       value_template: >
-#         {%- set domains = ['lock'] -%}
-#         {%- for domain in domains -%}
-#           {%- for item in states[domain] -%}
-#             {% if loop.first %}
-#               {{loop.length}}
-#             {% endif %}
-#           {%- endfor -%}
-#         {%- endfor -%}
-#     media_player_count:
-#       entity_id: []
-#       friendly_name: 'Number of Media Players'
-#       value_template: >
-#         {%- set domains = ['media_player'] -%}
-#         {%- for domain in domains -%}
-#           {%- for item in states[domain] -%}
-#             {% if loop.first %}
-#               {{loop.length}}
-#             {% endif %}
-#           {%- endfor -%}
-#         {%- endfor -%}
-#     persons_count:
-#       entity_id: []
-#       friendly_name: 'Number of Persons'
-#       value_template: >
-#         {%- set domains = ['person'] -%}
-#         {%- for domain in domains -%}
-#           {%- for item in states[domain] -%}
-#             {% if loop.first %}
-#               {{loop.length}}
-#             {% endif %}
-#           {%- endfor -%}
-#         {%- endfor -%}
-#     script_count:
-#       entity_id: []
-#       friendly_name: 'Number of Scripts'
-#       value_template: >
-#         {%- set domains = ['script'] -%}
-#         {%- for domain in domains -%}
-#           {%- for item in states[domain] -%}
-#             {% if loop.first %}
-#               {{loop.length}}
-#             {% endif %}
-#           {%- endfor -%}
-#         {%- endfor -%}
-#     sensor_count:
-#       entity_id: []
-#       friendly_name: 'Number of Sensors'
-#       value_template: >
-#         {%- set domains = ['sensor'] -%}
-#         {%- for domain in domains -%}
-#           {%- for item in states[domain] -%}
-#             {% if loop.first %}
-#               {{loop.length}}
-#             {% endif %}
-#           {%- endfor -%}
-#         {%- endfor -%}
-#     switch_count:
-#       entity_id: []
-#       friendly_name: 'Number of Switches'
-#       value_template: >
-#         {%- set domains = ['switch'] -%}
-#         {%- for domain in domains -%}
-#           {%- for item in states[domain] -%}
-#             {% if loop.first %}
-#               {{loop.length}}
-#             {% endif %}
-#           {%- endfor -%}
-#         {%- endfor -%}
-#     tracker_count:
-#       entity_id: []
-#       friendly_name: 'Number of Device Trackers'
-#       value_template: >
-#         {%- set domains = ['device_tracker'] -%}
-#         {%- for domain in domains -%}
-#           {%- for item in states[domain] -%}
-#             {% if loop.first %}
-#               {{loop.length}}
-#             {% endif %}
-#           {%- endfor -%}
-#         {%- endfor -%}
-#     zone_count:
-#       entity_id: []
-#       friendly_name: 'Number of Zones'
-#       value_template: >
-#         {%- set domains = ['zone'] -%}
-#         {%- for domain in domains -%}
-#           {%- for item in states[domain] -%}
-#             {% if loop.first %}
-#               {{loop.length}}
-#             {% endif %}
-#           {%- endfor -%}
-#         {%- endfor -%}
-#
-#  ----------------------------------------------
-#  scene(0), proximity(2), updater(1), weather(1) & weblinbk(2)
-#  unaccounted for in above counts.
-#
-
-
 #====================================
 #=== Home Assistant Component counts
 #====================================

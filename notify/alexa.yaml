@@ -3,6 +3,20 @@
 - platform: alexa_media
   name: alexa_media
 #
+- name: alexa_media_all_echo_dots
+  platform: group
+  services:
+    - service: alexa_media_kitchen_echo
+    - service: alexa_media_office_echo
+#
+- name: alexa_media_all_echo_devices
+  platform: group
+  services:
+    - service: alexa_media_kitchen_echo
+    - service: alexa_media_office_echo
+    - service: alexa_media_sunroom_black
+    - service: alexa_media_sunroom_white
+#
 # -- Working Simply TTS
 #  - service: notify.alexa_media
 #    data_template:

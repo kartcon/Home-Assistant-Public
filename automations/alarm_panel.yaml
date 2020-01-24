@@ -399,7 +399,7 @@
   - service: light.turn_on
     entity_id:
       - group.alarm_emergency
-  - service: notify.ios_group_art_steff
+  - service: notify.mobile_group_art_steff
     data_template:
       title: "Siren Activated!"
       message: At {{now().strftime("%m/%d/%Y %H:%M:%S")}} the Alarm sounded. Please check all doors and windows.
@@ -408,7 +408,7 @@
     entity_id: input_boolean.alarm_tripped
 # --- Testing an Actionable Notification Here
 # --- See: https://www.home-assistant.io/docs/ecosystem/ios/notifications/actions/
-  - service: notify.ios_group_art_only
+  - service: notify.mobile_group_art_only
     data:
       message: "Siren Activated!"
       data:
@@ -445,6 +445,9 @@
     data_template:
       title: "Siren Silenced"
       message: At {{now().strftime("%m/%d/%Y %H:%M:%S")}} the Alarm was silenced.
+  - delay: 0:00:05
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.alarm_silence
 #
 ##########################################################
 ## Pre Warn the Alarm Siren
@@ -572,7 +575,7 @@
       message: >-
         The alarm has been changed to Armed Home at {{now().strftime("%m/%d/%Y %H:%M:%S")}}.
   - service: script.turn_on
-    entity_id: script.blink_lights_tv
+    entity_id: script.blink_tv_lights
   - delay: 0:00:03
   - service: notify.lg_tv
     data:
@@ -581,7 +584,7 @@
   - condition: state
     entity_id: input_boolean.auto_arm_notifications
     state: 'on'
-  - service: notify.ios_group_art_steff
+  - service: notify.mobile_group_art_steff
     data:
       title: "Alarm Set"
       message: "The alarm system has been set to Armed Home."
@@ -615,7 +618,7 @@
   - condition: state
     entity_id: input_boolean.auto_arm_notifications
     state: 'on'
-  - service: notify.ios_group_art_steff
+  - service: notify.mobile_group_art_steff
     data:
       title: "Armed Away"
       message: "The alarm system has been set to Away."
@@ -648,7 +651,7 @@
   - condition: state
     entity_id: input_boolean.disarm_notifications
     state: 'on'
-  - service: notify.ios_group_art_steff
+  - service: notify.mobile_group_art_steff
     data:
       title: "Alarm Disarmed"
       message: "The alarm system has been disarmed."
@@ -687,7 +690,7 @@
 #            {{ sensor.name }} sensor.
 #          {% endif -%}
 #        {%- endfor -%}
-  - service: notify.ios_group_art_steff
+  - service: notify.mobile_group_art_steff
     data:
       title: "Security Alert!"
       message: "The alarm system has been tripped."
@@ -723,8 +726,8 @@
     data:
       entity_id: light.kitchen_pendants_106, light.kitchen_can_lights_49
   - service: script.turn_on
-    entity_id: script.blink_lights_porch
-  - service: notify.ios_group_art_steff
+    entity_id: script.blink_porch_lights
+  - service: notify.mobile_group_art_steff
     data_template:
       title: "Pet Sitter Arrived!"
       message: At {{now().strftime("%m/%d/%Y %H:%M:%S")}} the Pet Sitter Arived.
@@ -740,11 +743,12 @@
       volume_level: '0.8'
   - delay: '00:00:02'
   - service: notify.alexa_media
-    data_template:
+    data:
       target:
         - media_player.kitchen_echo
       data:
         type: announce
+        method: speak
       message: "The alarm has been disabled for sixty minutes. Please remember to press the lock button when leaving."
   - delay: '01:00:00'
   - service: script.write_to_log
@@ -779,7 +783,7 @@
     entity_id: script.check_open_door_status
   - service: script.turn_on
     entity_id: script.set_alarm_armed_away
-  - service: notify.ios_group_art_steff
+  - service: notify.mobile_group_art_steff
     data_template:
       title: "Front Door Locked - Vacation Mode!"
       message: At {{now().strftime("%m/%d/%Y %H:%M:%S")}} - Front Door Locked - Vacation Mode.
@@ -790,7 +794,7 @@
         At {{now().strftime("%m/%d/%Y %H:%M:%S")}} - Front Door Locked - Vacation Mode.
   - delay: '00:00:05'
   - service: script.turn_on
-    entity_id: script.blink_lights_porch
+    entity_id: script.blink_porch_lights
   - service: light.turn_off
     data:
       entity_id: light.kitchen_pendants_106, light.kitchen_can_lights_49

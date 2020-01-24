@@ -4,38 +4,14 @@
 - platform: template
   sensors:
 ############################
-#  Mobile Devices          #
-############################
-    artsiphone8_battery:
-      value_template: '{{state_attr("device_tracker.art_ot1","battery_level")}}'
-#      value_template: '{{state_attr("device_tracker.artsiphone8","battery")}}'
-      unit_of_measurement: '%'
-#
-#    artsiphone8_battery:
-#      friendly_name: Arts iPhone Battery
-#      unit_of_measurement: '%'
-#      value_template: >-
-#          {%- if states.device_tracker.artsiphone8.attributes.battery %}
-#              {{ states.device_tracker.artsiphone8.attributes.battery|round }}
-#          {% else %}
-#              {{ states.sensor.artsiphone8_battery.state }}
-#          {%- endif %}
-#      device_class: battery
-#
-    steffsiphone8_battery:
-      value_template: '{{state_attr("device_tracker.steff_ot2","battery_level")}}'
-#      value_template: '{{state_attr("device_tracker.steffsiphone8","battery")}}'
-      unit_of_measurement: '%'
-#
-############################
 #  Door Locks              #
 ############################
     front_door_lock_batstat:
       value_template: "{{ (states.lock.front_door_bolt_241.attributes.battery_level | round(0)) }}"
       friendly_name: "Front Door Lock"
-    back_door_lock_batstat:
-      value_template: "{{ (states.lock.back_door_lock_61.attributes.battery_level | round(0)) }}"
-      friendly_name: "Back Door Lock"
+#    back_door_lock_batstat:
+#      value_template: "{{ (states.lock.back_door_lock_61.attributes.battery_level | round(0)) }}"
+#      friendly_name: "Back Door Lock"
 #
 ############################
 #  Door Sensors            #

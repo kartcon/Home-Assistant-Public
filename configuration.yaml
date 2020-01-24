@@ -89,6 +89,7 @@ binary_sensor: !include includes/binary_sensors.yaml
 #camera: !include_dir_merge_list cameras
 device_tracker: !include includes/device_trackers.yaml
 fan: !include includes/fans.yaml
+#garbage_collection: !include includes/garbage_collection.yaml
 group: !include_dir_merge_named groups
 history: !include includes/history_cfgs.yaml
 ##ios: !include includes/ios_cfg.yaml
@@ -109,6 +110,7 @@ script: !include_dir_merge_named scripts
 sensor: !include_dir_merge_list sensors
 switch: !include includes/switches.yaml
 weblink: !include includes/weblinks.yaml
+#webostv: !include includes/webostvs.yaml
 zone: !include includes/zones.yaml
 #
 # ******************************************************************************
@@ -138,7 +140,7 @@ hacs:
 #  ---------------------------------------------------------------------------
 # Own Tracks
 owntracks:
-  max_gps_accuracy: 50
+  max_gps_accuracy: 100
   events_only: false
 #  waypoints: true
 #

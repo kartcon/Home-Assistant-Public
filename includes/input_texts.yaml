@@ -18,3 +18,21 @@
 #    name: Hidden
 #    mode: password
 #
+  owntracks_config:
+    name: Owntracks Cfg Key
+    min: 4
+    max: 140
+    initial: !secret owntracks_api_key
+#
+  hvac_phase_time:
+    name: HVAC Phase Time
+    min: 4
+    max: 140
+#    initial: unknown
+#
+  hvac_trigger:
+    name: HVAC Trigger
+    min: 4
+    max: 140
+#    initial: unknown
+#

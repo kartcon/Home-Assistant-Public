@@ -149,6 +149,15 @@ morning_briefing:
           miles per hour.
         {% endif %}
 
+        {# NWS Warnings #}
+        {% if states('sensor.nws_alert_count') | int > 0 %}
+          {% if states('sensor.nws_alert_event') | lower() != 'none' %}
+          {% if states('sensor.nws_alert_event') | lower() != 'unknown' %}
+            The National Weather Service has issued a {{states('sensor.nws_alert_event')}} for today.
+          {% endif %}
+          {% endif %}
+        {% endif %}
+
         {# UV Index #}
         {% if states('sensor.dark_sky_uv_index')|int >= 6 and states('sensor.dark_sky_uv_index')|int <= 7.9 %}
             Today's UV index is {{ states('sensor.dark_sky_uv_index') }}. This is high. Be sure wear sunscreen.
@@ -158,12 +167,10 @@ morning_briefing:
             Today's UV index is {{ states('sensor.dark_sky_uv_index') }}. This is EXTREME. You should use caution when going outside.
         {% endif %}
 
-        {# NWS Warnings #}
-        {% if states('sensor.nws_alert_count') | int > 0 %}
-          {% if states('sensor.nws_alert_event') | lower() != 'none' %}
-          {% if states('sensor.nws_alert_event') | lower() != 'unknown' %}
-            The National Weather Service has issued a {{states('sensor.nws_alert_event')}} for today.
-          {% endif %}
+        {# Fog Warnings #}
+        {% if states('sensor.dark_sky_visibility') != '' %}
+          {% if states('sensor.dark_sky_visibility')|int < 2 %}
+              Current visibility is only {{states('sensor.dark_sky_visibility')}} mile. Use caution!
           {% endif %}
         {% endif %}
 
@@ -183,7 +190,7 @@ morning_briefing:
         {% endif %}
 
         {# Moon #}
-        {% if states('sensor.moon') == 'full_moon' %}
+        {% if states('sensor.moon') == 'full_moon' or (states('sensor.dark_sky_moon_phase_0d')|float > 0.45 and states('sensor.dark_sky_moon_phase_0d')|float < 0.55) %}
           There will be a Full Moon tonight.
         {% endif %}
 
@@ -193,7 +200,9 @@ morning_briefing:
         {% endif %}
 
         {# High Tide Warnings #}
-        {# End High Tide Warnings #}
+        {% if states('sensor.high_tide_height')|float > states('input_number.max_high_tide')|float * 0.95 %}
+          It will be a higher than average at {{states('input_number.max_high_tide')|round(2)}} feet above sea level.
+        {% endif %}
 
         {# Arts Location #}
         {% if recipient == 'Steff' %}
@@ -223,6 +232,21 @@ morning_briefing:
         {% if (states('sensor.day_of_the_week') == 'Saturday') and (states('sensor.day_of_the_month') | int < 8) %}
           It's the first Saturday of the month. Please remeber to change the furnace filters and top off the golf cart batteries.
         {% endif %}
+
+        {# Reminders Art #}
+        {% if recipient == 'Art' %}
+          {% if states('sensor.submit_expenses') == 'True' %}
+            {% if states('input_boolean.reminder_concur') == 'on' %}
+              Remember to submit your expense report today.
+            {% endif %}
+          {% endif %}
+          {% if states('sensor.submit_mileage') == 'True' %}
+            {% if states('input_boolean.reminder_motus') == 'on' %}
+              Remember to submit your mileage today. You have {{states('sensor.submit_mileage.attributes.days_remaining')}} days remaining!
+            {% endif %}
+          {% endif %}
+        {% endif %}
+
 
         {# Closing Statement #}
         {% if recipient == 'Art' %}
@@ -300,6 +324,9 @@ evening_briefing:
 
         {# Weather Outside #}
         It's currently {{states('sensor.dark_sky_temperature')}} degrees outside with an overnight low expected to be {{states('sensor.dark_sky_overnight_low_temperature_0d')}} degrees.
+        {% if states('sensor.dark_sky_overnight_low_temperature_0d') | int < 34 %}
+          There is a chance for freezing temperatures tonight, so we better protect the outside faucets.
+        {% endif %}
         {% if states('sensor.dark_sky_overnight_low_temperature_1d') | int < 34 %}
           There is a chance for freezing temperatures tomorrow night, so we better protect the outside faucets.
         {% endif %}
@@ -319,7 +346,7 @@ evening_briefing:
           We may see {{state_attr('weather.dark_sky', 'forecast')[0].precipitation}} inches of rain tonight.
         {% endif %}
 
-         {# NWS Warnings #}
+        {# NWS Warnings #}
         {% if states('sensor.nws_alert_count') | int > 0 %}
           {% if states('sensor.nws_alert_event') | lower() != 'none' %}
           {% if states('sensor.nws_alert_event') | lower() != 'unknown' %}
@@ -339,8 +366,8 @@ evening_briefing:
         {% endif %}
 
         {# Moon #}
-        {% if states('sensor.moon') == 'full_moon' %}
-          There will be a Full Moon tonight.
+        {% if states('sensor.moon') == 'full_moon' or (states('sensor.dark_sky_moon_phase_0d')|float > 0.45 and states('sensor.dark_sky_moon_phase_0d')|float < 0.55) %}
+          Look for the Full Moon tonight.
         {% endif %}
 
         {# Tides #}
@@ -349,7 +376,9 @@ evening_briefing:
         {% endif %}
 
         {# High Tide Warnings #}
-        {# End High Tide Warnings #}
+        {% if states('sensor.high_tide_height')|float > states('input_number.max_high_tide')|float * 0.95 %}
+          It will be a higher than average at {{states('input_number.max_high_tide')|round(2)}} feet above sea level.
+        {% endif %}
 
         {# Arts Location #}
         {% if states('device_tracker.arts_iphone_8') != 'home' %}
@@ -380,9 +409,9 @@ evening_briefing:
 
         {# Closing Statement #}
         {% if recipient == 'Art' %}
-          I hope you had a{{ [' pleasant', ' great', ' good', ' cheerful', ' delightful', 'n enjoyable', ' super', ' wonderful', ' satisfying'] | random }} day!
+          I hope you had a{{ [' pleasant', ' great', ' good', 'n enjoyable', ' super', ' wonderful'] | random }} day!
         {% else %}
-          Have a{{ [' pleasant', 'n amiable', ' happy', ' cheerful', ' delightful', 'n enjoyable', ' lovely', ' pleasing', ' good'] | random }} day!
+          Have a{{ [' pleasant', 'n amiable', ' happy', ' cheerful', ' delightful', 'n enjoyable', ' lovely', ' pleasing', ' good'] | random }} evening!
         {% endif %}
 #
 # ========================

@@ -26,15 +26,26 @@ resources:
     type: module
     # https://github.com/custom-cards/button-card
 #   ----------------------------------------------------------------------------
-# Button Entity Row
+# Button Entity Row (1-19-2020 - No useage found)
   - url: /community_plugin/button-entity-row/button-entity-row.js
     type: module
     # https://github.com/custom-cards/button-entity-row
 #   ----------------------------------------------------------------------------
-# Card Tools
-  - url: /local/github/thomasloven/card-tools.js?track=true
+# Card Templater
+  - url: /community_plugin/lovelace-card-templater/lovelace-card-templater.js
     type: js
+    # https://github.com/gadgetchnnel/lovelace-card-templater
+#   ----------------------------------------------------------------------------
+# Card Tools
+  - url: /community_plugin/lovelace-card-tools/card-tools.js
+    type: module
     # https://github.com/thomasloven/lovelace-card-tools
+#   ----------------------------------------------------------------------------
+# Custom Header
+#  - url: /community_plugin/custom-header/custom-header.js
+#    type: module
+#    # https://maykar.github.io/custom-header/#intro/intro
+#    # https://github.com/maykar/custom-header
 #   ----------------------------------------------------------------------------
 # Dual Gauge card
   - url: /community_plugin/dual-gauge-card/dual-gauge-card.js
@@ -47,11 +58,12 @@ resources:
     # https://github.com/finity69x2/fan-control-entity-row
 #   ----------------------------------------------------------------------------
 # Layout Card
-  - url: /local/github/thomasloven/layout-card.js?track=true
-    type: js
+#  - url: /local/layout-card.js  -- FAILS!!!
+  - url: /community_plugin/lovelace-layout-card/layout-card.js
+    type: module
     # https://github.com/thomasloven/lovelace-layout-card
 #   ----------------------------------------------------------------------------
-# Light Entity Row Card
+# Light Entity Row Card (1-19-2020 - No useage found)
   - url: /community_plugin/light-entity-row/light-entity-row.js
     type: js
     # 
@@ -104,7 +116,7 @@ views:
   - !include lovelace/mobile.yaml
   - !include lovelace/mobile2.yaml
   - !include lovelace/home.yaml
-  - !include lovelace/rooms.yaml
+#  - !include lovelace/rooms.yaml
   - !include lovelace/rooms2.yaml
   - !include lovelace/hvac.yaml
   - !include lovelace/security.yaml

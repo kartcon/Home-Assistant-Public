@@ -1,0 +1,56 @@
+##############################################################
+##   Garbage Collection Component                           ##
+##   Adds the ability to schedule events                    ##
+##############################################################
+#
+#  sensors:
+#  - name: Trash Pickup
+#    frequency: "weekly"
+#    collection_days: wed
+#    icon_normal: mdi:trash-can
+#    icon_today: mdi:delete-restore
+#    icon_tomorrow: mdi:delete-circle  
+#  - name: Recycling Pickup
+#    frequency: "even-weeks"
+#    collection_days: mon
+#    first_month: "jan"
+#    last_month: "dec"
+#    icon_normal: mdi:recycle
+#    icon_today: mdi:recycle
+#    icon_tomorrow: mdi:recycle  
+#  - name: Bulk Trash
+#    frequency: "even-weeks"
+#    collection_days: wed
+#    first_month: "jan"
+#    last_month: "dec"
+#    icon_normal: mdi:dump-truck
+#  - name: Submit Expenses
+#    frequency: "every-n-days"
+#    period: 14
+#    collection_days: mon
+#    first_date: '2019-01-13'
+#    icon_normal: mdi:alpha-c-box
+#    icon_today: mdi:alpha-c-box
+#    icon_tomorrow: mdi:alpha-c-box
+#  - name: Submit Mileage
+#    frequency: "every-n-days"
+#    period: 14
+#    collection_days: mon
+#    first_date: '2019-01-13'
+#    icon_normal: mdi:alpha-m-box
+#    icon_today: mdi:alpha-m-box
+#    icon_tomorrow: mdi:alpha-m-box
+#  - name: Monthly
+#    frequency: "monthly"
+#    collection_days: wed
+#    weekday_order_number: 1
+#  - name: 'Someone's birthday'
+#    frequency: 'annual'
+#    date: '11/24'
+#
+#
+#  sensor.trash_pickup
+#  sensor.bulk_trash
+#  sensor.recycling_pickup
+#  sensor.yard_waste
+#

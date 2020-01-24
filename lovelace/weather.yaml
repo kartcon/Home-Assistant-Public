@@ -5,7 +5,7 @@
 title: Weather
 id: v_weat_con
 path: weather
-icon: mdi:thermometer-lines
+icon: mdi:weather-sunny
 panel: true
 cards:
 - type: horizontal-stack
@@ -64,6 +64,17 @@ cards:
             - entity: sensor.pollutant_type
             - entity: sensor.dark_sky_ozone
             - entity: sensor.dark_sky_uv_index
+#
+        - type: entities
+          title: Tides
+          show_header_toggle: false
+          entities:
+            - entity: sensor.noaa_tides
+            - entity: sensor.next_low_tide
+            - entity: sensor.low_tide_height
+            - entity: sensor.next_high_tide
+            - entity: sensor.high_tide_height
+            - entity: input_number.max_high_tide
 #
 # COL 2
     - type: vertical-stack

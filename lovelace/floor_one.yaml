@@ -76,6 +76,9 @@ cards:
             icon: mdi:power-socket-us
           - entity: light.soffit_center_123
             icon: mdi:power-socket-us
+          - entity: light.soffit_west_278
+            icon: mdi:power-socket-us
+
 # Card 3
   - type: picture-elements
     image: /local/floorplan/first_floor.png
@@ -212,7 +215,7 @@ cards:
           left: 50%
  # Thermostat 1
       - type: state-label
-        entity: sensor.tstat1_temp
+        entity: sensor.tstat1_actual_temp
         style:
           top: 73%
           left: 65%
@@ -480,14 +483,21 @@ cards:
         entity: light.soffit_east_126
         style:
           top: 98%
-          left: 59%
+          left: 4%
       - type: state-icon
         tap_action:
           action: toggle
         entity: light.soffit_center_123
         style:
           top: 98%
-          left: 4%
+          left: 59%
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.soffit_west_278
+        style:
+          top: 98%
+          left: 96%
      # Flood Lights
       - type: state-icon
         tap_action:
@@ -511,13 +521,4 @@ cards:
           top: 4%
           left: 95%
 #
-#
-#      - type: service-button
-#        title: All lights off
-#        style:
-#          top: 90%
-#          left: 30%
-#        service: homeassistant.turn_off
-#        service_data:
-#          entity_id: group.all_lights
 #

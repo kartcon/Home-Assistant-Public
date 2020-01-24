@@ -24,33 +24,33 @@
   icon: mdi:hospital
 #
 - name: Baptist
-  latitude: 30.3158
-  longitude: -81.6638
-  radius: 150
+  latitude: 30.316382
+  longitude: -81.663923
+  radius: 220
   icon: mdi:hospital
 #
 - name: Memorial
-  latitude: 30.2888
-  longitude: -81.6008
-  radius: 100
+  latitude: 30.288090
+  longitude: -81.6006648
+  radius: 185
   icon: mdi:hospital
 #
 - name: Mayo
-  latitude: 30.2643
-  longitude: -81.4407
-  radius: 100
+  latitude: 30.261318
+  longitude: -81.442777
+  radius: 480
   icon: mdi:hospital
-#
+#3
 - name: St_Vincents
   latitude: 30.307462
   longitude: -81.690012
-  radius: 100
+  radius: 125
   icon: mdi:hospital
 #
 - name: Flagler
-  latitude: 29.86331
-  longitude: -81.31720
-  radius: 100
+  latitude: 29.863735
+  longitude: -81.317545
+  radius: 125
   icon: mdi:hospital
 #
 - name: Phoebe
@@ -78,8 +78,8 @@
   icon: mdi:shopping
 #
 - name: Church
-  latitude: 30.4768136
-  longitude: -81.6166806
+  latitude: 30.476895
+  longitude: -81.617430
   radius: 100
   icon: mdi:church
 #
@@ -88,6 +88,8 @@
   longitude: -81.050993
   radius: 100
   icon: mdi:home-circle
+#
+# https://www.mapdevelopers.com/draw-circle-tool.php
 #
 # This will override the default home zone
 #- name: Tidewater

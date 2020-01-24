@@ -2,75 +2,75 @@
 ## AUTOMATION USER PRESENCE/GEO LOCATION [Home/Away]
 #################################################################
 #
-#############################################################
-##  Art OwnTracks Home (OT1H)
-#############################################################
-#
-- id: art_owntracks_home
-  alias: 'Art OwnTracks Home'
-  initial_state: true
-  trigger:
-  - platform: state
-    entity_id: device_tracker.art_ot1
-    to: 'home'
-#  - platform: homeassistant
-#    event: start
-#    # Event can also be 'shutdown'
-  action:
-  - service: input_boolean.turn_on
-    entity_id: input_boolean.art_home
-  - service: notify.ios_group_art_only
-    data_template:
-      title: "Art OwnTracks Home (OT1H)"
-      message: "OwnTracks: {{trigger.from_state.state}} to {{trigger.to_state.state}},
-                Zone={{states.device_tracker.art_ot1.state}}"
-#                Distance: {{states.sensor.artsiphone8_distance.state}},
-#                From: {{states.sensor.artsiphone8_last_zone.state}} To: {{states.artsiphone8_zone.state}}
-  - condition: state
-    entity_id: input_boolean.zone_alerts
-    state: 'on'
-  - service: persistent_notification.create
-    data_template:
-      title: Art OwnTracks Home (OT1H)
-      message: >-
-        At {{now().strftime("%m/%d/%Y %H:%M:%S")}},
-        OwnTracks: {{trigger.from_state.state}} to {{trigger.to_state.state}},
-        Zone={{states.device_tracker.art_ot1.state}}
-#
-#############################################################
-##  Art OwnTracks Away (OT1A)
-#############################################################
-#
-- id: art_owntracks_away
-  alias: 'Art OwnTracks Away'
-  initial_state: true
-  trigger:
-  - platform: template
-    value_template: "{% if not is_state('device_tracker.art_ot1', 'home') %}true{% endif %}"
-#  - platform: homeassistant
-#    event: start
-#    # Event can also be 'shutdown'
-  action:
-  - service: input_boolean.turn_off
-    entity_id: input_boolean.art_home
-  - service: notify.ios_group_art_only
-    data_template:
-      title: "Art OwnTracks Away (OT1A)"
-      message: "OwnTracks: {{trigger.from_state.state}} to {{trigger.to_state.state}},
-                Zone={{states.device_tracker.art_ot1.state}}"
-#                Distance: {{states.sensor.artsiphone8_distance.state}},
-#                From: {{states.sensor.artsiphone8_last_zone.state}} To: {{states.artsiphone8_zone.state}}
-  - condition: state
-    entity_id: input_boolean.zone_alerts
-    state: 'on'
-  - service: persistent_notification.create
-    data_template:
-      title: Art OwnTracks Away (OT1A)
-      message: >-
-        At {{now().strftime("%m/%d/%Y %H:%M:%S")}},
-        OwnTracks: {{trigger.from_state.state}} to {{trigger.to_state.state}},
-        Zone={{states.device_tracker.art_ot1.state}}
-#
+# #############################################################
+# ##  Art OwnTracks Home (OT1H)
+# #############################################################
+# #
+# - id: art_owntracks_home
+#   alias: 'Art OwnTracks Home'
+#   initial_state: true
+#   trigger:
+#   - platform: state
+#     entity_id: device_tracker.art_ot1
+#     to: 'home'
+# #  - platform: homeassistant
+# #    event: start
+# #    # Event can also be 'shutdown'
+#   action:
+#   - service: input_boolean.turn_on
+#     entity_id: input_boolean.art_home
+#   - service: notify.mobile_group_art_only
+#     data_template:
+#       title: "Art OwnTracks Home (OT1H)"
+#       message: "OwnTracks: {{trigger.from_state.state}} to {{trigger.to_state.state}},
+#                 Zone={{states.device_tracker.art_ot1.state}}"
+# #                Distance: {{states.sensor.artsiphone8_distance.state}},
+# #                From: {{states.sensor.artsiphone8_last_zone.state}} To: {{states.artsiphone8_zone.state}}
+#   - condition: state
+#     entity_id: input_boolean.zone_alerts
+#     state: 'on'
+#   - service: persistent_notification.create
+#     data_template:
+#       title: Art OwnTracks Home (OT1H)
+#       message: >-
+#         At {{now().strftime("%m/%d/%Y %H:%M:%S")}},<br />
+#         OwnTracks: {{trigger.from_state.state}} to {{trigger.to_state.state}},<br />
+#         Zone={{states.device_tracker.art_ot1.state}}
+# #
+# #############################################################
+# ##  Art OwnTracks Away (OT1A)
+# #############################################################
+# #
+# - id: art_owntracks_away
+#   alias: 'Art OwnTracks Away'
+#   initial_state: true
+#   trigger:
+#   - platform: template
+#     value_template: "{% if not is_state('device_tracker.art_ot1', 'home') %}true{% endif %}"
+# #  - platform: homeassistant
+# #    event: start
+# #    # Event can also be 'shutdown'
+#   action:
+#   - service: input_boolean.turn_off
+#     entity_id: input_boolean.art_home
+#   - service: notify.mobile_group_art_only
+#     data_template:
+#       title: "Art OwnTracks Away (OT1A)"
+#       message: "OwnTracks: {{trigger.from_state.state}} to {{trigger.to_state.state}},
+#                 Zone={{states.device_tracker.art_ot1.state}}"
+# #                Distance: {{states.sensor.artsiphone8_distance.state}},
+# #                From: {{states.sensor.artsiphone8_last_zone.state}} To: {{states.artsiphone8_zone.state}}
+#   - condition: state
+#     entity_id: input_boolean.zone_alerts
+#     state: 'on'
+#   - service: persistent_notification.create
+#     data_template:
+#       title: Art OwnTracks Away (OT1A)
+#       message: >-
+#         At {{now().strftime("%m/%d/%Y %H:%M:%S")}},<br />
+#         OwnTracks: {{trigger.from_state.state}} to {{trigger.to_state.state}},<br />
+#         Zone={{states.device_tracker.art_ot1.state}}
+# #
 #############################################################
 #   Art Presence at Home (UP1H)
 #############################################################
@@ -92,7 +92,7 @@
       entity_id: input_number.ts_art_home
       value: '{{ (as_timestamp(now())) }}'
   - delay: '00:00:10'
-  - service: notify.ios_group_art_only
+  - service: notify.mobile_group_art_only
     data:
       message: "Art Arrived Home"
       data:
@@ -101,7 +101,7 @@
           category: 'arrived'
           sound: "US-EN-Alexa-Welcome-Home.wav"
 
-#  - service: notify.ios_group_art_only
+#  - service: notify.mobile_group_art_only
 #    data_template:
 #      title: "Art Presence at Home (UP1H)"
 #      message: >-
@@ -136,7 +136,7 @@
     data_template:
       entity_id: input_number.ts_art_away
       value: '{{ (as_timestamp(now())) }}'
-#  - service: notify.ios_group_art_only
+#  - service: notify.mobile_group_art_only
 #    data_template:
 #      title: "Art Presence is Away (UP1A)"
 #      message: >-
@@ -147,81 +147,81 @@
 #    data_template:
 #      title: "Art Presence is Away (UP1A)"
 #      message: >-
-#        {{now().strftime("%m/%d/%Y %H:%M:%S")}}.
-#        Presence: {{trigger.from_state.state}} to {{trigger.to_state.state}},
+#        {{now().strftime("%m/%d/%Y %H:%M:%S")}}.<br />
+#        Presence: {{trigger.from_state.state}} to {{trigger.to_state.state}},<br />
 #        Zone: {{states.device_tracker.art_ot1.state}}
 #
 # =======================================================================================================================
 #
-#############################################################
-##  Steff OwnTracks Home (OT2H)
-#############################################################
-#
-- id: steff_owntracks_home
-  alias: 'Steff OwnTracks Home'
-  initial_state: true
-  trigger:
-  - platform: state
-    entity_id: device_tracker.steff_ot2
-    to: 'home'
-#  - platform: homeassistant
-#    event: start
-#    # Event can also be 'shutdown'
-  action:
-  - service: input_boolean.turn_on
-    entity_id: input_boolean.steff_home
-  - service: notify.ios_group_steff_only
-    data_template:
-      title: "Steff OwnTracks Home (OT2H)"
-      message: "OwnTracks: {{trigger.from_state.state}} to {{trigger.to_state.state}},
-                Zone={{states.device_tracker.steff_ot2.state}}"
-#                Distance: {{states.sensor.steffsiphone8_distance.state}},
-#                From: {{states.sensor.steffsiphone8_last_zone.state}} To: {{states.steffsiphone8_zone.state}}
-  - condition: state
-    entity_id: input_boolean.zone_alerts
-    state: 'on'
-  - service: persistent_notification.create
-    data_template:
-      title: Steff OwnTracks Home (OT2H)
-      message: >-
-        At {{now().strftime("%m/%d/%Y %H:%M:%S")}},
-        OwnTracks: {{trigger.from_state.state}} to {{trigger.to_state.state}},
-        Zone={{states.device_tracker.steff_ot2.state}}
-#
-#############################################################
-##  Steff OwnTracks Away (OT2A)
-#############################################################
-#
-- id: steff_owntracks_away
-  alias: 'Steff OwnTracks Away'
-  initial_state: true
-  trigger:
-  - platform: template
-    value_template: "{% if not is_state('device_tracker.steff_ot2', 'home') %}true{% endif %}"
-#  - platform: homeassistant
-#    event: start
-#    # Event can also be 'shutdown'
-  action:
-  - service: input_boolean.turn_off
-    entity_id: input_boolean.steff_home
-  - service: notify.ios_group_steff_only
-    data_template:
-      title: "Steff OwnTracks Away (OT2A)"
-      message: "OwnTracks: {{trigger.from_state.state}} to {{trigger.to_state.state}},
-                Zone={{states.device_tracker.steff_ot2.state}}"
-#                Distance: {{states.sensor.steffsiphone8_distance.state}},
-#                From: {{states.sensor.steffsiphone8_last_zone.state}} To: {{states.steffsiphone8_zone.state}}
-  - condition: state
-    entity_id: input_boolean.zone_alerts
-    state: 'on'
-  - service: persistent_notification.create
-    data_template:
-      title: Steff OwnTracks Away (OT2A)
-      message: >-
-        At {{now().strftime("%m/%d/%Y %H:%M:%S")}},
-        OwnTracks: {{trigger.from_state.state}} to {{trigger.to_state.state}},
-        Zone={{states.device_tracker.steff_ot2.state}}
-#
+# #############################################################
+# ##  Steff OwnTracks Home (OT2H)
+# #############################################################
+# #
+# - id: steff_owntracks_home
+#   alias: 'Steff OwnTracks Home'
+#   initial_state: true
+#   trigger:
+#   - platform: state
+#     entity_id: device_tracker.steff_ot2
+#     to: 'home'
+# #  - platform: homeassistant
+# #    event: start
+# #    # Event can also be 'shutdown'
+#   action:
+#   - service: input_boolean.turn_on
+#     entity_id: input_boolean.steff_home
+#   - service: notify.mobile_group_steff_only
+#     data_template:
+#       title: "Steff OwnTracks Home (OT2H)"
+#       message: "OwnTracks: {{trigger.from_state.state}} to {{trigger.to_state.state}},
+#                 Zone={{states.device_tracker.steff_ot2.state}}"
+# #                Distance: {{states.sensor.steffsiphone8_distance.state}},
+# #                From: {{states.sensor.steffsiphone8_last_zone.state}} To: {{states.steffsiphone8_zone.state}}
+#   - condition: state
+#     entity_id: input_boolean.zone_alerts
+#     state: 'on'
+#   - service: persistent_notification.create
+#     data_template:
+#       title: Steff OwnTracks Home (OT2H)
+#       message: >-
+#         At {{now().strftime("%m/%d/%Y %H:%M:%S")}},<br />
+#         OwnTracks: {{trigger.from_state.state}} to {{trigger.to_state.state}},<br />
+#         Zone={{states.device_tracker.steff_ot2.state}}
+# #
+# #############################################################
+# ##  Steff OwnTracks Away (OT2A)
+# #############################################################
+# #
+# - id: steff_owntracks_away
+#   alias: 'Steff OwnTracks Away'
+#   initial_state: true
+#   trigger:
+#   - platform: template
+#     value_template: "{% if not is_state('device_tracker.steff_ot2', 'home') %}true{% endif %}"
+# #  - platform: homeassistant
+# #    event: start
+# #    # Event can also be 'shutdown'
+#   action:
+#   - service: input_boolean.turn_off
+#     entity_id: input_boolean.steff_home
+#   - service: notify.mobile_group_steff_only
+#     data_template:
+#       title: "Steff OwnTracks Away (OT2A)"
+#       message: "OwnTracks: {{trigger.from_state.state}} to {{trigger.to_state.state}},
+#                 Zone={{states.device_tracker.steff_ot2.state}}"
+# #                Distance: {{states.sensor.steffsiphone8_distance.state}},
+# #                From: {{states.sensor.steffsiphone8_last_zone.state}} To: {{states.steffsiphone8_zone.state}}
+#   - condition: state
+#     entity_id: input_boolean.zone_alerts
+#     state: 'on'
+#   - service: persistent_notification.create
+#     data_template:
+#       title: Steff OwnTracks Away (OT2A)
+#       message: >-
+#         At {{now().strftime("%m/%d/%Y %H:%M:%S")}},<br />
+#         OwnTracks: {{trigger.from_state.state}} to {{trigger.to_state.state}},<br />
+#         Zone={{states.device_tracker.steff_ot2.state}}
+# #
 #############################################################
 #   Steff Presence at Home (UP2H)
 #############################################################
@@ -243,7 +243,7 @@
       entity_id: input_number.ts_steff_home
       value: '{{ (as_timestamp(now())) }}'
   - delay: '00:00:10'
-  - service: notify.ios_group_steff_only
+  - service: notify.mobile_group_steff_only
     data:
       message: "Steff Arrived Home"
       data:
@@ -252,7 +252,7 @@
           category: 'arrived'
           sound: "US-EN-Morgan-Freeman-Welcome-Home.wav"
   - delay: '00:00:10'
-  - service: notify.ios_group_art_only
+  - service: notify.mobile_group_art_only
     data:
       message: "Steff Arrived Home"
       data:
@@ -260,7 +260,7 @@
           badge: 0
           category: 'arrived'
           sound: "US-EN-Alexa-Wife-Is-Arriving.wav"
-#  - service: notify.ios_group_art_only
+#  - service: notify.mobile_group_art_only
 #    data_template:
 #      title: "Steff Presence at Home (UP2H)"
 #      message: >-
@@ -271,8 +271,8 @@
 #    data_template:
 #      title: "Steff Presence at Home (UP2H)"
 #      message: >-
-#        {{now().strftime("%m/%d/%Y %H:%M:%S")}}.
-#        Presence: {{trigger.from_state.state}} to {{trigger.to_state.state}},
+#        {{now().strftime("%m/%d/%Y %H:%M:%S")}}.<br />
+#        Presence: {{trigger.from_state.state}} to {{trigger.to_state.state}},<br />
 #        Zone: {{states.device_tracker.steff_ot2.state}}
 #
 #############################################################
@@ -295,7 +295,7 @@
     data_template:
       entity_id: input_number.ts_steff_away
       value: '{{ (as_timestamp(now())) }}'
-#  - service: notify.ios_group_art_only
+#  - service: notify.mobile_group_art_only
 #    data_template:
 #      title: "Steff Presence is Away (UP2A)"
 #      message: >-
@@ -306,8 +306,8 @@
 #    data_template:
 #      title: "Steff Presence is Away (UP2A)"
 #      message: >-
-#        {{now().strftime("%m/%d/%Y %H:%M:%S")}}.
-#        Presence: {{trigger.from_state.state}} to {{trigger.to_state.state}},
+#        {{now().strftime("%m/%d/%Y %H:%M:%S")}}.<br />
+#        Presence: {{trigger.from_state.state}} to {{trigger.to_state.state}},<br />
 #        Zone: {{states.device_tracker.steff_ot2.state}}
 #
 #############################################################
@@ -331,54 +331,6 @@
         message: "{{trigger.to_state.name}} changed from {{trigger.from_state.state}} to {{trigger.to_state.state}} by {{ trigger.to_state.attributes.source }}"
 #
 #############################################################
-#   Update Arts OwnTracks Data
-#############################################################
-- id: owntracks_copy_art
-  alias: Owntracks Copy Art
-  initial_state: true
-  trigger:
-  - platform: state
-    entity_id: switch.momentary_update_art
-    to: 'on'
-#  condition:
-#  - condition: state
-#    entity_id: input_text.text1
-#    state: 'on'
-  action:
-  - service: input_text.set_value
-    data_template:
-      entity_id: input_text.text1
-      value: "{{states('sensor.art_ot_config') | string }}"
-  - service: persistent_notification.create
-    data_template:
-      title: "Art OwnTracks Path"
-      message: "{{states('sensor.art_ot_config') | string }}"
-#
-#############################################################
-#   Update Steffs OwnTracks Data
-#############################################################
-- id: owntracks_copy_steff
-  alias: Owntarcks Copy Steff
-  initial_state: true
-  trigger:
-  - platform: state
-    entity_id: switch.momentary_update_steff
-    to: 'on'
-#  condition:
-#  - condition: state
-#    entity_id: input_text.text1
-#    state: 'on'
-  action:
-  - service: input_text.set_value
-    data_template:
-      entity_id: input_text.text1
-      value: "{{states('sensor.steff_ot_config') | string }}"
-  - service: persistent_notification.create
-    data_template:
-      title: "Steff OwnTracks Path"
-      message: "{{states('sensor.steff_ot_config') | string }}"
-#
-#############################################################
 #   Update External URL Data
 #############################################################
 - id: copy_external_url
@@ -388,17 +340,33 @@
   - platform: state
     entity_id: switch.momentary_update_exturl
     to: 'on'
-#  condition:
-#  - condition: state
-#    entity_id: input_text.text1
-#    state: 'on'
   action:
-  - service: input_text.set_value
-    data_template:
-      entity_id: input_text.text1
-      value: "{{states('sensor.external_url') | string }}"
   - service: persistent_notification.create
     data_template:
       title: "External URL"
       message: "{{states('sensor.external_url') | string }}"
+  - service: notify.mobile_group_art_steff
+    data_template:
+      title: "External URL"
+      message: The external URL is {{states('sensor.external_url') | string }}.
+#
+#############################################################
+#   Update OwnTracks Data
+#############################################################
+- id: copy_owntracks_data
+  alias: Copy OwnTracks Data
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: switch.momentary_update_owntracks
+    to: 'on'
+  action:
+  - service: persistent_notification.create
+    data_template:
+      title: "External URL"
+      message: "{{states('sensor.owntracks_config') | string }}"
+  - service: notify.mobile_group_art_steff
+    data_template:
+      title: "External URL"
+      message: The external URL is {{states('sensor.owntracks_config') | string }}.
 #

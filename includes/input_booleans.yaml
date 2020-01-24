@@ -137,6 +137,29 @@
     icon: mdi:map-marker-radius
 #
 ##############################################################
+# Reminder
+##############################################################
+  reminder_concur:
+    name: Submit Expenses
+    initial: on
+    icon: mdi:alpha-c-box
+#
+  reminder_motus:
+    name: Submit Mileage
+    initial: on
+    icon: mdi:alpha-m-box
+#
+  reminder_1:
+    name: Reminder 1
+    initial: on
+    icon: mdi:numeric-1-box
+#
+  reminder_2:
+    name: Reminder 2
+    initial: on
+    icon: mdi:numeric-2-box
+#
+##############################################################
 # Sandbox
 ##############################################################
   sandbox_testing:

@@ -57,13 +57,15 @@ inside_lights_on_before_sunset:
       entity_id: light.sunroom_lights_203
       brightness: 153
   - service: light.turn_on
-    data:
+    data_template:
       entity_id: light.bird_room_1_light_52
-      brightness: 204
+      brightness: >-
+        {{ states.light.bird_room_1_light_52.attributes.brightness|default(181)|int }}
   - service: light.turn_on
-    data:
+    data_template:
       entity_id: light.bird_room_2_light_53
-      brightness: 204
+      brightness: >-
+        {{ states.light.bird_room_2_light_53.attributes.brightness|default(181)|int }}
 #------------------------------------------
 #  Set Colors on LIFX Lights
 #------------------------------------------

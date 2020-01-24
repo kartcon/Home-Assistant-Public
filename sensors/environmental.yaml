@@ -11,13 +11,22 @@
   monitored_conditions:
     - us
   show_on_map: false
-  scan_interval: 1800
+  scan_interval: 14400
   latitude: 30.4758
   longitude: 81.5869
 #  city: Jacksonville
 #  state: Florida
 #  country: USA
 # ?lat=30.4758&lng=-81.5869&zoomLevel=10
+#
+# https://www.home-assistant.io/integrations/waqi/
+#- platform: waqi
+#  token: !secret waqi_token
+#  locations:
+#    - city/usa/florida/duval
+#  stations:
+#    - sheffield-elementary
+#    # city/usa/florida/duval/sheffield-elementary/
 #
 ############################
 #    Pollutant Types       #
@@ -154,11 +163,33 @@
     high_tide_height:
       value_template: '{{state_attr("sensor.noaa_tides","high_tide_height")}}'
       friendly_name: "High Tide Height"
+      icon_template: >-
+        mdi:trending-up
 - platform: template
   sensors:
     low_tide_height:
       value_template: '{{state_attr("sensor.noaa_tides","low_tide_height")}}'
       friendly_name: "Low Tide Height"
+      icon_template: >-
+        mdi:trending-down
+- platform: template
+  sensors:
+    next_high_tide:
+      value_template: '{% set timestamp = as_timestamp(state_attr("sensor.noaa_tides","high_tide_time")) | timestamp_custom("%b %d, %X") %} {{ timestamp.lstrip("0") }}'
+#      value_template: >-
+#        {{ as_timestamp(state_attr("sensor.noaa_tides","high_tide_time")) | timestamp_custom('%x', True) }}
+      friendly_name: "Next High Tide"
+      icon_template: >-
+        mdi:clock-outline
+- platform: template
+  sensors:
+    next_low_tide:
+      value_template: '{% set timestamp = as_timestamp(state_attr("sensor.noaa_tides","low_tide_time")) | timestamp_custom("%b %d, %X") %} {{ timestamp.lstrip("0") }}'
+#      value_template: >-
+#        {{ as_timestamp(state_attr("sensor.noaa_tides","low_tide_time")) | timestamp_custom('%x', True) }}
+      friendly_name: "Next Low Tide"
+      icon_template: >-
+        mdi:clock-outline
 #
 #########################
 #  Tides (World Tides)  #
@@ -179,17 +210,52 @@
 #########################
 - platform: template
   sensors:
-    tstat1_temp:
+    tstat1_actual_temp:
       value_template: "{{ (states.climate.tstat_1_144.attributes.current_temperature | round(0)) }}"
       entity_id: climate.tstat_1_144
       unit_of_measurement: "°F"
-      friendly_name: "Inside Temp 1"
-    tstat2_temp:
+      friendly_name: "Downstairs Temperature"
+    tstat2_actual_temp:
       value_template: "{{ (states.climate.tstat_2_145.attributes.current_temperature | round(0)) }}"
       entity_id: climate.tstat_2_145
       unit_of_measurement: "°F"
-      friendly_name: "Inside Temp 2"
+      friendly_name: "Upstairs Temperature"
+    tstat1_currentsetpoint:
+      value_template: "{{ (states.climate.tstat_1_144.attributes.temperature | round(0)) }}"
+      entity_id: climate.tstat_1_144
+      unit_of_measurement: "°F"
+      friendly_name: "Downstairs Set Point"
+    tstat2_currentsetpoint:
+      value_template: "{{ (states.climate.tstat_2_145.attributes.temperature | round(0)) }}"
+      entity_id: climate.tstat_2_145
+      unit_of_measurement: "°F"
+      friendly_name: "Upstairs Set Point"
 #
+    tstat1_feels_like_temp:
+      value_template: >-
+        {% set t1_temp_c = ((states('sensor.tstat1_actual_temp')|float) - 32) * 5/9 %}
+        {% set es1 = 0.6108 * e ** (17.27 * t1_temp_c / (t1_temp_c + 237.3)) %}
+        {% set ea1 = ((states('sensor.kit_humidity_sensor_228') | float) / 100 * es1) %}
+        {% set tp1 = -1.3 + 0.92 * t1_temp_c + 2.2 * ea1 %}
+        {% set tpf1 = (tp1 * 9/5) + 32 %}
+        {{ tpf1 | round(1) }}
+#      entity_id: climate.tstat_1_144
+      unit_of_measurement: "°F"
+      friendly_name: "Downstairs Feels like"
+    tstat2_feels_like_temp:
+      value_template: >-
+        {% set t2_temp_c = ((states('sensor.tstat2_actual_temp')|float) - 32) * 5/9 %}
+        {% set es2 = 0.6108 * e ** (17.27 * t2_temp_c / (t2_temp_c + 237.3)) %}
+        {% set ea2 = ((states('sensor.sun_room_hum_sensor_236') | float) / 100 * es2) %}
+        {% set tp2 = -1.3 + 0.92 * t2_temp_c + 2.2 * ea2 %}
+        {% set tpf2 = (tp2 * 9/5) + 32 %}
+        {{ tpf2 | round(1) }}
+#      entity_id: climate.tstat_2_145
+      unit_of_measurement: "°F"
+      friendly_name: "Upstairs Feels like"
+#     es = {# Saturation vapor pressure in kPa #}
+#     ea = {# Actual vapor pressure in kPa #}
+#     tp = {# Apparent temperature in C #}
 #########################
 #  Weather.gov Alerts   #
 #########################

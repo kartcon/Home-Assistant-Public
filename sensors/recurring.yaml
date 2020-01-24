@@ -1,0 +1,63 @@
+####################################
+#    Recurring Event Sensors       #
+####################################
+- platform: template
+  sensors:
+############################
+#  Trash                   #
+############################
+#    trash_pickup:
+#      value_template: "{{ (states.lock.front_door_bolt_241.attributes.battery_level | round(0)) }}"
+#      friendly_name: "Front Door Lock"
+#    recycling_pickup:
+#      value_template: "{{ (states.lock.back_door_lock_61.attributes.battery_level | round(0)) }}"
+#      friendly_name: "Back Door Lock"
+############################
+#  Mileage                 #
+############################
+    submit_mileage:
+      friendly_name: "Submit Mileage"
+      value_template: >-
+        {% if ((states('sensor.day_of_the_month')|int) < 5) %}
+          True
+        {% else %}
+          False
+        {% endif %}
+      attribute_templates:
+        days_remaining: >-
+          {% if ((states('sensor.day_of_the_month')|int) < 5) %}
+            {{ (5 - (states('sensor.day_of_the_month')|int)) }}
+          {% else %}
+            0
+          {% endif %}
+############################
+#  Expenses                #
+############################
+    submit_expenses:
+      friendly_name: "Submit Expenses"
+      value_template: >-
+        {% if is_state('sensor.week_odd_even','Even Week') and 
+        (is_state('sensor.day_of_the_week','Sunday') 
+        or is_state('sensor.day_of_the_week','Monday'))%}
+          True
+        {% else %}
+          False
+        {% endif %}
+#
+# BOTH WORK 
+#        {% if is_state('sensor.week_odd_even','Even Week') and 
+#        (is_state('sensor.day_of_the_week','Sunday') 
+#        or is_state('sensor.day_of_the_week','Monday'))%}
+#          True2
+#        {% else %}
+#          False2
+#        {% endif %}
+# OR
+#        {% if (states('sensor.week_odd_even') == 'Even Week') and 
+#        ((states('sensor.day_of_the_week') == 'Sunday') 
+#        or (states('sensor.day_of_the_week') == 'Monday')) %}
+#          True
+#        {% else %}
+#          False
+#        {% endif %}
+

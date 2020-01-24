@@ -16,7 +16,7 @@
       - Windy
       - Foggy
       - Unknown
-    initial: Unknown
+#    initial: Unknown
 #
 ##############################################################
 # DESTINATIONS (Waze)
@@ -117,15 +117,25 @@
 ##############################################################
 # Thermostats
 ##############################################################
-  thermostat_mode:
-    name: Thermostat Mode
+  thermostat_mode_1:
+    name: Downstairs Thermostat Mode
     icon: mdi:thermostat
     options:
       - "Auto"
       - "Off"
       - "Cool"
       - "Heat"
-    initial: "Auto"
+#    initial: "Auto"
+#
+  thermostat_mode_2:
+    name: Upstairs Thermostat Mode
+    icon: mdi:thermostat
+    options:
+      - "Auto"
+      - "Off"
+      - "Cool"
+      - "Heat"
+#    initial: "Auto"
 #
   thermostat_phase:
     name: Thermostat Phase

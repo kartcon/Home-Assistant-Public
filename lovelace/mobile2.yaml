@@ -140,14 +140,404 @@ cards:
 #        - entity: light.garage_lights_48
 #        - entity: light.porch_light_46
   #  Card 8
-    - type: thermostat
-      title: Downstairs
-      show_header_toggle: false
-      entity: climate.tstat_1_144
-    - type: thermostat
-      title: Upstairs
-      show_header_toggle: false
-      entity: climate.tstat_2_145
+#    - type: thermostat
+#      title: Downstairs
+#      show_header_toggle: false
+#      entity: climate.tstat_1_144
+#    - type: thermostat
+#      title: Upstairs
+#      show_header_toggle: false
+#      entity: climate.tstat_2_145
+
+    - type: custom:vertical-stack-in-card
+      title: Thermostats
+      cards:
+# UPSTAIRS
+        - type: markdown
+          content: >
+            <h3>Upstairs</h3>
+        - type: horizontal-stack
+          cards:
+            - type: "custom:button-card"
+              entity: sensor.tstat2_feels_like_temp
+              name: Feels Like
+              show_name: true
+              show_state: true
+              show_icon: false
+              show_units: true
+              styles:
+                state:
+                  - font-size: small
+                  - font-weight: bold
+                name:
+                  - font-size: small
+              tap_action:
+                action: none
+
+#            - type: "custom:button-card"
+#              color_type: blank-card
+
+            - type: "custom:button-card"
+              color_type: icon
+              color: rgb(0,0,255)
+              icon: mdi:chevron-down-circle
+              tap_action:
+                action: call-service
+                service: script.turn_on
+                service_data:
+                  entity_id: script.tstat2_lower_by_1
+
+            - type: "custom:button-card"
+              entity: input_number.t2_set_point
+              show_name: false
+              show_state: true
+              show_icon: false
+              show_units: false
+              styles:
+                state:
+                  - font-size: x-large
+                  - font-weight: bold
+              tap_action:
+                action: none
+
+            - type: "custom:button-card"
+              color_type: icon
+              color: rgb(255,0,0)
+              icon: mdi:chevron-up-circle
+              tap_action:
+                action: call-service
+                service: script.turn_on
+                service_data:
+                  entity_id: script.tstat2_higher_by_1
+
+            - type: "custom:button-card"
+              entity: sensor.tstat2_actual_temp
+              name: Cur Temp
+              show_name: true
+              show_state: true
+              show_icon: false
+              show_units: true
+              styles:
+                state:
+                  - font-size: small
+                  - font-weight: bold
+                name:
+                  - font-size: small
+              tap_action:
+                action: none
+
+#            - type: "custom:button-card"
+#              color_type: blank-card
+
+        - type: horizontal-stack
+          cards:
+            - type: "custom:button-card"
+              entity: climate.tstat_2_145
+              color_type: icon
+              color: rgb(234, 237, 237)
+              name: Auto
+              icon: mdi:autorenew
+              tap_action:
+                action: more-info
+              hold_action:
+                action: call-service
+                service: climate.set_hvac_mode
+                service_data:
+                  entity_id: climate.tstat_2_145
+                  hvac_mode: heat_cool
+              state:
+                - value: "heat_cool"
+                  color: rgb(39, 174, 96)
+                - value: "off"
+                  color: rgb(234, 237, 237)
+
+            - type: "custom:button-card"
+              entity: climate.tstat_2_145
+              color_type: icon
+              color: rgb(234, 237, 237)
+              name: Cool
+              icon: mdi:snowflake
+              tap_action:
+                action: more-info
+              hold_action:
+                action: call-service
+                service: climate.set_hvac_mode
+                service_data:
+                  entity_id: climate.tstat_2_145
+                  hvac_mode: cool
+              state:
+                - value: "cool"
+                  color: rgb(33, 150, 243)
+                - value: "off"
+                  color: rgb(234, 237, 237)
+
+            - type: "custom:button-card"
+              entity: climate.tstat_2_145
+              color_type: icon
+              color: rgb(234, 237, 237)
+              name: Heat
+              icon: mdi:fire
+              tap_action:
+                action: more-info
+              hold_action:
+                action: call-service
+                service: climate.set_hvac_mode
+                service_data:
+                  entity_id: climate.tstat_2_145
+                  hvac_mode: heat
+              state:
+                - value: "heat"
+                  color: rgb(229, 57, 53)
+                - value: "off"
+                  color: rgb(234, 237, 237)
+
+            - type: "custom:button-card"
+              entity: climate.tstat_2_145
+              color_type: icon
+              color: rgb(234, 237, 237)
+              name: "Off"
+              icon: mdi:power-standby
+              tap_action:
+                action: more-info
+              hold_action:
+                action: call-service
+                service: climate.set_hvac_mode
+                service_data:
+                  entity_id: climate.tstat_2_145
+                  hvac_mode: "off"
+              state:
+                - value: "off"
+                  color: rgb(66, 66, 66)
+#
+# Dual Gauge Card
+#
+#         - type: custom:dual-gauge-card
+#           title: Cur. Temps
+#           min: 70
+#           max: 85
+#           shadeInner: false
+#           outer:
+#             entity: sensor.tstat2_actual_temp
+# #            attribute: current_temperature
+#             label: "Up"
+#             unit: "°f"
+#             colors:
+#               - color: DarkViolet
+#                 value: 71
+#               - color: SlateBlue
+#                 value: 72
+#               - color: SteelBlue
+#                 value: 73
+#               - color: CadetBlue
+#                 value: 74
+#               - color: DarkCyan
+#                 value: 75
+#               - color: ForestGreen
+#                 value: 76
+#               - color: OliveDrab
+#                 value: 77
+#               - color: Olive
+#                 value: 78
+#               - color: Gold
+#                 value: 79
+#               - color: DarkOrange
+#                 value: 80
+#               - color: Red
+#                 value: 81
+#           inner:
+#             entity: sensor.tstat1_actual_temp
+#             label: "Dn"
+# #            attribute: temperature
+#             unit: "°f"
+#             colors:
+#               - color: DarkViolet
+#                 value: 71
+#               - color: SlateBlue
+#                 value: 72
+#               - color: SteelBlue
+#                 value: 73
+#               - color: CadetBlue
+#                 value: 74
+#               - color: DarkCyan
+#                 value: 75
+#               - color: ForestGreen
+#                 value: 76
+#               - color: OliveDrab
+#                 value: 77
+#               - color: Olive
+#                 value: 78
+#               - color: Gold
+#                 value: 79
+#               - color: DarkOrange
+#                 value: 80
+#               - color: Red
+#                 value: 81
+#
+        - type: markdown
+          content: >
+            <h3>Downstairs</h3>
+        - type: horizontal-stack
+          cards:
+            - type: "custom:button-card"
+              entity: sensor.tstat1_feels_like_temp
+              name: Feels Like
+              show_name: true
+              show_state: true
+              show_icon: false
+              show_units: true
+              styles:
+                state:
+                  - font-size: small
+                  - font-weight: bold
+                name:
+                  - font-size: small
+              tap_action:
+                action: none
+
+#            - type: "custom:button-card"
+#              color_type: blank-card
+
+            - type: "custom:button-card"
+              color_type: icon
+              color: rgb(0,0,255)
+              icon: mdi:chevron-down-circle
+              tap_action:
+                action: call-service
+                service: script.turn_on
+                service_data:
+                  entity_id: script.tstat1_lower_by_1
+
+            - type: "custom:button-card"
+              entity: input_number.t1_set_point
+              show_name: false
+              show_state: true
+              show_icon: false
+              show_units: false
+              styles:
+                state:
+                  - font-size: x-large
+                  - font-weight: bold
+              tap_action:
+                action: none
+
+            - type: "custom:button-card"
+              color_type: icon
+              color: rgb(255,0,0)
+              icon: mdi:chevron-up-circle
+              tap_action:
+                action: call-service
+                service: script.turn_on
+                service_data:
+                  entity_id: script.tstat1_higher_by_1
+
+#            - type: "custom:button-card"
+#              color_type: blank-card
+
+            - type: "custom:button-card"
+              entity: sensor.tstat1_actual_temp
+              name: Cur Temp
+              show_name: true
+              show_state: true
+              show_icon: false
+              show_units: true
+              styles:
+                state:
+                  - font-size: small
+                  - font-weight: bold
+                name:
+                  - font-size: small
+              tap_action:
+                action: none
+
+        - type: horizontal-stack
+          cards:
+            - type: "custom:button-card"
+              entity: climate.tstat_1_144
+              color_type: icon
+              color: rgb(234, 237, 237)
+              name: Auto
+              icon: mdi:autorenew
+              tap_action:
+                action: more-info
+              hold_action:
+                action: call-service
+                service: climate.set_hvac_mode
+                service_data:
+                  entity_id: climate.tstat_1_144
+                  hvac_mode: heat_cool
+              state:
+                - value: "heat_cool"
+                  color: rgb(39, 174, 96)
+                - value: "off"
+                  color: rgb(234, 237, 237)
+
+            - type: "custom:button-card"
+              entity: climate.tstat_1_144
+              color_type: icon
+              color: rgb(234, 237, 237)
+              name: Cool
+              icon: mdi:snowflake
+              tap_action:
+                action: more-info
+              hold_action:
+                action: call-service
+                service: climate.set_hvac_mode
+                service_data:
+                  entity_id: climate.tstat_1_144
+                  hvac_mode: cool
+              state:
+                - value: "cool"
+                  color: rgb(33, 150, 243)
+                - value: "off"
+                  color: rgb(234, 237, 237)
+
+            - type: "custom:button-card"
+              entity: climate.tstat_1_144
+              color_type: icon
+              color: rgb(234, 237, 237)
+              name: Heat
+              icon: mdi:fire
+              tap_action:
+                action: more-info
+              hold_action:
+                action: call-service
+                service: climate.set_hvac_mode
+                service_data:
+                  entity_id: climate.tstat_1_144
+                  hvac_mode: heat
+              state:
+                - value: "heat"
+                  color: rgb(229, 57, 53)
+                - value: "off"
+                  color: rgb(234, 237, 237)
+
+            - type: "custom:button-card"
+              entity: climate.tstat_1_144
+              color_type: icon
+              color: rgb(234, 237, 237)
+              name: "Off"
+              icon: mdi:power-standby
+              tap_action:
+                action: more-info
+              hold_action:
+                action: call-service
+                service: climate.set_hvac_mode
+                service_data:
+                  entity_id: climate.tstat_1_144
+                  hvac_mode: "off"
+              state:
+                - value: "off"
+                  color: rgb(66, 66, 66)
+
+
+
+
+
+
+
+
+
+
   #  Card 9
     - type: entities
       title: Automations
@@ -183,7 +573,7 @@ cards:
           name: OwnTracks
         - entity: switch.momentary_update_exturl
           name: External URL
-        - entity: input_text.text1
+        - entity: input_text.owntracks_config
   #  Card 12
     - type: horizontal-stack
       cards:
