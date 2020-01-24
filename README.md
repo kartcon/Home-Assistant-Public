@@ -46,8 +46,7 @@ The following is a list of hardware deployed in this home automation project. Z-
 - Primary Z-wave hub: [Vera Secure](https://getvera.com/products/verasecure)
 - Secondary Z-wave hub: [Vera 3](https://getvera.com/collections/controllers)
 - Low Power RF Network: [433MHz](https://www.vesternet.com/pages/vera-controller-comparison)
-- Wifi: Unifi USG Cloud Key, 2 APO's, 2 Switches (https://unifi-network.ui.com)
-- Extenders(3): [X-Fi Pods](https://www.xfinity.com/learn/internet-service/wifi/xfi-pod-3pack)
+- Wifi: Unifi USG Cloud Key, 2 AP's, 2 Switches (https://unifi-network.ui.com)
 - Zone Controller [Leviton](https://www.amazon.com/gp/product/B004KN87OE/ref=ppx_yo_dt_b_asin_title_o07_s00?ie=UTF8&psc=1)
 
 ### Mobile Devices
