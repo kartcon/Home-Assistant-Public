@@ -1,6 +1,6 @@
 # In Home Assistant’s world, a wall plug is a switch.
 #################################################################
-#     Rooms
+#     Rooms 1-22-20 No Room groups used anywhere!!
 #################################################################
 #
 kitchen:
@@ -77,7 +77,7 @@ garage:
   view: no
   icon: mdi:home
   entities:
-    - light.garage_lights_48
+    - light.garage_lights_281
     - light.garage_fan_225
     - light.bench_light_242
 #

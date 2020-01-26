@@ -109,7 +109,7 @@ cards:
     - type: vertical-stack
       cards:
       - type: glance
-        title: Device Trackers
+        title: IOS Device Trackers
         show_name: true
         columns: 3
         entities:
@@ -125,6 +125,19 @@ cards:
             icon: mdi:cellphone-iphone
           - entity: device_tracker.steffs_ipad_mini
             icon: mdi:tablet-ipad
+      - type: glance
+        title: Unifi Network Trackers
+        show_name: true
+        columns: 4
+        entities:
+          - entity: device_tracker.c4_98_80_69_a8_4a
+            name: Arts iPhone
+          - entity: device_tracker.c4_98_80_6b_5b_27
+            name: Steff iPhone
+          - entity: device_tracker.d0_d2_b0_c2_0e_85
+            name: SJM iPad
+          - entity: device_tracker.ipad
+            name: Steffs iPad
 #     Card 3-2
       - type: "custom:birthday-card"
         title: "Birthdays & Anniversaries"

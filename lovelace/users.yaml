@@ -44,6 +44,8 @@ cards:
               name: binary_sensor.ping_art
             - entity: sensor.art_badge
               name: sensor.art_badge
+            - entity: device_tracker.c4_98_80_69_a8_4a
+              name: Arts iPhone (Unifi)
 #            - entity: device_tracker.arts_iphone_8ub
 #              name: arts_iphone_8ub
 #            - type: divider
@@ -114,6 +116,8 @@ cards:
               name: binary_sensor.ping_steff
             - entity: sensor.steff_badge
               name: sensor.steff_badge
+            - entity: device_tracker.c4_98_80_6b_5b_27
+              name: Steff iPhone (Unifi)
 #            - entity: device_tracker.steffs_iphone_8ub
 #              name: steffs_iphone_8ub
 #            - type: divider

@@ -1,0 +1,39 @@
+{
+  "SPECIAL_EVENT": {
+    "static": {
+      "2/25/2020": "Today is Fat Tuesday. Mardi Gras!",
+      "2/29/2020": "Today is Leap day. The next one is in 2024.",
+      "3/7/2020": "Daylight Saving Time begins tonight at 2am",
+      "3/9/2020": "There will be a Super Full Moon at 2:33am",
+      "3/19/2020": "Today is the first day of Spring",
+      "3/24/2020": "Today is the first day of planting season according to the Famers Almanac",
+      "4/7/2020": "There will be a Super Full Moon at 1:47pm",
+      "4/21/2020": "There will be visible meteor showers early tommorow morning",
+      "5/3/2020": "There will be visible meteor showers early tommorow morning",
+      "6/20/2020": "Today is the first day of Summer",
+      "7/5/2020": "There will be a Penumbral Lunar Eclipse at 12:44am",
+      "7/29/2020": "There will be visible meteor showers early tommorow morning",
+      "8/11/2020": "There will be visible meteor showers early tommorow morning",
+      "8/12/2020": "There will be visible meteor showers early tommorow morning",
+      "9/22/2020": "Today is the first day of Autumn",
+      "10/1/2020": "There will be a Micro Full Moon at 5:05pm",
+      "10/8/2020": "There will be visible meteor showers late tonight",
+      "10/9/2020": "There will be visible meteor showers late tonight",
+      "10/16/2020": "There will be a Super New Moon at 3:31pm",
+      "10/19/2020": "There will be visible meteor showers early tommorow morning",
+      "10/20/2020": "There will be visible meteor showers early tommorow morning",
+      "10/31/2020": "There will be a Blue Moon at 10:49am",
+      "11/15/2020": "There will be a Super New Moon at 12:07am",
+      "11/16/2020": "There will be visible meteor showers early tommorow morning",
+      "11/17/2020": "There will be visible meteor showers early tommorow morning",
+      "11/25/2020": "There will be visible meteor showers late tonight",
+      "11/26/2020": "There will be visible meteor showers late tonight",
+      "11/30/2020": "There will be a Penumbral Lunar Eclipse at 4:29am",
+      "11/31/2020": "Daylight Saving Time ends tonight at 2am",
+      "12/13/2020": "There will be visible meteor showers tonight",
+      "12/14/2020": "There will be visible meteor showers tonight",
+      "12/21/2020": "Today is the first day of Winter",
+      "12/22/2020": "There will be visible meteor showers early tommorow morning"
+    }
+  }
+}

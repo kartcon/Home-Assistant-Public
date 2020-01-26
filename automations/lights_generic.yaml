@@ -30,6 +30,71 @@
         At {{now().strftime("%m/%d/%Y %H:%M:%S")}} the {{trigger.entity_id}} went offline.
 #
 #################################################################
+# LIFX Lights indoor precheck
+# Toggles ZWave switch(s) if device offline
+# Preceedes Automation: [Interior lights on 1 Hr before Sunset] by 15 min
+# In file: /automations/lights_time.yaml
+#################################################################
+- id: lifx_lights_indoor_precheck
+  alias: LIFX Lights Indoor Precheck
+  initial_state: 'on'
+  trigger:
+  - platform: state
+    entity_id:
+      - light.tv_left
+      - light.tv_right
+    to: 'unavailable'
+    for: '00:05:00'
+  condition:
+  - condition: sun
+    before: sunset
+    before_offset: "-01:15:00"
+  action:
+  - service: light.turn_off
+    data:
+      entity_id: light.media_center_282
+  - delay: '00:00:05'
+  - service: light.turn_on
+    data:
+      entity_id: light.media_center_282
+#
+#################################################################
+# LIFX Lights outdoor precheck
+# Toggles ZWave switch(s) if device offline
+# Preceedes Automation: [Exterior lights on before Sunset] by 15 min
+# In file: /automations/lights_time.yaml
+#################################################################
+- id: lifx_lights_outdoor_precheck
+  alias: LIFX Lights Outdoor Precheck
+  initial_state: 'on'
+  trigger:
+  - platform: state
+    entity_id:
+#      - light.tv_left
+#      - light.tv_right
+      - light.garage_east
+      - light.garage_center
+      - light.garage_west
+      - light.front_porch
+    to: 'unavailable'
+    for: '00:05:00'
+  condition:
+#  - condition: state
+#    entity_id: sun.sun
+#    state: 'below_horizon'
+  - condition: sun
+    before: sunset
+    before_offset: "-00:30:00"
+  action:
+  - service: light.turn_off
+    data:
+      entity_id: light.media_center_282
+  - delay: '00:00:05'
+  - service: light.turn_on
+    data:
+      entity_id: light.media_center_282
+#
+#################################################################
 # Toggle Seasonal Colors
 #################################################################
 - id: toggle_seasonal_colors

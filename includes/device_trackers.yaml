@@ -2,11 +2,17 @@
 #    Device Tracker     #
 #########################
 #
-# Example configuration.yaml entry
+#########################
+# UniFi Direct
+#########################
 - platform: unifi_direct
-  host: 192.168.1.233
-  username: admin
-  password: kcplus00
+  host: !secret unifi_apac_pro
+  username: !secret unifi_username
+  password: !secret unifi_password
+#
+#########################
+# iCloud3
+#########################
 #- platform: icloud3
 #  username: !secret icloud_un1
 #  password: !secret icloud_pw1
@@ -36,6 +42,9 @@
 #    - kathleensimac_2
 #    - sjmipad
 #
+#########################
+# XFinity
+#########################
 #- platform: xfinity
 #  host: secret! router_url
 #  username: secret! router_un
@@ -46,6 +55,9 @@
 #    track_new_devices: false
 #    hide_if_away: true
 #
+#########################
+# iPhone Direct
+#########################
 #- platform: iphonedetect
 #  consider_home: 60
 #  new_device_defaults:
@@ -55,8 +67,14 @@
 #    user1: !secret nmap_user1_phone
 #    user2: !secret nmap_user2_phone
 #
+#########################
+# Bluetooth
+#########################
 #- platform: bluetooth_tracker
 #
+#########################
+# NMap
+#########################
 #  - platform: nmap_tracker
 #    hosts: !secret nmap_hosts
 #    home_interval: 10
@@ -65,6 +83,9 @@
 #     - !secret nmap_exclude2
 #     - !secret nmap_exclude3
 #
+#########################
+# iCloud
+#########################
 #- platform: icloud
 #  username: !secret icloud_un
 #  password: !secret icloud_pw

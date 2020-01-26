@@ -30,6 +30,18 @@
     {{ weighday }}
 #
 #  *******************************************************************************
+#  Get event data for Special Events schedule from GitHub repository
+#  *******************************************************************************
+- platform: rest
+  resource: https://raw.githubusercontent.com/kartcon/Home-Assistant-Public/master/json_files/special_events.json
+  name: special_events
+  scan_interval: 21600
+  value_template: >
+    {% set today = now().month  ~ '/' ~ now().day ~ '/' ~ now().year %}
+    {% set event_text =  value_json.SPECIAL_EVENT.static[ today ] %}
+    {{ event_text }}
+#
+#  *******************************************************************************
 #  US Weather Service Emergency Data
 #  https://community.home-assistant.io/t/severe-weather-alerts-from-the-us-national-weather-service/71853
 #  *******************************************************************************

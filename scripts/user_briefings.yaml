@@ -94,9 +94,11 @@ morning_briefing:
         {{states('sensor.day_of_the_week')}}
         and the date is the {{states('sensor.date_of_the_month')}} of {{states('sensor.month_name')}}.
 
-        {# Birds #}
-        {% if states('sensor.weigh_birds') == 'true' %}
-          It's time to weigh the birds again.
+        {# Special Events #}
+        {% if states('sensor.special_events') != 'unknown' %}
+          {% if states('sensor.special_events') != '' %}
+              {{states('sensor.special_events')}}
+          {% endif %}
         {% endif %}
 
         {# Birthday/Holiday Art #}
@@ -128,6 +130,11 @@ morning_briefing:
         {# Holiday Lighting #}
         {% if (states('sensor.season') != (states('input_select.season_holiday'))|lower()) %}
           Remember to look for the {{ states('input_select.season_holiday') }} lighting theme later tonight.
+        {% endif %}
+
+        {# Birds #}
+        {% if states('sensor.weigh_birds') == 'true' %}
+          It's time to weigh the birds again.
         {% endif %}
 
         {# Weather #}
@@ -290,9 +297,11 @@ evening_briefing:
         {{states('sensor.day_of_the_week')}}
         and the date is the {{states('sensor.date_of_the_month')}} of {{states('sensor.month_name')}}.
 
-        {# Birds #}
-        {% if states('sensor.weigh_birds') == 'true' %}
-          I hope you remembered to weigh the birds today.
+        {# Special Events #}
+        {% if states('sensor.special_events') != 'unknown' %}
+          {% if states('sensor.special_events') != '' %}
+              {{states('sensor.special_events')}}
+          {% endif %}
         {% endif %}
 
         {# Birthday/Holiday Art #}
@@ -320,6 +329,11 @@ evening_briefing:
         {# Holiday Lighting #}
         {% if (states('sensor.season') != (states('input_select.season_holiday'))|lower()) %}
           Remember to look for the {{ states('input_select.season_holiday') }} lighting theme later tonight.
+        {% endif %}
+
+        {# Birds #}
+        {% if states('sensor.weigh_birds') == 'true' %}
+          I hope you remembered to weigh the birds today.
         {% endif %}
 
         {# Weather Outside #}

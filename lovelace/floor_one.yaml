@@ -33,6 +33,8 @@ cards:
             icon: mdi:lightbulb
           - entity: light.lr_fan_115
             icon: mdi:fan
+          - entity: light.media_center_282
+            icon: mdi:lightbulb
           - type: divider
           - light.mbr_can_lights_95
           - light.mbr_bath_lights_94
@@ -44,9 +46,7 @@ cards:
           - light.bird_room_1_light_52
           - light.bird_room_2_light_53
           - type: divider
-          - entity: light.garage_fan_225
-            icon: mdi:fan
-          - light.bench_light_242
+          - light.guest_bedroom_283
       - type: entities
         title: Outside
         show_header_toggle: true
@@ -71,6 +71,10 @@ cards:
           - light.garage_east
           - light.garage_center
           - light.garage_west
+          - type: divider
+          - entity: light.garage_fan_225
+            icon: mdi:fan
+          - light.bench_light_242
           - type: divider
           - entity: light.soffit_east_126
             icon: mdi:power-socket-us
@@ -207,6 +211,14 @@ cards:
         style:
           top: 50%
           left: 66%
+ # Media Center Switch
+#      - type: state-icon
+#        tap_action:
+#          action: toggle
+#        entity: light.media_center_282
+#        style:
+#          top: 56%
+#          left: 61%
  # Living Room Temp
       - type: state-label
         entity: sensor.lr_temp_sensor_78
@@ -299,6 +311,15 @@ cards:
         style:
           top: 51%
           left: 85%
+# Guest Bedroom
+      - type: state-icon
+        tap_action:
+          action: toggle
+        entity: light.guest_bedroom_283
+        style:
+          top: 27%
+          left: 15%
+
 # SUN ROOM
      # SR Fan Lights
       - type: state-icon

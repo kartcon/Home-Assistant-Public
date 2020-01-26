@@ -78,9 +78,6 @@ device_tracker.b827eb9e124a:
   friendly_name: Alt-UI Wifi
 device_tracker.b827ebcb471f:
   friendly_name: Alt-UI Eth0
-device_tracker.c4_98_80_69_a8_4a:
-  friendly_name: Arts iPhone (NMap)
-  icon: mdi:ip-network
 device_tracker.c498806b5b27:
   friendly_name: Steffs I-Phone 8 (NMap)
 device_tracker.c8e0eb4253b9:
@@ -161,3 +158,27 @@ sensor.noaa_tides:
   icon: mdi:waves
 light.flux_led_strip:
   friendly_name: LED Light strip
+device_tracker.c4_98_80_69_a8_4a:
+  friendly_name: Arts iPhone (Unifi)
+  icon: mdi:router-wireless
+device_tracker.500_cc04b4013d81:
+  friendly_name: SleepNumberBed (Unifi)
+  icon: mdi:router-wireless
+device_tracker.esp_aa1940:
+  friendly_name: Flux LED
+  icon: mdi:router-wireless
+device_tracker.bc_85_56_ee_2d_07:
+  friendly_name: Steffs Color Printer
+  icon: mdi:router-wireless
+device_tracker.d0_73_d5_26_0d_8c:
+  friendly_name: Front Porch LIFX
+  icon: mdi:router-wireless
+device_tracker.d0_d2_b0_c2_0e_85:
+  friendly_name: SJM iPad (Unifi)
+  icon: mdi:router-wireless
+device_tracker.devc84393:
+  friendly_name: Arts BW Printer
+  icon: mdi:router-wireless
+device_tracker.c4_98_80_6b_5b_27:
+  friendly_name: Steffs iPhone8 (Unifi)
+  icon: mdi:router-wireless

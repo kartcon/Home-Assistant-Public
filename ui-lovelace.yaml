@@ -117,7 +117,7 @@ views:
   - !include lovelace/mobile2.yaml
   - !include lovelace/home.yaml
 #  - !include lovelace/rooms.yaml
-  - !include lovelace/rooms2.yaml
+  - !include lovelace/rooms.yaml
   - !include lovelace/hvac.yaml
   - !include lovelace/security.yaml
 #  - !include lovelace/cameras.yaml

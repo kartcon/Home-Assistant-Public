@@ -137,8 +137,9 @@ cards:
         - entity: light.holiday_lights_222
           icon: mdi:power-plug
 #        - type: divider
-#        - entity: light.garage_lights_48
-#        - entity: light.porch_light_46
+        - entity: light.garage_lights_281
+        - entity: light.porch_light_46
+        - entity: light.media_center_282
   #  Card 8
 #    - type: thermostat
 #      title: Downstairs

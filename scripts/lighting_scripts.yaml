@@ -34,6 +34,9 @@ ucl_temp_nightlights:
 inside_lights_on_before_sunset:
   alias: 'Inside Lights On Before Sunset'
   sequence:
+#  - service: light.turn_off
+#    data:
+#      entity_id: light.media_center_282
   - service: light.turn_on
     data:
       entity_id: light.china_cabinet_25
@@ -67,6 +70,14 @@ inside_lights_on_before_sunset:
       brightness: >-
         {{ states.light.bird_room_2_light_53.attributes.brightness|default(181)|int }}
 #------------------------------------------
+#  Set Colors on LED Strip Lights
+#------------------------------------------
+  - service: light.turn_on
+    data:
+      entity_id: light.flux_led_strip
+      brightness: 77
+      rgb_color: [0,0,255]
+#------------------------------------------
 #  Set Colors on LIFX Lights
 #------------------------------------------
   - service: lifx.set_state
@@ -82,14 +93,6 @@ inside_lights_on_before_sunset:
       brightness: 58
       color_temp: 285
 #------------------------------------------
-#  Set Colors on LED Strip Lights
-#------------------------------------------
-  - service: light.turn_on
-    data:
-      entity_id: light.flux_led_strip
-      brightness: 77
-      rgb_color: [0,0,255]
-#------------------------------------------
 #  Turn on LIFX Seasonal Colors if Seasonal Colors toggle is ON
 #------------------------------------------
   - condition: state
@@ -100,7 +103,7 @@ inside_lights_on_before_sunset:
       entity_id: script.{{ states.input_select.season_holiday.state | lower | replace(' ', '_') | replace('\'', '') }}_script
 #
 #################################################################
-# SCENE: Outside Lights On at Sunset
+# SCRIPT: Outside Lights On at Sunset
 # Called from [Exterior lights on at Sunset]
 # In file: [Lights_time.yaml]
 #################################################################
@@ -112,7 +115,7 @@ outside_lights_on_at_sunset:
       entity_id: light.porch_light_46
   - service: light.turn_on
     data:
-      entity_id: light.garage_lights_48
+      entity_id: light.garage_lights_281
   - service: light.turn_on
     data:
       entity_id: light.pergola_lights_213

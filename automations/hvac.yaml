@@ -209,18 +209,27 @@
   alias: HVAC Force Mode Cool
   initial_state: true
   trigger:
-  - platform: template
-    value_template: >-
-      {% if (states('sensor.dark_sky_temperature')|float) - 
-      (states('sensor.tstat1_actual_temp')|float) > 10 %}
-        True
-      {% else %}
-        False
-      {% endif %}
-  condition:
-  - condition: state
+  - platform: numeric_state
     entity_id: sun.sun
-    state: 'above_horizon'
+    value_template: "{{ state_attr('sun.sun', 'elevation') }}"
+    above: 12
+#  condition:
+#    - condition: template
+#      value_template: "{{ (states('sensor.dark_sky_temperature')|float) - 
+#      (states('sensor.tstat1_actual_temp')|float) > 10 }}"
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: "{{ (states('sensor.dark_sky_temperature')|float) -       (states('sensor.tstat1_actual_temp')|float) > 10 }}"
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: input_select.thermostat_mode_1
+            state: 'Heat'
+          - condition: state
+            entity_id: input_select.thermostat_mode_2
+            state: 'Heat'
   action:
   - service: input_text.set_value
     data_template:
@@ -255,24 +264,36 @@
   alias: HVAC Force Mode Heat
   initial_state: true
   trigger:
-  - platform: template
-    value_template: >-
-      {% if (states('sensor.dark_sky_temperature')|float) - 
-      (states('sensor.tstat1_actual_temp')|float) < -10 %}
-        True
-      {% else %}
-        False
-      {% endif %}
-  condition:
-  - condition: state
+  - platform: numeric_state
     entity_id: sun.sun
-    state: 'below_horizon'
+    value_template: "{{ state_attr('sun.sun', 'elevation') }}"
+    below: 12
+#  condition:
+#    - condition: state
+#      entity_id: input_select.thermostat_mode_1
+#      state: 'Cool'
+#    - condition: template
+#      value_template: "{{ (states('sensor.dark_sky_temperature')|float) - 
+#      (states('sensor.tstat1_actual_temp')|float) < -10 }}"
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: "{{ (states('sensor.dark_sky_temperature')|float) - (states('sensor.tstat1_actual_temp')|float) < -10 }}"
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: input_select.thermostat_mode_1
+            state: 'Cool'
+          - condition: state
+            entity_id: input_select.thermostat_mode_2
+            state: 'Cool'
   action:
   - service: input_text.set_value
     data_template:
       entity_id: input_text.hvac_trigger
       value: >-
-        auto.hvac_force_mode_cool
+        auto.hvac_force_mode_heat
   - service: input_select.select_option
     data_template:
       entity_id: input_select.thermostat_mode_1
