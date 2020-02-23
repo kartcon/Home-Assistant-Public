@@ -322,16 +322,6 @@ update_tstat_note:
         Downstairs: Temp is {{ states('sensor.tstat1_actual_temp') }}, Target is {{ states('input_select.thermostat_mode_1') }} at {{ states('input_number.t1_set_point') | int}} degrees.<br />
         Upstairs: Temp is {{ states('sensor.tstat2_actual_temp') }}, Target is {{ states('input_select.thermostat_mode_2') }} at {{ states('input_number.t2_set_point') | int}} degrees.<br />
         Trigger was: {{ states('input_text.hvac_trigger') }}.<br />
-#  - service: script.turn_on
-#    entity_id: script.blink_tv_lights
-#  - delay: 0:00:03
-#  - service: notify.lg_tv
-#    data:
-#      title: "Reminder"
-#      message: >-
-#        Thermostat changed to {{states('input_select.thermostat_phase')}}.<br />
-#        Downstairs: Temp is {{ states('sensor.tstat1_actual_temp') }}, <br />
-#        Target is {{ states('input_select.thermostat_mode_1') }} at {{ states('input_number.t1_set_point') | int}} degrees.<br />
 #
 #################################################################
 # Create Visual Nofification 1
@@ -339,15 +329,6 @@ update_tstat_note:
 visual_tstat_1:
   alias: Visual Tstat 1
   sequence:
-  # - service: persistent_notification.create
-  #   data_template:
-  #     title: "HVAC Settings Changed"
-  #     message: >-
-  #       At {{now().strftime("%m/%d/%Y %H:%M:%S")}}<br />
-  #       Thermostat phase changed to {{states('input_select.thermostat_phase')}}.<br />
-  #       Downstairs: Temp is {{ states('sensor.tstat1_actual_temp') }}, Target is {{ states('input_select.thermostat_mode_1') }} at {{ states('input_number.t1_set_point') | int}} degrees.<br />
-  #       Upstairs: Temp is {{ states('sensor.tstat2_actual_temp') }}, Target is {{ states('input_select.thermostat_mode_2') }} at {{ states('input_number.t2_set_point') | int}} degrees.<br />
-  #       Trigger was: {{ states('input_text.hvac_trigger') }}.<br />
   - service: script.turn_on
     entity_id: script.blink_tv_lights
   - delay: 0:00:03

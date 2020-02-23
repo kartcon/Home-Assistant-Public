@@ -4,32 +4,57 @@
 #
 #################################################################
 # Turn on LG-TV
-# Called from [____]
-# In file: [____]
+# Called from [lgtv_auto_on_1900]
+# In file: [automations/media_players.yaml]
+# Called from [mini-media-player]
+# In file: [lovelace/media_players.yaml]
 #################################################################
 turn_on_lgtv:
   alias: Turn on LGTV
   sequence:
-  - service: switch.turn_on
-    entity_id: switch.sun_room_lg_tv
-  - wait_template: "{{ states.media_player.sun_room_lg_tv.state == 'playing' }}"
-    timeout: '00:01:00'
-    continue_on_timeout: 'false'
+  - service: media_player.turn_on
+    entity_id: media_player.lg_tv
   - service: media_player.volume_set
     data:
-      entity_id: media_player.sun_room_lg_tv
+      entity_id: media_player.lg_tv
       volume_level: 0
+#  - service: media_player.volume_mute
+#    entity_id: media_player.lg_tv
+#    is_volume_muted: true
+#
+#  - service: webostv.button
+#    data:
+#      entity_id: media_player.lg_tv
+#      button: "MUTE"
+#  - service: webostv.command
+#    data:
+#      entity_id:  media_player.lg_webos_smart_tv
+#      command: "audio/setMute"
+#  OLD WAY:
+#  - service: switch.turn_on
+#    entity_id: switch.sun_room_lg_tv
+#  - wait_template: "{{ states.media_player.lg_tv.state == 'on' }}"
+#    timeout: '00:01:00'
+#    continue_on_timeout: 'false'
+#  - service: media_player.volume_set
+#    data:
+#      entity_id: media_player.lg_tv
+#      volume_level: 0
 #
 #################################################################
 # Turn off LG-TV
-# Called from [____]
-# In file: [____]
+# Called from [lg_lr_tv_off_at_2305]
+# In file: [/automations/media_player.yaml]
+# Called from [all_off_at_2330, ]
+# In file: [/automations/lights_time.yaml]
+# Called from [mini-media-player]
+# In file: [lovelace/media_players.yaml]
 #################################################################
 turn_off_lgtv:
   alias: Turn off LGTV
   sequence:
   - service: media_player.turn_off
-    entity_id: media_player.sun_room_lg_tv
+    entity_id: media_player.lg_tv
 #
 #################################################################
 # Turn on Kitchen Roku
@@ -58,6 +83,10 @@ turn_on_kitchen_roku:
       command:
       - down
       - select
+  - service: media_player.volume_set
+    data:
+      entity_id: media_player.sharp_roku_tv
+      volume_level: 0
 #
 #################################################################
 # Turn off Kitchen Roku

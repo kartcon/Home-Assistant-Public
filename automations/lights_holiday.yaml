@@ -30,7 +30,7 @@
   - condition: state
     entity_id: input_boolean.system_alerts
     state: 'on'
-  - service: notify.ios_group_art_steff
+  - service: notify.mobile_group_art_steff
     data:
       message: "New Years Day Lighting turned on."
 #
@@ -62,7 +62,7 @@
   - condition: state
     entity_id: input_boolean.system_alerts
     state: 'on'
-  - service: notify.ios_group_art_steff
+  - service: notify.mobile_group_art_steff
     data:
       message: "Valentines Day Lighting turned on."
 #
@@ -100,7 +100,7 @@
   - condition: state
     entity_id: input_boolean.system_alerts
     state: 'on'
-  - service: notify.ios_group_art_steff
+  - service: notify.mobile_group_art_steff
     data:
       message: "St Pattys Day Lighting turned on."
 #
@@ -132,7 +132,7 @@
   - condition: state
     entity_id: input_boolean.system_alerts
     state: 'on'
-  - service: notify.ios_group_art_steff
+  - service: notify.mobile_group_art_steff
     data:
       message: "Easter Lighting turned on."
 #
@@ -164,7 +164,7 @@
   - condition: state
     entity_id: input_boolean.system_alerts
     state: 'on'
-  - service: notify.ios_group_art_steff
+  - service: notify.mobile_group_art_steff
     data:
       message: "Memorial Day Lighting turned on."
 #
@@ -196,7 +196,7 @@
   - condition: state
     entity_id: input_boolean.system_alerts
     state: 'on'
-  - service: notify.ios_group_art_steff
+  - service: notify.mobile_group_art_steff
     data:
       message: "Flag Day Lighting turned on."
 #
@@ -228,7 +228,7 @@
   - condition: state
     entity_id: input_boolean.system_alerts
     state: 'on'
-  - service: notify.ios_group_art_steff
+  - service: notify.mobile_group_art_steff
     data:
       message: "July 4th Lighting turned on."
 #
@@ -260,7 +260,7 @@
   - condition: state
     entity_id: input_boolean.system_alerts
     state: 'on'
-  - service: notify.ios_group_art_steff
+  - service: notify.mobile_group_art_steff
     data:
       message: "Labor Day Lighting turned on."
 #
@@ -292,7 +292,7 @@
   - condition: state
     entity_id: input_boolean.system_alerts
     state: 'on'
-  - service: notify.ios_group_art_steff
+  - service: notify.mobile_group_art_steff
     data:
       message: "Breast Cancer Day Lighting turned on."
 #
@@ -324,7 +324,7 @@
   - condition: state
     entity_id: input_boolean.system_alerts
     state: 'on'
-  - service: notify.ios_group_art_steff
+  - service: notify.mobile_group_art_steff
     data:
       message: "Halloween Lighting turned on."
 #
@@ -356,7 +356,7 @@
   - condition: state
     entity_id: input_boolean.system_alerts
     state: 'on'
-  - service: notify.ios_group_art_steff
+  - service: notify.mobile_group_art_steff
     data:
       message: "Thanksgiving Lighting turned on."
 #
@@ -384,7 +384,7 @@
   - condition: state
     entity_id: input_boolean.system_alerts
     state: 'on'
-  - service: notify.ios_group_art_steff
+  - service: notify.mobile_group_art_steff
     data:
       message: "Christmas Lighting turned on."
   - service: notify.lg_tv
@@ -421,7 +421,7 @@
   - condition: state
     entity_id: input_boolean.system_alerts
     state: 'on'
-  - service: notify.ios_group_art_steff
+  - service: notify.mobile_group_art_steff
     data:
       message: "New Years Eve Lighting turned on."
 #

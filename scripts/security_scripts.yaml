@@ -39,7 +39,7 @@ check_open_door_status:
     data_template:
       title: "Security Zone Alert!"
       message: >-
-        {{now().strftime("%m/%d/%Y %H:%M:%S")}}. The following door(s) caused a Zone Alert:
+        {{now().strftime("%m/%d/%Y %H:%M:%S")}}. The following door(s) caused a Zone Alert:<br />
         {% set sensors = [states.binary_sensor.front_door_31, states.binary_sensor.back_door_36, states.binary_sensor.garage_entry_door_39, states.binary_sensor.one_car_gar_sensor_66, states.binary_sensor.two_car_gar_sensor_65, states.binary_sensor.sliding_door_left_37, states.binary_sensor.sliding_door_right_38, states.binary_sensor.sunroom_east_34, states.binary_sensor.sunroom_west_35] %}
         {%- for opendoor in sensors -%}
           {%- if (opendoor.state_with_unit == "on") -%}
@@ -60,7 +60,7 @@ check_open_door_status:
 #  - condition: state
 #    entity_id: input_boolean.sensor_reset_notifications
 #    state: 'on'
-  - service: notify.ios_group_art_steff
+  - service: notify.mobile_group_art_steff
     data_template:
       title: "Security Zone Alert!"
       message: >-

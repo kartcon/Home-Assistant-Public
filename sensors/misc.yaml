@@ -1,0 +1,83 @@
+#########################
+#    Space Launches     #
+#########################
+- platform: launch_library
+  name: Space Launches
+  ############################
+  # Next Launch Sensors
+  ############################
+- platform: template
+  sensors:
+    next_launch_date:
+      value_template: "{{state_attr('sensor.space_launches', 'launch_time').split('T')[0].strip()}}"
+      friendly_name: "Rocket Launch Date"
+      icon_template: mdi:rocket
+    next_launch_time:
+      value_template: "{{state_attr('sensor.space_launches', 'launch_time').split('T')[1].strip()}}"
+      friendly_name: "Rocket Launch Time"
+      icon_template: mdi:rocket
+    next_launch_reminder:
+      value_template: "{{(as_timestamp(state_attr('sensor.space_launches', 'launch_time'))-300) | timestamp_custom('%-H:%M:%S')}}"
+      friendly_name: "Rocket Launch Reminder"
+      icon_template: mdi:rocket
+#
+#########################
+#    XFinity Useage     #
+#########################
+# https://github.com/robert-alfaro/xfinity-usage
+- platform: xfinity
+  username: !secret xfinity_username
+  password: !secret xfinity_password
+  # sensor.xfinity_usage
+  #
+  ############################
+  # XFinity Data Sensors
+  ############################
+- platform: template
+  sensors:
+    xfinity_allowed:
+      value_template: "{{state_attr('sensor.xfinity_usage','allowable_usage')}}"
+      friendly_name: "XFinity Data Allowed"
+      icon_template: mdi:network
+      unit_of_measurement: 'GB'
+    xfinity_remaining:
+      value_template: "{{state_attr('sensor.xfinity_usage','remaining_usage')}}"
+      friendly_name: "XFinity Data Remaining"
+      icon_template: mdi:network
+      unit_of_measurement: 'GB'
+    xfinity_daily_avg:
+      value_template: "{{((states('sensor.xfinity_usage')|int)/(states('sensor.day_of_the_month')|float))|round(1)}}"
+      friendly_name: "XFinity Daily Average"
+      icon_template: mdi:network
+      unit_of_measurement: 'GB'
+    xfinity_projected:
+      value_template: "{{((states('sensor.xfinity_daily_avg')|float) * (states('sensor.days_in_current_month')|int))|round(1)}}"
+      friendly_name: "XFinity Projected Use"
+      icon_template: mdi:network
+      unit_of_measurement: 'GB'
+    xfinity_useage_rate:
+      value_template: >-
+        {% if states('sensor.xfinity_daily_avg')|int > 0 and states('sensor.xfinity_daily_avg')|int < 10%}
+          Low
+        {% elif states('sensor.xfinity_daily_avg')|int >= 10 and states('sensor.xfinity_daily_avg')|int < 20 %}
+          Medium
+        {% elif states('sensor.xfinity_daily_avg')|int >= 20 and states('sensor.xfinity_daily_avg')|int < 30 %}
+          High
+        {% elif states('sensor.xfinity_daily_avg')|int >= 30 %}
+          Critical
+        {% else %}
+          Unknown
+        {% endif %}
+      icon_template: mdi:network
+      friendly_name: "XFinity Useage Rate"
+#
+#########################
+#    File Size      #
+#########################
+#https://www.home-assistant.io/components/sensor.filesize/
+#- platform: filesize
+#  file_paths:
+#    - /config/home-assistant_v2.db
+#    - /config/home-assistant.log
+#
+#

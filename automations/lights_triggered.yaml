@@ -41,11 +41,12 @@
   - service: input_boolean.turn_on
     entity_id: input_boolean.alexa_speaking
   - service: notify.alexa_media
-    data_template:
+    data:
       target:
         - media_player.kitchen_echo
       data:
         type: tts
+        method: speak
       message: "Kitchen Motion Sensor."
   - delay: '00:00:05'
   - service: input_boolean.turn_off
@@ -128,8 +129,8 @@
 #    data_template:
 #      title: Kitchen AUTO-ON Triggered
 #      message: >-
-#        Kitchen Lights Auto-On triggered at {{now().strftime("%m/%d/%Y %H:%M:%S")}}.
-#        Last motion was at {{ states.input_datetime.last_kitchen_motion.state }}.
+#        Kitchen Lights Auto-On triggered at {{now().strftime("%m/%d/%Y %H:%M:%S")}}.<br />
+#        Last motion was at {{ states.input_datetime.last_kitchen_motion.state }}.<br />
 #        Kitchen Lux was at {{ states.sensor.kit_light_sensor_227.state }}.
   # Set Volume
   - service: script.set_alexa_volume
@@ -139,11 +140,12 @@
   - service: input_boolean.turn_on
     entity_id: input_boolean.alexa_speaking
   - service: notify.alexa_media
-    data_template:
+    data:
       target:
         - media_player.kitchen_echo
       data:
         type: tts
+        method: speak
       message: "I've turned the light on for you."
   - delay: '00:00:05'
   - service: input_boolean.turn_off
@@ -192,8 +194,8 @@
 #  - service: persistent_notification.create
 #    data_template:
 #      message: >-
-#        Kitchen Lights Auto-Off triggered at {{now().strftime("%m/%d/%Y %H:%M:%S")}}.
-#        Last motion was at {{ states.input_datetime.last_kitchen_motion.state }}.
+#        Kitchen Lights Auto-Off triggered at {{now().strftime("%m/%d/%Y %H:%M:%S")}}.<br />
+#        Last motion was at {{ states.input_datetime.last_kitchen_motion.state }}.<br />
 #        Kitchen Lux was at {{ states.sensor.kit_light_sensor_227.state }}.
 #      title: Kitchen AUTO-OFF Triggered
   # Set Volume
@@ -204,11 +206,12 @@
   - service: input_boolean.turn_on
     entity_id: input_boolean.alexa_speaking
   - service: notify.alexa_media
-    data_template:
+    data:
       target:
         - media_player.kitchen_echo
       data:
         type: tts
+        method: speak
       message: "I've turned the lights off to save energy."
   - delay: '00:00:05'
   - service: input_boolean.turn_off
@@ -342,6 +345,7 @@
         - media_player.kitchen_echo
       data:
         type: tts
+        method: speak
       message: "Living Room Motion Sensor."
   - delay: '00:00:05'
   - service: input_boolean.turn_off
@@ -452,7 +456,7 @@
   action:
   - service: light.turn_on
     entity_id: light.porch_light_46
-  - service: light.lifx_set_state
+  - service: lifx.set_state
     data:
       entity_id: light.front_porch
       power: true
@@ -460,7 +464,7 @@
       color_temp: 290
   - delay:
       minutes: 2
-  - service: light.lifx_set_state
+  - service: lifx.set_state
     data:
       entity_id: light.front_porch
       power: false
@@ -485,7 +489,7 @@
   action:
   - service: light.turn_on
     entity_id: light.porch_light_46
-  - service: light.lifx_set_state
+  - service: lifx.set_state
     data:
       entity_id: light.front_porch
       power: true
@@ -493,7 +497,7 @@
       color_temp: 290
 #  - delay:
 #      minutes: 5
-#  - service: light.lifx_set_state
+#  - service: lifx.set_state
 #    data:
 #      entity_id: light.front_porch
 #      power: true
@@ -514,6 +518,25 @@
   - condition: state
     entity_id: sun.sun
     state: 'below_horizon'
+  - condition: time
+    after: '16:00:00'
+    before: '23:00:00'
+  action:
+    - service: script.turn_on
+      data_template:
+        entity_id: script.{{ states.input_select.season_holiday.state | lower | replace(' ', '_') | replace('\'', '') }}_script
+#
+#################################################################
+# Reset LIFX seasonal colors on command
+#################################################################
+- id: lifx_reset_color_on_demand
+  alias: LIFX Reset Color on Demand
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: switch.momentary_reset_lifx
+    to: 'on'
+  condition:
   - condition: time
     after: '16:00:00'
     before: '23:00:00'
@@ -544,8 +567,8 @@
 #  - service: persistent_notification.create
 #    data_template:
 #      message: >-
-#        Inside Lights Auto-Off triggered at {{now().strftime("%m/%d/%Y %H:%M:%S")}}.
-#        Last Kitchen motion was at {{ states.input_datetime.last_kitchen_motion.state }}.
+#        Inside Lights Auto-Off triggered at {{now().strftime("%m/%d/%Y %H:%M:%S")}}.<br />
+#        Last Kitchen motion was at {{ states.input_datetime.last_kitchen_motion.state }}.<br />
 #        Last LR motion was at {{ states.input_datetime.last_livingrm_motion.state }}.
 #      title: Lights OFF (8-4, No one home)
   - service: light.turn_off
@@ -564,7 +587,7 @@
 #  initial_state: true
 #  trigger:
 #    platform: state
-#    entity_id: media_player.sun_room_lg_tv
+#    entity_id: media_player.lg_tv
 #    to: 'playing'
 #  condition: []
 #  action:
@@ -582,10 +605,10 @@
 #  initial_state: true
 #  trigger:
 #  - platform: state
-#    entity_id: media_player.sun_room_lg_tv
+#    entity_id: media_player.lg_tv
 #    to: 'off'
 #  - platform: state
-#    entity_id: media_player.sun_room_lg_tv
+#    entity_id: media_player.lg_tv
 #    to: 'paused'
 #  condition: []
 #  action:

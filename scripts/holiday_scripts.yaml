@@ -54,36 +54,36 @@ new_years_day_script:
       brightness: 30
       rgb_color: [255,0,250]
       # Red/Green cross fade
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.front_porch
       brightness: 128
-      rgb_color: [83,255,126]
+      rgb_color: [255,0,253]
   - service: light.turn_on
     data:
       entity_id: light.tv_left
       brightness: 69
       rgb_color: [255,218,245]
       # lavender
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.tv_right
       brightness: 69
       rgb_color: [255,218,245]
       # lavender
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_east
       brightness: 93
       rgb_color: [254,145,255]
       # pink
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_center
       brightness: 128
       rgb_color: [255,0,253]
       # pink
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_west
       brightness: 93
@@ -103,43 +103,44 @@ valentines_day_script:
   - service: light.turn_on
     data:
       entity_id: light.flux_led_strip
-      brightness: 30
-      rgb_color: [255,0,250]
+      brightness: 111
+      rgb_color: [255,27,87]
       # Red/Green cross fade
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.front_porch
       brightness: 128
-      rgb_color: [83,255,126]
-  - service: light.turn_on
+      rgb_color: [255,96,137]
+  - service: lifx.set_state
     data:
       entity_id: light.tv_left
-      brightness: 69
-      rgb_color: [255,218,245]
+      brightness: 103
+      rgb_color: [255,170,210]
       # lavender
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.tv_right
-      brightness: 69
-      rgb_color: [255,218,245]
+      brightness: 103
+      rgb_color: [255,170,210]
       # lavender
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_east
-      brightness: 93
-      rgb_color: [254,145,255]
+      brightness: 128
+      rgb_color: [255,0,55]
       # pink
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_center
       brightness: 128
-      rgb_color: [255,0,253]
+      color_temp: 204
+      # rgb_color: [255,0,253]
       # pink
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_west
-      brightness: 93
-      rgb_color: [254,145,255]
+      brightness: 128
+      rgb_color: [255,0,55]
       # pink
 #
 #################################################################
@@ -157,32 +158,32 @@ st_pattys_day_script:
       entity_id: light.flux_led_strip
       brightness: 30
       rgb_color: [0,255,0]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.front_porch
       brightness: 128
       rgb_color: [83,255,126]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.tv_left
       brightness: 58
       rgb_color: [132,255,177]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.tv_right
       brightness: 58
       rgb_color: [132,255,177]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_east
       brightness: 255
       rgb_color: [0,255,0]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_center
       brightness: 255
       rgb_color: [255,255,255]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_west
       brightness: 255
@@ -203,32 +204,32 @@ easter_script:
       entity_id: light.flux_led_strip
       brightness: 132
       rgb_color: [255,32,255]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.front_porch
       brightness: 128
       rgb_color: [255,131,191]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.tv_left
       brightness: 69
       rgb_color: [127,243,255]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.tv_right
       brightness: 69
       rgb_color: [127,243,255]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_east
       brightness: 255
       rgb_color: [255,131,191]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_center
       brightness: 255
       rgb_color: [255,201,0]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_west
       brightness: 255
@@ -249,32 +250,32 @@ memorial_day_script:
       entity_id: light.flux_led_strip
       brightness: 30
       rgb_color: [255,0,0]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.front_porch
       brightness: 128
       rgb_color: [0,129,255]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.tv_left
       brightness: 69
       rgb_color: [116,91,255]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.tv_right
       brightness: 69
       rgb_color: [255,49,82]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_east
       brightness: 128
       rgb_color: [255,0,0]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_center
       brightness: 94
       color_temp: 270
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_west
       brightness: 93
@@ -300,27 +301,27 @@ flag_day_script:
       entity_id: light.front_porch
       brightness: 128
       rgb_color: [0,129,255]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.tv_left
       brightness: 69
       rgb_color: [116,91,255]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.tv_right
       brightness: 69
       rgb_color: [255,49,82]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_east
       brightness: 128
       rgb_color: [255,0,0]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_center
       brightness: 94
       color_temp: 270
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_west
       brightness: 93
@@ -341,32 +342,32 @@ independence_day_script:
       entity_id: light.flux_led_strip
       brightness: 30
       rgb_color: [255,0,0]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.front_porch
       brightness: 128
       rgb_color: [0,129,255]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.tv_left
       brightness: 69
       rgb_color: [116,91,255]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.tv_right
       brightness: 69
       rgb_color: [255,49,82]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_east
       brightness: 128
       rgb_color: [255,0,0]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_center
       brightness: 94
       color_temp: 270
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_west
       brightness: 93
@@ -387,32 +388,32 @@ labor_day_script:
       entity_id: light.flux_led_strip
       brightness: 30
       rgb_color: [255,0,0]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.front_porch
       brightness: 128
       rgb_color: [0,129,255]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.tv_left
       brightness: 69
       rgb_color: [116,91,255]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.tv_right
       brightness: 69
       rgb_color: [255,49,82]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_east
       brightness: 128
       rgb_color: [255,0,0]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_center
       brightness: 94
       color_temp: 270
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_west
       brightness: 93
@@ -433,32 +434,32 @@ breast_cancer_script:
       entity_id: light.flux_led_strip
       brightness: 30
       rgb_color: [255,0,253]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.front_porch
       brightness: 128
       rgb_color: [254,210,255]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.tv_left
       brightness: 69
       rgb_color: [254,210,255]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.tv_right
       brightness: 69
       rgb_color: [254,210,255]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_east
       brightness: 128
       rgb_color: [254,210,255]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_center
       brightness: 128
       rgb_color: [254,210,255]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_west
       brightness: 128
@@ -479,32 +480,32 @@ halloween_script:
       entity_id: light.flux_led_strip
       brightness: 30
       rgb_color: [255,0,250]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.front_porch
       brightness: 128
       rgb_color: [255,201,68]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.tv_left
       brightness: 157
       rgb_color: [255,201,68]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.tv_right
       brightness: 157
       rgb_color: [255,201,68]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_east
       brightness: 128
       rgb_color: [255,201,68]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_center
       brightness: 128
       rgb_color: [255,201,68]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_west
       brightness: 128
@@ -525,32 +526,32 @@ thanksgiving_script:
       entity_id: light.flux_led_strip
       brightness: 30
       rgb_color: [255,33,0]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.front_porch
       brightness: 128
       rgb_color: [255,194,55]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.tv_left
       brightness: 69
       rgb_color: [255,194,55]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.tv_right
       brightness: 69
       rgb_color: [255,194,55]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_east
       brightness: 128
       rgb_color: [255,194,55]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_center
       brightness: 128
       rgb_color: [255,194,55]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_west
       brightness: 93
@@ -571,39 +572,39 @@ christmas_script:
       entity_id: group.christmas_lights
   - service: light.turn_on
     data:
-      entity_id: light.front_porch
-      brightness: 128
-      rgb_color: [83,255,126]
-  - service: light.turn_on
-    data:
       entity_id: light.flux_led_strip
       brightness: 30
-      rgb_color: [255,0,250]
-  - service: light.turn_on
+      rgb_color: [0,255,0]
+  - service: lifx.set_state
+    data:
+      entity_id: light.front_porch
+      brightness: 69
+      rgb_color: [55,255,78]
+  - service: lifx.set_state
     data:
       entity_id: light.tv_left
       brightness: 69
-      rgb_color: [255,218,245]
-  - service: light.turn_on
+      rgb_color: [255,55,66]
+  - service: lifx.set_state
     data:
       entity_id: light.tv_right
       brightness: 69
-      rgb_color: [255,218,245]
-  - service: light.turn_on
+      rgb_color: [55,255,78]
+  - service: lifx.set_state
     data:
       entity_id: light.garage_east
       brightness: 128
-      rgb_color: [255,0,253]
-  - service: light.turn_on
+      rgb_color: [255,55,66]
+  - service: lifx.set_state
     data:
       entity_id: light.garage_center
       brightness: 128
-      rgb_color: [255,0,253]
-  - service: light.turn_on
+      rgb_color: [55,255,78]
+  - service: lifx.set_state
     data:
       entity_id: light.garage_west
       brightness: 128
-      rgb_color: [255,0,253]
+      rgb_color: [255,55,66]
 #
 #################################################################
 # SCRIPT: New Years Eve
@@ -621,36 +622,36 @@ new_years_eve_script:
       brightness: 30
       rgb_color: [255,0,250]
       # Red/Green cross fade
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.front_porch
       brightness: 128
-      rgb_color: [83,255,126]
-  - service: light.turn_on
+      rgb_color: [255,0,253]
+  - service: lifx.set_state
     data:
       entity_id: light.tv_left
       brightness: 69
       rgb_color: [255,218,245]
       # lavender
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.tv_right
       brightness: 69
       rgb_color: [255,218,245]
       # lavender
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_east
       brightness: 93
       rgb_color: [254,145,255]
       # pink
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_center
       brightness: 128
       rgb_color: [255,0,253]
       # pink
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_west
       brightness: 93
@@ -675,40 +676,35 @@ spring_script:
   sequence:
   - service: light.turn_on
     data:
-      entity_id: light.front_porch
-      brightness: 128
-      rgb_color: [83,255,126]
-  - service: light.turn_on
-    data:
       entity_id: light.flux_led_strip
       brightness: 30
       rgb_color: [83,255,126]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.front_porch
       brightness: 128
       rgb_color: [83,255,126]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.tv_left
       brightness: 157
       rgb_color: [83,255,126]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.tv_right
       brightness: 157
       rgb_color: [83,255,126]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_east
       brightness: 128
       rgb_color: [83,255,126]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_center
       brightness: 128
       rgb_color: [83,255,126]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_west
       brightness: 128
@@ -724,32 +720,32 @@ summer_script:
       entity_id: light.flux_led_strip
       brightness: 30
       rgb_color: [255,239,0]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.front_porch
       brightness: 128
       rgb_color: [255,239,0]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.tv_left
       brightness: 157
       rgb_color: [255,239,0]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.tv_right
       brightness: 157
       rgb_color: [255,239,0]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_east
       brightness: 128
       rgb_color: [255,239,0]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_center
       brightness: 128
       rgb_color: [255,239,0]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_west
       brightness: 128
@@ -765,32 +761,32 @@ autumn_script:
       entity_id: light.flux_led_strip
       brightness: 127
       rgb_color: [255,62,0]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.front_porch
       brightness: 128
       rgb_color: [255,201,68]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.tv_left
       brightness: 157
       rgb_color: [255,201,68]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.tv_right
       brightness: 157
       rgb_color: [255,201,68]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_east
       brightness: 128
       rgb_color: [255,201,68]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_center
       brightness: 128
       rgb_color: [255,201,68]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_west
       brightness: 128
@@ -804,38 +800,38 @@ winter_script:
   - service: light.turn_on
     data:
       entity_id: light.flux_led_strip
-      brightness: 30
-      rgb_color: [83,255,126]
-  - service: light.turn_on
+      brightness: 77
+      rgb_color: [0,0,255]
+  - service: lifx.set_state
     data:
       entity_id: light.front_porch
-      brightness: 128
-      rgb_color: [83,255,126]
-  - service: light.turn_on
+      brightness: 102
+      rgb_color: [9,153,255]
+  - service: lifx.set_state
     data:
       entity_id: light.tv_left
-      brightness: 157
-      rgb_color: [83,255,126]
-  - service: light.turn_on
+      brightness: 77
+      rgb_color: [118,201,255]
+  - service: lifx.set_state
     data:
       entity_id: light.tv_right
-      brightness: 157
-      rgb_color: [83,255,126]
-  - service: light.turn_on
+      brightness: 77
+      rgb_color: [118,201,255]
+  - service: lifx.set_state
     data:
       entity_id: light.garage_east
-      brightness: 128
-      rgb_color: [83,255,126]
-  - service: light.turn_on
+      brightness: 102
+      rgb_color: [68,177,255]
+  - service: lifx.set_state
     data:
       entity_id: light.garage_center
-      brightness: 128
-      rgb_color: [83,255,126]
-  - service: light.turn_on
+      brightness: 102
+      rgb_color: [68,177,255]
+  - service: lifx.set_state
     data:
       entity_id: light.garage_west
-      brightness: 128
-      rgb_color: [83,255,126]
+      brightness: 102
+      rgb_color: [68,177,255]
 #
 #################################################################
 # Script: Test Lighting Script
@@ -853,32 +849,32 @@ test_lighting_script:
       rgb_color: [255,36,0]
 #      effect: rg_cross_fade
 #      transition: 5
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.front_porch
       brightness: 128
       rgb_color: [83,255,126]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.tv_left
       brightness: 69
       rgb_color: [255,218,245]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.tv_right
       brightness: 69
       rgb_color: [83,255,126]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_east
       brightness: 128
       rgb_color: [36,91,255]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_center
       brightness: 128
       rgb_color: [255,0,0]
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
       entity_id: light.garage_west
       brightness: 128

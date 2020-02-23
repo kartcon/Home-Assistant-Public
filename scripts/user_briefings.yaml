@@ -39,8 +39,9 @@ announce_morning_briefing:
         - "{{ alexa_entity }}"
       data:
         type: announce
-      message: >-
-        Your daily briefing is about to start.
+      message: Your daily briefing is about to start.
+#      message: >-
+#        Your daily briefing is about to start.
 #
 #################################################################
 # Script: Announce Daily Briefing
@@ -249,11 +250,15 @@ morning_briefing:
           {% endif %}
           {% if states('sensor.submit_mileage') == 'True' %}
             {% if states('input_boolean.reminder_motus') == 'on' %}
-              Remember to submit your mileage today. You have {{states('sensor.submit_mileage.attributes.days_remaining')}} days remaining!
+              Remember to submit your mileage today. You have {{state_attr('sensor.submit_mileage', 'days_remaining')}} days remaining.
             {% endif %}
           {% endif %}
         {% endif %}
 
+        {# Space Launches #}
+        {% if (states('sensor.date') == states('sensor.next_launch_date')) and (states('sensor.next_launch_time') > states('sensor.time'))%}
+          There is a planned rocket launch of the {{states('sensor.space_launches')}} mission today. Liftoff is scheduled for {{ (as_timestamp(state_attr('sensor.space_launches', 'launch_time'))) | timestamp_custom('%-I:%M %p') }}.
+        {% endif %}
 
         {# Closing Statement #}
         {% if recipient == 'Art' %}
@@ -304,23 +309,28 @@ evening_briefing:
           {% endif %}
         {% endif %}
 
-        {# Birthday/Holiday Art #}
+        {# Birthday Art #}
         {% if states('sensor.todays_events') != 'unknown' %}
           {% if states('sensor.todays_events') != '' %}
             {% if states('sensor.todays_events')|replace("\'","") == 'Arts Birthday' %}
               Happy Birthday Art.
-            {% else %}
-              Don't forget, it's {{states('sensor.todays_events')}} today.
             {% endif %}
           {% endif %}
         {% endif %}
 
-        {# Birthday/Holiday Steff #}
+        {# Birthday Steff #}
         {% if states('sensor.todays_events') != 'unknown' %}
           {% if states('sensor.todays_events') != '' %}
             {% if states('sensor.todays_events')|replace("\'","") == 'Steffs Birthday' %}
               Happy Birthday Steff.
-            {% else %}
+            {% endif %}
+          {% endif %}
+        {% endif %}
+
+        {# Holiday #}
+        {% if states('sensor.todays_events') != 'unknown' %}
+          {% if states('sensor.todays_events') != '' %}
+            {% if states('sensor.todays_events')|replace("\'","") == 'Steffs Birthday' %}
               Don't forget, it's {{states('sensor.todays_events')}} today.
             {% endif %}
           {% endif %}
@@ -421,6 +431,23 @@ evening_briefing:
           It's the first Saturday of the month. Please remeber to change the furnace filters and top off the golf cart batteries.
         {% endif %}
 
+        {# Reminders Art #}
+        {% if states('sensor.submit_expenses') == 'True' %}
+          {% if states('input_boolean.reminder_concur') == 'on' %}
+            Remember to submit your expense report soon.
+          {% endif %}
+        {% endif %}
+        {% if states('sensor.submit_mileage') == 'True' %}
+          {% if states('input_boolean.reminder_motus') == 'on' %}
+            Remember to submit your mileage soon. You have {{state_attr('sensor.submit_mileage', 'days_remaining')}} days remaining.
+          {% endif %}
+        {% endif %}
+
+        {# Space Launches #}
+        {% if (states('sensor.date') == states('sensor.next_launch_date')) and (states('sensor.next_launch_time') > states('sensor.time'))%}
+          There is a planned rocket launch of the {{states('sensor.space_launches')}} mission this evening. Liftoff is scheduled for {{ (as_timestamp(state_attr('sensor.space_launches', 'launch_time'))) | timestamp_custom('%-I:%M %p') }}.
+        {% endif %}
+
         {# Closing Statement #}
         {% if recipient == 'Art' %}
           I hope you had a{{ [' pleasant', ' great', ' good', 'n enjoyable', ' super', ' wonderful'] | random }} day!
@@ -428,4 +455,57 @@ evening_briefing:
           Have a{{ [' pleasant', 'n amiable', ' happy', ' cheerful', ' delightful', 'n enjoyable', ' lovely', ' pleasing', ' good'] | random }} evening!
         {% endif %}
 #
-# ========================
+#################################################################
+# Morning Briefing Sensors
+#################################################################
+# {{states('sensor.time_of_day')}}
+# {{recipient}}.
+# {{states.sensor.readable_time.state.lstrip('0')}}
+# {{states('sensor.payday')}}
+# {{states('sensor.day_of_the_week')}}
+# {{states('sensor.date_of_the_month')}}
+# {{states('sensor.month_name')}}
+# -{{states('sensor.special_events')}}
+# {{states('sensor.todays_events')|replace("\'","")}}
+# {{states('sensor.todays_events')}}
+# {{states('sensor.season')}}
+# {{states('input_select.season_holiday')|lower()}}
+# {{states('input_select.season_holiday')}}
+# -{{states('sensor.weigh_birds')}}
+# {{states('sensor.dark_sky_summary')}}
+# {{states('sensor.dark_sky_temperature')}}
+# {{states('sensor.dark_sky_hourly_summary')|replace('.','')}}
+# {{states('sensor.dark_sky_daytime_high_temperature_0d')|round(1)}}
+# {{states('sensor.dark_sky_overnight_low_temperature_0d')|round(1)}}
+# {{state_attr('weather.dark_sky', 'forecast')[0].precipitation}}
+# {{states.weather.dark_sky.state}}
+# >{% set winbearing = ((state_attr('weather.dark_sky','forecast')[0].wind_bearing/45)|round +1) %}
+# >{% set winddir = ['North', 'North East','East','South East','South','South West','West','North West']%}
+# {{ winddir[winbearing]}}
+# {{states('sensor.dark_sky_wind_speed_0d')|int|round}}
+# {{states('sensor.dark_sky_wind_gust_0d')|int|round}}
+# {{states('sensor.nws_alert_count')}}
+# {{states('sensor.nws_alert_event')}}
+# {{states('sensor.dark_sky_uv_index')}}
+# {{states('sensor.dark_sky_visibility')}}
+# {{states('sensor.next_rising')}}
+# {{states('sensor.next_setting')}}
+# {{states('sun.sun')}}
+# {{states('sensor.moon')}}
+# {{states('sensor.dark_sky_moon_phase_0d')|float}}
+# {{states('sensor.noaa_tides')}}
+# {{states('sensor.noaa_tides')|replace('at','is at')}}
+# {{states('sensor.high_tide_height')|float}}
+# {{states('input_number.max_high_tide')|float * 0.95}}
+# {{states('input_number.max_high_tide')|round(2)}}
+# {{states('device_tracker.arts_iphone_8')}}
+# {{states('sensor.day_of_the_week')}}
+# {{states('sensor.date')}}
+# {{states('input_datetime.recycle_pickup_date')}}
+# {{states('sensor.day_of_the_week')}}
+# {{states('sensor.day_of_the_month')}}
+# {{states('sensor.submit_expenses')}}
+# {{states('input_boolean.reminder_concur')}}
+# {{states('sensor.submit_mileage')}}
+# {{states('input_boolean.reminder_motus')}}
+# ========

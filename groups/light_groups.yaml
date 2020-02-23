@@ -31,7 +31,6 @@ christmas_lights:
     - light.soffit_center_123
     - light.soffit_west_278
     - light.holiday_lights_222
-#    - light.lr_christmas_tree_26
 #
 inside_light_group:
   name: Inside Light Group
@@ -47,9 +46,6 @@ inside_light_group:
     - light.kitchen_pendants_106
     - light.kitchen_uc_lights_44
     - light.lr_can_lights_62
-#    - light.media_center_282
-#    - light.tv_left
-#    - light.tv_right
     - light.mbr_bath_fan_93
     - light.mbr_bath_lights_94
     - light.mbr_can_lights_95
@@ -60,20 +56,21 @@ inside_light_group:
     - light.office_light_223
     - light.sunroom_lights_203
     - light.flux_led_strip
+#    - light.media_center_282
 #
 outside_light_group:
   name: Outside Light Group
   view: no
   icon: mdi:home
   entities:
-#    - light.porch_light_46
-#    - light.garage_lights_281
     - light.pergola_lights_213
     - light.hot_tub_lights_201
     - light.outdoor_switch_1_124
     - light.sun_room_floods_202
     - light.house_floods_105
     - light.holiday_lights_222
+#    - light.porch_light_46
+#    - light.garage_lights_281
 #
 lifx_light_group:
   name: LIFX Light Group
@@ -87,6 +84,15 @@ lifx_light_group:
     - light.garage_west
     - light.front_porch
 #
+lifx_control_group:
+  name: LIFX Control Group
+  view: no
+  icon: mdi:home
+  entities:
+    - light.media_center_282
+    - light.porch_light_46
+    - light.garage_lights_281
+
 ceiling_fan_group:
   name: Ceiling Fan Group
   view: no

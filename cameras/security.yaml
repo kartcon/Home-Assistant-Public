@@ -1,0 +1,42 @@
+# Camera Setup
+#
+#####################
+#   Generic RSTP    #
+#####################
+#
+#- platform: generic
+#  name: Front Door Camera
+#  still_image_url: !secret onvif_still1
+#  stream_source: !secret onvif_stream1
+#  username: !secret onvif_camera_un
+#  password: !secret onvif_camera_pw
+#  verify_ssl: false
+#  authentication: digest
+##
+#- platform: generic
+#  name: Front Yard Camera
+#  still_image_url: !secret onvif_still2
+#  stream_source: !secret onvif_stream2
+#  username: !secret onvif_camera_un
+#  password: !secret onvif_camera_pw
+#  verify_ssl: false
+#  authentication: digest
+##
+#- platform: generic
+#  name: Sidewalk Camera
+#  still_image_url: !secret onvif_still3
+#  stream_source: !secret onvif_stream3
+#  username: !secret onvif_camera_un
+#  password: !secret onvif_camera_pw
+#  verify_ssl: false
+#  authentication: digest
+##
+#- platform: generic
+#  name: Back Yard Camera
+#  still_image_url: !secret onvif_still4
+#  stream_source: !secret onvif_stream4
+#  username: !secret onvif_camera_un
+#  password: !secret onvif_camera_pw
+#  verify_ssl: false
+#  authentication: digest
+#

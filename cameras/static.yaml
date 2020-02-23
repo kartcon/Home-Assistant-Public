@@ -30,6 +30,10 @@
 # #
 #- platform: generic
 #  name: Tide Graph
+#  still_image_url: https://www.tideschart.com/tides/en/Clapboard-Creek-Pelotes-Island-United-States-tides-chart-ft.png?date={{states("sensor.date")|replace("-","")}}
+#
+#- platform: generic
+#  name: Tide Graph
 #  still_image_url: https://wave.marineweather.net/itide/tides/png/fl_clapboard_creek.png?x=1543758223
 #
 # - platform: generic

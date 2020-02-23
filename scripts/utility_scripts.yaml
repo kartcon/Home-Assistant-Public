@@ -40,6 +40,74 @@ refresh_performance_test:
       message: sensor.memory_use_percent
 #
 #################################################################
+# Script: Reload Automations
+# Called from [Entity Button]
+# In file: [/lovelace/sandbox.yaml]
+#################################################################
+reload_all_automations:
+  alias: Reload All Automations
+  sequence:
+  - service: automation.reload
+  - service: persistent_notification.create
+    data_template:
+      title: "Manual Reload"
+      message: >-
+        At {{now().strftime("%m/%d/%Y %H:%M:%S")}}<br />
+        All Automations have be reloaded.<br />
+#
+#################################################################
+# Script: Reload Scripts
+# Called from [Entity Button]
+# In file: [/lovelace/sandbox.yaml]
+#################################################################
+reload_all_scripts:
+  alias: Reload All Scripts
+  sequence:
+  - service: script.reload
+  - service: persistent_notification.create
+    data_template:
+      title: "Manual Reload"
+      message: >-
+        At {{now().strftime("%m/%d/%Y %H:%M:%S")}}<br />
+        All Scripts have be reloaded.<br />
+#
+#################################################################
+# Script: Reload Scenes
+# Called from [Entity Button]
+# In file: [/lovelace/sandbox.yaml]
+#################################################################
+reload_all_scenes:
+  alias: Reload All Scenes
+  sequence:
+  - service: scene.reload
+  - service: persistent_notification.create
+    data_template:
+      title: "Manual Reload"
+      message: >-
+        At {{now().strftime("%m/%d/%Y %H:%M:%S")}}<br />
+        All Scenes have be reloaded.<br />
+#
+#################################################################
+# Script: Reload Input Entities
+# Called from [Entity Button]
+# In file: [/lovelace/sandbox.yaml]
+#################################################################
+reload_all_input_entities:
+  alias: Reload All Input Entities
+  sequence:
+  - service: input_boolean.reload
+  - service: input_datetime.reload
+  - service: input_number.reload
+  - service: input_select.reload
+  - service: input_text.reload
+  - service: persistent_notification.create
+    data_template:
+      title: "Manual Reload"
+      message: >-
+        At {{now().strftime("%m/%d/%Y %H:%M:%S")}}<br />
+        All Input Entities have be reloaded.<br />
+#
+#################################################################
 # Script: Write To Log
 # Called from [multiple automations]
 # In file: [/automations/...]
@@ -61,3 +129,13 @@ write_to_log:
 #    data:
 #      entity_id: media_player.sunroom_sonos
 #      message: 'This is the message text'
+#################################################################
+# Script: Null
+# Called from [multiple automations]
+# Just a default non entity
+#################################################################
+null_script:
+  alias: Null Script
+  sequence:
+  - service: group.reload
+#

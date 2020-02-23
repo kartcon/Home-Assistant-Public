@@ -7,7 +7,7 @@
 #########################################################
 - id: holiday_and_birthday_notification
   alias: 'Holiday and Birthday Notification'
-  hide_entity: false
+#  hide_entity: false
   initial_state: true
   trigger:
     - platform: state
@@ -215,3 +215,39 @@
       message: >-
         It's the first Saturday of the month. Remember to change the furnace filter.
 #
+#############################################################
+#  Announce Upcoming Space Launch
+#############################################################
+- id: upcoming_space_launch
+  alias: 'Upcoming Space Launch'
+  initial_state: true
+  trigger:
+  - platform: template
+    value_template: >
+      {% if (states('sensor.time') == states('sensor.next_launch_reminder')) and (states('sensor.date') == states('sensor.next_launch_date')) %}
+        True
+      {% else %}
+        False
+      {% endif %}
+  condition:
+    condition: time
+    after: '08:00:00'
+    before: '23:00:00'
+  action:
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.alexa_speaking
+  - service: notify.alexa_media
+    data:
+      target:
+        - media_player.kitchen_echo
+      data:
+        type: tts
+        method: speak
+      message: "Upcoming Rocket Launch in 5 minutes. Launch scheduled for liftoff at {{ (as_timestamp(state_attr('sensor.space_launches', 'launch_time'))) | timestamp_custom('%-I:%M %p') }}."
+  - delay: '00:00:05'
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.alexa_speaking
+#
+#      {% if (states('sensor.time') == (as_timestamp(state_attr('sensor.space_launches', 'launch_time'))-300) | 
+# timestamp_custom('%-H:%M')) and (states('sensor.date') == (state_attr('sensor.space_launches', 
+# 'launch_time').split('T')[0].strip())) %}

@@ -96,13 +96,39 @@ cards:
           show_header_toggle: false
           entities:
             - entity: sensor.noaa_tides
+            - entity: sensor.next_low_tide
             - entity: sensor.low_tide_height
-              icon: mdi:slope-downhill
+            - entity: sensor.next_high_tide
             - entity: sensor.high_tide_height
-              icon: mdi:slope-uphill
+            - entity: input_number.max_high_tide
+#        Card 2-3
+        - type: conditional
+          conditions:
+            - entity: sensor.next_launch_date
+              state: "{{states('sensor.date')}}"
+          card:
+            type: entities
+            title: Upcoming Space Launch
+            entities:
+              - sensor.space_launches
+              - sensor.next_launch_date
+              - sensor.next_launch_time
+              - sensor.next_launch_reminder
+#
+
 #       Card 2-3
-        - type: picture
-          image: https://wave.marineweather.net/itide/tides/png/fl_clapboard_creek.png?x=1543758223&z={{states('sensor.uptime')}}
+#        - type: picture
+#          image: 'https://www.tideschart.com/tides/en/Clapboard-Creek-Pelotes-Island-United-States-tides-chart-ft.png?date={{states("sensor.date")|replace("-","")}}'
+#          double_tap_action:
+#            action: url
+#            url_path: https://www.tideschart.com/tides/en/Clapboard-Creek-Pelotes-Island-United-States-tides-chart-ft.png
+#            url_path: 'https://www.tideschart.com/tides/en/Clapboard-Creek-Pelotes-Island-United-States-tides-chart-ft.png?date={{states("sensor.date")|replace("-","")}}'
+#        - type: picture
+#          image: "https://wave.marineweather.net/itide/tides/png/fl_clapboard_creek.png?x=1543758223&z={{states('sensor.uptime')}}"
+#          double_tap_action:
+#            action: url
+#            url_path: "https://wave.marineweather.net/itide/tides/png/fl_clapboard_creek.png?x=1543758223&z={{states('sensor.uptime')}}"
+#          # https://www.thiswaytothe.net/tides/png/blount-island-bridge-florida-tide-graph.png
 #
 # COL 3
 #   Card 3-1

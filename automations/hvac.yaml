@@ -96,8 +96,8 @@
       entity_id: script.update_tstat_temp_1
     - service: script.turn_on
       entity_id: script.update_tstat_temp_2
-    - service: script.turn_on
-      entity_id: script.update_tstat_note
+#    - service: script.turn_on
+#      entity_id: script.update_tstat_note
 #    - service: script.turn_on
 #      entity_id: script.visual_tstat_1
 #
@@ -195,7 +195,7 @@
         Automation - Set HVAC-2 Mode: {{states('input_select.thermostat_mode_2')}} at {{states('input_number.t2_set_point')}}℉
 #        Automation - Set HVAC-2 Mode: {{states('input_select.thermostat_mode_2')}} at {{states('sensor.tstat2_currentsetpoint')}}℉
 #
-# This works in vale of data template of service: input_text.set_value
+# This works in value of data template of service: input_text.set_value
 # {{ state_attr(trigger.entity_id, 'friendly_name') }} - result: Upstairs Set Point
 # Other possibilities include: 
 # {{ trigger.to_state.entity_id }} - result:
@@ -203,117 +203,188 @@
 # {{ trigger.to_state.entity_id }}{{ trigger.value_template }}
 #
 #################################################################
-# Force Mode to Cool
+# Force Mode 1 to Cool
 #################################################################
-- id: hvac_force_mode_cool
-  alias: HVAC Force Mode Cool
+- id: hvac_force_mode_1_cool
+  alias: HVAC Force Mode 1 Cool
   initial_state: true
   trigger:
-  - platform: numeric_state
+  - platform: template
+    value_template: >
+      {% if ((states('sensor.dark_sky_temperature')|float) - (states('sensor.tstat1_actual_temp')|float) > 5) and is_state('input_select.thermostat_mode_1', 'Heat') %}
+        True
+      {% else %}
+        False
+      {% endif %}
+  condition:
+    condition: numeric_state
     entity_id: sun.sun
     value_template: "{{ state_attr('sun.sun', 'elevation') }}"
     above: 12
-#  condition:
-#    - condition: template
-#      value_template: "{{ (states('sensor.dark_sky_temperature')|float) - 
-#      (states('sensor.tstat1_actual_temp')|float) > 10 }}"
-  condition:
-    condition: and
-    conditions:
-      - condition: template
-        value_template: "{{ (states('sensor.dark_sky_temperature')|float) -       (states('sensor.tstat1_actual_temp')|float) > 10 }}"
-      - condition: or
-        conditions:
-          - condition: state
-            entity_id: input_select.thermostat_mode_1
-            state: 'Heat'
-          - condition: state
-            entity_id: input_select.thermostat_mode_2
-            state: 'Heat'
   action:
-  - service: input_text.set_value
-    data_template:
-      entity_id: input_text.hvac_trigger
-      value: >-
-        auto.hvac_force_mode_cool
   - service: input_select.select_option
     data_template:
       entity_id: input_select.thermostat_mode_1
       option: Cool
+  - service: input_text.set_value
+    data_template:
+      entity_id: input_text.hvac_trigger
+      value: auto.hvac_force_mode1_cool
   - service: script.write_to_log
     data:
       entity_id: climate.tstat_1_144
       message: >-
-        Automation - Force HVAC-1 Mode: {{states('input_select.thermostat_mode_1')}} at {{states('input_number.t1_set_point')}}℉
-  - delay:
-      seconds: 2
+        Automation - Force HVAC-1 Mode to {{states('input_select.thermostat_mode_1')}}.
+#  - delay:
+#      seconds: 2
+#  - service: input_select.select_option
+#    data_template:
+#      entity_id: input_select.thermostat_mode_2
+#      option: Cool
+#  - service: script.write_to_log
+#    data:
+#      entity_id: climate.tstat_2_145
+#      message: >-
+#        Automation - Force HVAC-2 Mode to {{states('input_select.thermostat_mode_2')}}.
+#        Automation - Force HVAC-2 Mode to {{states('input_select.thermostat_mode_2')}}. Outside temp is 
+#       {{states('sensor.dark_sky_temperature')|float}}℉
+#
+#################################################################
+# Force Mode 2 to Cool
+#################################################################
+- id: hvac_force_mode_2_cool
+  alias: HVAC Force Mode 2 Cool
+  initial_state: true
+  trigger:
+  - platform: template
+    value_template: >
+      {% if ((states('sensor.dark_sky_temperature')|float) - (states('sensor.tstat1_actual_temp')|float) > 5) and is_state('input_select.thermostat_mode_2', 'Heat') %}
+        True
+      {% else %}
+        False
+      {% endif %}
+  condition:
+    condition: numeric_state
+    entity_id: sun.sun
+    value_template: "{{ state_attr('sun.sun', 'elevation') }}"
+    above: 12
+  action:
   - service: input_select.select_option
     data_template:
       entity_id: input_select.thermostat_mode_2
       option: Cool
+  - service: input_text.set_value
+    data_template:
+      entity_id: input_text.hvac_trigger
+      value: auto.hvac_force_mode2_cool
   - service: script.write_to_log
     data:
       entity_id: climate.tstat_2_145
       message: >-
-        Automation - Force HVAC-2 Mode: {{states('input_select.thermostat_mode_2')}} at {{states('input_number.t2_set_point')}}℉
+        Automation - Force HVAC-2 Mode to {{states('input_select.thermostat_mode_2')}}.
+#        Automation - Force HVAC-2 Mode to {{states('input_select.thermostat_mode_2')}}. Outside temp is 
+#       {{states('sensor.dark_sky_temperature')|float}}℉
+#  - delay:
+#      seconds: 2
+#  - service: input_select.select_option
+#    data_template:
+#      entity_id: input_select.thermostat_mode_1
+#      option: Cool
+#  - service: script.write_to_log
+#    data:
+#      entity_id: climate.tstat_1_144
+#      message: >-
+#        Automation - Force HVAC-1 Mode to {{states('input_select.thermostat_mode_1')}}.
 #
 #################################################################
-# Force Mode to Heat
+# Force Mode 1 to Heat
 #################################################################
-- id: hvac_force_mode_heat
-  alias: HVAC Force Mode Heat
+- id: hvac_force_mode_1_heat
+  alias: HVAC Force Mode 1 Heat
   initial_state: true
   trigger:
-  - platform: numeric_state
+  - platform: template
+    value_template: >
+      {% if ((states('sensor.dark_sky_temperature')|float) - (states('sensor.tstat1_actual_temp')|float) < -10) and is_state('input_select.thermostat_mode_1', 'Cool') or is_state('input_select.thermostat_mode_2', 'Cool') %}
+        True
+      {% else %}
+        False
+      {% endif %}
+  condition:
+    condition: numeric_state
     entity_id: sun.sun
     value_template: "{{ state_attr('sun.sun', 'elevation') }}"
     below: 12
-#  condition:
-#    - condition: state
-#      entity_id: input_select.thermostat_mode_1
-#      state: 'Cool'
-#    - condition: template
-#      value_template: "{{ (states('sensor.dark_sky_temperature')|float) - 
-#      (states('sensor.tstat1_actual_temp')|float) < -10 }}"
-  condition:
-    condition: and
-    conditions:
-      - condition: template
-        value_template: "{{ (states('sensor.dark_sky_temperature')|float) - (states('sensor.tstat1_actual_temp')|float) < -10 }}"
-      - condition: or
-        conditions:
-          - condition: state
-            entity_id: input_select.thermostat_mode_1
-            state: 'Cool'
-          - condition: state
-            entity_id: input_select.thermostat_mode_2
-            state: 'Cool'
   action:
-  - service: input_text.set_value
-    data_template:
-      entity_id: input_text.hvac_trigger
-      value: >-
-        auto.hvac_force_mode_heat
   - service: input_select.select_option
     data_template:
       entity_id: input_select.thermostat_mode_1
       option: Heat
+  - service: input_text.set_value
+    data_template:
+      entity_id: input_text.hvac_trigger
+      value: auto.hvac_force_mode_heat
   - service: script.write_to_log
     data:
       entity_id: climate.tstat_1_144
       message: >-
-        Automation - Force HVAC-1 Mode: {{states('input_select.thermostat_mode_1')}} at {{states('input_number.t1_set_point')}}℉
-  - delay:
-      seconds: 2
+        Automation - Force HVAC-1 Mode to {{states('input_select.thermostat_mode_1')}}.
+#  - service: input_select.select_option
+#    data_template:
+#      entity_id: input_select.thermostat_mode_2
+#      option: Heat
+#  - delay:
+#      seconds: 2
+#  - service: script.write_to_log
+#    data:
+#      entity_id: climate.tstat_2_145
+#      message: >-
+#        Automation - Force HVAC-2 Mode to {{states('input_select.thermostat_mode_2')}}.
+#
+#################################################################
+# Force Mode 2 to Heat
+#################################################################
+- id: hvac_force_mode_2_heat
+  alias: HVAC Force Mode 2 Heat
+  initial_state: true
+  trigger:
+  - platform: template
+    value_template: >
+      {% if ((states('sensor.dark_sky_temperature')|float) - (states('sensor.tstat1_actual_temp')|float) < -10) and is_state('input_select.thermostat_mode_2', 'Cool') %}
+        True
+      {% else %}
+        False
+      {% endif %}
+  condition:
+    condition: numeric_state
+    entity_id: sun.sun
+    value_template: "{{ state_attr('sun.sun', 'elevation') }}"
+    below: 12
+  action:
   - service: input_select.select_option
     data_template:
       entity_id: input_select.thermostat_mode_2
       option: Heat
+  - service: input_text.set_value
+    data_template:
+      entity_id: input_text.hvac_trigger
+      value: auto.hvac_force_mode_heat
   - service: script.write_to_log
     data:
       entity_id: climate.tstat_2_145
       message: >-
-        Automation - Force HVAC-2 Mode: {{states('input_select.thermostat_mode_2')}} at {{states('input_number.t2_set_point')}}℉
+        Automation - Force HVAC-2 Mode to {{states('input_select.thermostat_mode_2')}}.
+#  - service: input_select.select_option
+#    data_template:
+#      entity_id: input_select.thermostat_mode_1
+#      option: Heat
+#  - delay:
+#      seconds: 2
+#  - service: script.write_to_log
+#    data:
+#      entity_id: climate.tstat_1_144
+#      message: >-
+#        Automation - Force HVAC-1 Mode to {{states('input_select.thermostat_mode_1')}}.
 #
 #################################################################
 # Phase of the Day: Morning

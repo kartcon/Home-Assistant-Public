@@ -30,48 +30,30 @@
         At {{now().strftime("%m/%d/%Y %H:%M:%S")}} the {{trigger.entity_id}} went offline.
 #
 #################################################################
-# LIFX Lights indoor precheck
+# LIFX Lights reset offline condition
 # Toggles ZWave switch(s) if device offline
-# Preceedes Automation: [Interior lights on 1 Hr before Sunset] by 15 min
+# Between hours of 6am - 11pm
 # In file: /automations/lights_time.yaml
 #################################################################
-- id: lifx_lights_indoor_precheck
-  alias: LIFX Lights Indoor Precheck
+- id: lifx_lights_reset_offline
+  alias: LIFX Lights Reset Offline
   initial_state: 'on'
   trigger:
+  - platform: sun
+    event: sunset
+    offset: "-01:05:00"
+    # checks status before interior lights on
+  - platform: sun
+    event: sunset
+    offset: "-00:05:00"
+    # checks status before exterior lights on
+  - platform: time
+    at: '22:55:00'
+    # checks status before all lights off
   - platform: state
     entity_id:
       - light.tv_left
       - light.tv_right
-    to: 'unavailable'
-    for: '00:05:00'
-  condition:
-  - condition: sun
-    before: sunset
-    before_offset: "-01:15:00"
-  action:
-  - service: light.turn_off
-    data:
-      entity_id: light.media_center_282
-  - delay: '00:00:05'
-  - service: light.turn_on
-    data:
-      entity_id: light.media_center_282
-#
-#################################################################
-# LIFX Lights outdoor precheck
-# Toggles ZWave switch(s) if device offline
-# Preceedes Automation: [Exterior lights on before Sunset] by 15 min
-# In file: /automations/lights_time.yaml
-#################################################################
-- id: lifx_lights_outdoor_precheck
-  alias: LIFX Lights Outdoor Precheck
-  initial_state: 'on'
-  trigger:
-  - platform: state
-    entity_id:
-#      - light.tv_left
-#      - light.tv_right
       - light.garage_east
       - light.garage_center
       - light.garage_west
@@ -79,20 +61,32 @@
     to: 'unavailable'
     for: '00:05:00'
   condition:
-#  - condition: state
-#    entity_id: sun.sun
-#    state: 'below_horizon'
   - condition: sun
-    before: sunset
-    before_offset: "-00:30:00"
+    after: sunset
+    after_offset: "-02:00:00"
+  - condition: time
+    before: '23:00:00'
   action:
-  - service: light.turn_off
-    data:
-      entity_id: light.media_center_282
-  - delay: '00:00:05'
-  - service: light.turn_on
-    data:
-      entity_id: light.media_center_282
+  - service_template: >-
+      {% if is_state('light.tv_left', 'unavailable') or is_state('light.tv_right', 'unavailable') %}
+        script.lifx_reset_media_center
+      {% else %}
+        # script.null_script
+      {% endif %}
+  - service_template: >-
+      {% if is_state('light.garage_east', 'unavailable') 
+      or is_state('light.garage_center', 'unavailable')
+      or is_state('light.garage_west', 'unavailable') %}
+        script.lifx_reset_garage_lights
+      {% else %}
+        # script.null_script
+      {% endif %}
+  - service_template: >-
+      {% if is_state('light.front_porch', 'unavailable') %}
+        script.lifx_reset_front_porch
+      {% else %}
+        # script.null_script
+      {% endif %}
 #
 #################################################################
 # Toggle Seasonal Colors

@@ -1,3 +1,12 @@
+#########################
+#    Time and Date      #
+#########################
+- platform: time_date
+  display_options:
+    - 'time'
+    - 'date'
+    - 'date_time'
+#
 #############################################################
 #               Time & Date Templates                       #
 #############################################################
@@ -34,17 +43,17 @@
           Evening
         {% endif %}
       friendly_name: "Time of Day"
-    dayoftheweek:
+    day_of_the_week:
       entity_id: sensor.date
       value_template: "{{ now().strftime('%A') }}"
       friendly_name: "Day of the week"
       # Returns: Sunday
-    dayofthemonth:
+    day_of_the_month:
       entity_id: sensor.date
       value_template: "{{ now().day }}"
       friendly_name: "Day of the Month"
       # Returns: 18
-    dateofthemonth:
+    date_of_the_month:
       entity_id: sensor.date
       value_template: >
         {% set suffix = ['st', 'nd', 'rd'] %}
@@ -93,7 +102,7 @@
     payday:
       entity_id: sensor.date
       value_template: >-
-        {% if states.sensor.week_odd_even.state == "Odd Week" and states.sensor.dayoftheweek.state == "Friday" %}
+        {% if states.sensor.week_odd_even.state == "Odd Week" and states.sensor.day_of_the_week.state == "Friday" %}
           True
         {%- else -%}
           False
@@ -115,7 +124,7 @@
         {% if is_state('input_boolean.art_home', 'on') %}
           {{ (((as_timestamp(utcnow()))- states('input_number.ts_art_home') | float) / 3600) | round (2) }}
         {% else %}
-          {{ ((states('input_number.ts_art_away') | float - states('input_number.ts_art_home') | float) / 3600) | round (2) }}
+          {{(((states('input_number.ts_art_away') | float) - (states('input_number.ts_art_home') | float)) / 3600) | round (2)}}
         {% endif %}
 #
 #####################################
@@ -128,7 +137,7 @@
         {% if is_state('input_boolean.art_home', 'off') %}
           {{ ((as_timestamp(utcnow()) - states('input_number.ts_art_away') | float) / 3600) | round (2) }}
         {% else %}
-          {{ ((states('input_number.ts_art_home') | float - states('input_number.ts_art_away') | float) / 3600) | round (2) }}
+          {{(((states('input_number.ts_art_home') | float) - (states('input_number.ts_art_away') | float)) / 3600) | round (2)}}
         {% endif %}
 #
 #####################################
@@ -141,7 +150,7 @@
         {% if is_state('input_boolean.steff_home', 'on') %}
           {{ (((as_timestamp(utcnow()))- states('input_number.ts_steff_home') | float) / 3600) | round (2) }}
         {% else %}
-          {{ ((states('input_number.ts_steff_away') | float - states('input_number.ts_steff_home') | float) / 3600) | round (2) }}
+          {{(((states('input_number.ts_steff_away') | float) - (states('input_number.ts_steff_home') | float)) / 3600) | round (2)}}
         {% endif %}
 #
 #####################################
@@ -154,6 +163,6 @@
         {% if is_state('input_boolean.steff_home', 'off') %}
           {{ ((as_timestamp(utcnow()) - states('input_number.ts_steff_away') | float) / 3600) | round (2) }}
         {% else %}
-          {{ ((states('input_number.ts_steff_home') | float - states('input_number.ts_steff_away') | float) / 3600) | round (2) }}
+          {{(((states('input_number.ts_steff_home') | float) - (states('input_number.ts_steff_away') | float)) / 3600) | round (2)}}
         {% endif %}
 #

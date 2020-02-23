@@ -37,7 +37,7 @@
 - id: home_assistant_startup
   alias: Home Assistant Startup
   initial_state: true
-  hide_entity: true
+#  hide_entity: true
   trigger:
     platform: homeassistant
     event: start
@@ -59,7 +59,7 @@
 - id: home_assistant_unscheduled_restart
   alias: Home Assistant Unscheduled Restart
   initial_state: true
-  hide_entity: true
+#  hide_entity: true
   trigger:
     platform: homeassistant
     event: start

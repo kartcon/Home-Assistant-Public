@@ -160,6 +160,51 @@
     entity_id: light.bench_light_242
 #
 #################################################################
+# Check LIFX Online Status
+#################################################################
+# - id: check_lifx_online_status
+#   alias: Check LIFX Online Status
+#   initial_state: true
+#   trigger:
+#     platform: time
+#     at: '22:55:00'
+#   condition:
+#   - condition: state
+#     entity_id: group.lifx_light_group
+#     state: 'off'
+#   action:
+#   - service_template: >-
+#       {% if is_state('light.tv_left', 'unavailable') 
+#       or is_state('light.tv_right', 'unavailable') %}
+#         light.turn_off
+#         entity_id: light.media_center_282
+#         light.turn_on
+#         entity_id: light.media_center_282
+#       {% else %}
+#         # Do Nothing
+#       {% endif %}
+#   - service_template: >-
+#       {% if is_state('light.garage_east', 'unavailable') 
+#       or is_state('light.garage_center', 'unavailable')
+#       or is_state('light.garage_west', 'unavailable') %}
+#         light.turn_off
+#         entity_id: light.garage_lights_281
+#         light.turn_on
+#         entity_id: light.garage_lights_281
+#       {% else %}
+#         # Do Nothing
+#       {% endif %}
+#   - service_template: >-
+#       {% if is_state('light.front_porch', 'unavailable') %}
+#         light.turn_off
+#         entity_id: light.porch_light_46
+#         light.turn_on
+#         entity_id: light.porch_light_46
+#       {% else %}
+#         # Do Nothing
+#       {% endif %}
+#
+#################################################################
 # All Lights off at 11:00p
 #################################################################
 - id: all_off_at_2300
@@ -180,25 +225,9 @@
     entity_id: group.inside_light_group
   - service: script.turn_on
     entity_id: script.lifx_lights_off
-#  - service: script.turn_on
-#    entity_id: script.turn_off_lgtv
 #
 #################################################################
-# LG LR TV off at 11:05p
-#################################################################
-- id: lg_lr_tv_off_at_2305
-  alias: LG LR TV off at 2305
-  initial_state: true
-  trigger:
-    platform: time
-    at: '23:05:00'
-  condition: []
-  action:
-  - service: script.turn_on
-    entity_id: script.turn_off_lgtv
-#
-#################################################################
-# All Lights off at 11:30p
+# All Lights off at 11:30p (FAIL-SAFE)
 #################################################################
 - id: all_off_at_2330
   alias: All Lights Off at 2330

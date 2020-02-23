@@ -62,65 +62,6 @@
 #      friendly_name: WiFi IP
 #
 #########################
-#    Time and Date      #
-#########################
-- platform: time_date
-  display_options:
-    - 'time'
-    - 'date'
-    - 'date_time'
-#
-#########################
-#    XFinity Useage     #
-#########################
-# https://github.com/robert-alfaro/xfinity-usage
-- platform: xfinity
-  username: !secret xfinity_username
-  password: !secret xfinity_password
-  # sensor.xfinity_usage
-  #
-  ############################
-  # XFinity Data Sensors
-  ############################
-- platform: template
-  sensors:
-    xfinity_allowed:
-      value_template: '{{state_attr("sensor.xfinity_usage","allowed_usage")}}'
-      friendly_name: "XFinity Data Allowed"
-      icon_template: mdi:network
-      unit_of_measurement: 'GB'
-    xfinity_remaining:
-      value_template: '{{state_attr("sensor.xfinity_usage","remaining_usage")}}'
-      friendly_name: "XFinity Data Remaining"
-      icon_template: mdi:network
-      unit_of_measurement: 'GB'
-    xfinity_daily_avg:
-      value_template: '{{((states("sensor.xfinity_usage")|int)/(states("sensor.day_of_the_month")|int))|round(2)}}'
-      friendly_name: "XFinity Daily Average"
-      icon_template: mdi:network
-      unit_of_measurement: 'GB'
-    xfinity_projected:
-      value_template: '{{((states("sensor.xfinity_daily_avg")|float) * (states("sensor.days_in_current_month")|int))|round(2)}}'
-      friendly_name: "XFinity Projected Use"
-      icon_template: mdi:network
-      unit_of_measurement: 'GB'
-    xfinity_useage_rate:
-      value_template: >-
-        {% if states('sensor.xfinity_daily_avg')|int > 0 and states('sensor.xfinity_daily_avg')|int < 10%}
-          Low
-        {% elif states('sensor.xfinity_daily_avg')|int >= 10 and states('sensor.xfinity_daily_avg')|int < 20 %}
-          Medium
-        {% elif states('sensor.xfinity_daily_avg')|int >= 20 and states('sensor.xfinity_daily_avg')|int < 30 %}
-          High
-        {% elif states('sensor.xfinity_daily_avg')|int >= 30 %}
-          Critical
-        {% else %}
-          Unknown
-        {% endif %}
-      icon_template: mdi:network
-      friendly_name: "XFinity Useage Rate"
-#
-#########################
 #    File Size      #
 #########################
 #https://www.home-assistant.io/components/sensor.filesize/

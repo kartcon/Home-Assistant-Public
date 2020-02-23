@@ -83,7 +83,7 @@
     at: '19:00:00'
   condition:
   - condition: state
-    entity_id: media_player.sun_room_lg_tv
+    entity_id: media_player.lg_tv
     state: 'off'
   - condition: state
     entity_id: input_boolean.no_one_home
@@ -144,4 +144,18 @@
   action:
   - service: script.turn_on
     entity_id: script.turn_on_kitchen_roku
+#
+#################################################################
+# LG LR TV off at 11:05p
+#################################################################
+- id: lg_lr_tv_off_at_2305
+  alias: LG LR TV off at 2305
+  initial_state: true
+  trigger:
+    platform: time
+    at: '23:05:00'
+  condition: []
+  action:
+  - service: script.turn_on
+    entity_id: script.turn_off_lgtv
 #

@@ -34,9 +34,6 @@ ucl_temp_nightlights:
 inside_lights_on_before_sunset:
   alias: 'Inside Lights On Before Sunset'
   sequence:
-#  - service: light.turn_off
-#    data:
-#      entity_id: light.media_center_282
   - service: light.turn_on
     data:
       entity_id: light.china_cabinet_25
@@ -240,6 +237,44 @@ lifx_set_default:
       entity_id: light.garage_west
       brightness: 128
       color_temp: 285
+#
+#################################################################
+# Reset LIFX Control Switch if Bulb(s) Offline
+# Called from [lifx_lights_reset_offline]
+# In file: [lights_generic.yaml]
+#################################################################
+lifx_reset_media_center:
+  alias: LIFX Reset Media Center
+  sequence:
+  - service: light.turn_off
+    data:
+      entity_id: light.media_center_282
+  - delay: 0:00:30
+  - service: light.turn_on
+    data:
+      entity_id: light.media_center_282
+#
+lifx_reset_garage_lights:
+  alias: LIFX Reset Garage Lights
+  sequence:
+  - service: light.turn_off
+    data:
+      entity_id: light.garage_lights_281
+  - delay: 0:00:30
+  - service: light.turn_on
+    data:
+      entity_id: light.garage_lights_281
+#
+lifx_reset_front_porch:
+  alias: LIFX Reset Front Porch
+  sequence:
+  - service: light.turn_off
+    data:
+      entity_id: light.porch_light_46
+  - delay: 0:00:30
+  - service: light.turn_on
+    data:
+      entity_id: light.porch_light_46
 #
 #################################################################
 ## Desk Lamp
